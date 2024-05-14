@@ -5,7 +5,7 @@
   <title>JSP-Model2(MVC)-todoList</title>
 </head>
 <body>
-<h1><%= "todoList, todoList.jsp" %>
+<h1><%= "todoList.jsp" %>
 </h1>
 <br/>
 <h1><%= "임시 todoList 화면." %>
