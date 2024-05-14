@@ -46,6 +46,9 @@ public class InputController extends HttpServlet {
     String num2 = req.getParameter("num2");
     // 단순 입력 받은 숫자만 출력해보기.
     System.out.println("num1: " + num1 + " num2: " + num2);
+
+    // 결과 페이지 반환 해보기, 테스트로 index.jsp 로 가보기.
+    resp.sendRedirect("/");
   }
 }
 
