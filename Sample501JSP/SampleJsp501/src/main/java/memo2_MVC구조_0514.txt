@@ -68,6 +68,21 @@ TodoList 미니 프로젝트, api 명세서 작성 해보기.
 6 수정(처리)    TodoUpdateController   /todo/update   post     리다이렉트(리스트화면)
 7 삭제(처리)    TodoDeleteController   /todo/delete   post     리다이렉트(리스트화면)
 
+임시로, 폼 화면, 로직 처리 후, 리스트로 보내기(PRG 패턴)
+Post - Redirect - Get 보내기.
+
+컨트롤러 - 뷰
+모델
+1 (DTO(Data Transfer Object, 데이터 전달용으로 사용하는 모델 클래스,)
+2 (VO,(Value Object, 비지니스 모델, 실제 DB의 컬럼의 내용과 동일)
+3 ( DAO( Data Access Object, 실제로 쿼리를 작성해서, 디비서버에 전달.)
+
+롬복(라이브러리)이, 게터/세터/toString/equals/생성자, 우클릭-> 소스-> 반자동.
+lombok , 어노테이션 이용해서, 메모리상에서 자동으로 로드됨.
+
+
+enum(상수들의 집합체)
+열거형 상수
 
 
 
