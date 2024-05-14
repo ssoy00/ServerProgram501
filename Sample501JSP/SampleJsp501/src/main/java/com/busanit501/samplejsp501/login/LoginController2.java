@@ -19,6 +19,7 @@ public class LoginController2 extends HttpServlet {
     System.out.println("login-result 받기, post 로 받기");
     String id = req.getParameter("mid");
     String pw = req.getParameter("mpw");
+    System.out.println("post 로 받기 id 확인 : 한글 깨짐 확인 : " + id + "");
 
     if (id.equals("lsy") && pw.equals("1234")) {
       // 메인, index 로가기.
