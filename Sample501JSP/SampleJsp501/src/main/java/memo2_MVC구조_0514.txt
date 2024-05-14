@@ -55,6 +55,9 @@ post , /board/registerResult , 처리
 get , /board/update , 폼
 post , /board/updateResult , 처리
 
+
+파일 명 변경 단축키, shift + f6
+
 TodoList 미니 프로젝트, api 명세서 작성 해보기.
 번호  기능      컨트롤러             url 주소       동작방식     뷰
 1 목록(전체)      TodoListController   /todo/list     get     /WEB-INF/todo/todoList.jsp
