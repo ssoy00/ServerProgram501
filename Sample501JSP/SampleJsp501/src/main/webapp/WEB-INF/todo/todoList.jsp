@@ -8,7 +8,7 @@
 <h1><%= "todoList.jsp" %>
 </h1>
 <br/>
-<h1><%= "임시 todoList 화면." %>
+<h1><%= "임시 todoList 화면. 임시 메인" %>
 </h1>
 </body>
 </html>
