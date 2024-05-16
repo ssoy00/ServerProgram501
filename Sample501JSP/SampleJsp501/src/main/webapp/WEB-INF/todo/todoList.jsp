@@ -14,5 +14,19 @@
   EL 표기법 으로 \${사용할 변수의 키 }, ex(key 이름 : list)</p>
 <h2>서버에서 넘겨 받은 데이터를 그냥 출력했고, </h2>
 ${list}
+<h2>
+  tno 번호 :
+</h2>
+<h3>${list[0].tno}</h3>
+<h2>
+  tno 제목 :
+</h2>
+<h3>${list[0].title}</h3>
+
+<h2>
+  tno 날짜 :
+</h2>
+<h3>${list[0].dueDate}</h3>
+
 </body>
 </html>
