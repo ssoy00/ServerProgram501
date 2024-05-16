@@ -29,6 +29,13 @@ ${list}
   tno 날짜 :
 </h2>
 <h3>${list[0].dueDate}</h3>
+<ul>
+  <c:forEach var="dto" items="${list}">
+    <li>
+        ${dto}
+    </li>
+  </c:forEach>
+</ul>
 
 </body>
 </html>

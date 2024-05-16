@@ -22,10 +22,16 @@ tasks.withType(JavaCompile) {
 }
 
 dependencies {
+    // 필요한 라이브러리 기능들을 복붙.
     compileOnly('javax.servlet:javax.servlet-api:4.0.1')
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+
+    // JSTL
+    // 설정후, 오른쪽 상단 , 코끼리 싱크 버튼 클릭 해서 , 적용하기.
+    // 주소 변경,
+    implementation group: 'jstl', name: 'jstl', version: '1.2'
 }
 
 test {
