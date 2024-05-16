@@ -32,6 +32,9 @@ gradle에서 설정하는 코드.
 // https://mvnrepository.com/artifact/javax.servlet.jsp.jstl/jstl
 implementation group: 'javax.servlet.jsp.jstl', name: 'jstl', version: '1.2'
 
+변경 함, 구버전으로
+implementation group: 'jstl', name: 'jstl', version: '1.2'
+
 build.gradle 파일이 있음. 여기에 복붙.
 
 // 설정후, 오른쪽 상단 , 코끼리 싱크 버튼 클릭 해서 , 적용하기.
@@ -66,6 +69,29 @@ var(하나 꺼내서 사용할 요소의 변수명) ,
 
 
 2) 조건문
+<c:if> , <c:choose>
+기본 문법
+ <c:if test="조건식">
+test , 속성, 무언가 테스트한다.
+
+예)
+<c:if test="${list.size()} % 2 == 0">
+  짝수
+</c:if>
+<c:if test="${list.size()} % 2 != 0">
+  홀수
+</c:if>
+
+기본 문법, 예제
+<c:choose>
+  <c:when test="${list.size()} % 2 == 0">
+    짝수
+  </c:when>
+  <c:otherwise>
+    홀수
+  </c:otherwise>
+</c:choose>
+
 3) 변수 사용
 
 

@@ -29,12 +29,53 @@ ${list}
   tno 날짜 :
 </h2>
 <h3>${list[0].dueDate}</h3>
+<h1>JSTL 이용해서 반복문 출력해보기1.</h1>
 <ul>
   <c:forEach var="dto" items="${list}">
     <li>
         ${dto}
     </li>
   </c:forEach>
+</ul>
+
+<h1>JSTL 이용해서 반복문 출력해보기2.</h1>
+<ul>
+
+    <c:forEach var="dto" items="${list}" begin="1" end="5">
+      <c:if test="${dto.tno % 2 == 0}">
+      <li>
+          짝수 출력 : ${dto}
+      </li>
+      </c:if>
+      <c:if test="${dto.tno % 2 != 0}">
+        <li>
+           홀수 출력 : ${dto}
+        </li>
+      </c:if>
+    </c:forEach>
+
+
+</ul>
+
+<h1>JSTL 이용해서 반복문 출력해보기3.</h1>
+<ul>
+
+  <c:forEach var="dto" items="${list}" begin="1" end="5">
+    <c:choose>
+      <c:when test="${dto.tno % 2 == 0}">
+        <li>
+          짝수 출력 : ${dto}
+        </li>
+      </c:when>
+      <c:otherwise>
+        <li>
+          홀수 출력 : ${dto}
+        </li>
+      </c:otherwise>
+    </c:choose>
+  </c:forEach>
+
+
 </ul>
 
 </body>
