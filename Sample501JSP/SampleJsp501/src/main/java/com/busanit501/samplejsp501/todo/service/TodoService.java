@@ -3,6 +3,7 @@ package com.busanit501.samplejsp501.todo.service;
 import com.busanit501.samplejsp501.todo.dto.TodoDTO;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -42,6 +43,7 @@ public enum TodoService {
     // 예) 바나나 ---> banana,
     // mapToObj 작성시 자동 임포트 잘하기.
     List<TodoDTO> listSample = IntStream.range(0,10).mapToObj(i -> {
+      // 임시 Todo 하나를 의미,
           TodoDTO dto = new TodoDTO();
           dto.setTno((long)i);
           dto.setTitle("Sample Todo Title " + i);
@@ -51,6 +53,18 @@ public enum TodoService {
     return listSample;
   }
 
+  public List<TodoDTO> getList2() {
+    // 임시로 10개의 더미 데이터를 담을 공간.
+    List<TodoDTO> sampleList = new ArrayList<>();
 
+    for (int i = 0; i <10; i++) {
+      TodoDTO dto = new TodoDTO();
+      dto.setTno((long)i);
+      dto.setTitle("Sample Todo" + i);
+      dto.setDueDate(LocalDate.now());
+      sampleList.add(dto);
+    }
+    return sampleList;
+  }
 
 }
