@@ -29,7 +29,7 @@ ${list}
   tno 날짜 :
 </h2>
 <h3>${list[0].dueDate}</h3>
-<h1>JSTL 이용해서 반복문 출력해보기1.</h1>
+<h1>JSTL 이용해서 반복문 출력해보기1.단순 반복문</h1>
 <ul>
   <c:forEach var="dto" items="${list}">
     <li>
@@ -38,7 +38,7 @@ ${list}
   </c:forEach>
 </ul>
 
-<h1>JSTL 이용해서 반복문 출력해보기2.</h1>
+<h1>JSTL 이용해서 반복문 출력해보기2.if 예제</h1>
 <ul>
 
     <c:forEach var="dto" items="${list}" begin="1" end="5">
@@ -57,7 +57,7 @@ ${list}
 
 </ul>
 
-<h1>JSTL 이용해서 반복문 출력해보기3.</h1>
+<h1>JSTL 이용해서 반복문 출력해보기3. 조건문, 스위치 예제</h1>
 <ul>
 
   <c:forEach var="dto" items="${list}" begin="1" end="5">
@@ -65,6 +65,28 @@ ${list}
       <c:when test="${dto.tno % 2 == 0}">
         <li>
           짝수 출력 : ${dto}
+        </li>
+      </c:when>
+      <c:otherwise>
+        <li>
+          홀수 출력 : ${dto}
+        </li>
+      </c:otherwise>
+    </c:choose>
+  </c:forEach>
+
+
+</ul>
+
+<h1>JSTL 이용해서 반복문 출력해보기4. 변수 사용예</h1>
+<ul>
+
+  <c:forEach var="dto" items="${list}" begin="1" end="5">
+    <c:set var="var1" value="오늘 점심 뭐 먹죠>? 설렁탕?"></c:set>
+    <c:choose>
+      <c:when test="${dto.tno % 2 == 0}">
+        <li>
+          짝수 출력 : ${dto}, 점심 : ${var1}
         </li>
       </c:when>
       <c:otherwise>

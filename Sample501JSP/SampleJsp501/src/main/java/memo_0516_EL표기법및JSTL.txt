@@ -93,7 +93,13 @@ test , 속성, 무언가 테스트한다.
 </c:choose>
 
 3) 변수 사용
-
+기본 문법
+<c:set var="변수명" value="변수에 담을 값">
+예)
+설정.
+<c:set var="var1" value="lsy">
+이용.
+점심 : ${var1}
 
 
 
