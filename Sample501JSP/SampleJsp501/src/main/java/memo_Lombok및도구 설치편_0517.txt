@@ -39,3 +39,18 @@ build.gradle 파일에서
         .build();
 
     System.out.println(todo);
+
+
+HikariCP(Connection Pool), 디비에 연결 하고, 끊는 자원 소모가 많아서,
+
+미리 인스턴스들을 만들어서, 풀에 넣어두고, 그리고 사용하기.
+
+예) Connection 인스턴스 생성하고, 이용 후 , 반납.
+DBCP
+자원 효율적으로 사용가능, 성능도 좋아짐.
+
+도구 이용하기 위해서, build.gradle 설치 후, 적용하기.
+
+  //Hikari Cp 설치
+    // https://mvnrepository.com/artifact/com.zaxxer/HikariCP
+    implementation group: 'com.zaxxer', name: 'HikariCP', version: '5.1.0'
