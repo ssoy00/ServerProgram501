@@ -56,6 +56,30 @@ public class TodoDAO {
     return samples;
   }
 
+// 하나의 todo 조회하기. 상세보기.
+  public TodoVO selectOne(Long tno) throws Exception{
+    String sql = "select * from tbl_todo where tno = ?";
+    //1)
+    @Cleanup Connection conn = ConnectionUtil.INSTANCE.getConnection();
+    @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
+    // 화면에서 , 특정 게시글 선택하면,
+    // get : URL: http://localhost:8080/todo/read?tno=3
+    pstmt.setLong(1,tno);
+    @Cleanup ResultSet resultSet = pstmt.executeQuery();
+    // 값이 하나여서, 반복문 필요없음.
+    resultSet.next();
+    // 임시 로 담을 인스턴스 . builder 패턴 이용해보기.
+    // 데이터베이스에서 조회한 1개의 행을 넣기.
+    TodoVO todoVO = TodoVO.builder()
+        .tno(resultSet.getLong("tno"))
+        .title(resultSet.getString("title"))
+        .dueDate(resultSet.getDate("dueDate").toLocalDate())
+        .finished(resultSet.getBoolean("finished"))
+        .build();
+    // 임시 인스턴스
+    return todoVO;
+  }
+
   // 쓰기 insert
 
   // 수정 update

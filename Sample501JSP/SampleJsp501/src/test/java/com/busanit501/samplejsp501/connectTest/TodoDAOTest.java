@@ -42,6 +42,15 @@ public class TodoDAOTest {
   }
 
 
+  @Test
+  public void getSelectOne() throws Exception {
+    TodoVO todoVO = todoDAO.selectOne(5L);
+    // 기본 출력이고, 전체 출력
+    System.out.println("todoVO : " + todoVO);
+
+  }
+
+
 
 }
 

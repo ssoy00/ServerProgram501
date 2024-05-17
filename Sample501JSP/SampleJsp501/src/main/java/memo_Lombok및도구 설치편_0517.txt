@@ -55,4 +55,6 @@ DBCP
     // https://mvnrepository.com/artifact/com.zaxxer/HikariCP
     implementation group: 'com.zaxxer', name: 'HikariCP', version: '5.1.0'
 
+//모델 맵퍼 , DTO <-> VO, 자동 변환 툴.
 
+// Log4j2, 로깅 툴
