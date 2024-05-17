@@ -1,10 +1,23 @@
 package com.busanit501.samplejsp501.todo.dao;
 
+import lombok.Cleanup;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class TodoDAO {
+
+  public String  getTime2() throws Exception{
+    // 자원 반납 자동으로 처리해보기, 롬복의 @Cleanup 기능 이용하기.
+    //사용법 : @Cleanup , 자동으로 반납 하고 싶은 메서드에 붙이기.
+    @Cleanup Connection connection = ConnectionUtil.INSTANCE.getConnection();
+    @Cleanup PreparedStatement pstmt = connection.prepareStatement("select now()");
+    @Cleanup ResultSet rs = pstmt.executeQuery();
+    rs.next();
+    String now = rs.getString(1);
+        return now;
+  }
   // 데이터베이스 직접적인 비지니스 로직 처리하는 기능을 만들기.
   // 샘플
   // 현재 시간을 가져오는 기능.
@@ -16,7 +29,7 @@ public class TodoDAO {
     // 3가지 방법. 1) try catch finally 2) throws 3) try resources with (자동 close)
     // 결론, 롬복의 @cleanup , 자동으로 반납함.
 
-    // 예시 try resources with (자동 close)
+    // 예시 try with resources  (자동 close)
     String now = null;
     // 디비 연결해서, 시각 가져오는 코드.
     try(Connection connection = ConnectionUtil.INSTANCE.getConnection();
