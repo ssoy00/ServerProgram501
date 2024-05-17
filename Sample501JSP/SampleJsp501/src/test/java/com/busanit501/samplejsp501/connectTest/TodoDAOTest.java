@@ -1,8 +1,11 @@
 package com.busanit501.samplejsp501.connectTest;
 
 import com.busanit501.samplejsp501.todo.dao.TodoDAO;
+import com.busanit501.samplejsp501.todo.domain.TodoVO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 public class TodoDAOTest {
 
@@ -26,6 +29,16 @@ public class TodoDAOTest {
     // String time = todoDAO.getTime();
     String time = todoDAO.getTime2();
     System.out.println("time : " + time);
+  }
+
+  @Test
+  public void getSelectAll() throws Exception {
+    List< TodoVO> samples = todoDAO.selectAll();
+    // 기본 출력이고, 전체 출력
+    System.out.println("samples : " + samples);
+    // 향상된 for, 목록에서 요소를 하나씩 뽑아서 출력함.
+    // samples 목록에서, 하나 요소를 꺼내서 vo 에 담고, 그리고 개별 요소 출력하기.
+    samples.forEach(vo ->System.out.println("각각 출력해보기 : " + vo) );
   }
 
 

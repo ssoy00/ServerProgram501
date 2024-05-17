@@ -1,7 +1,6 @@
 package com.busanit501.samplejsp501.todo.dao;
 
 import com.busanit501.samplejsp501.todo.domain.TodoVO;
-import com.busanit501.samplejsp501.todo.dto.TodoDTO;
 import lombok.Cleanup;
 
 import java.sql.Connection;
@@ -30,17 +29,17 @@ public class TodoDAO {
     List<TodoVO> samples = new ArrayList<TodoVO>();
 
     while (resultSet.next()){
-      // 기존에는 , set 를 이용해서 담는 방법
-      // 임시 TodoVO에 담기, -> 다시 임시 목록에 담기.
-      // 방법1
-      TodoVO todoVO = new TodoVO();
-      // resultSet.getLong("tno"), 디비에서 조회한 내용.
-      todoVO.setTno(resultSet.getLong("tno"));
-      todoVO.setTitle(resultSet.getString("title"));
-      todoVO.setDueDate(resultSet.getDate("dueDate").toLocalDate());
-      todoVO.setFinished(resultSet.getBoolean("finished"));
-      // 리스트에 담기.
-      samples.add(todoVO);
+//      // 기존에는 , set 를 이용해서 담는 방법
+//      // 임시 TodoVO에 담기, -> 다시 임시 목록에 담기.
+//      // 방법1
+//      TodoVO todoVO = new TodoVO();
+//      // resultSet.getLong("tno"), 디비에서 조회한 내용.
+//      todoVO.setTno(resultSet.getLong("tno"));
+//      todoVO.setTitle(resultSet.getString("title"));
+//      todoVO.setDueDate(resultSet.getDate("dueDate").toLocalDate());
+//      todoVO.setFinished(resultSet.getBoolean("finished"));
+//      // 리스트에 담기.
+//      samples.add(todoVO);
       // builder 패턴으로 담는 방법.
       // 방법2
       TodoVO todoVOBuilder = TodoVO.builder()
@@ -54,7 +53,7 @@ public class TodoDAO {
     }
 
     //임시 반환값.
-    return new ArrayList<TodoDTO>;
+    return samples;
   }
 
   // 쓰기 insert
