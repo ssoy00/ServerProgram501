@@ -41,6 +41,8 @@ public enum ConnectionUtil {
   public Connection getConnection() throws Exception{
     return dataSource.getConnection();
   }
-
+// 사용법
+  // Connection con = ConnectionUtil.INSTANCE.getConnection() , 이런식으로 사용함.
+  //
 
 }
