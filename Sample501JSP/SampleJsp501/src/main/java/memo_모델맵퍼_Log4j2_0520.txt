@@ -86,9 +86,26 @@ build.gradle 복붙, 새로고침.
 
 기본설정
 main -> resources -> log4j2.xml 파일 만들기.
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration status="WARN">
+  <Appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36}-%msg%n"/>
+
+    </Console>
+  </Appenders>
+  <Loggers>
+    <Root level="info">
+      <AppenderRef ref="Console"/>
+    </Root>
+  </Loggers>
+</Configuration>
 
 
 이용.
+@Log4j2, 붙이고,
+출력하고 싶은 내용을.
+log.info(내용)
 
 
 
