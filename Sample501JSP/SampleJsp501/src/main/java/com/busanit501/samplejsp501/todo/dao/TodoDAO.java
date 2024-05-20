@@ -109,6 +109,19 @@ public class TodoDAO {
   }
 
   // 수정 update
+  // 수정 폼에서, 수정하고 싶은 데이터를 임시 모델에 담기. -> TodoVO todoVO
+  //
+  public void update(TodoVO todoVO) throws Exception {
+    String sql = "update tbl_todo set finished = ?, title = ?, dueDate = ? where tno = ?;";
+    @Cleanup Connection conn = ConnectionUtil.INSTANCE.getConnection();
+    @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
+    // 임시 모델에 담겨진 변경할 데이터의 내용을 가져와서, 디비에 전달 할 예정.
+    pstmt.setBoolean(1,todoVO.isFinished());
+    pstmt.setString(2,todoVO.getTitle());
+    pstmt.setDate(3, Date.valueOf(todoVO.getDueDate()));
+    pstmt.setLong(4,todoVO.getTno());
+    pstmt.executeUpdate();
+  }
 
   // 삭제 delete
   public void delete(Long tno) throws Exception {
