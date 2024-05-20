@@ -8,7 +8,7 @@
 </head>
 <body>
 <ul>
-  <c:forEach items="list" var="dto">
+  <c:forEach items="${list}" var="dto">
     <li>${dto}</li>
   </c:forEach>
 </ul>

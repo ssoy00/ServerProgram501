@@ -57,6 +57,7 @@ public enum TodoService {
     // DB : 모델 : TodoVO
     // 화면 : 모델 : TodoDTO
     List<TodoVO> sampleList = todoDAO.selectAll();
+    log.info("TodoService , 확인1, sampleList : " + sampleList);
     List<TodoDTO> sampleDtoList = sampleList.stream()
         .map(vo -> modelMapper.map(vo,TodoDTO.class))
         .collect(Collectors.toList());
