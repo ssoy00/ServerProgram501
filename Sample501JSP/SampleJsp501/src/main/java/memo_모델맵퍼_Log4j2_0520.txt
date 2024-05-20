@@ -13,3 +13,40 @@ implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.2.0'
 3. 역할 , 모델간의 타입을 자동으로 변환 해주는 도구.
 
 4. 초반에 설정.
+특정의, enum 타입의 파일을 만들고, 기본 설정을 지정.
+MapperUtil
+설정 참고 코드.
+public enum MapperUtil {
+  INSTANCE;
+
+  // 멤버로, modelMapper 필요함. 주입, 포함, DI
+  private ModelMapper modelMapper;
+
+  // 양방향 변환에 필요한 초기 설정.
+
+  // 기본 생성자에서, 설정되게 하기.
+  MapperUtil(){
+    // 위에서 주입했던 인스턴스를 선언만 해서, 여기서 할당을 함.
+    // 0x100 이 할당이 됨.
+    this.modelMapper = new ModelMapper();
+    // 추가 설정은,
+    this.modelMapper.getConfiguration()
+        // VO <-> DTO 간의 멤버의 일치성 여부를 확인
+        .setFieldMatchingEnabled(true)
+        // 멤버의 접근 지정자를 private 에 접근하기위해서 필요한 설정.
+        // 기본 , public , default
+    .setFieldAccessLevel(Configuration.AccessLevel.PRIVATE)
+        // VO <-> DTO 간의 검사를 , 꼼꼼하게 해주세요.(정확히 일치해야함.)
+        .setMatchingStrategy(MatchingStrategies.STRICT);
+  } // 기본 생성자 닫기. MapperUtil
+
+  // ModelMapper 타입의 인스턴스를 반환하는 메서드 만들기.
+  public ModelMapper get() {
+    return modelMapper;
+  }
+}
+
+5 이용법, 간단함.
+modelMapper.map(dto 타입 인스턴스, VO 타입의 클래스 파일) -> 반환을 VO 타입으로 해줌.
+예)
+TodoVO todoVO = modelMapper.map(todoDTO, TodoVO.class);
