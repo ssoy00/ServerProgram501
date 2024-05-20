@@ -52,7 +52,17 @@ public enum TodoService {
     todoDAO.insert(todoVO);
   }
   // 전체 조회
+  public List<TodoDTO> listAll() throws Exception {
+    // DB -> DAO -> TodoVO -> TodoDTO , 변환.
+    // DB : 모델 : TodoVO
+    // 화면 : 모델 : TodoDTO
+    List<TodoVO> sampleList = todoDAO.selectAll();
+    List<TodoDTO> sampleDtoList = sampleList.stream()
+        .map(vo -> modelMapper.map(vo,TodoDTO.class))
+        .collect(Collectors.toList());
+    return sampleDtoList;
 
+  }
 
   // 하나 조회
 

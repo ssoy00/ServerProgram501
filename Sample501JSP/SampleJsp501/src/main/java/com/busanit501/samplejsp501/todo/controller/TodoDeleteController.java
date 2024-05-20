@@ -1,4 +1,4 @@
-package com.busanit501.samplejsp501.todo;
+package com.busanit501.samplejsp501.todo.controller;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
