@@ -70,7 +70,21 @@ public class TodoDAOTest {
   }
 
   //update
+  // 수정, 기존 데이터 -> 새로운 데이터
+  // 새로운 데이터 -> 임시 인스턴스, TodoVO
+@Test
+public void update() throws Exception {
+  TodoVO todoVO1 = TodoVO.builder()
+      .tno(2L)
+      .title("오늘 점심 뭐 먹지?")
+        .dueDate(LocalDate.now())
+//      .dueDate(LocalDate.of(2024,5,20))
+      .finished(false)
+      .build();
 
+  // 기능구현
+  todoDAO.update(todoVO1);
+}
   //delete
   @Test
   public void delete() throws Exception {
