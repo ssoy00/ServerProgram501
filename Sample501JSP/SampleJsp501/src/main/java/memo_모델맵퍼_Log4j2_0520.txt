@@ -1,0 +1,15 @@
+도구 설치.
+ModelMapper 라이브러리 설치 하기.
+
+1. maven repository 에서 , 도구 쇼핑함.
+해당 사이트 광고가 너무 심해서 , brave 브라우저 이용하면, 광고 필터함. 참고하기.
+
+ModelMapper
+
+2. build.gradle 파일에서 복붙 후, 적용하기.
+// https://mvnrepository.com/artifact/org.modelmapper/modelmapper
+implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.2.0'
+
+3. 역할 , 모델간의 타입을 자동으로 변환 해주는 도구.
+
+4. 초반에 설정.
