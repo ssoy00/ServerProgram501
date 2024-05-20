@@ -5,6 +5,7 @@ import com.busanit501.samplejsp501.menu.domain.MenuVO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class LunchMenuDAOTest {
@@ -28,8 +29,45 @@ public class LunchMenuDAOTest {
     samples.forEach(vo ->System.out.println("각각 출력해보기 : " + vo) );
   }
 
+  @Test
+  public void getSelectOne() throws Exception {
+    MenuVO sample = menuDAO.selectOne(1L);
+    System.out.println("samples : " + sample);
 
+  }
 
+  // 쓰기
+  @Test
+  public void insert() throws Exception {
+    //  글 작성시 , 데이터를 담아둘 임시 모델 VO 만들기.
+    MenuVO menuVO = MenuVO.builder()
+        .menuTitle("칼국수")
+        .menuRegDate(LocalDate.now())
+        .build();
+    menuDAO.insert(menuVO);
+
+  }
+
+  // 수정
+  @Test
+  public void update() throws Exception {
+    //  글 작성시 , 데이터를 담아둘 임시 모델 VO 만들기.
+    MenuVO menuVO = MenuVO.builder()
+        .menuNo(11L)
+        .menuTitle("칼국수 수정")
+        .menuRegDate(LocalDate.now())
+        .build();
+    menuDAO.update(menuVO);
+
+  }
+
+  // 삭제
+  @Test
+  public void delete() throws Exception {
+
+    menuDAO.delete(11L);
+
+  }
 }
 
 
