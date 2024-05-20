@@ -43,6 +43,8 @@ public enum TodoService {
 //        .finished(todoDTO.isFinished())
 //        .build();
     System.out.println("todoVO : "+ todoVO);
+    // 실제 디비에도 넣기.
+    todoDAO.insert(todoVO);
   }
   // 전체 조회
 
