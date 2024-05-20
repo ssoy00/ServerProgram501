@@ -4,6 +4,7 @@ import com.busanit501.samplejsp501.todo.domain.TodoVO;
 import lombok.Cleanup;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -57,9 +58,12 @@ public class TodoDAO {
   }
 
 // 하나의 todo 조회하기. 상세보기.
+  // 메서드 정의하는 부분, 메서드를 사용하는 곳에서, tno = 3 번호를 가지고 와요.
+  // 반환을, 넘겨받는 게시글 번호에 해당하는 하나의 정보를 받음. 하나의 게시글
+  // TodoVO,
   public TodoVO selectOne(Long tno) throws Exception{
     String sql = "select * from tbl_todo where tno = ?";
-    //1)
+    //1) @Cleanup ,자원 반납 자동으로 lombok 라는 도구 이용해서.
     @Cleanup Connection conn = ConnectionUtil.INSTANCE.getConnection();
     @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
     // 화면에서 , 특정 게시글 선택하면,
@@ -81,6 +85,28 @@ public class TodoDAO {
   }
 
   // 쓰기 insert
+  // 화면에서 받았다 치고, 현재는 더미로 넣기 연습.
+  // 임시로 저장할 모델 DTO -> VO 변환 -> VO 를 해당 데이터베이스 입력.
+  // 현재 단계에서는, DAO는 직접적인 DB에 넣는 타입은 VO 로 진행함.
+  public void insert(TodoVO vo) throws Exception {
+    String sql = "insert into tbl_todo (title, dueDate, finished) values (?,?,?);";
+    //1) @Cleanup ,자원 반납 자동으로 lombok 라는 도구 이용해서.
+    @Cleanup Connection conn = ConnectionUtil.INSTANCE.getConnection();
+    @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
+    // 화면에서 , 특정 게시글 선택하면,
+    // get : URL: http://localhost:8080/todo/read?tno=3
+    pstmt.setString(1,vo.getTitle());
+    //vo.getDueDate() : LocalDate
+    // Date.valueOf 메서드의 결과 타입 Date 로 변환함.
+    pstmt.setDate(2, Date.valueOf(vo.getDueDate()));
+    pstmt.setBoolean(3,vo.isFinished());
+
+    // select 조회 할 때, pstmt.executeQuery();
+    // insert, update, delete , executeUpdate();
+//    int result = pstmt.executeUpdate();
+//    return result;
+    pstmt.executeUpdate();
+  }
 
   // 수정 update
 
