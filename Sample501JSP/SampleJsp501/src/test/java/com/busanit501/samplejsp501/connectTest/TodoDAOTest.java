@@ -72,7 +72,11 @@ public class TodoDAOTest {
   //update
 
   //delete
-
+  @Test
+  public void delete() throws Exception {
+    // 기능 확인 해보기.
+    todoDAO.delete(1L);
+  }
 
 
 }
