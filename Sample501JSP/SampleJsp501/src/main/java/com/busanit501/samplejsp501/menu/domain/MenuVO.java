@@ -8,6 +8,7 @@ import java.time.LocalDate;
 @Setter
 @ToString
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class MenuVO {
   // 인스턴스 멤버.

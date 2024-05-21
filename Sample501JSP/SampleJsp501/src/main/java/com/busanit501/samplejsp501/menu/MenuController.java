@@ -1,6 +1,6 @@
 package com.busanit501.samplejsp501.menu;
 
-import com.busanit501.samplejsp501.menu.dto.MenuDTO;
+import com.busanit501.samplejsp501.menu.dto.MenuDTO2;
 import com.busanit501.samplejsp501.menu.service.MenuService;
 
 import javax.servlet.RequestDispatcher;
@@ -20,7 +20,12 @@ public class MenuController extends HttpServlet {
     // 임시 더미 메뉴 10개 등록 .
     // 서비스에서 기능 만든것을 재사용.
     // 서버 -> 클라이언트(뷰)
-    List<MenuDTO> sampleList = MenuService.INSTANCE.getList();
+    List<MenuDTO2> sampleList = null;
+    try {
+      sampleList = MenuService.INSTANCE.listAll();
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
     req.setAttribute("list",sampleList);
         
     // 기본, 뷰 jsp 파일로 전달하기.

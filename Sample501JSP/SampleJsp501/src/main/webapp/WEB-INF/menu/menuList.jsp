@@ -8,10 +8,6 @@
 </head>
 <body>
 
-<h1><%= "임시 MenuList 화면. 임시 메인" %>
-</h1>
-
-<h1>JSTL 이용해서 반복문 출력해보기1.단순 반복문</h1>
 <ul>
   <c:forEach var="dto" items="${list}">
     <li>

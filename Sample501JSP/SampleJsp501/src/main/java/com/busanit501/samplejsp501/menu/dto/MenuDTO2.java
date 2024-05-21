@@ -1,9 +1,6 @@
 package com.busanit501.samplejsp501.menu.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -11,6 +8,8 @@ import java.time.LocalDate;
 @Setter
 @ToString
 @AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class MenuDTO2 {
   // 인스턴스 멤버.
   private Long menuNo;

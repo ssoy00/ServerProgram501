@@ -1,28 +1,52 @@
 package com.busanit501.samplejsp501.menu.service;
 
-import com.busanit501.samplejsp501.menu.dto.MenuDTO;
+import com.busanit501.samplejsp501.menu.dao.MenuDAO;
+import com.busanit501.samplejsp501.menu.domain.MenuVO;
+import com.busanit501.samplejsp501.menu.dto.MenuDTO2;
+import com.busanit501.samplejsp501.todo.util.MapperUtil;
+import lombok.extern.log4j.Log4j2;
+import org.modelmapper.ModelMapper;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
+@Log4j2
 public enum MenuService {
   INSTANCE;
 
-  // 임시 리스트 출력하는 기능.
-  public List<MenuDTO> getList() {
+  private MenuDAO menuDAO;
+  private ModelMapper modelMapper;
 
-    List<MenuDTO> listSample = IntStream.range(0,10).mapToObj(i -> {
-      MenuDTO dto = new MenuDTO();
-      dto.setMenuNo((long)i);
-      dto.setMenuTitle("Sample Menu Title " + i);
-      dto.setDueDate(LocalDate.now());
-      return dto;
-    }).collect(Collectors.toList());
-    return listSample;
+  MenuService() {
+    menuDAO = new MenuDAO();
+    modelMapper = MapperUtil.INSTANCE.get();
   }
 
+  public void register2(MenuDTO2 menuDTO2) throws Exception {
 
+    MenuVO menuVO = modelMapper.map(menuDTO2, MenuVO.class);
+
+    log.info("menuVO : " + menuVO);
+    menuDAO.insert(menuVO);
+  }
+
+  public List<MenuDTO2> listAll() throws Exception {
+
+    List<MenuVO> sampleList = menuDAO.selectAll();
+    log.info("MenuService , 확인1, sampleList : " + sampleList);
+
+    List<MenuDTO2> sampleDtoList = sampleList.stream()
+        .map(vo -> modelMapper.map(vo, MenuDTO2.class))
+        .collect(Collectors.toList());
+
+    return sampleDtoList;
+
+  }
+
+  // 하나 조회
+
+  // 수정
+
+  // 삭제
 
 }
