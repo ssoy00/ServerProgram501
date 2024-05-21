@@ -46,7 +46,7 @@ public enum TodoService {
 //        .build();
 //    System.out.println("todoVO : "+ todoVO);
 
-    log.info("todoVO : " + todoVO);
+//    log.info("todoVO : " + todoVO);
 
     // 실제 디비에도 넣기.
     todoDAO.insert(todoVO);
@@ -58,7 +58,7 @@ public enum TodoService {
     // DB : 모델 : TodoVO
     // 화면 : 모델 : TodoDTO
     List<TodoVO> sampleList = todoDAO.selectAll();
-    log.info("TodoService , 확인1, sampleList : " + sampleList);
+//    log.info("TodoService , 확인1, sampleList : " + sampleList);
     // sampleDtoList = {TodoVO1,TodoVO2,TodoVO3,TodoVO4,...}
     List<TodoDTO> sampleDtoList = sampleList.stream()
         // 리스트의 요소를 하나씩 각각 꺼내서, vo -> dto 모두 변환함.
@@ -73,7 +73,7 @@ public enum TodoService {
   // 하나 조회
   public TodoDTO getSelectOne(Long tno) throws Exception {
     TodoVO sample = todoDAO.selectOne(tno);
-    log.info("TodoService , 확인1, sample : " + sample);
+//    log.info("TodoService , 확인1, sample : " + sample);
     TodoDTO todoDTO = modelMapper.map(sample, TodoDTO.class);
     return todoDTO;
   }

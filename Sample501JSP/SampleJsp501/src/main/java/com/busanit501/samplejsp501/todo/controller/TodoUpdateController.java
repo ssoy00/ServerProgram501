@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDate;
 
 @Log4j2
 @WebServlet(name = "todoUpdate",urlPatterns = "/todo/update")
@@ -42,7 +43,11 @@ public class TodoUpdateController extends HttpServlet {
     Long tno = Long.valueOf(req.getParameter("tno"));
     log.info("tno: 수정작업중, 데이터받아서 확인중.1 tno : " + tno);
     String title = req.getParameter("title");
-    log.info("tno: 수정작업중, 데이터받아서 확인중.1 title: " + title);
+    log.info("tno: 수정작업중, 데이터받아서 확인중.2 title: " + title);
+    LocalDate localDate = LocalDate.parse(req.getParameter("dueDate"));
+    log.info("tno: 수정작업중, 데이터받아서 확인중.3 localDate: " + localDate);
+    String checkBox = req.getParameter("finished");
+    log.info("tno: 수정작업중, 데이터받아서 확인중.4 checkBox: " + checkBox);
 
     resp.sendRedirect("/todo/list");
   }
