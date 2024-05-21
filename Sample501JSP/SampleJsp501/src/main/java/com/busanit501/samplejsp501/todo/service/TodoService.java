@@ -80,6 +80,15 @@ public enum TodoService {
 
 
   // 수정
+  // 화면에서 데이터를 넘겨받아서, DTO 담아서, 여기에 왔음.
+  // todoDTO 변경할 데이터가 담겨져 있다.
+  public void updateTodo(TodoDTO todoDTO) throws Exception {
+    TodoVO todoVO = modelMapper.map(todoDTO, TodoVO.class);
+
+
+    // 실제 디비에도 수정.
+    todoDAO.update(todoVO);
+  }
 
   // 삭제
   public void deleteTodo(Long tno) throws Exception {

@@ -49,7 +49,25 @@ public class TodoUpdateController extends HttpServlet {
     String checkBox = req.getParameter("finished");
     log.info("tno: 수정작업중, 데이터받아서 확인중.4 checkBox: " + checkBox);
 
-    resp.sendRedirect("/todo/list");
+
+
+    // 박스에 담기. DTO  담고, -> VO 변환.
+    TodoDTO todoDTO = TodoDTO.builder()
+        .title(title)
+        .dueDate(localDate)
+        .finished(checkBox != null && checkBox.equals("on") ? true : false)
+        .tno(tno)
+        .build();
+
+    // 서비스에 전달하기.
+    try {
+      todoService.updateTodo(todoDTO);
+      resp.sendRedirect("/todo/list");
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+
+
   }
 }
 
