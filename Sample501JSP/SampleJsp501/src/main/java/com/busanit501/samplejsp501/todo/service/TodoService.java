@@ -58,9 +58,13 @@ public enum TodoService {
     // 화면 : 모델 : TodoDTO
     List<TodoVO> sampleList = todoDAO.selectAll();
     log.info("TodoService , 확인1, sampleList : " + sampleList);
+    // sampleDtoList = {TodoVO1,TodoVO2,TodoVO3,TodoVO4,...}
     List<TodoDTO> sampleDtoList = sampleList.stream()
+        // 리스트의 요소를 하나씩 각각 꺼내서, vo -> dto 모두 변환함.
         .map(vo -> modelMapper.map(vo,TodoDTO.class))
+        // 작업을 다한 요소를 전부 모아서, 배열로 변경한다.
         .collect(Collectors.toList());
+
     return sampleDtoList;
 
   }

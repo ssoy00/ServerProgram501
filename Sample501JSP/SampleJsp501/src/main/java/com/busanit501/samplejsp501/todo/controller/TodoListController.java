@@ -25,10 +25,11 @@ public class TodoListController extends HttpServlet {
 
 
     try {
+      //todoService.listAll(); -> 디비에서, 전체 목록 가져오기.
       List<TodoDTO> sampleList = todoService.listAll();
       log.info("TodoListController , 확인2, sampleList : " + sampleList);
 
-      // 컨트롤러에서 -> 화면에 -> 데이터 전달
+      // 컨트롤러에서 (서버)-> 화면(jsp)에 -> 데이터 전달
       req.setAttribute("list",sampleList);
       req.getRequestDispatcher("/WEB-INF/todo/todoList.jsp")
           .forward(req, resp);

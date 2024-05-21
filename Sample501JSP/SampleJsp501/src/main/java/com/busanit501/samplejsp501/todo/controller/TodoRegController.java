@@ -30,12 +30,15 @@ public class TodoRegController extends HttpServlet {
     // todo 글 입력 처리 하는 로직.
     // TodoDTO 타입을 받아서, 서비스에 전달하는 로직.
     TodoDTO todoDTO = TodoDTO.builder()
+        // 화면에서, name : title
         .title(req.getParameter("title"))
+        // 화면에서, name : dueDate
         .dueDate(LocalDate.parse(req.getParameter("dueDate")))
         .build();
 
     // 실제 데이터 입력하기.
     try {
+      // todoDTO, 입력받은 내용을 담아서, 서비스에 보내기
       todoService.register2(todoDTO);
       // 리다이렉트, 메인: 리스트
       resp.sendRedirect("/todo/list");
