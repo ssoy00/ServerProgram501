@@ -15,14 +15,16 @@
     <input type="date" name="dueDate" value="${sample.dueDate}" readonly>
   </div>
 <div>
+<%--  readonly 인식이 안되어서, 다른 방법으로 구현--%>
+<%--  onClick="return false"--%>
   <input type="checkbox" name="finished" ${sample.finished ? "checked":""} onClick="return false" >
 </div>
 <%--방법1--%>
 <form method="get" action="/todo/update ">
-  <input type="text" name="tno" value="${sample.tno}">
+  <input type="hidden" name="tno" value="${sample.tno}">
   <div>
     <h3>방법1, 수정폼 이동</h3>
-    <button type="submit">수정하기</button>
+    <button type="submit">수정폼이동</button>
   </div>
 </form>
 <%--방법2 링크로 해당 수정폼 이동하기.--%>

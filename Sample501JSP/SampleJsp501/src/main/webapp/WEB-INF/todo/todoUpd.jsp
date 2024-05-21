@@ -9,6 +9,8 @@
 </h1>
 <form method="post" action="/todo/update ">
   <div>
+<%--   화면에서, EL 표기법 ${sample.title} --%>
+<%--    -> 서버에 sample.getTitle()동일한 효과--%>
     <input type="text" name="title" placeholder="제목을 입력해주세요." value="${sample.title}" >
   </div>
   <div>
@@ -18,6 +20,8 @@
     <input type="checkbox" name="finished" ${sample.finished ? "checked":""} >
   </div>
   <div>
+<%--    몰래 tno 번호를 서버에 넘기기, 사용자는 볼수 없음.--%>
+    <input type="hidden" name="tno" value="${sample.tno}">
     <button type="submit">수정하기</button>
   </div>
 </form>
