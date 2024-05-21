@@ -7,16 +7,19 @@
 <body>
 <h1><%= "임시 todoRead 화면." %>
 </h1>
-<form method="post" action="/todo/update ">
+<form method="get" action="/todo/update ">
   <div>
-    <input type="text" name="title" placeholder="제목을 입력해주세요." value="${sample.title}">
+    <input type="text" name="title" placeholder="제목을 입력해주세요." value="${sample.title}" readonly>
   </div>
   <div>
-    <input type="date" name="dueDate" value="${sample.dueDate}">
+    <input type="date" name="dueDate" value="${sample.dueDate}" readonly>
   </div>
   <div>
     <button type="submit">수정하기</button>
   </div>
+</form>
+<form method="get" action="/todo/list">
+  <button type="submit">전체메뉴</button>
 </form>
 </body>
 </html>
