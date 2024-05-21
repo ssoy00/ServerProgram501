@@ -82,6 +82,9 @@ public enum TodoService {
   // 수정
 
   // 삭제
+  public void deleteTodo(Long tno) throws Exception {
+    todoDAO.delete(tno);
+  }
 
 
   public void register(TodoDTO dto) {

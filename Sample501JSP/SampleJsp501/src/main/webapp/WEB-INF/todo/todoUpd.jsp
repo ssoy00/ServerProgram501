@@ -5,7 +5,7 @@
   <title>JSP-Model2(MVC)-todoUpdate</title>
 </head>
 <body>
-<h1><%= "임시 todoRead 화면." %>
+<h1><%= "임시 todo 수정폼 화면." %>
 </h1>
 <form method="post" action="/todo/update ">
   <div>
@@ -15,9 +15,20 @@
     <input type="date" name="dueDate" value="${sample.dueDate}" >
   </div>
   <div>
+    <input type="checkbox" name="finished" ${sample.finished ? "checked":""} >
+  </div>
+  <div>
     <button type="submit">수정하기</button>
   </div>
 </form>
+
+<%--삭제--%>
+<form method="post" action="/todo/delete">
+<%--  화면에는 안보임. --%>
+  <input type="hidden" name="tno" value="${sample.tno}">
+  <button type="submit">삭제하기.</button>
+</form>
+
 <form method="get" action="/todo/list">
   <button type="submit">전체메뉴</button>
 </form>
