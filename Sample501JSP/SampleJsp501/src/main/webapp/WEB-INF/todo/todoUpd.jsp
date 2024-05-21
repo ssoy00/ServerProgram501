@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>JSP-Model2(MVC)-todoRead</title>
+  <title>JSP-Model2(MVC)-todoUpdate</title>
 </head>
 <body>
 <h1><%= "임시 todoRead 화면." %>
