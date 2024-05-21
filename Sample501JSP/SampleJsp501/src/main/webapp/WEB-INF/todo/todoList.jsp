@@ -8,6 +8,7 @@
 </head>
 <body>
 <ul>
+  <button><a href="/todo/register">Todo작성</a></button>
 <%--  서버 컨트롤러에서 전달 받은 박스, 라벨 이름: list, --%>
 <%--  내용물: 디비에서 가져온 10개의 값--%>
   <c:forEach items="${list}" var="dto">
