@@ -40,7 +40,9 @@ public class TodoUpdateController extends HttpServlet {
     //처리
     // 수정, 변경할 데이터를 먼저 가져오기. 콘솔에 찍어보기.
     Long tno = Long.valueOf(req.getParameter("tno"));
-    log.info("tno: 수정작업중, 데이터받아서 확인중.1 " + tno);
+    log.info("tno: 수정작업중, 데이터받아서 확인중.1 tno : " + tno);
+    String title = req.getParameter("title");
+    log.info("tno: 수정작업중, 데이터받아서 확인중.1 title: " + title);
 
     resp.sendRedirect("/todo/list");
   }
