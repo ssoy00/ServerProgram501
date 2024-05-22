@@ -12,6 +12,8 @@
 <form action="/login" method="post">
   <input type="text" name="mid" placeholder="아이디를 입력해주세요.">
   <input type="password" name="mpw"placeholder="패스워드를 입력해주세요.">
+  <label for="auto">자동로그인</label>
+  <input type="checkbox" name="auto" id="auto">
   <button type="submit">로그인</button>
 </form>
 </body>

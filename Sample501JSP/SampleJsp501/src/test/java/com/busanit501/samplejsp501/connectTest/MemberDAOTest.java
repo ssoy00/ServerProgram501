@@ -23,6 +23,15 @@ public class MemberDAOTest {
     log.info("memberVO : " + memberVO);
 
   }
+
+  @Test
+  public void updateUUID() throws Exception {
+    memberDAO.updateUUID("lsy","testuuid22222222222");
+    // 기본 출력이고, 전체 출력
+//    System.out.println("memberVO : " + memberVO);
+    // 디비 콘솔에서 확인해보기.
+
+  }
 }
 
 
