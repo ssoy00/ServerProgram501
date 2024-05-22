@@ -24,6 +24,12 @@ public class MemberServiceTests {
     MemberDTO memberDTO = memberService.getOneMember("lsy","1234");
     log.info("memberDTO : "+ memberDTO);
   }
+
+  @Test
+  public  void updateUUID() throws Exception {
+    memberService.updateUUID("lsy","testuuid3333333333333333333333333");
+    // 디비 콘솔에서 확인하기.
+    }
 }
 
 
