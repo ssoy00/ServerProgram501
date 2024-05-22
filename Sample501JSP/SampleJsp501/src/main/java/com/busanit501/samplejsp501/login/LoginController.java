@@ -1,5 +1,8 @@
 package com.busanit501.samplejsp501.login;
 
+import com.busanit501.samplejsp501.todo.dto.MemberDTO;
+import com.busanit501.samplejsp501.todo.service.MemberService;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,12 +29,22 @@ public class LoginController extends HttpServlet {
     String mid = req.getParameter("mid");
     String mpw = req.getParameter("mpw");
 
-    String result = mid+mpw;
+    // 디비에서 아이디,패스워드를 가져와서 비교.
+    try{
+      MemberDTO memberDTO = MemberService.INSTANCE.getOneMember(mid, mpw);
+      HttpSession session = req.getSession();
+      //세션의 정보를 저장.
+      session.setAttribute("loginInfo",memberDTO);
+      resp.sendRedirect("/todo/list");
+    } catch (Exception e) {
+      // 만약에 예외가 발생했다면, todo/list 보내면서, 쿼리스트링으로
+      // 파라미터로 error 전달.
+      resp.sendRedirect("/todo/login?result=error");
+    }
 
-    HttpSession session = req.getSession();
-    //세션의 정보를 저장.
-    session.setAttribute("loginInfo",result);
-    resp.sendRedirect("/todo/list");
+
+
+
 
   }
 }
