@@ -9,7 +9,7 @@
     </h1>
 
     <div>
-    <input type="text" name="menuTitle" placeholder="제목을 입력해주세요." value="${}" readonly>
+    <input type="text" name="menuTitle" placeholder="제목을 입력해주세요." value="" readonly>
     </div>
     <div>
     <input type="date" name="menuRegDate" value="" readonly>
