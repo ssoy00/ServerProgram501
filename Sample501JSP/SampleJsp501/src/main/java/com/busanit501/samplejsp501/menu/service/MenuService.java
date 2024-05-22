@@ -44,6 +44,12 @@ public enum MenuService {
   }
 
   // 하나 조회
+  public MenuDTO2 getSelectOne(Long menuNo) throws Exception {
+    MenuVO sample = menuDAO.selectOne(menuNo);
+//    log.info("TodoService , 확인1, sample : " + sample);
+    MenuDTO2 menuDTO = modelMapper.map(sample, MenuDTO2.class);
+    return menuDTO;
+  }
 
   // 수정
 
