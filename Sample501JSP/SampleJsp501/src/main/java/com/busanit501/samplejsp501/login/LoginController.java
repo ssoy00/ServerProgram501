@@ -39,7 +39,7 @@ public class LoginController extends HttpServlet {
     } catch (Exception e) {
       // 만약에 예외가 발생했다면, todo/list 보내면서, 쿼리스트링으로
       // 파라미터로 error 전달.
-      resp.sendRedirect("/todo/login?result=error");
+      resp.sendRedirect("/login?result=error");
     }
 
 

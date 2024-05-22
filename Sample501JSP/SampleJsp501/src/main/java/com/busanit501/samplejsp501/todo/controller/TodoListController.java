@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -25,9 +24,9 @@ public class TodoListController extends HttpServlet {
    // DB 에서 , 전체 목록을 가져오기.
 
     // 설정한 세션의 정보 가져오기.
-    HttpSession session = req.getSession();
-    String loginInfoSession = (String) session.getAttribute("loginInfo");
-    log.info("Login info 세션의 정보 get하기.: " + loginInfoSession);
+//    HttpSession session = req.getSession();
+//    String loginInfoSession = (String) session.getAttribute("loginInfo");
+//    log.info("Login info 세션의 정보 get하기.: " + loginInfoSession);
 
     try {
       //todoService.listAll(); -> 디비에서, 전체 목록 가져오기.
@@ -36,7 +35,7 @@ public class TodoListController extends HttpServlet {
 
       // 컨트롤러에서 (서버)-> 화면(jsp)에 -> 데이터 전달
       req.setAttribute("list",sampleList);
-      req.setAttribute("mid",loginInfoSession);
+//      req.setAttribute("mid",loginInfoSession);
       req.getRequestDispatcher("/WEB-INF/todo/todoList.jsp")
           .forward(req, resp);
     } catch (Exception e) {

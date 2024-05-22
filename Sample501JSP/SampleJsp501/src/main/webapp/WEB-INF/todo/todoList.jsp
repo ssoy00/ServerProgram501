@@ -8,7 +8,7 @@
 </head>
 <body>
 <ul>
-  <h1>${mid}님 환영합니다.</h1>
+<%--  <h1>${mid}님 환영합니다.</h1>--%>
   <div>
     <form method="post" action="/logout">
         <button type="submit">로그아웃</button>
