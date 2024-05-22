@@ -37,8 +37,12 @@ public class TodoReadController extends HttpServlet {
       // 쿠키 찾기.
       // findCookie 메서드, 첫번째 파라미터 : 쿠키의 전체 목록,
       // 두번 째 파라미터 , 내가 찾고자하는 쿠키의 키 이름.
+      // findCookie 메서드 역할, 전체 쿠키 목록 중에서, 키 이름: viewTodos 해당하는 쿠키 찾기
       Cookie viewTodoCookie = findCookie(req.getCookies(), "viewTodos");
+      // 쿠키의 키에 대한 값을 가져오는 코드.
+      // todoListResult -> 모양? -> 값 : "1-4-7"
       String todoListResult = viewTodoCookie.getValue();
+      //상태 변수. 존재여부.
       boolean exist = false;
 
       // str = "hello", str.indexOf("e")
@@ -48,11 +52,17 @@ public class TodoReadController extends HttpServlet {
       }
 
       //exist 가 false 이면 동작함.
+      // 아래 코드 동작 할려면, 최근에 본 내용이 쿠키에 저장이 안되었다는 말.
       if (!exist) {
+        // 쿠키의 값에 추가. 예) "1-"
         todoListResult += tno + "-";
+        // 쿠키의 값을 설정, setter
         viewTodoCookie.setValue(todoListResult);
+        // 쿠키 의 생존 주기, 하루.
         viewTodoCookie.setMaxAge(60 * 60 * 24);
+        // 해당 쿠기의 적용 범위. /todo/list
         viewTodoCookie.setPath("/");
+        // 응답 객체에 담아서, 전송.
         resp.addCookie(viewTodoCookie);
       }
 
