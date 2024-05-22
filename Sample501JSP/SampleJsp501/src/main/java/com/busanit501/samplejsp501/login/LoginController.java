@@ -15,6 +15,7 @@ import java.util.UUID;
 
 @WebServlet(name = "loginController", urlPatterns = "/login")
 public class LoginController extends HttpServlet {
+
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     // 로그인 입력폼으로 전달.
@@ -35,28 +36,32 @@ public class LoginController extends HttpServlet {
     // 상태 변수, 자동 로기은 체크 여부
     boolean rememberMe = auto != null && auto.equals("on");
 
+
+
     // rememberMe , 체크가 되었다면, UUID를 생성함.
     // UUID 자동 랜덤한 문자열을 생성해줌. 중복을 피하는 용도로 사용함.
+
     if(rememberMe) {
       String uuid = UUID.randomUUID().toString();
+      try {
+        MemberService.INSTANCE.updateUUID(mid,uuid);
+        MemberDTO memberDTO = MemberService.INSTANCE.getOneMember(mid, mpw);
+        memberDTO.setUuid(uuid);
+        HttpSession session = req.getSession();
+        //세션의 정보를 저장.
+        session.setAttribute("loginInfo",memberDTO);
+        resp.sendRedirect("/todo/list");
+      } catch (Exception e) {
+        throw new RuntimeException(e);
+      }
+
+
     }
+
+    // 디비 만들고 -> DAO -> Service , 이용하기.
+
 
     // 디비에서 아이디,패스워드를 가져와서 비교.
-    try{
-      MemberDTO memberDTO = MemberService.INSTANCE.getOneMember(mid, mpw);
-      HttpSession session = req.getSession();
-      //세션의 정보를 저장.
-      session.setAttribute("loginInfo",memberDTO);
-      resp.sendRedirect("/todo/list");
-    } catch (Exception e) {
-      // 만약에 예외가 발생했다면, todo/list 보내면서, 쿼리스트링으로
-      // 파라미터로 error 전달.
-      resp.sendRedirect("/login?result=error");
-    }
-
-
-
-
 
   }
 }
