@@ -6,8 +6,19 @@
 getSession()
 
 - 세션을 이용해서, 로그인 체크 기능 확인해보기.
-1) 사용자 로그인 성공시 -> HttpSession 에 임시 저장공간에 할당. -> 리스트로 가기.  
+1) 사용자 로그인 성공시 -> HttpSession 에 임시 저장공간에 할당. -> 리스트로 가기.
 2) 실패시 -> 로그인 폼.
+
+기본문법.
+세터,
+ HttpSession session = req.getSession();
+    //세션의 정보를 저장.문자열의 형태.
+    session.setAttribute("loginInfo",result);
+
+게터,
+HttpSession session = req.getSession();
+session.getAttribute("loginInfo") 의 반환 값, Object 라서, 다운 캐스팅 필요함.
+    String loginInfoSession = (String) session.getAttribute("loginInfo");
 
 
 웹서버, 무상태(무언가 저장 안함),
