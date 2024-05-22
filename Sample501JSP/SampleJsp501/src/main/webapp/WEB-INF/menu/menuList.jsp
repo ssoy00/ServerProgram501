@@ -12,7 +12,7 @@
   <c:forEach var="dto" items="${list}">
     <li>
     <span>
-    <a href="#">${dto.menuNo}</a>
+    <a href="/menu/read?menuNo=${dto.menuNo}">${dto.menuNo}</a>
     </span>
     <span>
     ${dto.menuTitle}
