@@ -7,11 +7,19 @@
   <title>JSP-Model2(MVC)-MenuList</title>
 </head>
 <body>
-
+  <button><a href="/menu/input">메뉴작성</a></button>
 <ul>
   <c:forEach var="dto" items="${list}">
     <li>
-        ${dto}
+    <span>
+    <a href="#">${dto.menuNo}</a>
+    </span>
+    <span>
+    ${dto.menuTitle}
+    </span>
+    <span>
+    ${dto.menuRegDate}
+    </span>
     </li>
   </c:forEach>
 </ul>

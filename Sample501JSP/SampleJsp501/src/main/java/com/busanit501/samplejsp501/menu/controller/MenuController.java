@@ -1,4 +1,4 @@
-package com.busanit501.samplejsp501.menu;
+package com.busanit501.samplejsp501.menu.controller;
 
 import com.busanit501.samplejsp501.menu.dto.MenuDTO2;
 import com.busanit501.samplejsp501.menu.service.MenuService;
