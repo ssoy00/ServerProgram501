@@ -55,4 +55,7 @@ public enum MenuService {
 
   // 삭제
 
+  public void deleteMenu(Long menuNo) throws Exception {
+    menuDAO.delete(menuNo);
+  }
 }
