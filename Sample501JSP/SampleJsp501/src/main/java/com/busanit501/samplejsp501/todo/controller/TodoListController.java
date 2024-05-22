@@ -36,6 +36,7 @@ public class TodoListController extends HttpServlet {
 
       // 컨트롤러에서 (서버)-> 화면(jsp)에 -> 데이터 전달
       req.setAttribute("list",sampleList);
+      req.setAttribute("mid",loginInfoSession);
       req.getRequestDispatcher("/WEB-INF/todo/todoList.jsp")
           .forward(req, resp);
     } catch (Exception e) {
