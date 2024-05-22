@@ -39,6 +39,7 @@ public class TodoRegController extends HttpServlet {
     // 세션의 로그인 정보를 저장할 공간을 예) loginInfo 라는 공간에
     // 세션에 로그인 정보가 있다면, 성공 로그인 후 -> 리스트
     // 로그인 정보가 없다면, 다시, 로그인 폼 이동.
+    // getter
     if(session.getAttribute("loginInfo") == null){
       log.info("로그인 정보가 없는 유저 ");
       resp.sendRedirect("/login");
