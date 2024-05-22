@@ -56,7 +56,7 @@ public class MenuUpdateController extends HttpServlet {
 
     // 서비스에 전달하기.
     try {
-//      menuService.updateMenu(menuDTO);
+      menuService.updateMenu(menuDTO);
       resp.sendRedirect("/menu/list");
     } catch (Exception e) {
       throw new RuntimeException(e);
