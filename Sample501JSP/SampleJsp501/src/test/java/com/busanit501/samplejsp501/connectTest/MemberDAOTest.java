@@ -45,6 +45,14 @@ public class MemberDAOTest {
 
   }
 
+
+  @Test
+  public void checkAutoLogin() throws Exception {
+   memberDAO.checkAutoLogin("lsy", false);
+    // 디비 콘솔에서 확인해보기.
+
+  }
+
   @Test
   public void selectUUID() throws Exception {
     MemberVO memberVO = memberDAO.selectUUID("d508307d-2f79-4f48-91f7-8a52568e8fbe");

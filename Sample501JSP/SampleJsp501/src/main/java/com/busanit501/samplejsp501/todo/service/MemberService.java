@@ -34,6 +34,11 @@ public enum MemberService {
     memberDAO.updateUUID(mid, uuid);
   }
 
+  // 자동로그인 체크 여부
+  public void checkAutoLogin(String mid, boolean autoLogined) throws Exception {
+    memberDAO.checkAutoLogin(mid, autoLogined);
+  }
+
   public MemberDTO selectUUID(String uuid) throws Exception {
     MemberVO memberVO = memberDAO.selectUUID(uuid);
     MemberDTO memberDTO = modelMapper.map(memberVO, MemberDTO.class);

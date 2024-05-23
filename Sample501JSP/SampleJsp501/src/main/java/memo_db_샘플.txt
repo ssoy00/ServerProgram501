@@ -42,5 +42,8 @@ insert into tbl_member ( mid, mpw, mname) values ('lsy2','1234','이상용2');
 select * from tbl_member;
 
 alter table tbl_member add column uuid varchar(50);
+# 자동 로그인 체크 여부 tinyint default 0
+alter table tbl_member add column autoLogined tinyint default 0;
+
 update tbl_member set uuid = 'testuuid'  where mid = 'lsy' and mpw = '1234';
 

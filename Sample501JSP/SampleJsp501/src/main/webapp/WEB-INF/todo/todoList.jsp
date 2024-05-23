@@ -14,11 +14,13 @@
         <button type="submit">로그아웃</button>
     </form>
   </div>
+  <c:if test="${param.result == 'error'}">
   <div>
     <form method="post" action="/noauto">
       <button type="submit">자동로그인해제</button>
     </form>
   </div>
+  </c:if>
   <button><a href="/todo/register">Todo작성</a></button>
 <%--  서버 컨트롤러에서 전달 받은 박스, 라벨 이름: list, --%>
 <%--  내용물: 디비에서 가져온 10개의 값--%>
