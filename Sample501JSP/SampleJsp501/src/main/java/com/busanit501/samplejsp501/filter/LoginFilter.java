@@ -4,6 +4,7 @@ import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -29,14 +30,42 @@ public class LoginFilter implements Filter {
     // 로그인시, 세션의 임시 공간의 이름 : loginInfo ,
     // 로그인을 해야 -> 세션 생성. -> 필터를 통과해요.
     //
-    if(session.getAttribute("loginInfo") ==null) {
-      resp.sendRedirect("/login");
+    if(session.getAttribute("loginInfo") !=null) {
+//      resp.sendRedirect("/login");
+      filterChain.doFilter(servletRequest,servletResponse);
       return;
     }
 
-    filterChain.doFilter(servletRequest,servletResponse);
-  }
-}
+    // session 에 loginInfo 키가 없다면,
+    // 쿠키를 체크.
+    //
+    Cookie cookie = findCookie(req.getCookies(),"remember-me");
+
+
+  } // doFilter
+
+  private Cookie findCookie(Cookie[] cookies, String cookieName) {
+    // 찾은 쿠키를 담을 임시 쿠기.
+    Cookie targetCookie = null;
+
+    if(cookies != null && cookies.length >0) {
+      for(Cookie cookie : cookies) {
+        if(cookie.getName().equals(cookieName)){
+          targetCookie = cookie;
+          break;
+        }
+      }
+    } // if 조건문
+
+    if(targetCookie == null) {
+      targetCookie = new Cookie(cookieName,"");
+      targetCookie.setPath("/");
+      targetCookie.setMaxAge(60*60*24);
+
+    }
+    return targetCookie;
+  } // findCookie 닫는 부분
+} // LoginFilter
 
 
 

@@ -30,6 +30,13 @@ public class MemberServiceTests {
     memberService.updateUUID("lsy","testuuid3333333333333333333333333");
     // 디비 콘솔에서 확인하기.
     }
+
+  @Test
+  public  void selectUUID() throws Exception {
+   MemberDTO memberDTO = memberService.selectUUID("d508307d-2f79-4f48-91f7-8a52568e8fbe");
+   log.info("memberDTO : " + memberDTO);
+    // 디비 콘솔에서 확인하기.
+  }
 }
 
 
