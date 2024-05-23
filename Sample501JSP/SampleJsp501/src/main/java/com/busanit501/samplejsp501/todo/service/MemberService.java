@@ -29,4 +29,11 @@ public enum MemberService {
     memberDAO.updateUUID(mid, uuid);
   }
 
+  public MemberDTO selectUUID(String uuid) throws Exception {
+    MemberVO memberVO = memberDAO.selectUUID(uuid);
+    MemberDTO memberDTO = modelMapper.map(memberVO, MemberDTO.class);
+    return memberDTO;
+
+  }
+
 }
