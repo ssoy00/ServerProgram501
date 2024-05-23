@@ -70,6 +70,12 @@ public class LoginController extends HttpServlet {
         session.setAttribute("loginInfo", memberDTO);
         resp.sendRedirect("/todo/list");
       }
+      // 자동로그인 체크를 안했을 경우. 로직.
+      HttpSession session = req.getSession();
+      //세션의 정보를 저장.
+      // memberDTO 여기에 어떤 정보가 있나요? mid, mpw, mname, uuid(없음.)
+      session.setAttribute("loginInfo", memberDTO);
+      resp.sendRedirect("/todo/list");
     } catch (Exception e) {
       resp.sendRedirect("/login?result=error");
     }
