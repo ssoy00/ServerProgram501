@@ -9,6 +9,7 @@
 
 <form action="/signup" method="post">
   <input type="text" name="mid" placeholder="아이디를 입력해주세요.">
+  <input type="text" name="mname" placeholder="이름 입력해주세요.">
   <input type="password" name="mpw"placeholder="패스워드를 입력해주세요.">
   <input type="password" name="mpw2"placeholder="패스워드를 확인해주세요.">
   <button type="submit">회원가입</button>
