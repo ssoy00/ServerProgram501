@@ -24,6 +24,8 @@ public class MemberDAO {
         .mid(resultSet.getString("mid"))
         .mpw(resultSet.getString("mpw"))
         .mname(resultSet.getString("mname"))
+        .uuid(resultSet.getString("uuid"))
+        .autoLogined(resultSet.getBoolean("autoLogined"))
         .build();
 
     return memberVO;

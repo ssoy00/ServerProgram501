@@ -20,10 +20,13 @@ public class NoAutoLoginController extends HttpServlet {
     log.info("자동로그인 해제, 쿠키제거함. ");
    // 쿠키 정보, 제거하는 코드.
     Cookie cookie = findCookie(req.getCookies(), "remember-me");
-    cookie.setValue("");
-    cookie.setMaxAge(0);
-    cookie.setPath("/");
-    resp.addCookie(cookie);
+    if (cookie != null) {
+      cookie.setValue("");
+      cookie.setMaxAge(0);
+      cookie.setPath("/");
+      resp.addCookie(cookie);
+
+    }
 
     //자동 로그인 체크 해제.
     HttpSession session = req.getSession();

@@ -17,6 +17,7 @@
   <c:if test="${memberDTO.autoLogined == true}">
   <div>
     <form method="post" action="/noauto">
+      <h1>공용으로 사용하는 공간에서는 꼭 자동로그인 해제 해주세요!!</h1>
       <button type="submit">자동로그인해제</button>
     </form>
   </div>
