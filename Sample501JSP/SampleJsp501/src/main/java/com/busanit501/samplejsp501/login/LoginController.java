@@ -6,10 +6,7 @@ import com.busanit501.samplejsp501.todo.service.MemberService;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.UUID;
 
@@ -54,6 +51,17 @@ public class LoginController extends HttpServlet {
         // 임시 모델에, 같은 uuid 담는 코드.
         memberDTO.setUuid(uuid);
 
+        //쿠키에 , 생성 uuid 랜덤 문자열 넣기.
+        // 쿠키에 uuid 담기.
+        // 쿠키 생성 기본 인스턴스 만들기. (키 이름 , 값 )
+        Cookie rememberCookie = new Cookie("remember-me",uuid);
+        // 유효기간, 1주일.
+        rememberCookie.setMaxAge(60*60*24*7);
+        // 적용범위. / 하위 전체
+        rememberCookie.setPath("/");
+        // 웹브라우저에게 전달하기(쿠키를)
+        resp.addCookie(rememberCookie);
+
         // 세션의 설정하기 위한 도구를 가지고 오고,
         // 세터, 게터
         HttpSession session = req.getSession();
@@ -63,7 +71,7 @@ public class LoginController extends HttpServlet {
         resp.sendRedirect("/todo/list");
       }
     } catch (Exception e) {
-      throw new RuntimeException(e);
+      resp.sendRedirect("/login?result=error");
     }
 
   }// doPost 닫는 부분
