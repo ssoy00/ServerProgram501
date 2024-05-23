@@ -9,14 +9,14 @@ import java.sql.ResultSet;
 
 public class MemberDAO {
 
-// mid,mpw 를 이용해서, 한명의 정보를 가져오기.
-  public MemberVO getWithPasswordMember(String mid, String mpw) throws Exception{
+  // mid,mpw 를 이용해서, 한명의 정보를 가져오기.
+  public MemberVO getWithPasswordMember(String mid, String mpw) throws Exception {
     String sql = "select * from tbl_member where mid = ? and mpw = ? ";
 
     @Cleanup Connection conn = ConnectionUtil.INSTANCE.getConnection();
     @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
-    pstmt.setString(1,mid);
-    pstmt.setString(2,mpw);
+    pstmt.setString(1, mid);
+    pstmt.setString(2, mpw);
     @Cleanup ResultSet resultSet = pstmt.executeQuery();
     resultSet.next();
 
@@ -35,10 +35,31 @@ public class MemberDAO {
 
     @Cleanup Connection conn = ConnectionUtil.INSTANCE.getConnection();
     @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
-    pstmt.setString(1,uuid);
-    pstmt.setString(2,mid);
+    pstmt.setString(1, uuid);
+    pstmt.setString(2, mid);
     pstmt.executeUpdate();
-  
+
+  }
+
+  //하나의 uuid 가져오는 메서드.
+  public MemberVO selectUUID(String uuid) throws Exception {
+    String sql = "select * from tbl_member where uuid = ?";
+
+    @Cleanup Connection conn = ConnectionUtil.INSTANCE.getConnection();
+    @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
+    pstmt.setString(1, uuid);
+    @Cleanup ResultSet resultSet = pstmt.executeQuery();
+    resultSet.next();
+
+    MemberVO memberVO = MemberVO.builder()
+        .mid(resultSet.getString("mid"))
+        .mpw(resultSet.getString("mpw"))
+        .mname(resultSet.getString("mname"))
+        .uuid(resultSet.getString("uuid"))
+        .build();
+
+    return memberVO;
+
   }
 
 
