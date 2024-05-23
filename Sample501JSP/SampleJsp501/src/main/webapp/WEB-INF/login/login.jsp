@@ -16,5 +16,9 @@
   <input type="checkbox" name="auto" id="auto">
   <button type="submit">로그인</button>
 </form>
+<form action="/signup" method="get">
+  <button type="submit">회원가입</button>
+</form>
+
 </body>
 </html>
