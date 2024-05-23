@@ -40,6 +40,7 @@ public class SignUpController extends HttpServlet {
 
     try {
       MemberService.INSTANCE.insertMember(memberDTO);
+      resp.sendRedirect("/login");
     } catch (Exception e) {
       throw new RuntimeException(e);
     }
