@@ -66,6 +66,7 @@ public class MemberDAO {
 
   }
 
+
   //하나의 uuid 가져오는 메서드.
   public MemberVO selectUUID(String uuid) throws Exception {
     String sql = "select * from tbl_member where uuid = ?";

@@ -2,6 +2,7 @@ package com.busanit501.samplejsp501.todo.controller;
 
 import com.busanit501.samplejsp501.todo.dto.MemberDTO;
 import com.busanit501.samplejsp501.todo.dto.TodoDTO;
+import com.busanit501.samplejsp501.todo.service.MemberService;
 import com.busanit501.samplejsp501.todo.service.TodoService;
 import lombok.extern.log4j.Log4j2;
 
@@ -32,8 +33,17 @@ public class TodoListController extends HttpServlet {
 //    log.info("Login info 세션의 정보 get하기.: " + loginInfoSession);
     // 방법2 , 값 인스턴스
     HttpSession session = req.getSession();
-    MemberDTO memberDTO = (MemberDTO) session.getAttribute("loginInfo");
-    log.info("Login info 세션의 정보 get하기.: " + memberDTO);
+    MemberDTO noAutoLoginmemberDTO = (MemberDTO) session.getAttribute("loginInfo");
+    log.info("Login info 세션의 정보 get하기.: " + noAutoLoginmemberDTO);
+    String mid = noAutoLoginmemberDTO.getMid();
+    String mpw = noAutoLoginmemberDTO.getMpw();
+    MemberDTO memberDTO = null;
+    try {
+      memberDTO = MemberService.INSTANCE.getOneMember(mid, mpw);
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+
 
     try {
       //todoService.listAll(); -> 디비에서, 전체 목록 가져오기.
