@@ -1,13 +1,12 @@
 package com.busanit501.samplejsp501.login;
 
+import com.busanit501.samplejsp501.todo.dto.MemberDTO;
+import com.busanit501.samplejsp501.todo.service.MemberService;
 import lombok.extern.log4j.Log4j2;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Optional;
@@ -26,7 +25,18 @@ public class NoAutoLoginController extends HttpServlet {
     cookie.setPath("/");
     resp.addCookie(cookie);
 
-    resp.sendRedirect("/todo/list");
+    //자동 로그인 체크 해제.
+    HttpSession session = req.getSession();
+    MemberDTO memberDTO = (MemberDTO) session.getAttribute("loginInfo");
+    String mid = memberDTO.getMid();
+    try {
+      MemberService.INSTANCE.checkAutoLogin(mid,false);
+      resp.sendRedirect("/todo/list");
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
+
+
   } //doPost
 
   private Cookie findCookie(Cookie[] cookies, String cookieName) {

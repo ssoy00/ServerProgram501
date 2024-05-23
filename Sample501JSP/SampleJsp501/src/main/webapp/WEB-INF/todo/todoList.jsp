@@ -14,7 +14,7 @@
         <button type="submit">로그아웃</button>
     </form>
   </div>
-  <c:if test="${param.result == 'error'}">
+  <c:if test="${memberDTO.autoLogined == true}">
   <div>
     <form method="post" action="/noauto">
       <button type="submit">자동로그인해제</button>

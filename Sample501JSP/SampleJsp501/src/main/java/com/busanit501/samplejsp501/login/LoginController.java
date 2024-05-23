@@ -43,6 +43,10 @@ public class LoginController extends HttpServlet {
 
       // 자동로그인 여부가 체크가 되었다면.
       if (rememberMe) {
+
+        // 디비에 자동로그인 체크 하기.
+        MemberService.INSTANCE.checkAutoLogin(mid,true);
+
         // 랜덤한 문자열을 생성.
         String uuid = UUID.randomUUID().toString();
         // 랜덤한 문자열을 , 위에서 받아온 정보에, uuid 업데이트하기. memberDTO
@@ -50,6 +54,8 @@ public class LoginController extends HttpServlet {
         MemberService.INSTANCE.updateUUID(mid, uuid);
         // 임시 모델에, 같은 uuid 담는 코드.
         memberDTO.setUuid(uuid);
+        // 자동로그인 체크 하기.
+        memberDTO.setAutoLogined(true);
 
         //쿠키에 , 생성 uuid 랜덤 문자열 넣기.
         // 쿠키에 uuid 담기.
