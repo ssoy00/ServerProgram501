@@ -24,6 +24,11 @@ public enum MemberService {
     MemberDTO memberDTO = modelMapper.map(sample, MemberDTO.class);
     return memberDTO;
   }
+// 회원가입
+  public void insertMember(MemberDTO memberDTO) throws Exception {
+    MemberVO memberVO = modelMapper.map(memberDTO, MemberVO.class);
+    memberDAO.insertMember(memberVO);
+  }
 
   public void updateUUID(String mid, String uuid) throws Exception {
     memberDAO.updateUUID(mid, uuid);

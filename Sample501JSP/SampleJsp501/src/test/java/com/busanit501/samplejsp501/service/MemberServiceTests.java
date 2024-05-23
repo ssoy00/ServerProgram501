@@ -37,6 +37,18 @@ public class MemberServiceTests {
    log.info("memberDTO : " + memberDTO);
     // 디비 콘솔에서 확인하기.
   }
+
+  @Test
+  public  void insertMember() throws Exception {
+    MemberDTO memberDTO = MemberDTO.builder()
+        .mid("lsy05232")
+        .mpw("1234")
+        .mname("이상용05232")
+        .build();
+
+  memberService.insertMember(memberDTO);
+// 디비 콘솔에서 확인하기.
+  }
 }
 
 
