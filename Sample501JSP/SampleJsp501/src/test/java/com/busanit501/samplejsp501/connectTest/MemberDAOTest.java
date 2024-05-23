@@ -32,6 +32,16 @@ public class MemberDAOTest {
     // 디비 콘솔에서 확인해보기.
 
   }
+
+  @Test
+  public void selectUUID() throws Exception {
+    MemberVO memberVO = memberDAO.selectUUID("d508307d-2f79-4f48-91f7-8a52568e8fbe");
+    // 기본 출력이고, 전체 출력
+//    System.out.println("memberVO : " + memberVO);
+    log.info("memberVO : " + memberVO);
+    // 디비 콘솔에서 확인해보기.
+
+  }
 }
 
 
