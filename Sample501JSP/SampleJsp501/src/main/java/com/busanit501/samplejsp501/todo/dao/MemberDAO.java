@@ -29,6 +29,19 @@ public class MemberDAO {
     return memberVO;
   }
 
+  //회원가입하는 메서드.
+  public void insertMember(MemberVO memberVO) throws Exception {
+    String sql = "insert into tbl_member ( mid, mpw, mname) values (?,?,?)";
+
+    @Cleanup Connection conn = ConnectionUtil.INSTANCE.getConnection();
+    @Cleanup PreparedStatement pstmt = conn.prepareStatement(sql);
+    pstmt.setString(1, memberVO.getMid());
+    pstmt.setString(2, memberVO.getMpw());
+    pstmt.setString(3, memberVO.getMname());
+    pstmt.executeUpdate();
+
+  }
+
   //uuid 업데이트 하는 메서드.
   public void updateUUID(String mid, String uuid) throws Exception {
     String sql = "update tbl_member set uuid = ? where mid = ? ";

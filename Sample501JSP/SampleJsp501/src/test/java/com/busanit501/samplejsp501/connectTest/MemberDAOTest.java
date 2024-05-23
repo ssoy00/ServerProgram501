@@ -25,6 +25,18 @@ public class MemberDAOTest {
   }
 
   @Test
+  public void insertMember() throws Exception {
+    MemberVO memberVO = MemberVO.builder()
+        .mid("lsy0523")
+        .mpw("1234")
+        .mname("이상용0523")
+        .build();
+   memberDAO.insertMember(memberVO);
+ // 디비 콘솔에서 확인하기.
+
+  }
+
+  @Test
   public void updateUUID() throws Exception {
     memberDAO.updateUUID("lsy","testuuid22222222222");
     // 기본 출력이고, 전체 출력
