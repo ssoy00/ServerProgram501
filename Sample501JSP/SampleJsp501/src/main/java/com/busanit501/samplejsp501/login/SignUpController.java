@@ -1,5 +1,8 @@
 package com.busanit501.samplejsp501.login;
 
+import com.busanit501.samplejsp501.todo.dto.MemberDTO;
+import com.busanit501.samplejsp501.todo.service.MemberService;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,8 +30,19 @@ public class SignUpController extends HttpServlet {
     String mname = req.getParameter("mname");
     String mpw = req.getParameter("mpw");
 
-    // 화면에서 입력받은 아이디, 패스워드, 이름, 어디 담죠? MemberDTO -> 서비스 
+    // 화면에서 입력받은 아이디, 패스워드, 이름, 어디 담죠? MemberDTO -> 서비스
+    // 임시 모델 DTO
+    MemberDTO memberDTO = MemberDTO.builder()
+        .mid(mid)
+        .mpw(mpw)
+        .mname(mname)
+        .build();
 
+    try {
+      MemberService.INSTANCE.insertMember(memberDTO);
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
 
 
   }// doPost 닫는 부분
