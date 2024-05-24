@@ -1,7 +1,7 @@
 package com.busanit501.samplejsp501.menu.controller.menuMember;
 
-import com.busanit501.samplejsp501.todo.dto.MemberDTO;
-import com.busanit501.samplejsp501.todo.service.MemberService;
+import com.busanit501.samplejsp501.menu.dto.MenuMemberDTO;
+import com.busanit501.samplejsp501.menu.service.MenuMemberService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,15 +32,15 @@ public class MenuSignUpController extends HttpServlet {
 
     // 화면에서 입력받은 아이디, 패스워드, 이름, 어디 담죠? MemberDTO -> 서비스
     // 임시 모델 DTO
-    MemberDTO memberDTO = MemberDTO.builder()
+    MenuMemberDTO menuMemberDTO = MenuMemberDTO.builder()
         .mid(mid)
         .mpw(mpw)
         .mname(mname)
         .build();
 
     try {
-      MemberService.INSTANCE.insertMember(memberDTO);
-      resp.sendRedirect("/login");
+      MenuMemberService.INSTANCE.insertMember(menuMemberDTO);
+      resp.sendRedirect("/menuLogin");
     } catch (Exception e) {
       throw new RuntimeException(e);
     }
