@@ -17,7 +17,7 @@ public class MenuLoginController extends HttpServlet {
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     // 로그인 입력폼으로 전달.
     System.out.println("get 으로 login 처리");
-    RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/login/login.jsp");
+    RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/menu/menuLogin.jsp");
     requestDispatcher.forward(req, resp);
   }
 
@@ -76,14 +76,14 @@ public class MenuLoginController extends HttpServlet {
         session.setAttribute("loginInfo", menuMemberDTO);
 
 
-        resp.sendRedirect("/todo/list");
+        resp.sendRedirect("/menu/list");
       } else {
         // 자동로그인 체크를 안했을 경우. 로직.
         HttpSession session = req.getSession();
         //세션의 정보를 저장.
         // memberDTO 여기에 어떤 정보가 있나요? mid, mpw, mname, uuid(없음.)
         session.setAttribute("loginInfo", menuMemberDTO);
-        resp.sendRedirect("/todo/list");
+        resp.sendRedirect("/menu/list");
       }
 
     } catch (Exception e) {

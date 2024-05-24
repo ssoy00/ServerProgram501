@@ -51,7 +51,7 @@ public class MenuLoginFilter implements Filter {
 
     // 세션에도 없고, 쿠키도 없다면, 그냥 로그인
     if (cookie == null) {
-      resp.sendRedirect("/login");
+      resp.sendRedirect("/menuLogin");
       return;
     }
 
