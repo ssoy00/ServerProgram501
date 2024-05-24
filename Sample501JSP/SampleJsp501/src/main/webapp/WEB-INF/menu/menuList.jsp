@@ -7,6 +7,7 @@
   <title>JSP-Model2(MVC)-MenuList</title>
 </head>
 <body>
+  <h1>${dto.mname} 님 환영합니다.</h1>
   <button><a href="/menu/input">메뉴작성</a></button>
   <div>
   <form method="post" action="/menuLogout">
