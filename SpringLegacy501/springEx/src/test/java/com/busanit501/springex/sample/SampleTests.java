@@ -14,10 +14,14 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ContextConfiguration(locations ="file:src/main/webapp/WEB-INF/root-context.xml")
 public class SampleTests {
 
+  //DI
   //의존성 주입 하는 방법.
   // root-context.xml 파일에 설정된 빈이 있다면, 가져와서 주입 하겠다.
   @Autowired
   private SampleService sampleService;
+
+  @Autowired
+  private SampleDAO sampleDAO;
 
   @Test
   public void testService() {
@@ -25,6 +29,14 @@ public class SampleTests {
     log.info(sampleService);
     Assertions.assertNotNull(sampleService);
   }
+
+  @Test
+  public void testDao() {
+    // 단순, 인스턴스를 시스템에서 생성해주는지 여부만 확인, null 만 아니면 된다.
+    log.info(sampleDAO);
+    Assertions.assertNotNull(sampleDAO);
+  }
+
 }
 
 
