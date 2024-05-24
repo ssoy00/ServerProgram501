@@ -39,11 +39,11 @@ public enum MenuMemberService {
 //    memberDAO.checkAutoLogin(mid, autoLogined);
 //  }
 //
-//  public MemberDTO selectUUID(String uuid) throws Exception {
-//    MemberVO memberVO = memberDAO.selectUUID(uuid);
-//    MemberDTO memberDTO = modelMapper.map(memberVO, MemberDTO.class);
-//    return memberDTO;
-//
-//  }
+  public MenuMemberDTO selectUUID(String uuid) throws Exception {
+    MenuMemberVO menuMemberVO = menuMemberDAO.selectUUID(uuid);
+    MenuMemberDTO menuMemberDTO = modelMapper.map(menuMemberVO, MenuMemberDTO.class);
+    return menuMemberDTO;
+
+  }
 
 }

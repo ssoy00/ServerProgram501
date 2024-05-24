@@ -37,12 +37,12 @@ public class MenuMemberServiceTests {
 //  }
 //
 //
-//  @Test
-//  public  void selectUUID() throws Exception {
-//   MemberDTO memberDTO = memberService.selectUUID("d508307d-2f79-4f48-91f7-8a52568e8fbe");
-//   log.info("memberDTO : " + memberDTO);
-//    // 디비 콘솔에서 확인하기.
-//  }
+  @Test
+  public  void selectUUID() throws Exception {
+   MenuMemberDTO menuMemberDTO = menuMemberService.selectUUID("7d90882d-f723-485c-9dc7-00b47206f965");
+   log.info("menuMemberDTO : " + menuMemberDTO);
+    // 디비 콘솔에서 확인하기.
+  }
 //
   @Test
   public  void insertMember() throws Exception {
