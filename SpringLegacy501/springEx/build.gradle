@@ -70,6 +70,8 @@ dependencies {
     // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl
     testImplementation group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '3.0.0-beta2'
 
+    //spring-webmvc
+    implementation group: 'org.springframework', name: 'spring-webmvc', version: '5.3.19'
 
 }
 
