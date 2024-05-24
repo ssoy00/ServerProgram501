@@ -7,11 +7,11 @@
   </Appenders>
   <Loggers>
     <logger name="org.springframework" level="INFO" additivity="false">
-      <AppenderRef ref="console"/>
+      <AppenderRef ref="Console"/>
     </logger>
 
     <logger name="com.busanit501" level="INFO" additivity="false">
-      <AppenderRef ref="console"/>
+      <AppenderRef ref="Console"/>
     </logger>
 
     <Root level="info" additivity="false">
