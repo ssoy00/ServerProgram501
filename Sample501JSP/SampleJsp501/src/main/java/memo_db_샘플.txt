@@ -47,3 +47,18 @@ alter table tbl_member add column autoLogined tinyint default 0;
 
 update tbl_member set uuid = 'testuuid'  where mid = 'lsy' and mpw = '1234';
 
+update tbl_member set autoLogined = 1 where mid = 'lsy';
+
+
+create table menu_member (
+                            mid varchar(50) primary key,
+                            mpw varchar(50) not null,
+                            mname varchar(100) not null
+);
+
+insert into menu_member ( mid, mpw, mname) values ('lsy','1234','이상용1');
+insert into menu_member ( mid, mpw, mname) values ('lsy2','1234','이상용2');
+
+alter table menu_member add column uuid varchar(50);
+
+select * from menu_member;
