@@ -25,14 +25,14 @@ public enum MenuMemberService {
     return menuMemberDTO;
   }
 // 회원가입
-//  public void insertMember(MemberDTO memberDTO) throws Exception {
-//    MemberVO memberVO = modelMapper.map(memberDTO, MemberVO.class);
-//    memberDAO.insertMember(memberVO);
-//  }
+  public void insertMember(MenuMemberDTO menuMemberDTO) throws Exception {
+    MenuMemberVO menuMemberVO = modelMapper.map(menuMemberDTO, MenuMemberVO.class);
+    menuMemberDAO.insertMember(menuMemberVO);
+  }
 //
-//  public void updateUUID(String mid, String uuid) throws Exception {
-//    memberDAO.updateUUID(mid, uuid);
-//  }
+  public void updateUUID(String mid, String uuid) throws Exception {
+    menuMemberDAO.updateUUID(mid, uuid);
+  }
 //
 //  // 자동로그인 체크 여부
 //  public void checkAutoLogin(String mid, boolean autoLogined) throws Exception {
