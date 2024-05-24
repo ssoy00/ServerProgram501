@@ -8,6 +8,11 @@
 </head>
 <body>
   <button><a href="/menu/input">메뉴작성</a></button>
+  <div>
+  <form method="post" action="/menuLogout">
+  <button type="submit">로그아웃</button>
+  </form>
+  </div>
 <ul>
   <c:forEach var="dto" items="${list}">
     <li>
