@@ -78,6 +78,26 @@ testImplementation group: 'org.springframework', name: 'spring-test', version: '
     testImplementation group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '3.0.0-beta2'
 
 
+Log4j2 설정 파일
+이전 jsp 프로젝트 설정파일 재사용.
+log4j2.xml
+예제) 파일 내용.
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration status="INFO">
+  <Appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36}-%msg%n"/>
+
+    </Console>
+  </Appenders>
+  <Loggers>
+    <Root level="info">
+      <AppenderRef ref="Console"/>
+    </Root>
+  </Loggers>
+</Configuration>
+
+
 
 
 
