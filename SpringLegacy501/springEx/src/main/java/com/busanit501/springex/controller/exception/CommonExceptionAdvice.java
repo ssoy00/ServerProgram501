@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Arrays;
+
 @ControllerAdvice
 @Log4j2
 public class CommonExceptionAdvice {
@@ -20,7 +22,27 @@ public class CommonExceptionAdvice {
 
     log.error("----------error----------------");
     log.error("numberFormatException.getMessage() : " + numberFormatException.getMessage());
-    return "숫자 포맷이 아닌 문자열이 넘어와서 에러가 남 테스트.";
+    return "Number Format Exception !!!";
+
+  }
+
+  // 좀더 포괄적으로 예외를 처리 해보자.
+  @ResponseBody
+  @ExceptionHandler(Exception.class)
+  public String commonException(Exception exception) {
+
+    // 자바에서 단순 String 이용시, 메모리 낭비가 심하다.
+    // StringBuffer, StringBuilder를 이용하면, 효율적인 메모리 관리가 된다.
+    StringBuffer buffer = new StringBuffer("<ul>");
+
+    buffer.append("<li>"+ exception.getMessage() + "</li>");
+    // 예외가 발생하는 목록들을 반복문으로 추가하는 로직.
+    Arrays.stream(exception.getStackTrace()).forEach(elem ->
+    buffer.append("<li>"+ elem + "</li>"));
+    // 닫는 태그.
+    buffer.append("</ul>");
+
+    return buffer.toString();
 
   }
 
