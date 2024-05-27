@@ -1,7 +1,5 @@
-package com.busanit501.mini_project.sample;
+package com.busanit501.mini_project.mapper;
 
-import com.busanit501.mini_project.mapper.TimeMapper;
-import com.busanit501.mini_project.mapper.TimeMapper2;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
