@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+
 @Controller
 // 화면상에서 접근하는 URL 주소를 맵핑 해주는 역할.
 // 설정은 , 클래스 앞에도 가능하고, 메서드 앞에도 가능함.
@@ -49,6 +51,15 @@ public class TodoController {
     log.info(" 기본값 name(이름 파라미터 안보내기) : " + name + ", age : " + age);
   }
 
+  // 문자열, 숫자 크게 문제 안되는데, 날짜를 보내게 되면, 문제가 됨.
+  // 필터 ,
+  // 문제점 제시, 날짜 관련 포맷으로 쿼리 스트링 보냈을 경우, 자동 맵핑 안되는 문제점.
+
+  @GetMapping("/ex3")
+  public void ex3Test(LocalDate dueDate) {
+    log.info("ex3 test...");
+    log.info(" LocalDate 타입 1차 확인.  : " + dueDate );
+  }
 
 
 }
