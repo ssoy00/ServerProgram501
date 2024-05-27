@@ -22,6 +22,12 @@
       <param-name>contextConfigLocation</param-name>
       <param-value>/WEB-INF/servlet-context.xml</param-value>
     </init-param>
+<!--    404 not found 발생시, 전달할 페이지 위치 등록-->
+    <init-param>
+      <param-name>throwExceptionIfNoHandleFound</param-name>
+      <param-value>true</param-value>
+    </init-param>
+
 <!--    서블릿 파일 , 스프링 서버 시작시, 같이 로드 하겠다라는 의미-->
     <load-on-startup>1</load-on-startup>
   </servlet>
