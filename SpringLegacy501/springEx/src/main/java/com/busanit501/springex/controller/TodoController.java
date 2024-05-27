@@ -133,6 +133,14 @@ public class TodoController {
     log.info("ex8 test...");
   }
 
+  @GetMapping("/ex9")
+  public void ex9Test(String name, int age) {
+    // 강제로 예외 발생시키키 시나리오, 숫자 타입에 문자열 타입을 전달해서, 예외 발생시킴.
+    log.info("ex9 test...");
+    log.info("name: " + name);
+    log.info("age: " + age);
+  }
+
 }
 
 
