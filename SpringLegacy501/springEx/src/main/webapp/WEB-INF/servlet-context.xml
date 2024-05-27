@@ -43,4 +43,8 @@
     </property>
   </bean>
 
+<!--  위에서 설정한 빈(인스턴스) 어노테이션으로 사용할수 있게 지정하는 설정.-->
+  <mvc:annotation-driven conversion-service="conversionService"/>
+
+
 </beans>
