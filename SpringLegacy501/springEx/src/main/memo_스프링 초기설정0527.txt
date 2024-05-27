@@ -1,0 +1,43 @@
+MyBatis
+Sql Mapping 해주는 도구.
+SQL의 실행 결과를 객체지향으로 매핑을 해준다.
+예)
+자바 : 데이터 조회, 메서드를 이용.
+selectList(){} 메서드 호출 -> Mybatis 프레임워크에서, 해당 메서드에 연결될 SQL 문장 코드
+연결 해준다.
+
+기존에 jdbc 를 이용했을 때.
+1) Connection 인스턴스가 필요했고, 해당 드라이버, 유저, 패스워드를 이용해서
+2) PreparedStatement , SQL 문장을 전달하기 위한 도구 필요.
+3) ResultSet , 결과 화면을 담아두기 위한 인스턴스가 필요.
+4) 자원 반납.
+
+Mybatis 특징.
+1) 자동화,
+예) ResultSet , getXXX, ?,?,? 와일드 카드로 직접 데이터를 입력을 했다면,
+여기서, 자동으로 매핑.
+2) 자동 close
+3) SQL, 분리해서, 특정 파일에 보관.
+String sql = " select * from tbl_member";
+
+
+스프링 , Mybatis 조합
+1) Mybatis 단독으로 개발.
+2) 스프링이랑 연결해서, 이용할거냐. 추천 .
+JSP 버전
+역방향
+DB   ->  DAO -> Service -> Controller -> 화면.
+스프링 버전
+역방향
+DB   ->  ModelMapper(xml 파일, sql 문장을 보관) -> Service(인터페이스)
+-> Controller -> FrontController(Dispatch Servlet: 관제탑 비유)-> 화면.
+
+
+
+
+
+
+
+
+
+
