@@ -1,0 +1,28 @@
+package com.busanit501.springex.controller;
+
+import lombok.extern.log4j.Log4j2;
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+// 화면상에서 접근하는 URL 주소를 맵핑 해주는 역할.
+// 설정은 , 클래스 앞에도 가능하고, 메서드 앞에도 가능함.
+@RequestMapping("/todo")
+@Log4j2
+public class TodoController {
+  @RequestMapping("/list")
+  public  void listTest() {
+    // 최종 경로 : http://localhost:8080/todo/list
+    // 최종 경로 : /todo/list
+
+    log.info("todo list 조회 화면 테스트 콘솔");
+  }
+}
+
+
+
+
+
+
+
