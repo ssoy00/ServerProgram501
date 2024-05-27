@@ -1,5 +1,6 @@
 package com.busanit501.springex.controller;
 
+import com.busanit501.springex.dto.TodoDTO;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
@@ -62,6 +63,12 @@ public class TodoController {
   public void ex3Test(LocalDate dueDate) {
     log.info("ex3 test...");
     log.info(" LocalDate 타입 1차 확인.  : " + dueDate );
+  }
+
+  @PostMapping("/ex4")
+  public void ex4Test(TodoDTO todoDTO) {
+    log.info("ex4 test...");
+    log.info(" TodoDTO todoDTO 타입 1차 확인.  : " + todoDTO );
   }
 
 
