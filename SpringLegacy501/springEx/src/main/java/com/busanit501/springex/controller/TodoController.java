@@ -4,6 +4,7 @@ import com.busanit501.springex.dto.TodoDTO;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -70,6 +71,15 @@ public class TodoController {
   public void ex4Test(TodoDTO todoDTO) {
     log.info("ex4 test...");
     log.info(" TodoDTO todoDTO 타입 1차 확인.  : " + todoDTO );
+  }
+
+  // 서버 -> 화면 으로 특정 데이터 전달하기.
+  // 화면 : 받은 데이터 -> ${dto}
+  // Model 타입을 이용해서 전달할 예정.
+  @GetMapping("/ex5")
+  public void ex5Test(Model model) {
+    log.info("ex5 test...");
+    model.addAttribute("menu","잡채밥");
   }
 
 
