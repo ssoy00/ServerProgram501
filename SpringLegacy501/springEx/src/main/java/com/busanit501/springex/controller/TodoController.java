@@ -125,7 +125,7 @@ public class TodoController {
     // 일회용 데이터 사용법.
     redirectAttributes.addFlashAttribute("result", "라면");
         // 페이지 전환,
-    return "redirect:/ex8";
+    return "redirect:/todo/ex8";
       }
 
   @GetMapping("/ex8")
