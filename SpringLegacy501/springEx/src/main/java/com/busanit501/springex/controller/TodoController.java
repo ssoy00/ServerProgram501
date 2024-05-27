@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
 
@@ -104,6 +105,32 @@ public class TodoController {
 //        .build();
     model.addAttribute("menu","잡채밥");
     model.addAttribute("todoDTO",todoDTO);
+  }
+
+  // 리다이렉션 :
+  // 1) 페이지 전환,
+  // 2) 값을 전달시, 일회용으로 전달하는 기법,
+  @GetMapping("/ex7")
+  public String ex7Test(RedirectAttributes redirectAttributes) {
+    log.info("ex6 test...");
+
+    // 페이지 이동도 하면서, 데이터 전달. 전달시, 1회용으로 도 전달.
+    // 데이터 전달 , 쿼리 스트링, 파라미터에 값을 전달.
+    // 결과 확인, URL 주소를 잘 확인 하기.
+    // /ex8?menu=한글 깨짐
+    // /ex8?menu2=tomorrow lunch menu lamen
+    // 데이터 유지가 됨.
+    redirectAttributes.addAttribute("menu","내일 점심 칼국수");
+    redirectAttributes.addAttribute("menu2","tomorrow lunch menu lamen");
+    // 일회용 데이터 사용법.
+    redirectAttributes.addFlashAttribute("result", "라면");
+        // 페이지 전환,
+    return "redirect:/ex8";
+      }
+
+  @GetMapping("/ex8")
+  public void ex8Test() {
+    log.info("ex8 test...");
   }
 
 }
