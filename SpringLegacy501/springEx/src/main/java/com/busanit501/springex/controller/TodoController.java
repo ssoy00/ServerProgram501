@@ -92,7 +92,7 @@ public class TodoController {
 
   // @ModelAttribute("dto"): 화면에서 사용하는 이름:todoDTO 이렇게 사용했지만,
   // 이름:todoDTO  -> 이름:dto
-  @GetMapping("/ex6")
+  @PostMapping("/ex6")
   public void ex6Test(@ModelAttribute("dto") TodoDTO todoDTO, Model model) {
     log.info("ex6 test...");
 //    TodoDTO todoDTO = TodoDTO.builder()
