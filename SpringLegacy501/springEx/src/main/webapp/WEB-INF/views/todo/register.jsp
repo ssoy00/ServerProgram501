@@ -5,7 +5,7 @@
   <title>JSP-Model2(MVC)-todoReg 화면 재사용</title>
 </head>
 <body>
-<h1><%= "임시 todoReg 화면." %>
+<h1><%= "임시 todo - register 화면." %>
 </h1>
 <form method="post" action="/todo/register ">
   <div>
@@ -13,6 +13,12 @@
   </div>
   <div>
     <input type="date" name="dueDate">
+  </div>
+  <div>
+    <input type="text" name="writer" placeholder="작성자를 입력해주세요.">
+  </div>
+  <div>
+   Finished: <input type="checkbox" name="finished" >
   </div>
   <div>
     <button type="reset">초기화</button>
