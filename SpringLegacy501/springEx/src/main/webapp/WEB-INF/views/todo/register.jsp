@@ -6,7 +6,7 @@
 <body>
   <h1>컨트롤러 :/todo/register 의 연결 화면: register.jsp 임시 화면. </h1>
 
-<form method="post" action="/register">
+<form method="post" action="/todo/register">
   <button type="submit">postTest</button>
 </form>
 </body>
