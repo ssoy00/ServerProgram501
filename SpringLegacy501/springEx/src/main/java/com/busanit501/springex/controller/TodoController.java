@@ -79,7 +79,15 @@ public class TodoController {
   @GetMapping("/ex5")
   public void ex5Test(Model model) {
     log.info("ex5 test...");
+    TodoDTO todoDTO = TodoDTO.builder()
+        .tno(100L)
+        .title("메뉴1")
+        .writer("이상용")
+        .dueDate(LocalDate.now())
+        .finished(true)
+        .build();
     model.addAttribute("menu","잡채밥");
+    model.addAttribute("todoDTO",todoDTO);
   }
 
 
