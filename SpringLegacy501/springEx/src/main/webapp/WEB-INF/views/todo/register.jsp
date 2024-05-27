@@ -1,22 +1,23 @@
-<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
 <html>
 <head>
-  <title>Title</title>
+  <title>JSP-Model2(MVC)-todoReg 화면 재사용</title>
 </head>
 <body>
-  <h1>컨트롤러 :/todo/register 의 연결 화면: register.jsp 임시 화면. </h1>
-
-<form method="post" action="/todo/register">
-  <button type="submit">postTest</button>
+<h1><%= "임시 todoReg 화면." %>
+</h1>
+<form method="post" action="/todo/register ">
+  <div>
+    <input type="text" name="title" placeholder="제목을 입력해주세요.">
+  </div>
+  <div>
+    <input type="date" name="dueDate">
+  </div>
+  <div>
+    <button type="reset">초기화</button>
+    <button type="submit">작성</button>
+  </div>
 </form>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
