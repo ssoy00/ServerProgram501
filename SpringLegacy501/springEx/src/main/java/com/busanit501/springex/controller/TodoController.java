@@ -90,6 +90,21 @@ public class TodoController {
     model.addAttribute("todoDTO",todoDTO);
   }
 
+  // @ModelAttribute("dto"): 화면에서 사용하는 이름:todoDTO 이렇게 사용했지만,
+  // 이름:todoDTO  -> 이름:dto
+  @GetMapping("/ex6")
+  public void ex6Test(@ModelAttribute("dto") TodoDTO todoDTO, Model model) {
+    log.info("ex6 test...");
+//    TodoDTO todoDTO = TodoDTO.builder()
+//        .tno(100L)
+//        .title("메뉴1")
+//        .writer("이상용")
+//        .dueDate(LocalDate.now())
+//        .finished(true)
+//        .build();
+    model.addAttribute("menu","잡채밥");
+    model.addAttribute("todoDTO",todoDTO);
+  }
 
 }
 

@@ -7,7 +7,7 @@
 <body>
 <h1><%= "임시 todo - register 화면." %>
 </h1>
-<form method="post" action="/todo/register">
+<form method="post" action="/todo/ex6">
   <input type="hidden" name="tno" value="1">
   <div>
     <input type="text" name="title" placeholder="제목을 입력해주세요.">
