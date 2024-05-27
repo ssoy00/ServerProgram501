@@ -27,8 +27,9 @@ public class TodoController {
   }
 
   @PostMapping("/register")
-  public void registerPostTest() {
+  public void registerPostTest(TodoDTO todoDTO) {
     log.info("todo register 등록 화면 Post 테스트 콘솔");
+    log.info(" TodoDTO todoDTO 타입 원래 register 확인.  : " + todoDTO );
   }
 
   // 데이터 수집 방법들, 여러 예제 확인 해보기.
