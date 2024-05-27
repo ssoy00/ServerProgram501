@@ -55,6 +55,9 @@ public class TodoController {
   // 필터 ,
   // 문제점 제시, 날짜 관련 포맷으로 쿼리 스트링 보냈을 경우, 자동 맵핑 안되는 문제점.
 
+  // 경로 확인. /todo/ex3?dueDate=2024-05-27
+  //클라이언트에서 전송하는 데이터 타입이 문자열이고,
+  // 받는 타입은 LocalDate
   @GetMapping("/ex3")
   public void ex3Test(LocalDate dueDate) {
     log.info("ex3 test...");
