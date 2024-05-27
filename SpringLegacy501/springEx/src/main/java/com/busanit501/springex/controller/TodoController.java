@@ -3,10 +3,7 @@ package com.busanit501.springex.controller;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 // 화면상에서 접근하는 URL 주소를 맵핑 해주는 역할.
@@ -43,6 +40,13 @@ public class TodoController {
   @GetMapping("/ex1")
   public void ex1Test(String name , int age ) {
     log.info("name : " + name + ", age : " + age);
+  }
+
+  // 기본값을 설정해보기.
+  // @RequestParam, 클라이언트 보내는 정보에 대해서 수집관련 도구.
+  @GetMapping("/ex2")
+  public void ex2Test(@RequestParam(name = "name", defaultValue = "default lsy" ) String name , int age ) {
+    log.info(" 기본값 name(이름 파라미터 안보내기) : " + name + ", age : " + age);
   }
 
 
