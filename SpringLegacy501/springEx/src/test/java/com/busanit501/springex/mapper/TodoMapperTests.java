@@ -1,11 +1,14 @@
 package com.busanit501.springex.mapper;
 
+import com.busanit501.springex.domain.TodoVO;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.time.LocalDate;
 
 @Log4j2
 @ExtendWith(SpringExtension.class)
@@ -20,6 +23,17 @@ public class TodoMapperTests {
   @Test
   public void testGetTime() {
     log.info("시간 테스트 : " + todoMapper.getTime());
+  }
+
+  @Test
+  public void testInsert() {
+    // 임시 TodoVO , 인스턴스 필요하고,
+    TodoVO todoVO = TodoVO.builder()
+        .title("돈까스")
+        .dueDate(LocalDate.now())
+        .finished(false)
+        .build();
+    todoMapper.insert(todoVO);
   }
 }
 
