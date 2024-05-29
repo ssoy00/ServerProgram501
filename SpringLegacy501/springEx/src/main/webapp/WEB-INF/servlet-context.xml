@@ -16,7 +16,7 @@
 <!--  예) 무시해도 된다는 말은 컨트롤러 안 거치고 , 직접 가능함. -->
 <!--  접근시, http://loacalhost:8080/todo/list-->
 <!--  접근시, http://loacalhost:8080/resources/images/sample.png , 접근 가능함.-->
-  <mvc:resources mapping="/resources/**" location="/resources"></mvc:resources>
+  <mvc:resources mapping="/resources/**" location="/resources/"/>
 
 <!--  화면을 처리해주는 도구. 뷰 리졸버라는 도구. -->
 <!--  앞에서 jsp , 화면경로를 직접 명시. -->
