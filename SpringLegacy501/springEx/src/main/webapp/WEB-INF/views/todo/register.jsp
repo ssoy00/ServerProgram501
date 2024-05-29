@@ -52,7 +52,7 @@
         </div>
         <div class="card-body">
 <%--         register.jsp 의 화면을 복붙--%>
-  <form method="post" action="/register">
+  <form method="post" action="/todo/register">
     <input type="hidden" name="tno" value="1">
     <div class="mb-3">
       <label for="title" class="form-label">제목</label>

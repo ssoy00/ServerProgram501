@@ -1,6 +1,8 @@
 package com.busanit501.springex.controller;
 
 import com.busanit501.springex.dto.TodoDTO;
+import com.busanit501.springex.service.TodoService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
@@ -18,7 +20,11 @@ import java.time.LocalDate;
 // 설정은 , 클래스 앞에도 가능하고, 메서드 앞에도 가능함.
 @RequestMapping("/todo")
 @Log4j2
+@RequiredArgsConstructor
 public class TodoController {
+
+  final TodoService todoService;
+
   @RequestMapping("/list")
   public  void listTest() {
     // 최종 경로 : http://localhost:8080/todo/list
@@ -32,8 +38,11 @@ public class TodoController {
   }
 
   @PostMapping("/register")
-  public void registerPostTest(TodoDTO todoDTO) { log.info("todo register 등록 화면 Post 테스트 콘솔");
+  public String registerPostTest(TodoDTO todoDTO) {
+//    log.info("todo register 등록 화면 Post 테스트 콘솔");
     log.info(" TodoDTO todoDTO 타입 원래 register 확인.  : " + todoDTO );
+    todoService.insert(todoDTO);
+    return "redirect:/todo/list";
 
   }
 
