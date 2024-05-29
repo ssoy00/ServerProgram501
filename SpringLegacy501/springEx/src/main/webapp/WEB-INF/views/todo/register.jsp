@@ -78,7 +78,15 @@
       <button type="submit" class="btn btn-primary">작성</button>
       <button type="reset" class="btn btn-danger">초기화</button>
     </div>
+
   </form>
+  <script>
+    const serverValidErrors = {}
+    <c:forEach items = "${errors}" var="error">
+    serverValidErrors['${error.getField()}'] = '${error.defaultMessage}'
+    </c:forEach>
+    console.log(serverValidErrors)
+  </script>
         </div>
       </div>
     </div>
@@ -92,13 +100,7 @@
 
   </div>
 </div>
-<script>
-  const serverValidErrors = {}
-  <c:forEach items = "${errors}" var="error">
-    serverValidErrors['${error.getField}'] = '${error.defaultMessage}'
-  </c:forEach>
-  console.log(serverValidErrors)
-</script>
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
