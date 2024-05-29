@@ -7,9 +7,11 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 
 // 데이터만 전달. API 서버, API REST 서버,
@@ -38,9 +40,21 @@ public class TodoController {
   }
 
   @PostMapping("/register")
-  public String registerPostTest(TodoDTO todoDTO) {
+  //@Valid : 유효성 체크 하겠다 의미.
+  // BindingResult : 유효성 검사 실패시, 실패 관련 내용이 자동으로 담기는 도구
+  // RedirectAttributes , 서버 -> 화면으로 , 쿼리 스트링으로 내용 전달.
+  public String registerPostTest(@Valid TodoDTO todoDTO, BindingResult bindingResult,
+                                 RedirectAttributes redirectAttributes) {
 //    log.info("todo register 등록 화면 Post 테스트 콘솔");
-    log.info(" TodoDTO todoDTO 타입 원래 register 확인.  : " + todoDTO );
+//    log.info(" TodoDTO todoDTO 타입 원래 register 확인.  : " + todoDTO );
+    log.info("post 작업 중. ");
+
+    // 유효성 검사 실패시에만 동작을함.
+    if(bindingResult.hasErrors()) {
+      log.info("bindingResult.hasErrors() 실행됨. ");
+      redirectAttributes.addAttribute("errors", bindingResult.getAllErrors() );
+      return "redirect:/todo/register";
+    }
     todoService.insert(todoDTO);
     return "redirect:/todo/list";
 
