@@ -52,7 +52,7 @@ public class TodoController {
     // 유효성 검사 실패시에만 동작을함.
     if(bindingResult.hasErrors()) {
       log.info("bindingResult.hasErrors() 실행됨. ");
-      redirectAttributes.addAttribute("errors", bindingResult.getAllErrors() );
+      redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors() );
       return "redirect:/todo/register";
     }
     todoService.insert(todoDTO);
