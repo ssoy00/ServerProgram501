@@ -42,6 +42,12 @@ public class TodoServiceTests {
     todoList.forEach(dto -> log.info("dto : " + dto));
   }
 
+  @Test
+  public void testGetOne() {
+    TodoDTO todoDTO = todoService.getOne(35L);
+    log.info("todoDTO : " + todoDTO);
+  }
+
 }
 
 
