@@ -69,11 +69,11 @@
     </div>
 
     <div class="mb-3">
-      <label for="finished" class="form-label">Finished</label>
-      <input type="checkbox" name="finished"  id="finished" >
+      <label class="form-check-label" for="finished">Finished</label>
+      <input type="checkbox" class="form-check-input" id="finished" name="finished">
     </div>
 
-    <div class="mb-3">
+     <div class="mb-3">
       <button type="submit" class="btn btn-primary">작성</button>
       <button type="reset" class="btn btn-danger">초기화</button>
     </div>
