@@ -44,6 +44,12 @@ public class TodoMapperTests {
     List<TodoVO> todoList = todoMapper.listAll();
     todoList.forEach(vo -> log.info("vo : " + vo));
   }
+
+  @Test
+  public void testGetOne() {
+    TodoVO todoVO = todoMapper.getOne(35L);
+    log.info("todoVO : " + todoVO);
+  }
 }
 
 
