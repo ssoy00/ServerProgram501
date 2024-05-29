@@ -12,7 +12,7 @@
 
 <!--  애너테이션 , ex) @Controller, @Service,@Repository, @Component-->
 <!--  검색하는 구역 설정-->
-  <context:component-scan base-package="com.busanit501.springex.sample"/>
+<!--  <context:component-scan base-package="com.busanit501.springex.sample"/>-->
 
 <!--  디비에 연결하기 위한 도구-->
 <!--  HikariConfig hikariConfig = new HikariConfig(); -->
@@ -44,6 +44,7 @@
 
 <!--  모델 맵퍼 경로 위치 등록하기.-->
   <context:component-scan base-package="com.busanit501.springex.config"/>
+  <context:component-scan base-package="com.busanit501.springex.service"/>
 
 
 </beans>

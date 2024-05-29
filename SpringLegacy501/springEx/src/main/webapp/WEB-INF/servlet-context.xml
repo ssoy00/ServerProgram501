@@ -30,7 +30,7 @@
 <!--  우리가 테스트할 컨트롤러 패키지 경로 위치를 스프링 시스템에 등록하기. -->
 <!--  빈 탐색 경로 등록.-->
   <context:component-scan base-package="com.busanit501.springex.controller"/>
-  <context:component-scan base-package="com.busanit501.springex.service"/>
+
 
 <!--  웹 브라우저에서 전달된 날짜 포맷이 문자열로 오기 때문에, 받을 때, 문제가 생겨서, -->
 <!--  시스템에 등록해서, 자동 변환 하기위한 설정.-->
