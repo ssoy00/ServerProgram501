@@ -94,6 +94,10 @@
       // true : 버블링, 위에서 부터 이벤트가 전파.
     },false)
 
+    document.querySelector(".btn-danger").addEventListener("click", function(event) {
+           self.location = "/todo/list"
+
+    },false)
 
     const serverValidErrors = {}
     <c:forEach items = "${errors}" var="error">
