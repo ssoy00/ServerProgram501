@@ -55,24 +55,27 @@
   <form method="post" action="/register">
     <input type="hidden" name="tno" value="1">
     <div class="mb-3">
-      <label for="title" class="form-label">Email address</label>
+      <label for="title" class="form-label">제목</label>
       <input type="text" name="title" class="form-control" id="title" placeholder="제목을 입력해주세요.">
     </div>
-    <div>
-      <input type="text" name="title" placeholder="제목을 입력해주세요.">
+    <div class="mb-3">
+      <label for="dueDate" class="form-label">일정</label>
+      <input type="date" name="dueDate" class="form-control" id="dueDate">
     </div>
-    <div>
-      <input type="date" name="dueDate">
+
+    <div class="mb-3">
+      <label for="writer" class="form-label">작성자</label>
+      <input type="text" name="writer" class="form-control" id="writer" placeholder="작성자를 입력해주세요.">
     </div>
-    <div>
-      <input type="text" name="writer" placeholder="작성자를 입력해주세요.">
+
+    <div class="mb-3">
+      <label for="finished" class="form-label">Finished</label>
+      <input type="checkbox" name="finished"  id="finished" >
     </div>
-    <div>
-      Finished: <input type="checkbox" name="finished" >
-    </div>
-    <div>
-      <button type="reset">초기화</button>
-      <button type="submit">작성</button>
+
+    <div class="mb-3">
+      <button type="submit" class="btn btn-primary">작성</button>
+      <button type="reset" class="btn btn-danger">초기화</button>
     </div>
   </form>
         </div>
