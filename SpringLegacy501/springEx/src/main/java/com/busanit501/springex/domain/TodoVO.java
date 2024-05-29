@@ -1,7 +1,7 @@
 package com.busanit501.springex.domain;
 
 import lombok.*;
-import org.checkerframework.checker.units.qual.A;
+
 
 import java.time.LocalDate;
 
