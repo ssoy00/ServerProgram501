@@ -37,8 +37,8 @@ public class TodoController {
 
   }
 
-  @GetMapping("/read")
-  public  void listTest(Long tno, Model model) {
+  @GetMapping({"/read", "/update"})
+  public  void readTest(Long tno, Model model) {
     log.info("todo list 조회 화면 테스트 콘솔");
     // C -> S -> Mapper -> DB
     // C <- S <- Mapper <- DB
@@ -47,6 +47,7 @@ public class TodoController {
     model.addAttribute("todoDTO", todoDTO);
 
   }
+
 
 //  @RequestMapping(value = "/register", method = RequestMethod.GET)
   @GetMapping("/register")
