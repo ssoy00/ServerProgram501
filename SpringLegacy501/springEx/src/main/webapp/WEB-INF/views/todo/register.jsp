@@ -54,6 +54,10 @@
 <%--         register.jsp 의 화면을 복붙--%>
   <form method="post" action="/register">
     <input type="hidden" name="tno" value="1">
+    <div class="mb-3">
+      <label for="title" class="form-label">Email address</label>
+      <input type="text" name="title" class="form-control" id="title" placeholder="제목을 입력해주세요.">
+    </div>
     <div>
       <input type="text" name="title" placeholder="제목을 입력해주세요.">
     </div>
