@@ -76,7 +76,14 @@ public class TodoServiceTests {
 
   }
 
-}
+  @Test
+  public void testGetCount() {
+    int result = todoService.getCount();
+    log.info("result: todo 전체 갯수 : " + result);
+
+  }
+
+} // 닫는 블록
 
 
 

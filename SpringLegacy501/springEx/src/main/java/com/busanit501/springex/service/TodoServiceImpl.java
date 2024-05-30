@@ -56,6 +56,12 @@ public class TodoServiceImpl implements TodoService {
     todoMapper.update(todoVO);
   }
 
+  @Override
+  public int getCount() {
+    int result = todoMapper.getCount();
+    return result;
+  }
+
 }
 
 
