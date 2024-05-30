@@ -42,6 +42,25 @@ public class PageResponseDTO<E> {
 
     this.total = total;
     this.dtoList = dtoList;
+
+    // 추가정보
+    // end : 끝페이지 번호,
+    // page : 1 ~ 10 -> (int)(Math.ceil(this.page / 10.0)) : 1,
+    // end : 10
+    this.end = (int)(Math.ceil(this.page / 10.0)) * 10;
+
+    this.start = this.end - 9;
+
+    // 문제, 10페이지 미만인 경우,
+    int last = (int)(Math.ceil(total/(double)size));
+
+    // 10 > 8 , end : 8
+    // 부트는 Pageable 인터페이스 도구 이용하면, 한방에 됨. 걱정 노노.!!
+    this.end = end > last ? last : end;
+
+    this.prev = this.start > 1;
+    // total : 125, >100
+    this.next = total > this.end * this.size;
   }
 
 }
