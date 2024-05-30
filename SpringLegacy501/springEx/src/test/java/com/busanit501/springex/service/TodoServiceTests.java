@@ -54,6 +54,20 @@ public class TodoServiceTests {
 
   }
 
+  @Test
+  public void testUpdate() {
+//    수정 하기위한 더미 데이터 만들기.
+    TodoDTO todoDTO = TodoDTO.builder()
+        .tno(35L)
+        .title("족발 워너비 고씨")
+        .dueDate(LocalDate.of(2024,6,1))
+        .finished(false)
+        .build();
+
+    todoService.update(todoDTO);
+
+  }
+
 }
 
 
