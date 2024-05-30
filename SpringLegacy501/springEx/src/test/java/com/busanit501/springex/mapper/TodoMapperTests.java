@@ -50,6 +50,12 @@ public class TodoMapperTests {
     TodoVO todoVO = todoMapper.getOne(35L);
     log.info("todoVO : " + todoVO);
   }
+
+  @Test
+  public void testDelete() {
+    todoMapper.delete(36L);
+
+  }
 }
 
 
