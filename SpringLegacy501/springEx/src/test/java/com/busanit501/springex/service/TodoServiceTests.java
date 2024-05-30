@@ -1,6 +1,7 @@
 package com.busanit501.springex.service;
 
 import com.busanit501.springex.domain.TodoVO;
+import com.busanit501.springex.dto.PageRequestDTO;
 import com.busanit501.springex.dto.TodoDTO;
 import com.busanit501.springex.mapper.TodoMapper;
 import lombok.extern.log4j.Log4j2;
@@ -38,7 +39,14 @@ public class TodoServiceTests {
 
   @Test
   public void testListAll() {
-    List<TodoDTO> todoList = todoService.listAll();
+    //페이징 정보 임시 데이터 빠져 있음. 추가.
+    PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+        .page(1)
+        .size(10)
+        .build();
+
+
+    List<TodoDTO> todoList = todoService.listAll(pageRequestDTO);
     todoList.forEach(dto -> log.info("dto : " + dto));
   }
 
