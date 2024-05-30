@@ -47,7 +47,14 @@ public class TodoController {
     model.addAttribute("todoDTO", todoDTO);
 
   }
-  // 수정 관련 로직 처리  . 
+  // 수정 관련 로직 처리  .
+  @PostMapping("/update")
+  public String updateTest(TodoDTO todoDTO, RedirectAttributes redirectAttributes){
+    log.info("수정시 tno 확인 : " + todoDTO);
+    todoService.update(todoDTO);
+    return "redirect:/todo/list";
+
+  }
 
 
   @PostMapping("/delete")
