@@ -96,6 +96,11 @@
     //   formObject.method = "post"
     //   formObject.submit()
     // }, false)
+
+    document.querySelector(".btn-danger").addEventListener("click", function(event) {
+      self.location = "/todo/list"
+
+    },false);
   </script>
         </div>
       </div>
