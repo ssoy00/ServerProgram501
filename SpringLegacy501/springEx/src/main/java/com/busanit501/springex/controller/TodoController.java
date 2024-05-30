@@ -47,6 +47,9 @@ public class TodoController {
     model.addAttribute("todoDTO", todoDTO);
 
   }
+  // 수정 관련 로직 처리  . 
+
+
   @PostMapping("/delete")
   public String deleteTest(Long tno, RedirectAttributes redirectAttributes){
     log.info("삭제시 tno 확인 : " + tno);

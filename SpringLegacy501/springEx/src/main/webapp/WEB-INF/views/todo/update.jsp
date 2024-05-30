@@ -71,7 +71,7 @@
 
     <div class="mb-3">
       <label class="form-check-label" for="finished">Finished</label>
-      <input type="checkbox" class="form-check-input" id="finished" name="finished" value="${todoDTO.finished}">
+      <input type="checkbox" class="form-check-input" id="finished" name="finished" ${todoDTO.finished ? "checked" :""}>
     </div>
 
      <div class="mb-3">

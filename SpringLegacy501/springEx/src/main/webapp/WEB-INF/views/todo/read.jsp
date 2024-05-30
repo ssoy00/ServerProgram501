@@ -69,9 +69,10 @@
       <input type="text" name="writer" class="form-control" id="writer" placeholder="작성자를 입력해주세요."value="${todoDTO.writer}" readonly>
     </div>
 
+<%--  todoDTO.finished 여기서 받아온 값에 따라서, 체크 표시하기. --%>
     <div class="mb-3">
       <label class="form-check-label" for="finished">Finished</label>
-      <input type="checkbox" class="form-check-input" id="finished" name="finished" value="${todoDTO.finished}" onclick="return false">
+      <input type="checkbox" class="form-check-input" id="finished" name="finished" ${todoDTO.finished ? "checked" :""} onclick="return false">
     </div>
 
      <div class="mb-3">
