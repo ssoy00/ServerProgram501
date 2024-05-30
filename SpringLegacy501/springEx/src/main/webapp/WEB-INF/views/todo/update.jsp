@@ -53,7 +53,7 @@
         </div>
         <div class="card-body">
 <%--         register.jsp 의 화면을 복붙--%>
-
+  <form method="post" action="/todo/update">
     <input type="hidden" name="tno" value="1">
     <div class="mb-3">
       <label for="title" class="form-label">제목</label>
@@ -75,12 +75,24 @@
     </div>
 
      <div class="mb-3">
-      <button type="button" class="btn btn-primary">수정하기</button>
+      <button type="submit" class="btn btn-primary">수정하기</button>
        <button type="button" class="btn btn-warning">삭제하기</button>
       <button type="button" class="btn btn-danger">목록가기</button>
     </div>
+  </form>
 
   <script>
+    // form 태그의 요소를 선택하기. -> 기본이 action -> /todo/update, 변경, post 방식.
+    const formObject = document.querySelector("form")
+    document.querySelector(".btn-warning").addEventListener("click",function(event){
+      event.preventDefault()
+      event.stopPropagation()
+      formObject.action = "/todo/delete"
+      formObject.method = "post"
+      formObject.submit()
+    }, false)
+
+
      const serverValidErrors = {}
     <c:forEach items = "${errors}" var="error">
     serverValidErrors['${error.getField()}'] = '${error.defaultMessage}'
