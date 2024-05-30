@@ -54,7 +54,7 @@
         <div class="card-body">
 <%--         register.jsp 의 화면을 복붙--%>
   <form method="post" action="/todo/update">
-    <input type="hidden" name="tno" value="1">
+    <input type="hidden" name="tno" value="${todoDTO.tno}">
     <div class="mb-3">
       <label for="title" class="form-label">제목</label>
       <input type="text" name="title" class="form-control" id="title" placeholder="제목을 입력해주세요." value="${todoDTO.title}" >
