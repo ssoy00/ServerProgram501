@@ -76,28 +76,26 @@
 
      <div class="mb-3">
       <button type="submit" class="btn btn-primary">수정하기</button>
-       <button type="button" class="btn btn-warning">삭제하기</button>
       <button type="button" class="btn btn-danger">목록가기</button>
     </div>
+  </form>
+  <form method="post" action="/todo/delete">
+    <input type="hidden" name="tno" value="${todoDTO.tno}">
+    <button type="submit" class="btn btn-warning">삭제하기</button>
   </form>
 
   <script>
     // form 태그의 요소를 선택하기. -> 기본이 action -> /todo/update, 변경, post 방식.
-    const formObject = document.querySelector("form")
-    document.querySelector(".btn-warning").addEventListener("click",function(event){
-      event.preventDefault()
-      event.stopPropagation()
-      formObject.action = "/todo/delete"
-      formObject.method = "post"
-      formObject.submit()
-    }, false)
-
-
-     const serverValidErrors = {}
-    <c:forEach items = "${errors}" var="error">
-    serverValidErrors['${error.getField()}'] = '${error.defaultMessage}'
-    </c:forEach>
-    console.log(serverValidErrors)
+    // const formObject = document.querySelector("form")
+    //
+    // document.querySelector(".btn-warning").addEventListener("click",function(event){
+    //   event.preventDefault()
+    //   event.stopPropagation()
+    //
+    //   formObject.action = "/todo/delete"
+    //   formObject.method = "post"
+    //   formObject.submit()
+    // }, false)
   </script>
         </div>
       </div>
