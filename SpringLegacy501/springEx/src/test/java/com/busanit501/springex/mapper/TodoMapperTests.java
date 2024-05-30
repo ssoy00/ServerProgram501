@@ -1,6 +1,7 @@
 package com.busanit501.springex.mapper;
 
 import com.busanit501.springex.domain.TodoVO;
+import com.busanit501.springex.dto.PageRequestDTO;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -41,7 +42,13 @@ public class TodoMapperTests {
 
   @Test
   public void testSelect() {
-    List<TodoVO> todoList = todoMapper.listAll();
+    //페이징 정보를 가지고 있는 임시 더미 데이터, PageRequestDTO
+    PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+        .page(1)
+        .size(10)
+        .build();
+
+    List<TodoVO> todoList = todoMapper.listAll(pageRequestDTO);
     todoList.forEach(vo -> log.info("vo : " + vo));
   }
 

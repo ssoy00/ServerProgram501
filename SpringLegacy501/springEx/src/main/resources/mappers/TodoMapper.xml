@@ -13,8 +13,9 @@
     insert into tbl_todo (title, dueDate, writer, finished) values (#{title}, #{dueDate}, #{writer}, #{finished})
   </insert>
 
+<!--  #{skip} PageRequestDTO, getSkip() 으로 동작을 함. -->
   <select id="listAll" resultType="com.busanit501.springex.domain.TodoVO">
-    select * from tbl_todo order by tno desc
+    select * from tbl_todo order by tno desc limit #{skip}, #{size}
   </select>
 
   <select id="getOne" resultType="com.busanit501.springex.domain.TodoVO">
