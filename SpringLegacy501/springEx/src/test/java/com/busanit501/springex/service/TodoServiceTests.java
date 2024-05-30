@@ -48,6 +48,12 @@ public class TodoServiceTests {
     log.info("todoDTO : " + todoDTO);
   }
 
+  @Test
+  public void testDelete() {
+    todoService.delete(34L);
+
+  }
+
 }
 
 

@@ -10,6 +10,7 @@ public interface TodoService {
   // 서비스에서, TodoDTO 로 모두 변환하기.
   List<TodoDTO> listAll();
   TodoDTO getOne(Long tno);
+  void delete(Long tno);
 
 }
 
