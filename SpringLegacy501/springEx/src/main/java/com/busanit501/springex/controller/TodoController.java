@@ -47,6 +47,13 @@ public class TodoController {
     model.addAttribute("todoDTO", todoDTO);
 
   }
+  @PostMapping("/delete")
+  public String deleteTest(Long tno, RedirectAttributes redirectAttributes){
+    log.info("삭제시 tno 확인 : " + tno);
+    todoService.delete(tno);
+    return "redirect:/todo/list";
+
+  }
 
 
 //  @RequestMapping(value = "/register", method = RequestMethod.GET)
