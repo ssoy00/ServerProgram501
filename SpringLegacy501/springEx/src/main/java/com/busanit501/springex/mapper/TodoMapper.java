@@ -21,7 +21,14 @@ public interface TodoMapper {
   void delete(Long tno);
 
   void update(TodoVO todoVO);
+  // 전체 갯수 구하는 메서드, 페이징 처리시 필요한 준비물.
+  int getCount();
 }
+
+
+
+
+
 
 
 

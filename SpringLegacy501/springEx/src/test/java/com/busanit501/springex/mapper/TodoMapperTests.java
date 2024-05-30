@@ -76,9 +76,15 @@ public class TodoMapperTests {
 
     todoMapper.update(todoVO);
 
+     }
 
+  @Test
+  public void testGetCount() {
+    int result = todoMapper.getCount();
+    log.info("result todo 전체 갯수 : " + result);
   }
-}
+     
+} // 전체 닫는 블록
 
 
 
