@@ -34,10 +34,13 @@ public class TodoController {
   public  void listTest(Model model, PageRequestDTO pageRequestDTO) {
         log.info("todo list 조회 화면 테스트 콘솔");
         // 수정하기, 반환 타입을 PageResponseDTO 타입으로 변경하기.
-        List<TodoDTO> dtoList = todoService.listAll(pageRequestDTO);
+    // 10개 나눠진 것만 확인용.
+//        List<TodoDTO> dtoList = todoService.listAll(pageRequestDTO);
         // 서버 -> 화면, 모델
-//       PageResponseDTO<TodoDTO> pageResponseDTO = ;
-    model.addAttribute("dtoList", dtoList);
+    // pageResponseDTO 의 내용물
+    // 1) PageRequestDTO(page,size,getSkip)  2) List<TodoDTO> dtoList 3) total 전체갯수
+       PageResponseDTO<TodoDTO> pageResponseDTO = todoService.listAll(pageRequestDTO);;
+    model.addAttribute("pageResponseDTO", pageResponseDTO);
 
   }
 

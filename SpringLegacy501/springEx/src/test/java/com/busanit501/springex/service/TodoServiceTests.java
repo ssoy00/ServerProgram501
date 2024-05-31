@@ -2,6 +2,7 @@ package com.busanit501.springex.service;
 
 import com.busanit501.springex.domain.TodoVO;
 import com.busanit501.springex.dto.PageRequestDTO;
+import com.busanit501.springex.dto.PageResponseDTO;
 import com.busanit501.springex.dto.TodoDTO;
 import com.busanit501.springex.mapper.TodoMapper;
 import lombok.extern.log4j.Log4j2;
@@ -37,6 +38,7 @@ public class TodoServiceTests {
     todoService.insert(todoDTO);
   }
 
+  // 페이징 정보를 다 담은, PageResponseDTO 타입으로 변경해서 테스트
   @Test
   public void testListAll() {
     //페이징 정보 임시 데이터 빠져 있음. 추가.
@@ -45,9 +47,13 @@ public class TodoServiceTests {
         .size(10)
         .build();
 
+    PageResponseDTO<TodoDTO> pageResponseDTO = todoService.listAll(pageRequestDTO);
+    log.info("pageResponseDTO : " + pageResponseDTO);
+    // 목록 확인
 
-    List<TodoDTO> todoList = todoService.listAll(pageRequestDTO);
-    todoList.forEach(dto -> log.info("dto : " + dto));
+  // 전체 갯수 확인.
+    // PageRequestDTO 내용물 확인.
+
   }
 
   @Test
