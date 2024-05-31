@@ -27,6 +27,13 @@
           </if>
         </foreach>
       </if>
+
+             <if test="finished">
+               <trim prefix="and">
+                 finished = 1
+               </trim>
+             </if>
+
     </where>
     order by tno desc limit #{skip}, #{size}
   </select>
