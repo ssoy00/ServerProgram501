@@ -98,7 +98,7 @@
     // }, false)
 
     document.querySelector(".btn-danger").addEventListener("click", function(event) {
-      self.location = "/todo/list"
+      self.location = "/todo/list?${pageRequestDTO.link}"
 
     },false);
   </script>
