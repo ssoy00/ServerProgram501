@@ -59,6 +59,26 @@
     </div>
   </div>
   <!--  Navbar 종료-->
+
+<%--  검색 화면 구성 넣기--%>
+  <div class="row content">
+    <div class="col">
+      <!--      부트 스트랩 5.3 Card 컴포넌트 Header and Footer 의 샘플 가져오기-->
+      <div class="card">
+        <div class="card-header">
+          검색화면
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">검색화면 </h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%--  검색 화면 구성 넣기--%>
+
   <!--  본문 시작-->
   <div class="row content">
     <div class="col">
