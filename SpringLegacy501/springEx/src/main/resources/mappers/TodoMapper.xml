@@ -37,7 +37,16 @@
 
 <!--  갯수를 구할 때, 검색과 필터 조건을 이용해서 갯수를 구하기 추가-->
   <select id="getCount" resultType="int">
-    select count(tno) from tbl_todo;
+    select count(tno) from tbl_todo
+
+    #              분리한 검색 필터 sql 사용하기
+    <include refid="search"></include>
+
+
+  </select>
+
+  <select id="getCount2" resultType="int">
+    select count(tno) from tbl_todo
 
     #              분리한 검색 필터 sql 사용하기
     <include refid="search"></include>

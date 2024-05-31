@@ -105,6 +105,24 @@ public class TodoMapperTests {
   }
 
 
+  @Test
+  public void testGetCountWithSearch() {
+    // 테스트용 더미 PageRequestDTO 만들기.
+    PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+        .page(1)
+        .size(10)
+        .keyword("오늘")
+        // 검색 조건이, 작성자 또는 제목
+        .types(new String[]{"t","w"})
+        .from(LocalDate.of(2024,5,1))
+        .to(LocalDate.of(2024,5,31))
+        .finished(true)
+        .build();
+    int result = todoMapper.getCount2(pageRequestDTO);
+    log.info("result todo 전체 갯수 : " + result);
+  }
+
+
 } // 전체 닫는 블록
 
 

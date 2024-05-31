@@ -81,6 +81,12 @@ public class TodoServiceImpl implements TodoService {
     return result;
   }
 
+  @Override
+  public int getCount2(PageRequestDTO pageRequestDTO) {
+    int result = todoMapper.getCount2(pageRequestDTO);
+    return result;
+  }
+
 }
 
 

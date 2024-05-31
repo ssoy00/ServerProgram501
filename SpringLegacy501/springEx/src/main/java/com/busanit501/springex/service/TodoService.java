@@ -16,6 +16,7 @@ public interface TodoService {
   void delete(Long tno);
   void update(TodoDTO todoDTO);
   int getCount();
+  int getCount2(PageRequestDTO pageRequestDTO);
 
 }
 
