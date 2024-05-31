@@ -9,6 +9,22 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
+<style>
+  .paging-container {
+    display: flex;
+    justify-content: center; /* 가로 중앙정렬 */
+    align-items: center; /* 세로 중앙정렬 */
+    height: 10vh; /* 부모 요소의 높이를 100%로 설정 *
+  },
+  .paging-content {
+    width: 10vw;
+    height: 100px;
+    background-color: lightblue;
+    text-align: center; /* 텍스트 가로 중앙정렬 */
+    /*line-height: 100px; !* 텍스트 세로 중앙정렬 *!*/
+  }
+</style>
+
 <div class="container-fluid">
   <div class="row">
     <!--    NavBar 가져와서 적용해보기-->
@@ -77,8 +93,10 @@
             </tbody>
           </table>
 <%--          페이징 부트스트랩 추가하기--%>
-          <div>
-              <ul class="pagination">
+          <div class="paging-container">
+              <ul class="pagination paging-content" >
+<%--  <div>--%>
+<%--  <ul class="pagination">--%>
 <%--                이전화면이 나오고--%>
                 <c:if test="${pageResponseDTO.prev}">
                 <li class="page-item">
