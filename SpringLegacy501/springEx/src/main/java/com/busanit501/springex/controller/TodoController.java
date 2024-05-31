@@ -1,6 +1,7 @@
 package com.busanit501.springex.controller;
 
 import com.busanit501.springex.dto.PageRequestDTO;
+import com.busanit501.springex.dto.PageResponseDTO;
 import com.busanit501.springex.dto.TodoDTO;
 import com.busanit501.springex.service.TodoService;
 import lombok.RequiredArgsConstructor;
@@ -32,8 +33,10 @@ public class TodoController {
   @GetMapping("/list")
   public  void listTest(Model model, PageRequestDTO pageRequestDTO) {
         log.info("todo list 조회 화면 테스트 콘솔");
+        // 수정하기, 반환 타입을 PageResponseDTO 타입으로 변경하기.
         List<TodoDTO> dtoList = todoService.listAll(pageRequestDTO);
         // 서버 -> 화면, 모델
+//       PageResponseDTO<TodoDTO> pageResponseDTO = ;
     model.addAttribute("dtoList", dtoList);
 
   }

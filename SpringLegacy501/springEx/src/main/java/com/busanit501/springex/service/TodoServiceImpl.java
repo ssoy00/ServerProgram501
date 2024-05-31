@@ -2,6 +2,7 @@ package com.busanit501.springex.service;
 
 import com.busanit501.springex.domain.TodoVO;
 import com.busanit501.springex.dto.PageRequestDTO;
+import com.busanit501.springex.dto.PageResponseDTO;
 import com.busanit501.springex.dto.TodoDTO;
 import com.busanit501.springex.mapper.TodoMapper;
 import lombok.extern.log4j.Log4j2;
@@ -30,12 +31,26 @@ public class TodoServiceImpl implements TodoService {
   }
 
   @Override
-  public List<TodoDTO> listAll(PageRequestDTO pageRequestDTO) {
+//  public List<TodoDTO> listAll(PageRequestDTO pageRequestDTO) {
+  public PageResponseDTO<TodoDTO> listAll(PageRequestDTO pageRequestDTO) {
     List<TodoVO> sampleLists = todoMapper.listAll(pageRequestDTO);
     // TodoVo -> TodoDTO
+    // 첫번째 재료
    List<TodoDTO> dtoLists = sampleLists.stream().map(vo -> modelMapper.map(vo, TodoDTO.class))
         .collect(Collectors.toList());
-    return dtoLists;
+   // 두번째 자료, PageRequestDTO, 파라미터꺼 사용.
+    // 세번째 전체 갯수.
+    int total = todoMapper.getCount();
+
+    //원래는 PageResponseDTO.builder.build() -> 변경됨.
+    // PageResponseDTO.<TodoDTO>withAll().build();
+    PageResponseDTO<TodoDTO> pageResponseDTO = PageResponseDTO.<TodoDTO>withAll()
+        .pageRequestDTO(pageRequestDTO)
+        .dtoList(dtoLists)
+        .total(total)
+        .build();
+
+    return pageResponseDTO;
   }
 
   @Override
