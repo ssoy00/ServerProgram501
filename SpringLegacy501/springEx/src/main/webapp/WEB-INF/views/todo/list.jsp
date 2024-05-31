@@ -76,6 +76,24 @@
               </c:forEach>
             </tbody>
           </table>
+<%--          페이징 부트스트랩 추가하기--%>
+          <div>
+              <ul class="pagination">
+<%--                서버에서 받아온 데이터를 적용하기--%>
+                <c:forEach begin="${responseDTO.start}" end="${responseDTO.end}" var = "num">
+                  <li class="page-item"><a class="page-link" href="#">${num}</a></li>
+                </c:forEach>
+<%--                <li class="page-item disabled">--%>
+<%--                  <a class="page-link">Previous</a>--%>
+<%--                </li>--%>
+
+
+<%--                <li class="page-item">--%>
+<%--                  <a class="page-link" href="#">Next</a>--%>
+<%--                </li>--%>
+              </ul>
+          </div>
+  <%--          페이징 부트스트랩 추가하기--%>
 
         </div>
       </div>
