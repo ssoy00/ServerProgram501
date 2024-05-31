@@ -58,8 +58,24 @@ public class TodoController {
   }
   // 수정 관련 로직 처리  .
   @PostMapping("/update")
-  public String updateTest(TodoDTO todoDTO, RedirectAttributes redirectAttributes){
+  public String updateTest(@Valid TodoDTO todoDTO, PageRequestDTO pageRequestDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes){
     log.info("수정시 tno 확인 : " + todoDTO);
+
+    int page = pageRequestDTO.getPage();
+    int size = pageRequestDTO.getSize();
+
+
+    // 유효성 검사 실패시에만 동작을함.
+    if(bindingResult.hasErrors()) {
+      log.info("bindingResult.hasErrors() 실행됨. ");
+      redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors() );
+      // 서버 -> 화면으로 , 데이터 전달, 방식 :쿼리스트링 하는 방식.
+      redirectAttributes.addAttribute("page",page );
+      redirectAttributes.addAttribute("size",size );
+      redirectAttributes.addAttribute("tno", todoDTO.getTno());
+      return "redirect:/todo/update";
+    }
+
     todoService.update(todoDTO);
     return "redirect:/todo/list";
 
