@@ -67,15 +67,18 @@ public class TodoController {
 
     // 유효성 검사 실패시에만 동작을함.
     if(bindingResult.hasErrors()) {
-      log.info("bindingResult.hasErrors() 실행됨. ");
+      log.info("현재: 수정중 오류 확인. bindingResult.hasErrors() 실행됨. ");
       redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors() );
+      log.info("page : " + page + " size : " + size + "todoDTO.getTno() : " +todoDTO.getTno());
       // 서버 -> 화면으로 , 데이터 전달, 방식 :쿼리스트링 하는 방식.
+//      redirectAttributes.addAttribute("page",page );
+//      redirectAttributes.addAttribute("size",size );
+//      redirectAttributes.addAttribute("tno", todoDTO.getTno());
+      return "redirect:/todo/update";
+    }
       redirectAttributes.addAttribute("page",page );
       redirectAttributes.addAttribute("size",size );
       redirectAttributes.addAttribute("tno", todoDTO.getTno());
-      return "redirect:/todo/update";
-    }
-
     todoService.update(todoDTO);
     return "redirect:/todo/list";
 

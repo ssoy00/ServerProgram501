@@ -87,6 +87,13 @@
     <input type="hidden" name="size" value="${pageRequestDTO.size}">
     <button type="submit" class="btn btn-warning">삭제하기</button>
   </form>
+  <script>
+    const serverValidErrors = {}
+    <c:forEach items = "${errors}" var="error">
+    serverValidErrors['${error.getField()}'] = '${error.defaultMessage}'
+    </c:forEach>
+    console.log(serverValidErrors)
+  </script>
 
   <script>
     // form 태그의 요소를 선택하기. -> 기본이 action -> /todo/update, 변경, post 방식.
