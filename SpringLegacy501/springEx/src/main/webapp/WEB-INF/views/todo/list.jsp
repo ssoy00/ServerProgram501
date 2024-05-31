@@ -77,7 +77,7 @@
               <input type="checkbox" name="finished"> 완료여부
             </div>
             <div class="mb-3">
-              <input type="checkbox" name="types" value="t"> 제목
+              <input type="checkbox" name="types" value="t" ${pageRequestDTO.checkType("t") ? "checked" :""}> 제목
               <input type="checkbox" name="types" value="w"> 작성자
               <input type="text" name="keyword" class="form-control" placeholder="검색어를 입력해주세요.">
             </div>
