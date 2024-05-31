@@ -70,7 +70,7 @@ public class TodoController {
   public String deleteTest(Long tno, PageRequestDTO pageRequestDTO,RedirectAttributes redirectAttributes){
     log.info("삭제시 tno 확인 : " + tno);
     int page = pageRequestDTO.getPage();
-    int size = pageRequestDTO.getPage();
+    int size = pageRequestDTO.getSize();
     todoService.delete(tno);
     return "redirect:/todo/list?page="+page+"&size="+size;
 
