@@ -88,7 +88,7 @@
 <%--                페이지 : 1  ~  10 개 출력--%>
 <%--                서버에서 받아온 데이터를 적용하기--%>
                 <c:forEach begin="${pageResponseDTO.start}" end="${pageResponseDTO.end}" var = "num">
-                  <li class="page-item"><a class="page-link" href="#">${num}</a></li>
+                  <li class="page-item" ${pageResponseDTO.page == num ? "active":""}><a class="page-link" href="#">${num}</a></li>
                 </c:forEach>
 <%--               다음 화면 이 나오고--%>
               <c:if test="${pageResponseDTO.next}">
