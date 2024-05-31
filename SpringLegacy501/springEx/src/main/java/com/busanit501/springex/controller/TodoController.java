@@ -47,6 +47,7 @@ public class TodoController {
     // 검색 후 결과의 갯수 2차 조사,
     // 검색 결과 2,
     /// 페이지 표시: 1 만 나오기.
+    log.info("pageRequestDTO의 finished 조회 : " + pageRequestDTO);
 
        PageResponseDTO<TodoDTO> pageResponseDTO = todoService.listAll(pageRequestDTO);;
     model.addAttribute("pageResponseDTO", pageResponseDTO);
