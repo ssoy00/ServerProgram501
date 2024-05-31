@@ -83,7 +83,24 @@ public class TodoMapperTests {
     int result = todoMapper.getCount();
     log.info("result todo 전체 갯수 : " + result);
   }
-     
+
+  // 검색시, 타입에 관련된 테스트
+  // 화면 -> 서버, 페이징 정보를 담아서 보내고 , PageRequestDTO + 검색, 필터 준비물
+  @Test
+  public void testSelectTypes() {
+    // 테스트용 더미 PageRequestDTO 만들기.
+    PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+        .page(1)
+        .size(10)
+        .keyword("dddd")
+        .types(new String[]{"t","w"})
+        .build();
+
+ List<TodoVO> voList  = todoMapper.listAll(pageRequestDTO);
+ voList.forEach(vo -> log.info("vo : " + vo ));
+  }
+
+
 } // 전체 닫는 블록
 
 

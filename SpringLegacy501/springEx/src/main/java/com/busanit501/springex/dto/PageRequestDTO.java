@@ -8,12 +8,22 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Positive;
+import java.time.LocalDate;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class PageRequestDTO {
+
+  // 검색 , 필터 에 사용할 준비물
+  private String keyword;
+  private String[] types;
+  private boolean finished;
+  private LocalDate from;
+  private LocalDate to;
+
+
 
   private String link;
 
