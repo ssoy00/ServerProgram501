@@ -81,7 +81,7 @@
               <ul class="pagination">
 <%--                이전화면이 나오고--%>
                 <c:if test="${pageResponseDTO.prev}">
-                <li class="page-item disabled">
+                <li class="page-item">
                   <a class="page-link" data-num="${pageResponseDTO.start-1}">Previous</a>
                 </li>
                 </c:if>
