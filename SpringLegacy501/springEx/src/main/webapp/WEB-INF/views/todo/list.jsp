@@ -65,13 +65,31 @@
     <div class="col">
       <!--      부트 스트랩 5.3 Card 컴포넌트 Header and Footer 의 샘플 가져오기-->
       <div class="card">
-        <div class="card-header">
-          검색화면
-        </div>
         <div class="card-body">
           <h5 class="card-title">검색화면 </h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <form action="/todo/list" method="get">
+            <input type="hidden" name="size" value="${pageRequestDTO.size}">
+            <div class="mb-3">
+              <input type="checkbox" name="finished" > 완료여부
+            </div>
+            <div class="mb-3">
+              <input type="checkbox" name="types" value="t" > 제목
+              <input type="checkbox" name="types" value="w" > 작성자
+              <input type="text" name="keyword" class="form-control" placeholder="검색어를 입력해주세요." >
+            </div>
+
+            <div class="input-group dueDateDiv mb-3">
+              <input type="date" name="from" class="form-control" >
+              <input type="date" name="to" class="form-control" >
+            </div>
+
+            <div class="input-group dueDateDiv mb-3">
+              <button type="submit" class="btn btn-primary">검색하기</button>
+              <button type="reset" class="btn btn-warning">초기화하기</button>
+            </div>
+
+
+          </form>
         </div>
       </div>
     </div>
