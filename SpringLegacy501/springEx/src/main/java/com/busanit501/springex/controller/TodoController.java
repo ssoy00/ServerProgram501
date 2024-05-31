@@ -39,6 +39,15 @@ public class TodoController {
         // 서버 -> 화면, 모델
     // pageResponseDTO 의 내용물
     // 1) PageRequestDTO(page,size,getSkip)  2) List<TodoDTO> dtoList 3) total 전체갯수
+
+    // 검색 조건 : 1) finished = 1 2) 작성자 w, 3) 제목 t, 4) keyword : 오늘
+    // page = 1, size = 10
+    // 기한 은 빼기.
+    // 검색 후 페이징 번호 처리 안됨 1차조사
+    // 검색 후 결과의 갯수 2차 조사,
+    // 검색 결과 2,
+    /// 페이지 표시: 1 만 나오기.
+
        PageResponseDTO<TodoDTO> pageResponseDTO = todoService.listAll(pageRequestDTO);;
     model.addAttribute("pageResponseDTO", pageResponseDTO);
 

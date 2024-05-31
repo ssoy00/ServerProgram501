@@ -38,9 +38,12 @@ public class TodoServiceImpl implements TodoService {
     // 첫번째 재료
    List<TodoDTO> dtoLists = sampleLists.stream().map(vo -> modelMapper.map(vo, TodoDTO.class))
         .collect(Collectors.toList());
-   // 두번째 자료, PageRequestDTO, 파라미터꺼 사용.
-    // 세번째 전체 갯수.
-    int total = todoMapper.getCount();
+   // 두번째 자료, PageRequestDTO, 파라미터꺼 사용. 1차 문제점.
+    // 검색 결과에 대한 , page, size , 사용해야 하는데, 요청시 받은 정보를 계속 사용한 점.
+
+    // 세번째 전체 갯수. 2차 문제, 무조건 전체 갯수를 리턴.
+    // 해결 : 만들어 두었던, 검색 결과 적용도 되고, 적용 안해도 가능한 메서드 이용.
+    int total = todoMapper.getCount2(pageRequestDTO);
 
      log.info("=========================현재: TodoServiceImpl, pageRequestDTO getPage: 값 확인 :" + pageRequestDTO.getPage());
 
