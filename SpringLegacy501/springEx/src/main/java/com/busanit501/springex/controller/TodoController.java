@@ -71,8 +71,13 @@ public class TodoController {
     log.info("삭제시 tno 확인 : " + tno);
     int page = pageRequestDTO.getPage();
     int size = pageRequestDTO.getSize();
+
+    // 서버 -> 화면으로 , 데이터 전달, 방식 :쿼리스트링 하는 방식.
+    redirectAttributes.addAttribute("page",page );
+    redirectAttributes.addAttribute("size",size );
     todoService.delete(tno);
-    return "redirect:/todo/list?page="+page+"&size="+size;
+//    return "redirect:/todo/list?page="+page+"&size="+size;
+    return "redirect:/todo/list";
 
   }
 
