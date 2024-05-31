@@ -50,6 +50,7 @@ select * from tbl_todo ? ? order by tno desc limit ? ?
     order by tno desc limit #{skip}, #{size}
   </select>
 
+2차
 sql 의 원래 모양, 중간에 키워드 몇개 빠진 상태이고, 전체 구조만 보기.
 select * from tbl_todo
 title like concat('%',?,'%')
@@ -57,4 +58,52 @@ writer like concat('%',?,'%')
 order by tno desc limit ? ?
 
 
+3차
+<select id="listAll" resultType="com.busanit501.springex.domain.TodoVO">
+    select * from tbl_todo
+    <foreach collection="types" item="type" open="(" close=")" separator="or">
+        <if test="type == 't'.toString()">
+            title like concat('%',#{keyword},'%')
+        </if>
+      <if test="type == 'w'.toString()">
+        writer like concat('%',#{keyword},'%')
+      </if>
+    </foreach>
+    order by tno desc limit #{skip}, #{size}
+  </select>
 
+3차
+ <foreach collection="types" item="type" open="(" close=")" separator="or">
+sql 의 원래 모양, 중간에 키워드 몇개 빠진 상태이고, 전체 구조만 보기.
+
+select * from tbl_todo
+
+(
+title like concat('%',?,'%')
+)
+or
+(
+writer like concat('%',?,'%')
+)
+order by tno desc limit ? ?
+
+
+4차
+ <select id="listAll" resultType="com.busanit501.springex.domain.TodoVO">
+    select * from tbl_todo
+    <where>
+      <if test="types != null and types.length>0">
+        <foreach collection="types" item="type" open="(" close=")" separator="or">
+          <if test="type == 't'.toString()">
+            title like concat('%',#{keyword},'%')
+          </if>
+          <if test="type == 'w'.toString()">
+            writer like concat('%',#{keyword},'%')
+          </if>
+        </foreach>
+      </if>
+    </where>
+    order by tno desc limit #{skip}, #{size}
+  </select>
+
+검색 조건이 있을 경우에만, 조건절을 넣기.
