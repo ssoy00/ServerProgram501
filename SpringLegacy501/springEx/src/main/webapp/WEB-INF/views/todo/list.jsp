@@ -97,6 +97,23 @@
               </c:if>
               </ul>
           </div>
+  <script>
+    document.querySelector(".pagination").addEventListener("click",function (e) {
+      e.preventDefault()
+      e.stopPropagation()
+
+      const target = e.target
+      // a 태그 가 아니면 해당 클릭 이벤트 함수를 나간다.
+      if(target.tagName !== 'A') {
+        return
+      }
+      // tagName 전부 a 태그만 살아 남음.
+      const num = target.getAttribute("data-num")
+
+      self.location = `/todo/list?page=${num}`
+
+    }, false)
+  </script>
   <%--          페이징 부트스트랩 추가하기--%>
 
         </div>
