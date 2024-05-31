@@ -68,6 +68,7 @@
         <div class="card-body">
           <h5 class="card-title">검색화면 </h5>
           <form action="/todo/list" method="get">
+            <input type="hidden" name="page" value="${pageRequestDTO.page}">
             <input type="hidden" name="size" value="${pageRequestDTO.size}">
             <div class="mb-3">
               <input type="checkbox" name="finished" > 완료여부
