@@ -54,7 +54,7 @@ public class TodoServiceTests {
   // 전체 갯수 확인.
     log.info("전체 갯수 : " +pageResponseDTO.getTotal() );
     // PageRequestDTO 내용물 확인.
-    log.info("PageRequestDTO 내용물 확인. : " +pageResponseDTO.getPage() );
+    log.info("PageRequestDTO 내용물 확인. : " +pageResponseDTO.getSize() );
 
   }
 

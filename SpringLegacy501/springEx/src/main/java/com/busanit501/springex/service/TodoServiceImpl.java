@@ -42,6 +42,8 @@ public class TodoServiceImpl implements TodoService {
     // 세번째 전체 갯수.
     int total = todoMapper.getCount();
 
+     log.info("=========================현재: TodoServiceImpl, pageRequestDTO getPage: 값 확인 :" + pageRequestDTO.getPage());
+
     //원래는 PageResponseDTO.builder.build() -> 변경됨.
     // PageResponseDTO.<TodoDTO>withAll().build();
     PageResponseDTO<TodoDTO> pageResponseDTO = PageResponseDTO.<TodoDTO>withAll()
@@ -49,6 +51,8 @@ public class TodoServiceImpl implements TodoService {
         .dtoList(dtoLists)
         .total(total)
         .build();
+
+    log.info("=========================현재: TodoServiceImpl, pageResponseDTO getPage : 값 확인 :" + pageResponseDTO.getPage());
 
     return pageResponseDTO;
   }

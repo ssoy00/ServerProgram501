@@ -8,10 +8,8 @@ import java.util.List;
 // 예) PageResponseDTO<TodoDTO>
 // 예) PageResponseDTO<SearchDTO>
 // 예) PageResponseDTO<MemberDTO>
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
+@Getter
+@ToString
 public class PageResponseDTO<E> {
   private int page;
   private int size;
@@ -31,6 +29,8 @@ public class PageResponseDTO<E> {
 
   // 전달할 페이징이 된 todo 10개 목록.
   private List<E> dtoList;
+
+//  private PageRequestDTO pageRequestDTO;
 
   //생성자 만들기.
   // builderMethodName = "withAll" -> 기존 빌더 패턴 사용시, TodoVO.builder.build()
