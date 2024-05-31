@@ -83,8 +83,8 @@
             </div>
 
             <div class="input-group dueDateDiv mb-3">
-              <input type="date" name="from" class="form-control">
-              <input type="date" name="to" class="form-control">
+              <input type="date" name="from" class="form-control" value="${pageRequestDTO.from}">
+              <input type="date" name="to" class="form-control" value="${pageRequestDTO.to}">
             </div>
 
             <div class="input-group dueDateDiv mb-3">
