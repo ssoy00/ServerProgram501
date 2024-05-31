@@ -45,12 +45,14 @@ public class TodoController {
   }
 
   @GetMapping({"/read", "/update"})
-  public  void readTest(Long tno, Model model) {
+  public  void readTest(Long tno,PageRequestDTO pageRequestDTO, Model model) {
     log.info("todo list 조회 화면 테스트 콘솔");
     // C -> S -> Mapper -> DB
     // C <- S <- Mapper <- DB
     TodoDTO todoDTO = todoService.getOne(tno);
     // 서버 -> 화면, 모델
+    // 파라미터에 정의된. PageRequestDTO pageRequestDTO , 화면에서 바로 사용가능.
+    //
     model.addAttribute("todoDTO", todoDTO);
 
   }

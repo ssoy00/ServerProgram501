@@ -81,6 +81,7 @@
     </div>
 
   <script>
+
     document.querySelector(".btn-primary").addEventListener("click", function(event) {
       // 수정 버튼의 원래의 역할 submit, form 안의 데이터를 서버에게 전달하는 역할.
       // 단순, 수정폼 화면만 가면됨. 그래서, 기본 기능 안쓸 예정.
@@ -96,7 +97,7 @@
     },false);
 
     document.querySelector(".btn-danger").addEventListener("click", function(event) {
-           self.location = "/todo/list"
+           self.location = "/todo/list?${pageRequestDTO.link}"
 
     },false);
 
