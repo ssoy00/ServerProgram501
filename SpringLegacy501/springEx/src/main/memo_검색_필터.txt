@@ -9,11 +9,52 @@
 
 우리가 구성할 검색 조건,
 1) 작성자(w) or 제목(t)
-필터 
+필터
 1) 제목, 작성자 , 검색어(문자열)
 2) 완료 여부
 3) 날짜
 
+마리아 디비 내부에서, 모델 맵퍼.xml , sql 문장을 따로 파일 형식으로 관리중.
+전체 목록을 조회하는 기능에서, 검색과, 필터에 관련된 키워드 추가를 해야함.
+
+마이바티스의 동적 쿼리를 진행할 도구를 사용해야함.
+조건(if), 반복문(foreach), 재사용(id), 가지치기(trim)
+
+단계적으로 같이 보기.
+
+1) foreach , 반복문 처리
+1차
+  <select id="listAll" resultType="com.busanit501.springex.domain.TodoVO">
+    select * from tbl_todo
+    <foreach collection="types" item="type">
+        #{type}
+    </foreach>
+    order by tno desc limit #{skip}, #{size}
+  </select>
+
+sql 의 원래 모양, 중간에 키워드 몇개 빠진 상태이고, 전체 구조만 보기.
+select * from tbl_todo ? ? order by tno desc limit ? ?
+
+
+2차
+  <select id="listAll" resultType="com.busanit501.springex.domain.TodoVO">
+    select * from tbl_todo
+    <foreach collection="types" item="type">
+        <if test="type == 't'.toString()">
+            title like concat('%',#{keyword},'%')
+        </if>
+      <if test="type == 'w'.toString()">
+        writer like concat('%',#{keyword},'%')
+      </if>
+    </foreach>
+    order by tno desc limit #{skip}, #{size}
+  </select>
+
+sql 의 원래 모양, 중간에 키워드 몇개 빠진 상태이고, 전체 구조만 보기.
+select * from tbl_todo
+title like concat('%',?,'%')
+writer like concat('%',?,'%')
+order by tno desc limit ? ?
 
 
 

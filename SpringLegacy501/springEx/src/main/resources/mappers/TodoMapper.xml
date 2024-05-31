@@ -15,7 +15,16 @@
 
 <!--  #{skip} PageRequestDTO, getSkip() 으로 동작을 함. -->
   <select id="listAll" resultType="com.busanit501.springex.domain.TodoVO">
-    select * from tbl_todo order by tno desc limit #{skip}, #{size}
+    select * from tbl_todo
+    <foreach collection="types" item="type">
+        <if test="type == 't'.toString()">
+            title like concat('%',#{keyword},'%')
+        </if>
+      <if test="type == 'w'.toString()">
+        writer like concat('%',#{keyword},'%')
+      </if>
+    </foreach>
+    order by tno desc limit #{skip}, #{size}
   </select>
 
   <select id="getOne" resultType="com.busanit501.springex.domain.TodoVO">
