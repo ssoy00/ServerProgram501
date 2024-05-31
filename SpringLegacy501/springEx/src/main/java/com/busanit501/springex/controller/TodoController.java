@@ -67,10 +67,12 @@ public class TodoController {
 
 
   @PostMapping("/delete")
-  public String deleteTest(Long tno, RedirectAttributes redirectAttributes){
+  public String deleteTest(Long tno, PageRequestDTO pageRequestDTO,RedirectAttributes redirectAttributes){
     log.info("삭제시 tno 확인 : " + tno);
+    int page = pageRequestDTO.getPage();
+    int size = pageRequestDTO.getPage();
     todoService.delete(tno);
-    return "redirect:/todo/list";
+    return "redirect:/todo/list?page="+page+"&size="+size;
 
   }
 

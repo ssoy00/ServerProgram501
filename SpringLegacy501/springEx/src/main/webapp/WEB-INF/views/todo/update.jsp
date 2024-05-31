@@ -55,6 +55,8 @@
 <%--         register.jsp 의 화면을 복붙--%>
   <form method="post" action="/todo/update">
     <input type="hidden" name="tno" value="${todoDTO.tno}">
+    <input type="hidden" name="page" value="${pageRequestDTO.page}">
+    <input type="hidden" name="size" value="${pageRequestDTO.size}">
     <div class="mb-3">
       <label for="title" class="form-label">제목</label>
       <input type="text" name="title" class="form-control" id="title" placeholder="제목을 입력해주세요." value="${todoDTO.title}" >
@@ -81,6 +83,8 @@
   </form>
   <form method="post" action="/todo/delete">
     <input type="hidden" name="tno" value="${todoDTO.tno}">
+    <input type="hidden" name="page" value="${pageRequestDTO.page}">
+    <input type="hidden" name="size" value="${pageRequestDTO.size}">
     <button type="submit" class="btn btn-warning">삭제하기</button>
   </form>
 
