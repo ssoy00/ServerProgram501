@@ -110,7 +110,7 @@
       // tagName 전부 a 태그만 살아 남음.
       const num = target.getAttribute("data-num")
 
-      self.location = `/todo/list?page=${num}`
+      self.location = `/todo/list?page=\${num}`
 
     }, false)
   </script>
