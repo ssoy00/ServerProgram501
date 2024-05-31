@@ -50,7 +50,7 @@ public class TodoServiceTests {
     PageResponseDTO<TodoDTO> pageResponseDTO = todoService.listAll(pageRequestDTO);
     log.info("pageResponseDTO : " + pageResponseDTO);
     // 목록 확인
-
+    pageResponseDTO.getD
   // 전체 갯수 확인.
     // PageRequestDTO 내용물 확인.
 

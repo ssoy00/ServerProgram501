@@ -1,6 +1,6 @@
 package com.busanit501.springex.dto;
 
-import lombok.Builder;
+import lombok.*;
 
 import java.util.List;
 
@@ -8,6 +8,10 @@ import java.util.List;
 // 예) PageResponseDTO<TodoDTO>
 // 예) PageResponseDTO<SearchDTO>
 // 예) PageResponseDTO<MemberDTO>
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class PageResponseDTO<E> {
   private int page;
   private int size;
