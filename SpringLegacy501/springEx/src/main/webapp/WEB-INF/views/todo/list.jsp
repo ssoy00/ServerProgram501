@@ -82,7 +82,7 @@
 <%--                이전화면이 나오고--%>
                 <c:if test="${pageResponseDTO.prev}">
                 <li class="page-item disabled">
-                  <a class="page-link" data-num="${pageResponseDTO.start}-1">Previous</a>
+                  <a class="page-link" data-num="${pageResponseDTO.start-1}">Previous</a>
                 </li>
                 </c:if>
 <%--                페이지 : 1  ~  10 개 출력--%>
@@ -92,7 +92,7 @@
 <%--               다음 화면 이 나오고--%>
               <c:if test="${pageResponseDTO.next}">
                 <li class="page-item">
-                  <a class="page-link" data-num="${pageResponseDTO.end}+1">Next</a>
+                  <a class="page-link" data-num="${pageResponseDTO.end +1}">Next</a>
                 </li>
               </c:if>
               </ul>
