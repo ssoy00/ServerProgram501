@@ -91,7 +91,7 @@
       // event.preventDefault()
       // dom , 전파를 막는 역할.
       // event.stopPropagation()
-      self.location = `/todo/update?tno=${todoDTO.tno}`
+      self.location = `/todo/update?tno=${todoDTO.tno}&${pageRequestDTO.link}`
       // false : 캡쳐링, 이벤트가 발생한 곳부터 전파.
       // true : 버블링, 위에서 부터 이벤트가 전파.
     },false);
