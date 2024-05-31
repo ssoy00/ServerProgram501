@@ -92,8 +92,10 @@ public class TodoMapperTests {
     PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
         .page(1)
         .size(10)
-        .keyword("dddd")
+        .keyword("돈까스")
+        // 검색 조건이, 작성자 또는 제목
         .types(new String[]{"t","w"})
+        .finished(false)
         .build();
 
  List<TodoVO> voList  = todoMapper.listAll(pageRequestDTO);
