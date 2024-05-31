@@ -65,7 +65,7 @@
               </tr>
             </thead>
             <tbody>
-              <c:forEach items="${dtoList}" var="dto">
+              <c:forEach items="${pageResponseDTO.dtoList}" var="dto">
                 <tr>
                   <th scope="row"><c:out value="${dto.tno}"/> </th>
                   <td><a href="/todo/read?tno=${dto.tno}"><c:out value="${dto.title}"/></a> </td>
@@ -80,7 +80,7 @@
           <div>
               <ul class="pagination">
 <%--                서버에서 받아온 데이터를 적용하기--%>
-                <c:forEach begin="${responseDTO.start}" end="${responseDTO.end}" var = "num">
+                <c:forEach begin="${pageResponseDTO.start}" end="${pageResponseDTO.end}" var = "num">
                   <li class="page-item"><a class="page-link" href="#">${num}</a></li>
                 </c:forEach>
 <%--                <li class="page-item disabled">--%>
