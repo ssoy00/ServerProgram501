@@ -15,6 +15,20 @@ import javax.validation.constraints.Positive;
 @NoArgsConstructor
 public class PageRequestDTO {
 
+  private String link;
+
+  // 반환 , 반복되는 코드, page=1&size=10
+  // 위의 내용을 문자열로 타입으로 반환 해주는 기능 분리
+  public String getLink() {
+    if(link == null) {
+      StringBuilder builder = new StringBuilder();
+      builder.append("page="+this.page);
+      builder.append("&size="+this.size);
+      link = builder.toString();
+    }
+    return link;
+  }
+
   @Builder.Default
   @Min(value = 1)
   @Positive
