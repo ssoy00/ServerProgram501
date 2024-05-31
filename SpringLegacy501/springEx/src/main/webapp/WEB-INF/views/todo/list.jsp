@@ -79,18 +79,23 @@
 <%--          페이징 부트스트랩 추가하기--%>
           <div>
               <ul class="pagination">
+<%--                이전화면이 나오고--%>
+                <c:if test="${pageResponseDTO.prev}">
+                <li class="page-item disabled">
+                  <a class="page-link">Previous</a>
+                </li>
+                </c:if>
+<%--                페이지 : 1  ~  10 개 출력--%>
 <%--                서버에서 받아온 데이터를 적용하기--%>
                 <c:forEach begin="${pageResponseDTO.start}" end="${pageResponseDTO.end}" var = "num">
                   <li class="page-item"><a class="page-link" href="#">${num}</a></li>
                 </c:forEach>
-<%--                <li class="page-item disabled">--%>
-<%--                  <a class="page-link">Previous</a>--%>
-<%--                </li>--%>
-
-
-<%--                <li class="page-item">--%>
-<%--                  <a class="page-link" href="#">Next</a>--%>
-<%--                </li>--%>
+<%--               다음 화면 이 나오고--%>
+              <c:if test="${pageResponseDTO.next}">
+                <li class="page-item">
+                  <a class="page-link" href="#">Next</a>
+                </li>
+              </c:if>
               </ul>
           </div>
   <%--          페이징 부트스트랩 추가하기--%>
