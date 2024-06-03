@@ -98,6 +98,16 @@
             </c:if>
 
           </form>
+<%--          초기화 버튼 클릭시, 문자열 내용도 초기화되고, 페이지도 1페이지로 이동 --%>
+          <script>
+            document.querySelector(".btn-warning").addEventListener("click", function (e) {
+              e.preventDefault()
+              e.stopPropagation()
+              self.location = "/todo/list"
+
+            })
+
+          </script>
         </div>
       </div>
     </div>
