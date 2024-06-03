@@ -104,7 +104,7 @@
       event.preventDefault()
       event.stopPropagation()
 
-      formObject.action = "/todo/delete"
+      formObject.action = "/todo/delete?${pageRequestDTO.link}"
       formObject.method = "post"
       formObject.submit()
     }, false)
