@@ -14,7 +14,11 @@
   </insert>
 
   <select id="listAll" resultType="com.lsy1205.lunchex.lunchminiproject.domain.LunchVO">
-    select * from tbl_lunch order by mno desc limit #{skip}, #{size}
+    select * from tbl_lunch
+#     밑에서 만들어 두었던, 검색, 필터의 sql 구문을 재사용을
+    <include refid="search"></include>
+
+order by mno desc limit #{skip}, #{size}
   </select>
 
   <select id="getOne" resultType="com.lsy1205.lunchex.lunchminiproject.domain.LunchVO">
@@ -32,6 +36,49 @@
 <!--  페이징 준비물 중 전체 갯수 구하는 sql 필요함-->
   <select id="getCount" resultType="int">
   select count(mno) from tbl_lunch
+    <include refid="search"></include>
   </select>
+
+  <!--  페이징 준비물 중 전체 갯수 구하는 sql 필요함-->
+  <select id="getCount2" resultType="int">
+    select count(mno) from tbl_lunch
+    <include refid="search"></include>
+  </select>
+
+<!--  검색을 위한 준비물-->
+<!--  마이바티스에서, 조건문, 반복문, trim, 재사용을 위한 특수 기능을 이용.-->
+<!--where 조건절만 따로 분리해서, 코드 만들어 두기. -->
+<!--  1) 재사용을, 기존에 전체 조회 때, 검색 필터를 이용-->
+<!--  2) 전체 갯수를 구할 때, 재사용-->
+
+  <sql id="search">
+    <where>
+      <if test="types != null and types.length>0">
+        <foreach collection="types" item="type" open="(" close=")" separator="or">
+          <if test="type == 't'.toString()">
+            lunchTitle like concat('%',#{keyword},'%')
+          </if>
+          <if test="type == 'w'.toString()">
+            writer like concat('%',#{keyword},'%')
+          </if>
+        </foreach>
+      </if>
+
+      <if test="finished">
+        <trim prefix="and">
+          finished = 1
+        </trim>
+      </if>
+
+      <if test="from != null and to !=null">
+        <trim prefix="and">
+          dueDate between #{from} and #{to}
+        </trim>
+      </if>
+
+    </where>
+  </sql>
+
+
 
 </mapper>

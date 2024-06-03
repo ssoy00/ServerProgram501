@@ -83,6 +83,24 @@ public class LunchServiceTests {
 
   }
 
+  @Test
+  public void testGetCountWithSearch() {
+    //페이징 정보 임시 데이터 빠져 있음. 추가.
+    PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+        .page(1)
+        .size(10)
+        .keyword("족발")
+        // 검색 조건이, 작성자 또는 제목
+        .types(new String[]{"t","w"})
+        .from(LocalDate.of(2024,5,1))
+        .to(LocalDate.of(2024,5,31))
+        .finished(true)
+        .build();
+    int result = lunchService.getCount2(pageRequestDTO);
+    log.info("result: todo 전체 갯수 : " + result);
+
+  }
+
 }
 
 

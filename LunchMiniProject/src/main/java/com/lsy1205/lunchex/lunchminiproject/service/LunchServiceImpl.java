@@ -79,6 +79,12 @@ public class LunchServiceImpl implements LunchService {
     return result;
   }
 
+  @Override
+  public int getCount2(PageRequestDTO pageRequestDTO) {
+    int result = lunchMapper.getCount2(pageRequestDTO);
+    return result;
+  }
+
 }
 
 

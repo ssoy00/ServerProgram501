@@ -22,6 +22,9 @@ public interface LunchMapper {
   void update(LunchVO lunchVO);
 
   int getCount();
+  int getCount2(PageRequestDTO pageRequestDTO);
+
+
 }
 
 

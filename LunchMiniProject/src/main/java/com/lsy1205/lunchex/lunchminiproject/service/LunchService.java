@@ -20,6 +20,7 @@ public interface LunchService {
   void update(LunchDTO lunchDTO);
 
   int getCount();
+  int getCount2(PageRequestDTO pageRequestDTO);
 }
 
 
