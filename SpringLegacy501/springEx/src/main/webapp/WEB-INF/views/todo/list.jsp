@@ -52,10 +52,10 @@
                 <a class="nav-link disabled" aria-disabled="true">Disabled</a>
               </li>
             </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+<%--            <form class="d-flex" role="search">--%>
+<%--              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">--%>
+<%--              <button class="btn btn-outline-success" type="submit">Search</button>--%>
+<%--            </form>--%>
           </div>
         </div>
       </nav>
@@ -186,7 +186,11 @@
               // tagName 전부 a 태그만 살아 남음.
               const num = target.getAttribute("data-num")
 
-              self.location = `/todo/list?page=\${num}`
+              // 추가, 검색 및 필터 관련 정보를 추가해서, 페이징 이동하기.
+              const formObj = document.querySelector("form")
+              formObj.innerHTML += `<input type="hidden" name="page" value="\${num}">`
+              formObj.submit()
+              // self.location = `/todo/list?page=\${num}`
 
             }, false)
           </script>
