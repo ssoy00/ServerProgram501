@@ -43,10 +43,13 @@ public class LunchController {
     // 1) PageRequestDTO 2) 나눠서 가져온 데이터 목록 3) 전체 갯수
     model.addAttribute("pageResponseDTO", dtoList);
 
+    // 파라미터 로 받은 PageRequestDTO pageRequestDTO 는 따로 모델에 담아서
+    // 화면에 전달 안해도 사용이 가능함.
+
   }
 
   @GetMapping({"/read", "/update"})
-  public  void readTest(Long mno, Model model) {
+  public  void readTest(PageRequestDTO pageRequestDTO,Long mno, Model model) {
     log.info("lunch list 조회 화면 테스트 콘솔");
     // C -> S -> Mapper -> DB
     // C <- S <- Mapper <- DB
@@ -66,10 +69,10 @@ public class LunchController {
 
 
   @PostMapping("/delete")
-  public String deleteTest(Long mno, RedirectAttributes redirectAttributes){
+  public String deleteTest(PageRequestDTO pageRequestDTO, Long mno, RedirectAttributes redirectAttributes){
     log.info("삭제시 mno 확인 : " + mno);
     lunchService.delete(mno);
-    return "redirect:/lunch/list";
+    return "redirect:/lunch/list?"+pageRequestDTO.getLink();
 
   }
 

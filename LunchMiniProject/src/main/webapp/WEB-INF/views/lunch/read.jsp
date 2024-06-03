@@ -90,13 +90,13 @@
       // event.preventDefault()
       // dom , 전파를 막는 역할.
       // event.stopPropagation()
-      self.location = `/lunch/update?mno=${lunchDTO.mno}`
+      self.location = `/lunch/update?mno=${lunchDTO.mno}&${pageRequestDTO.link}`
       // false : 캡쳐링, 이벤트가 발생한 곳부터 전파.
       // true : 버블링, 위에서 부터 이벤트가 전파.
     },false);
 
     document.querySelector(".btn-danger").addEventListener("click", function(event) {
-           self.location = "/lunch/list"
+           self.location = "/lunch/list?${pageRequestDTO.link}"
 
     },false);
 

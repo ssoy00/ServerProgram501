@@ -33,10 +33,10 @@
                 <a class="nav-link disabled" aria-disabled="true">Disabled</a>
               </li>
             </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+<%--            <form class="d-flex" role="search">--%>
+<%--              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">--%>
+<%--              <button class="btn btn-outline-success" type="submit">Search</button>--%>
+<%--            </form>--%>
           </div>
         </div>
       </nav>
@@ -79,26 +79,26 @@
       <button type="button" class="btn btn-danger">목록가기</button>
     </div>
   </form>
-  <form method="post" action="/lunch/delete">
-    <input type="hidden" name="mno" value="${lunchDTO.mno}">
-    <button type="submit" class="btn btn-warning">삭제하기</button>
-  </form>
+<%--  <form method="post" action="/lunch/delete">--%>
+<%--    <input type="hidden" name="mno" value="${lunchDTO.mno}">--%>
+<%--    <button type="submit" class="btn btn-warning">삭제하기</button>--%>
+<%--  </form>--%>
 
   <script>
     // form 태그의 요소를 선택하기. -> 기본이 action -> /lunch/update, 변경, post 방식.
-    // const formObject = document.querySelector("form")
-    //
-    // document.querySelector(".btn-warning").addEventListener("click",function(event){
-    //   event.preventDefault()
-    //   event.stopPropagation()
-    //
-    //   formObject.action = "/lunch/delete"
-    //   formObject.method = "post"
-    //   formObject.submit()
-    // }, false)
+    const formObject = document.querySelector("form")
+
+    document.querySelector(".btn-warning").addEventListener("click",function(event){
+      event.preventDefault()
+      event.stopPropagation()
+
+      formObject.action = "/lunch/delete"
+      formObject.method = "post"
+      formObject.submit()
+    }, false)
 
     document.querySelector(".btn-danger").addEventListener("click", function(event) {
-      self.location = "/lunch/list"
+      self.location = "/lunch/list?${pageRequestDTO.link}"
 
     },false);
   </script>

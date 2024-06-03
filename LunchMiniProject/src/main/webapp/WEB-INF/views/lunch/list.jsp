@@ -7,6 +7,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bootstrap demo</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <style>
+    .paging-container {
+      display: flex;
+      justify-content: center; /* 가로 중앙정렬 */
+      align-items: center; /* 세로 중앙정렬 */
+      height: 10vh;
+      /* 부모 요소의 높이를 100%로 설정 *
+       },
+       .paging-content {
+         width: 10vw;
+         height: 100px;
+         background-color: lightblue;
+         text-align: center; /* 텍스트 가로 중앙정렬 */
+      /*line-height: 100px; !* 텍스트 세로 중앙정렬 *!*/
+    }
+  </style>
 </head>
 <body>
 <div class="container-fluid">
@@ -65,10 +82,10 @@
               </tr>
             </thead>
             <tbody>
-              <c:forEach items="${dtoList}" var="dto">
+              <c:forEach items="${pageResponseDTO.dtoList}" var="dto">
                 <tr>
                   <th scope="row"><c:out value="${dto.mno}"/> </th>
-                  <td><a href="/lunch/read?mno=${dto.mno}"><c:out value="${dto.lunchTitle}"/></a> </td>
+                  <td><a href="/lunch/read?mno=${dto.mno}&${pageRequestDTO.link}"><c:out value="${dto.lunchTitle}"/></a> </td>
                   <td><c:out value="${dto.writer}"/> </td>
                   <td><c:out value="${dto.dueDate}"/> </td>
                   <td><c:out value="${dto.finished}"/> </td>
@@ -101,10 +118,34 @@
       </c:if>
     </ul>
   </div>
+  <script>
+    document.querySelector(".pagination").addEventListener("click", function (e) {
+      e.preventDefault()
+      e.stopPropagation()
+// 화면에서 항상 10개를 그려 놓음, 반복문으로
+      // e.target, 페이징 번호의 a 태그를 선택했다.
+      const target = e.target
+      // a 태그 가 아니면 해당 클릭 이벤트 함수를 나간다.
+      if (target.tagName !== 'A') {
+        return
+      }
+      // tagName 전부 a 태그만 살아 남음.
+      const num = target.getAttribute("data-num")
+
+      // 추가, 검색 및 필터 관련 정보를 추가해서, 페이징 이동하기.
+      // const formObj = document.querySelector("form")
+      // formObj.innerHTML += `<input type="hidden" name="page" value="\${num}">`
+      // formObj.submit()
+      self.location = `/lunch/list?page=\${num}`
+
+    }, false)
+  </script>
+  <%--          페이징 부트스트랩 추가하기--%>
         </div>
       </div>
     </div>
   </div>
+
   <div class="row footer">
     <div class="row fixed-bottom" style="z-index: -100">
       <footer class="py-1 my-1">

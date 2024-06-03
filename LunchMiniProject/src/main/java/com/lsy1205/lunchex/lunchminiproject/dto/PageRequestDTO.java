@@ -15,6 +15,7 @@ import javax.validation.constraints.Positive;
 @NoArgsConstructor
 public class PageRequestDTO {
 
+  // 페이징 처리하기 위한 기본 준비물
   @Builder.Default
   @Min(value = 1)
   @Positive
@@ -28,6 +29,20 @@ public class PageRequestDTO {
 
   public int getSkip() {
     return (page-1) * 10;
+  }
+
+  // 페이징 정보를 유지하고, URL 쿼리 스트링으로 매번 붙이기 반복 사용이 되어서
+  // 따로 메서드로 구현.
+  private String link;
+
+  public String getLink() {
+    if(link == null ) {
+      StringBuilder builder = new StringBuilder();
+      builder.append("page="+this.page);
+      builder.append("&size="+this.size);
+      link = builder.toString();
+    }
+    return link;
   }
 
 }
