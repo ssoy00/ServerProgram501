@@ -98,6 +98,7 @@ public class TodoController {
   @PostMapping("/delete")
   public String deleteTest(Long tno, PageRequestDTO pageRequestDTO,RedirectAttributes redirectAttributes){
     log.info("삭제시 tno 확인 : " + tno);
+    log.info("화면에서 전달된 검색 재료 getLink 확인 : " + pageRequestDTO.getLink());
     int page = pageRequestDTO.getPage();
     int size = pageRequestDTO.getSize();
 

@@ -85,6 +85,12 @@
     <input type="hidden" name="tno" value="${todoDTO.tno}">
     <input type="hidden" name="page" value="${pageRequestDTO.page}">
     <input type="hidden" name="size" value="${pageRequestDTO.size}">
+    <input type="hidden" name="title" value="${pageRequestDTO.title}">
+    <input type="hidden" name="writer" value="${pageRequestDTO.writer}">
+    <input type="hidden" name="finished" value="${pageRequestDTO.finished}">
+    <input type="hidden" name="from" value="${pageRequestDTO.from}">
+    <input type="hidden" name="to" value="${pageRequestDTO.to}">
+
     <button type="submit" class="btn btn-warning">삭제하기</button>
   </form>
 
