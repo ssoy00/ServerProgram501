@@ -101,11 +101,12 @@
 
     },false);
 
-    const serverValidErrors = {}
-    <c:forEach items = "${errors}" var="error">
-    serverValidErrors['${error.getField()}'] = '${error.defaultMessage}'
-    </c:forEach>
-    console.log(serverValidErrors)
+    // 현재, 페이지 상세화면 하나 조회화면. read.jsp
+    <%--const serverValidErrors = {}--%>
+    <%--<c:forEach items = "${errors}" var="error">--%>
+    <%--serverValidErrors['${error.getField()}'] = '${error.defaultMessage}'--%>
+    <%--</c:forEach>--%>
+    <%--console.log(serverValidErrors)--%>
   </script>
         </div>
       </div>

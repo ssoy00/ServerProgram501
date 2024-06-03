@@ -95,7 +95,7 @@
     serverValidErrors['${error.getField()}'] = '${error.defaultMessage}'
     </c:forEach>
     console.log(serverValidErrors)
-    alert("유효성 오류입니다. 입력값 확인해주세요.")
+    // alert("유효성 오류입니다. 입력값 확인해주세요.")
     // form 태그의 요소를 선택하기. -> 기본이 action -> /todo/update, 변경, post 방식.
     // const formObject = document.querySelector("form")
     //
