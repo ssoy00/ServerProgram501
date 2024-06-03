@@ -55,6 +55,7 @@
 <%--         register.jsp 의 화면을 복붙--%>
   <form method="post" action="/lunch/update">
     <input type="hidden" name="mno" value="${lunchDTO.mno}">
+    <input type="hidden" name="page" value="${pageRequestDTO.page}">
     <div class="mb-3">
       <label for="lunchTitle" class="form-label">제목</label>
       <input type="text" name="lunchTitle" class="form-control" id="lunchTitle" placeholder="제목을 입력해주세요." value="${lunchDTO.lunchTitle}" >
@@ -77,6 +78,7 @@
      <div class="mb-3">
       <button type="submit" class="btn btn-primary">수정하기</button>
       <button type="button" class="btn btn-danger">목록가기</button>
+       <button type="button" class="btn btn-warning">삭제가기</button>
     </div>
   </form>
 <%--  <form method="post" action="/lunch/delete">--%>

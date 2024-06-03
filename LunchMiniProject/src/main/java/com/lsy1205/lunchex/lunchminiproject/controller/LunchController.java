@@ -60,10 +60,10 @@ public class LunchController {
   }
   // 수정 관련 로직 처리  .
   @PostMapping("/update")
-  public String updateTest(LunchDTO lunchDTO, RedirectAttributes redirectAttributes){
+  public String updateTest(PageRequestDTO pageRequestDTO,LunchDTO lunchDTO, RedirectAttributes redirectAttributes){
     log.info("수정시 mno 확인 : " + lunchDTO);
     lunchService.update(lunchDTO);
-    return "redirect:/lunch/list";
+    return "redirect:/lunch/list?"+pageRequestDTO.getLink();
 
   }
 
