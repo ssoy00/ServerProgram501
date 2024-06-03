@@ -69,44 +69,37 @@
         <div class="card-body">
           <h5 class="card-title">검색화면 </h5>
           <form action="/todo/list" method="get">
-            <%--            <input type="hidden" name="page" value="${pageRequestDTO.page}">--%>
+                        <input type="hidden" name="page" value="${pageRequestDTO.page}">
             <input type="hidden" name="size" value="${pageRequestDTO.size}">
             <div class="mb-3">
-<%--              <input type="checkbox" name="finished" ${pageRequestDTO.finished ? "checked" : ""}> 완료여부--%>
-  <input type="checkbox" name="finished" }> 완료여부
+              <input type="checkbox" name="finished" ${pageRequestDTO.finished ? "checked" : ""}> 완료여부
+
             </div>
             <div class="mb-3">
-<%--              <input type="checkbox" name="types" value="t" ${pageRequestDTO.checkType("t") ? "checked" :""}> 제목--%>
-<%--              <input type="checkbox" name="types" value="w" ${pageRequestDTO.checkType("w") ? "checked" :""}> 작성자--%>
-              <input type="checkbox" name="types" value="t" }> 제목
-              <input type="checkbox" name="types" value="w" > 작성자
-<%--              <input type="text" name="keyword" class="form-control" placeholder="검색어를 입력해주세요." value="${pageRequestDTO.keyword}">--%>
-  <input type="text" name="keyword" class="form-control" placeholder="검색어를 입력해주세요." >
+              <input type="checkbox" name="types" value="t" ${pageRequestDTO.checkType("t") ? "checked" :""}> 제목
+              <input type="checkbox" name="types" value="w" ${pageRequestDTO.checkType("w") ? "checked" :""}> 작성자
+
+              <input type="text" name="keyword" class="form-control" placeholder="검색어를 입력해주세요." value="${pageRequestDTO.keyword}">
+
             </div>
 
             <div class="input-group dueDateDiv mb-3">
-<%--              <input type="date" name="from" class="form-control" value="${pageRequestDTO.from}">--%>
-<%--              <input type="date" name="to" class="form-control" value="${pageRequestDTO.to}">--%>
-  <input type="date" name="from" class="form-control" >
-  <input type="date" name="to" class="form-control" >
+              <input type="date" name="from" class="form-control" value="${pageRequestDTO.from}">
+              <input type="date" name="to" class="form-control" value="${pageRequestDTO.to}">
+
             </div>
 
             <div class="input-group dueDateDiv mb-3">
               <button type="submit" class="btn btn-primary">검색하기</button>
               <button type="reset" class="btn btn-warning">초기화하기</button>
             </div>
-<%--            <c:if test="${pageResponseDTO.total != null}">--%>
-<%--              <div class="input-group dueDateDiv mb-3">--%>
-<%--                <h3>검색 갯수 : ${pageResponseDTO.total}</h3>--%>
-<%--              </div>--%>
-<%--            </c:if>--%>
+            <c:if test="${pageResponseDTO.total != null}">
+              <div class="input-group dueDateDiv mb-3">
+                <h3>검색 갯수 : ${pageResponseDTO.total}</h3>
+              </div>
+            </c:if>
 
-                <div class="input-group dueDateDiv mb-3">
-                  <h3>검색 갯수 : 더미 100개</h3>
-                </div>
-
-
-          </form>
+                       </form>
           <%--          초기화 버튼 클릭시, 문자열 내용도 초기화되고, 페이지도 1페이지로 이동 --%>
           <script>
             document.querySelector(".btn-warning").addEventListener("click", function (e) {
