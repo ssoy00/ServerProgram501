@@ -33,10 +33,10 @@
                 <a class="nav-link disabled" aria-disabled="true">Disabled</a>
               </li>
             </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+<%--            <form class="d-flex" role="search">--%>
+<%--              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">--%>
+<%--              <button class="btn btn-outline-success" type="submit">Search</button>--%>
+<%--            </form>--%>
           </div>
         </div>
       </nav>
@@ -79,20 +79,15 @@
      <div class="mb-3">
       <button type="submit" class="btn btn-primary">수정하기</button>
       <button type="button" class="btn btn-danger">목록가기</button>
+       <button type="button" class="btn btn-warning">삭제하기</button>
     </div>
   </form>
-  <form method="post" action="/todo/delete">
-    <input type="hidden" name="tno" value="${todoDTO.tno}">
-    <input type="hidden" name="page" value="${pageRequestDTO.page}">
-    <input type="hidden" name="size" value="${pageRequestDTO.size}">
-    <input type="hidden" name="title" value="${pageRequestDTO.title}">
-    <input type="hidden" name="writer" value="${pageRequestDTO.writer}">
-    <input type="hidden" name="finished" value="${pageRequestDTO.finished}">
-    <input type="hidden" name="from" value="${pageRequestDTO.from}">
-    <input type="hidden" name="to" value="${pageRequestDTO.to}">
-
-    <button type="submit" class="btn btn-warning">삭제하기</button>
-  </form>
+<%--  <form method="post" action="/todo/delete">--%>
+<%--    <input type="hidden" name="tno" value="${todoDTO.tno}">--%>
+<%--    <input type="hidden" name="page" value="${pageRequestDTO.page}">--%>
+<%--    <input type="hidden" name="size" value="${pageRequestDTO.size}">--%>
+<%--    <button type="submit" class="btn btn-warning">삭제하기</button>--%>
+<%--  </form>--%>
 
 
   <script>
@@ -103,16 +98,16 @@
     console.log(serverValidErrors)
     // alert("유효성 오류입니다. 입력값 확인해주세요.")
     // form 태그의 요소를 선택하기. -> 기본이 action -> /todo/update, 변경, post 방식.
-    // const formObject = document.querySelector("form")
-    //
-    // document.querySelector(".btn-warning").addEventListener("click",function(event){
-    //   event.preventDefault()
-    //   event.stopPropagation()
-    //
-    //   formObject.action = "/todo/delete"
-    //   formObject.method = "post"
-    //   formObject.submit()
-    // }, false)
+    const formObject = document.querySelector("form")
+
+    document.querySelector(".btn-warning").addEventListener("click",function(event){
+      event.preventDefault()
+      event.stopPropagation()
+
+      formObject.action = "/todo/delete"
+      formObject.method = "post"
+      formObject.submit()
+    }, false)
 
     document.querySelector(".btn-danger").addEventListener("click", function(event) {
       self.location = "/todo/list?${pageRequestDTO.link}"
