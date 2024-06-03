@@ -102,6 +102,8 @@ public class TodoController {
     int page = pageRequestDTO.getPage();
     int size = pageRequestDTO.getSize();
 
+
+
     // 서버 -> 화면으로 , 데이터 전달, 방식 :쿼리스트링 하는 방식.
     // 이미 쿼리 스트링으로 전달하는 방법이 있어서 중첩 되므로, 주석.
 //    redirectAttributes.addAttribute("page",page );

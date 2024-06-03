@@ -14,7 +14,7 @@
   </insert>
 
   <select id="listAll" resultType="com.lsy1205.lunchex.lunchminiproject.domain.LunchVO">
-    select * from tbl_lunch order by mno desc
+    select * from tbl_lunch order by mno desc limit #{skip}, #{size}
   </select>
 
   <select id="getOne" resultType="com.lsy1205.lunchex.lunchminiproject.domain.LunchVO">
@@ -28,5 +28,10 @@
   <update id="update">
     update tbl_lunch set lunchTitle = #{lunchTitle} , dueDate = #{dueDate} , finished = #{finished} where mno = #{mno}
   </update>
+
+<!--  페이징 준비물 중 전체 갯수 구하는 sql 필요함-->
+  <select id="getCount" resultType="int">
+  select count(mno) from tbl_lunch
+  </select>
 
 </mapper>

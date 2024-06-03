@@ -1,6 +1,7 @@
 package com.lsy1205.lunchex.lunchminiproject.mapper;
 
 import com.lsy1205.lunchex.lunchminiproject.domain.LunchVO;
+import com.lsy1205.lunchex.lunchminiproject.dto.PageRequestDTO;
 
 import java.util.List;
 
@@ -11,13 +12,16 @@ public interface LunchMapper {
 
   void insert(LunchVO lunchVO);
 
-  List<LunchVO> listAll();
+  // 페이징 처리가 되어서, 필요한 갯수만 가져오는 목록 리스트
+  List<LunchVO> listAll(PageRequestDTO pageRequestDTO);
 
   LunchVO getOne(Long mno);
 
   void delete(Long mno);
 
   void update(LunchVO lunchVO);
+
+  int getCount();
 }
 
 

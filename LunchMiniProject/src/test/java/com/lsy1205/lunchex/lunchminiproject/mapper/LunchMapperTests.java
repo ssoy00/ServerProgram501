@@ -2,6 +2,7 @@ package com.lsy1205.lunchex.lunchminiproject.mapper;
 
 
 import com.lsy1205.lunchex.lunchminiproject.domain.LunchVO;
+import com.lsy1205.lunchex.lunchminiproject.dto.PageRequestDTO;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -39,11 +40,11 @@ public class LunchMapperTests {
     lunchMapper.insert(lunchVO);
   }
 
-  @Test
-  public void testSelect() {
-    List<LunchVO> todoList = lunchMapper.listAll();
-    todoList.forEach(vo -> log.info("vo : " + vo));
-  }
+//  @Test
+//  public void testSelect() {
+//    List<LunchVO> todoList = lunchMapper.listAll();
+//    todoList.forEach(vo -> log.info("vo : " + vo));
+//  }
 
   @Test
   public void testGetOne() {
@@ -68,9 +69,27 @@ public class LunchMapperTests {
         .build();
 
     lunchMapper.update(lunchVO);
-
-
   }
+  // 페이징 관련 테스트 재사용
+  @Test
+  public void testSelectPaging() {
+    //페이징 정보를 가지고 있는 임시 더미 데이터, PageRequestDTO
+    PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+        .page(1)
+        .size(10)
+        .build();
+
+    List<LunchVO> todoList = lunchMapper.listAll(pageRequestDTO);
+    todoList.forEach(vo -> log.info("vo : " + vo));
+  }
+
+  // 전체 갯수를 구하는 테스트 .
+  @Test
+  public void testGetCount() {
+    int result = lunchMapper.getCount();
+    log.info("result todo 전체 갯수 : " + result);
+  }
+
 }
 
 

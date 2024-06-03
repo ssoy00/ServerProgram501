@@ -76,7 +76,31 @@
               </c:forEach>
             </tbody>
           </table>
-
+  <%--          페이징 부트스트랩 추가하기--%>
+  <div class="paging-container">
+    <ul class="pagination paging-content">
+      <%--  <div>--%>
+      <%--  <ul class="pagination">--%>
+      <%--                이전화면이 나오고--%>
+      <c:if test="${pageResponseDTO.prev}">
+        <li class="page-item">
+          <a class="page-link" data-num="${pageResponseDTO.start-1}">Previous</a>
+        </li>
+      </c:if>
+      <%--                페이지 : 1  ~  10 개 출력--%>
+      <%--                서버에서 받아온 데이터를 적용하기--%>
+      <c:forEach begin="${pageResponseDTO.start}" end="${pageResponseDTO.end}" var="num">
+        <li class="page-item ${pageResponseDTO.page == num ? "active":""}"><a class="page-link"
+                                                                              data-num="${num}">${num}</a></li>
+      </c:forEach>
+      <%--               다음 화면 이 나오고--%>
+      <c:if test="${pageResponseDTO.next}">
+        <li class="page-item">
+          <a class="page-link" data-num="${pageResponseDTO.end +1}">Next</a>
+        </li>
+      </c:if>
+    </ul>
+  </div>
         </div>
       </div>
     </div>

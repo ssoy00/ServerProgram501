@@ -2,6 +2,8 @@ package com.lsy1205.lunchex.lunchminiproject.controller;
 
 
 import com.lsy1205.lunchex.lunchminiproject.dto.LunchDTO;
+import com.lsy1205.lunchex.lunchminiproject.dto.PageRequestDTO;
+import com.lsy1205.lunchex.lunchminiproject.dto.PageResponseDTO;
 import com.lsy1205.lunchex.lunchminiproject.service.LunchService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -29,11 +31,17 @@ public class LunchController {
   final LunchService lunchService;
 
   @GetMapping("/list")
-  public  void listTest(Model model) {
+  public  void listTest(PageRequestDTO pageRequestDTO, Model model) {
         log.info("lunch list 조회 화면 테스트 콘솔");
-        List<LunchDTO> dtoList = lunchService.listAll();
+        // 기존 꺼
+//        List<LunchDTO> dtoList = lunchService.listAll(pageRequestDTO);
+    // 페이징 처리가 된 결과물 , PageResponseDTO 타입이 필요하다.
+    PageResponseDTO<LunchDTO> dtoList = lunchService.listAll(pageRequestDTO);
         // 서버 -> 화면, 모델
-    model.addAttribute("dtoList", dtoList);
+    // 페이징시, 필요한 준비물
+    // PageResponseDTO 내용물 다 있다.
+    // 1) PageRequestDTO 2) 나눠서 가져온 데이터 목록 3) 전체 갯수
+    model.addAttribute("pageResponseDTO", dtoList);
 
   }
 

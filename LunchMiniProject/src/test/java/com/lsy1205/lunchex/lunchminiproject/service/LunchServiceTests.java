@@ -2,6 +2,8 @@ package com.lsy1205.lunchex.lunchminiproject.service;
 
 
 import com.lsy1205.lunchex.lunchminiproject.dto.LunchDTO;
+import com.lsy1205.lunchex.lunchminiproject.dto.PageRequestDTO;
+import com.lsy1205.lunchex.lunchminiproject.dto.PageResponseDTO;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -37,8 +39,14 @@ public class LunchServiceTests {
 
   @Test
   public void testListAll() {
-    List<LunchDTO> todoList = lunchService.listAll();
-    todoList.forEach(dto -> log.info("dto : " + dto));
+    //페이징 정보를 가지고 있는 임시 더미 데이터, PageRequestDTO
+    PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+        .page(1)
+        .size(10)
+        .build();
+
+    PageResponseDTO<LunchDTO> todoList = lunchService.listAll(pageRequestDTO);
+    todoList.getDtoList().stream().forEach(dto -> log.info("dto : " + dto));
   }
 
   @Test
@@ -64,6 +72,14 @@ public class LunchServiceTests {
         .build();
 
     lunchService.update(lunchDTO);
+
+  }
+
+  // 준비물 중 전체 갯수 구하는 테스트
+  @Test
+  public void testGetCount() {
+    int result = lunchService.getCount();
+    log.info("result: todo 전체 갯수 : " + result);
 
   }
 
