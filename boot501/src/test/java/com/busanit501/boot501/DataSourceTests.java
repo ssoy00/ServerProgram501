@@ -16,6 +16,7 @@ import java.sql.SQLException;
 public class DataSourceTests {
 
   @Autowired
+
   private DataSource dataSource;
 
   @Test
