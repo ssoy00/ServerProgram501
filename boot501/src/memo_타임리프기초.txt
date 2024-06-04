@@ -172,6 +172,14 @@ base.html
 상단에 메타 태그 서버 주소 필요함.
 xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 
+이용하는
+ex3.html  에서 사용하는 방법
+메타 태그 필요하고, 공통의 레이아웃의 경로를 지정해야함.
+<html lang="ko"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="www.thymeleaf.org"
+      layout:decorate="~{layout/base.html}"
+>
 
 
 
