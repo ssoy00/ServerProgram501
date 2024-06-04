@@ -65,8 +65,10 @@
 <!--예시)-->
 <h2>타임리프 반복문중에서 상태의 숫자세기(인덱스,홀수,짝수,숫자)</h2>
 <ul>
-  <li th:each="str , status : ${list}" ></li>
-  <li>[[${status.index}]]  --[[${str}]] </li>
+  <li th:each="str , status : ${list}" >
+    [[${status.index}]]  --[[${str}]]
+  </li>
+
 </ul>
 
 
