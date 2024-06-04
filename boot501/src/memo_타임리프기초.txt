@@ -154,6 +154,24 @@ th:if, th:unless, th:switch
 </script>
 
 
+=========================================================================
+공통의 레이아웃의 기능
+반복적으로 사용하는 레이아웃 부분.
+헤더: 고정
+본문 : 동적
+푸터: 고정
+
+기능을 사용하기 위해서 , 라이브러리 가져오기.
+최시버전 : 3.3 인데, 하위 버전으로 확인.
+// https://mvnrepository.com/artifact/nz.net.ultraq.thymeleaf/thymeleaf-layout-dialect
+implementation group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '3.1.0'
+
+공통 레이아웃(base 레이아웃 만들기)
+
+base.html
+상단에 메타 태그 서버 주소 필요함.
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+
 
 
 
