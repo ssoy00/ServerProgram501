@@ -98,6 +98,16 @@ th:if, th:unless, th:switch
     <span th:unless="${status.odd}"> 짝수  [[${str}]]</span>
   </li>
 </ul>
+th:switch 예제
+<ul>
+  <li th:each="str , status: ${list}" >
+    <th:block th:switch="${status.index % 3}">
+      <span th:case="0"> index:0  [[${str}]]</span>
+      <span th:case="1"> index:1  [[${str}]]</span>
+      <span th:case="2"> index:2  [[${str}]]</span>
+    </th:block>
+  </li>
+</ul>
 
 
 
