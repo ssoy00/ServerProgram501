@@ -63,12 +63,40 @@
 
 
 <!--예시)-->
-<h2>타임리프 반복문중에서 상태의 숫자세기(인덱스,홀수,짝수,숫자)</h2>
+<h2>타임리프 반복문중에서 상태의 숫자세기(인덱스)</h2>
 <ul>
   <li th:each="str , status : ${list}" >
     [[${status.index}]]  --[[${str}]]
   </li>
 
+</ul>
+
+<h2>타임리프 반복문중에서 상태의 숫자세기(홀수)</h2>
+<ul>
+  <li th:each="str , status : ${list}" >
+    [[${status.odd}]]  --[[${str}]]
+  </li>
+
+</ul>
+
+<h2>타임리프 반복문중에서 상태의 숫자세기(짝수)</h2>
+<ul>
+  <li th:each="str , status : ${list}" >
+    [[${status.even}]]  --[[${str}]]
+  </li>
+
+</ul>
+
+
+조건문,
+th:if, th:unless, th:switch
+
+<!--예시)-->
+<ul>
+  <li th:each="str , status: ${list}" >
+    <span th:if="${status.odd}"> 홀수  [[${str}]]</span>
+    <span th:unless="${status.odd}"> 짝수  [[${str}]]</span>
+  </li>
 </ul>
 
 
