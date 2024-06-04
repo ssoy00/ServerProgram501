@@ -1,0 +1,25 @@
+타임리프 기초
+스프링에서 공식적으로 사용하는 프론트 화면 그리기 도구.
+
+라이브러리 도구 설치.
+build.gradle 파일에서 설치
+   implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+기본 설정.
+1. 사용법, 태그 안에서 사용하는 방법
+<html lang="ko" xmlns:th="www.thymeleaf.org">
+
+2. 특정 타임리프 블록 안에서 사용하기.
+<th:block>
+ 타임리프 문법 사용하기.
+</block>
+
+
+1
+출력
+
+<h1>타임리프 출력하는 방식 2가지
+  1. 인라인으로 출력하는 방법 </h1>
+  <h1 th:text="${list}"></h1>
+<h1>2. 태그 밖에서 출력하는 방법.</h1>
+<h2>[[${list}]]</h2>
