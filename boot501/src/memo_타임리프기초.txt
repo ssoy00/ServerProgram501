@@ -50,20 +50,36 @@ th:text="${서버에서 전달한 변수명}"
 사용
 <h3 th:text="${num1 + num2}"> </h3>
 
+<h2>변수 선언4</h2>
+<div th:with = "num1 = 10, num2 = 20">
+  <h2>변수 사용4</h2>
+  <h3 th:text="${num1 + num2}"> </h3>
+</div>
+
 4반복문
 1) 태그 내부에 인라인 방식.
 2) 특정 블로 안에서 사용하는 방식.
 
-기본문법 : 목록에서 하나씩 꺼내서 반복작업하기.
-<th:each="변수명 : 목록">
-예시)
-<th:each="str : list" th:text="${str}">
+<h2>기본문법 : 목록에서 하나씩 꺼내서 반복작업하기.</h2>
+<!--<th:each="변수명 : 목록">-->
+<!--예시)-->
+<ul>
+  <li th:each="str : list" th:text="${str}"></li>
+</ul>
 
 기본문법:
+<ul>
 <th:block th:each="str : ${list}" >
-    <li> [[${str}]] </li>
+  <li> [[${str}]] </li>
 </th:block >
+</ul>
 
+5 반복문에서 status  속성 이용해서, 숫자세기하기.
+<!--예시)-->
+<ul>
+  <li th:each="str , status: ${list}" ></li>
+  <li>[[${status.index}]]  --[[${str}]] </li>
+</ul>
 
 
 
