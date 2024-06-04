@@ -44,6 +44,20 @@
   <h3 th:text="${num1 + num2}"> </h3>
 </div>
 
+
+<h2>기본문법 : 목록에서 하나씩 꺼내서 반복작업하기.</h2>
+<!--<th:each="변수명 : 목록">-->
+<!--예시)-->
+<ul>
+  <li th:each="str : list" th:text="${str}"></li>
+</ul>
+
+기본문법:
+<ul>
+<th:block th:each="str : ${list}" >
+  <li> [[${str}]] </li>
+</th:block >
+</ul>
 </body>
 </html>
 

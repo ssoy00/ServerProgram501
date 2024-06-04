@@ -5,6 +5,12 @@
 build.gradle 파일에서 설치
    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
+
+타임림프를 사용시, 기본 모양
+태그 내부 기준.
+th:키워드 = ""
+
+
 기본 설정.
 1. 사용법, 태그 안에서 사용하는 방법
 <html lang="ko" xmlns:th="www.thymeleaf.org">
@@ -43,3 +49,21 @@ th:text="${서버에서 전달한 변수명}"
 <th:with = "num1 = ${10}, num2 = ${20}">
 사용
 <h3 th:text="${num1 + num2}"> </h3>
+
+4반복문
+1) 태그 내부에 인라인 방식.
+2) 특정 블로 안에서 사용하는 방식.
+
+기본문법 : 목록에서 하나씩 꺼내서 반복작업하기.
+<th:each="변수명 : 목록">
+예시)
+<th:each="str : list" th:text="${str}">
+
+기본문법:
+<th:block th:each="str : ${list}" >
+    <li> [[${str}]] </li>
+</th:block >
+
+
+
+
