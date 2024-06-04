@@ -50,10 +50,10 @@
                 <a class="nav-link disabled" aria-disabled="true">Disabled</a>
               </li>
             </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+<%--            <form class="d-flex" role="search">--%>
+<%--              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">--%>
+<%--              <button class="btn btn-outline-success" type="submit">Search</button>--%>
+<%--            </form>--%>
           </div>
         </div>
       </nav>
@@ -68,8 +68,8 @@
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">검색화면 </h5>
-          <form action="/todo/list" method="get">
-                        <input type="hidden" name="page" value="${pageRequestDTO.page}">
+          <form action="/lunch/list" method="get">
+<%--                        <input type="hidden" name="page" value="${pageRequestDTO.page}">--%>
             <input type="hidden" name="size" value="${pageRequestDTO.size}">
             <div class="mb-3">
               <input type="checkbox" name="finished" ${pageRequestDTO.finished ? "checked" : ""}> 완료여부
@@ -105,7 +105,7 @@
             document.querySelector(".btn-warning").addEventListener("click", function (e) {
               e.preventDefault()
               e.stopPropagation()
-              self.location = "/todo/list"
+              self.location = "/lunch/list"
 
             })
 
@@ -190,10 +190,10 @@
       const num = target.getAttribute("data-num")
 
       // 추가, 검색 및 필터 관련 정보를 추가해서, 페이징 이동하기.
-      // const formObj = document.querySelector("form")
-      // formObj.innerHTML += `<input type="hidden" name="page" value="\${num}">`
-      // formObj.submit()
-      self.location = `/lunch/list?page=\${num}`
+      const formObj = document.querySelector("form")
+      formObj.innerHTML += `<input type="hidden" name="page" value="\${num}">`
+      formObj.submit()
+      // self.location = `/lunch/list?page=\${num}`
 
     }, false)
   </script>

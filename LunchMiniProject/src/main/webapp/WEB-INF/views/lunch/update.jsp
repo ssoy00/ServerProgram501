@@ -94,7 +94,7 @@
       event.preventDefault()
       event.stopPropagation()
 
-      formObject.action = "/lunch/delete"
+      formObject.action = "/lunch/delete?${pageRequestDTO.link}"
       formObject.method = "post"
       formObject.submit()
     }, false)

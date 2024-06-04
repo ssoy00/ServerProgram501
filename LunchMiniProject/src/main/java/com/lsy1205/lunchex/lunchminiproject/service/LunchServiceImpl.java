@@ -41,8 +41,8 @@ public class LunchServiceImpl implements LunchService {
     List<LunchDTO> dtoLists = sampleLists.stream().map(vo -> modelMapper.map(vo, LunchDTO.class))
         .collect(Collectors.toList());
     // 3) 전체 갯수
-    //
-    int total = lunchMapper.getCount();
+    // 검색된 결과 카운트 까지 고려해서 구하기.
+    int total = lunchMapper.getCount2(pageRequestDTO);
 
     //반환 해야할 PageResponseDTO ,
     PageResponseDTO<LunchDTO> pageResponseDTO = PageResponseDTO.<LunchDTO>withAll()

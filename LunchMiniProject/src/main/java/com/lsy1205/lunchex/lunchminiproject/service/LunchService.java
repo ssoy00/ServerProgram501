@@ -15,8 +15,8 @@ public interface LunchService {
 //  List<LunchDTO> listAll(PageRequestDTO pageRequestDTO);
   // 변경, PageResponseDTO 타입으로 변환 해야 함.
   PageResponseDTO<LunchDTO> listAll(PageRequestDTO pageRequestDTO);
-  LunchDTO getOne(Long tno);
-  void delete(Long tno);
+  LunchDTO getOne(Long mno);
+  void delete(Long mno);
   void update(LunchDTO lunchDTO);
 
   int getCount();
