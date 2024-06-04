@@ -25,6 +25,25 @@
     <h3 th:text="${num1 + num2}"> </h3>
 </div>
 
+
+<h2>변수 선언2</h2>
+<div th:with = "num1 = ${'이상용'}, num2 = ${'이상용2'}">
+  <h2>변수 사용2</h2>
+  <h3 th:text="${num1 + num2}"> </h3>
+</div>
+
+<h2>변수 선언3</h2>
+<div th:with = "num1 = '이상용', num2 = '이상용2'">
+  <h2>변수 사용3</h2>
+  <h3 th:text="${num1 + num2}"> </h3>
+</div>
+
+<h2>변수 선언4</h2>
+<div th:with = "num1 = 10, num2 = 20">
+  <h2>변수 사용4</h2>
+  <h3 th:text="${num1 + num2}"> </h3>
+</div>
+
 </body>
 </html>
 
