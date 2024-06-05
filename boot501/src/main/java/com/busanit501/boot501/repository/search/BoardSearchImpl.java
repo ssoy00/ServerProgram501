@@ -6,6 +6,7 @@ import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.JPQLQuery;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
@@ -93,7 +94,11 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
     List<Board> list = query.fetch();
     // 해당 조건에 맞는 데이터 갯수
     long count = query.fetchCount();
-    return null;
+
+    // 검색 조건, 페이징 처리 다하고, 재사용해야하니. 반환하기. 결과물.
+    Page<Board> result = new PageImpl<>(list, pageable,count);
+
+    return result;
   }
 }
 
