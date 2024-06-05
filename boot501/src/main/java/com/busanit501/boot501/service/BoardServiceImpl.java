@@ -40,6 +40,16 @@ public class BoardServiceImpl implements BoardService {
 
     return boardDTO;
   }
+
+  @Override
+  public void update(BoardDTO boardDTO) {
+    Optional<Board> result = boardRepository.findById(boardDTO.getBno());
+    Board board = result.orElseThrow();
+    // 만약 변경한다면, 제목과 내용만 변경하기. ,엔티티 클래스에서 메서드로 만듦.
+    board.changeTitleAndContent(boardDTO.getTitle(),boardDTO.getContent());
+    // 적용하기.
+    boardRepository.save(board);
+  }
 }
 
 
