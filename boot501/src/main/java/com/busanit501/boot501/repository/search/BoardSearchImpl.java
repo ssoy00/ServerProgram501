@@ -42,7 +42,43 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
 
 
     // 페이징 처리 적용하기.
-    this.getQuerydsl().applyPagination(pageable,query);
+    this.getQuerydsl().applyPagination(pageable, query);
+
+    // 해당 조건에 맞는 데이터 가져오기
+    List<Board> list = query.fetch();
+    // 해당 조건에 맞는 데이터 갯수
+    long count = query.fetchCount();
+    return null;
+  }
+
+  @Override
+  public Page<Board> searchAll(String[] types, String keyword, Pageable pageable) {
+    // Querydsl를 이용할 때는 Q 도메인을 이용한다.
+    QBoard board = QBoard.board;
+    JPQLQuery<Board> query = from(board);
+
+    // 조건절을 자바 문법으로만 구성해서, 전달해보기.
+    if ((types != null && types.length > 0) && keyword != null) {
+      // BooleanBuilder , 조건절의 옵션을 추가하기 쉽게하는 도구.
+      BooleanBuilder booleanBuilder = new BooleanBuilder();
+      //String[] types = {"t","w" }
+      for (String type : types) {
+        switch (type) {
+          case "t":
+            booleanBuilder.or(board.title.contains(keyword));
+          case "w":
+            booleanBuilder.or(board.writer.contains(keyword));
+          case "c":
+            booleanBuilder.or(board.content.contains(keyword));
+        } //switch
+      } // end for
+    } // end if
+
+    // bno >0 보다 큰 조건.
+    query.where(board.bno.gt(0L));
+
+    // 페이징 처리 적용하기.
+    this.getQuerydsl().applyPagination(pageable, query);
 
     // 해당 조건에 맞는 데이터 가져오기
     List<Board> list = query.fetch();
