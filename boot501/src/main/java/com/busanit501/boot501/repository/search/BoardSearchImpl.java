@@ -4,6 +4,7 @@ import com.busanit501.boot501.domain.Board;
 import com.busanit501.boot501.domain.QBoard;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.JPQLQuery;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
@@ -14,6 +15,7 @@ import java.util.List;
 // 인터페이스 이름 + Impl
 // 상속 : QuerydslRepositorySupport,
 // BoardSearch 구현을 해야합니다.
+@Log4j2
 public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardSearch {
 
   public BoardSearchImpl() {
@@ -60,15 +62,19 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
     // 조건절을 자바 문법으로만 구성해서, 전달해보기.
     if ((types != null && types.length > 0) && keyword != null) {
       // BooleanBuilder , 조건절의 옵션을 추가하기 쉽게하는 도구.
+      log.info("조건절 실해여부 확인 1 ");
       BooleanBuilder booleanBuilder = new BooleanBuilder();
       //String[] types = {"t","w" }
       for (String type : types) {
         switch (type) {
           case "t":
+            log.info("조건절 실해여부 확인 2 :  title");
             booleanBuilder.or(board.title.contains(keyword));
           case "w":
+            log.info("조건절 실해여부 확인 2 :  writer");
             booleanBuilder.or(board.writer.contains(keyword));
           case "c":
+            log.info("조건절 실해여부 확인 2 :  content");
             booleanBuilder.or(board.content.contains(keyword));
         } //switch
       } // end for
