@@ -117,6 +117,15 @@ public class BoardRepositoryTests {
     // 실행 여부를 확인 해보기.
     // 결과를 반환 타입 Page 받기.
    Page<Board> result =  boardRepository.searchAll(types,keyword,pageable);
+
+   // 페이징 된 결과물 확인.
+    // 담겨진 페이징 관련 결과를 출력및 알아보기.
+    log.info("Querydsl 결과 : 전체 갯수 total  result.getTotalElements() : " + result.getTotalElements());
+    log.info("Querydsl 결과 : 전체 페이지  result.getTotalPages() : " + result.getTotalPages());
+    log.info("Querydsl 결과 : 페이지 number  result.getNumber() : " + result.getNumber());
+    log.info("Querydsl 결과 : 페이지 당 불러올 수  result.getSize() : " + result.getSize());
+    log.info("Querydsl 결과 : 불러올 데이터 목록  result.getContent() : ");
+
   }
 
 }
