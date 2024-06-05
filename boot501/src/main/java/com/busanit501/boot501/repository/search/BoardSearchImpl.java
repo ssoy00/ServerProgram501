@@ -7,6 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
+import java.util.List;
+
 // Querydsl 사용하기 위한 조건
 // 인터페이스 이름 + Impl
 // 상속 : QuerydslRepositorySupport,
@@ -25,6 +27,10 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
     JPQLQuery<Board> query = from(board);
     // where 조건절  where title like
     query.where(board.title.contains("1"));
+    // 해당 조건에 맞는 데이터 가져오기
+    List<Board> list = query.fetch();
+    // 해당 조건에 맞는 데이터 갯수
+    long count = query.fetchCount();
     return null;
   }
 }
