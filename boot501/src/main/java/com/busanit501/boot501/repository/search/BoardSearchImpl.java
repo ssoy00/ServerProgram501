@@ -24,9 +24,14 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
     // Querydsl 이용하는 기본 문법
     QBoard board = QBoard.board;
     // select from board 하는 것과 비슷한 기능.
+    // query -> sql 관련 문장을, 자바 문법으로 표현하고 있다.
     JPQLQuery<Board> query = from(board);
     // where 조건절  where title like
     query.where(board.title.contains("1"));
+
+    // 페이징 처리 적용하기.
+    this.getQuerydsl().applyPagination(pageable,query);
+
     // 해당 조건에 맞는 데이터 가져오기
     List<Board> list = query.fetch();
     // 해당 조건에 맞는 데이터 갯수
