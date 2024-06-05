@@ -53,6 +53,9 @@ public class BoardServiceImpl implements BoardService {
 
   @Override
   public void delete(Long bno) {
+    // 레스트 방식일 때는 , 유효성 체크해서 없다는 메세지 전달해줘야 함.
+//    Optional<Board> result = boardRepository.findById(bno);
+//    Board board = result.orElseThrow();
     boardRepository.deleteById(bno);
   }
 }

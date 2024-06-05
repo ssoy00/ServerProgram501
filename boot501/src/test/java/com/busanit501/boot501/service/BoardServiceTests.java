@@ -55,6 +55,12 @@ public class BoardServiceTests {
   @Test
   public void testDelete() {
         //디비에서 조회하기.
+    // 좋은 질문,
+    // 서버에서 화면, 데이터 같이 처리, Controller,
+    // 질문, 게시글 삭제 할려면, 화면에 보일까요? 안보일까요?
+
+    // RestController, 데이터만 처리.
+    // 화면이 없어서, method delete 형식으로 명령이 오면,
     boardService.delete(601L);
 
 
