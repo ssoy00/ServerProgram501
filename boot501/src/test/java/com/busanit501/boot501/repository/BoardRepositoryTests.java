@@ -5,6 +5,10 @@ import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import java.util.Optional;
 import java.util.stream.IntStream;
@@ -62,7 +66,20 @@ public class BoardRepositoryTests {
     // 반영.
     boardRepository.deleteById(100L);
     log.info("조회 결과2 후: 디비상에서 삭제 여부 확인 하기.");
+  }
 
+  //페이징 테스트
+  @Test
+  public void testPaging() {
+//   준비물 준비
+    // 첫번째 파라미터 :페이지수(1페이지 , 0)
+    // 두번째 파라미터 :페이지 당 보여줄 갯수(10개)
+    // 세번째 파라미터 :정렬 기준, bno , 내림차순.
+    Pageable pageable = PageRequest.of(0,10, Sort.by("bno").descending());
+    // 10개씩 조회 해보기.
+    //Page 타입이라는 것은, 해당 결과에, 여러 정보들이 있음.
+    // 예) 10개씩 가져온 데이터, 2)페이지 정보, 3)갯수, 4)전체 갯수 등.
+    Page<Board> result = boardRepository.findAll(pageable);
   }
 
 }
