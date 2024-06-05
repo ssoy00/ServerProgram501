@@ -2,6 +2,7 @@ package com.busanit501.boot501.repository.search;
 
 import com.busanit501.boot501.domain.Board;
 import com.busanit501.boot501.domain.QBoard;
+import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.JPQLQuery;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,8 +27,19 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
     // select from board 하는 것과 비슷한 기능.
     // query -> sql 관련 문장을, 자바 문법으로 표현하고 있다.
     JPQLQuery<Board> query = from(board);
+
+    //BooleanBuilder를 이용한 조건절 추가 해보기.
+    BooleanBuilder booleanBuilder = new BooleanBuilder();
+    booleanBuilder.or(board.title.contains("1"));
+    booleanBuilder.or(board.content.contains("1"));
+
     // where 조건절  where title like
-    query.where(board.title.contains("1"));
+//    query.where(board.title.contains("1"));
+    // BooleanBuilder를 적용하기.
+    query.where(booleanBuilder);
+    // bno > 0 보다 큰 조건 넣을 경우
+    query.where(board.bno.gt(0L));
+
 
     // 페이징 처리 적용하기.
     this.getQuerydsl().applyPagination(pageable,query);
