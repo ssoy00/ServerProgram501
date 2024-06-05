@@ -97,15 +97,13 @@ build.gradle 찾고 설치, 버전 의 변경이 발생해서, 5버전을 기준
 // https://mvnrepository.com/artifact/com.querydsl/querydsl-jpa
 implementation group: 'com.querydsl', name: 'querydsl-jpa', version: '5.0.0'
 
-  //Querydsl 도구 설치.
-    implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
+ implementation "com.querydsl:querydsl-jpa:${queryDslVersion}:jakarta"
 
- //Querydsl 나머지 관련 도구 설치
-    annotationProcessor(
-            "javax.persistence:javax.persistence-api",
-            "javax.annotation:javax.annotation-api",
-            "com.querydsl:querydsl-apt:${queryDslVersion}:jpa"
-    )
+
+     annotationProcessor(
+             "jakarta.persistence:jakarta.persistence-api",
+             "jakarta.annotation:jakarta.annotation-api",
+             "com.querydsl:querydsl-apt:${queryDslVersion}:jakarta")
 
     // 프로젝트 빌드 폴더에 소스 파일등을 자동으로 변경하는 코드.
     sourceSets {
@@ -115,6 +113,18 @@ implementation group: 'com.querydsl', name: 'querydsl-jpa', version: '5.0.0'
             }
         }
     }
+
+ 설정 확인 방법.
+ 오른쪽 메뉴 그래들 -> other -> compileJava -> 왼쪽 프로젝트 폴더 구조
+ -> build 폴더 생기고 -> 안쪽에 접두 Q 가 붙은 클래스가 생성이 되며 정상 동작.
+
+Querydsl , 기존의 Repository 를 연동시 주의사항,
+
+1) Querydsl을 이용해서 인터페이스 선언
+2) 인터페이스 이름 + Impl 이라는 이름을 붙여서 작성.
+QuerydslRepositorySupport 를 구현하기.
+3) 기존 Repository 에 부모 인터페이스로 Querydsl을 위한 인터페이스 지정.
+
 
 
 
