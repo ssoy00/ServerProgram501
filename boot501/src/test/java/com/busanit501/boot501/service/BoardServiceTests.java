@@ -25,6 +25,15 @@ public class BoardServiceTests {
     log.info("추가 후에 반환 게시글 번호 bno : " + bno);
 
   }
+
+  @Test
+  public  void testRead() {
+
+    BoardDTO boardDTO = boardService.read(601L);
+    log.info("하나 조회 boardDTO : " + boardDTO);
+
+  }
+
 }
 
 
