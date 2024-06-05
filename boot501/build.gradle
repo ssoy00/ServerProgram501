@@ -69,6 +69,7 @@ dependencies {
 
 }
 
+//작업중
 tasks.named('test') {
     useJUnitPlatform()
 }
