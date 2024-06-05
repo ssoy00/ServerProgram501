@@ -75,9 +75,13 @@ tasks.named('test') {
 
 // 프로젝트 빌드 폴더에 소스 파일등을 자동으로 변경하는 코드.
 sourceSets {
+
     main {
         java {
-            srcDirs = ["$projectDir/src/main/java","$projectDir/build/generated"]
+            srcDirs = ["$projectDir/src/main/java", "$projectDir/build/generated"]
         }
     }
 }
+
+
+compileJava.dependsOn('clean')
