@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Optional;
 import java.util.stream.IntStream;
 
 @SpringBootTest
@@ -17,20 +18,28 @@ public class BoardRepositoryTests {
 
   @Test
   public void testInsert() {
-    IntStream.rangeClosed(1,100).forEach(i ->
+    IntStream.rangeClosed(1, 100).forEach(i ->
         {
           Board board = Board.builder()
               .title("오늘 점심 뭐 먹지?" + i)
               .content("한식" + i)
-              .writer("이상용"+(i%10))
+              .writer("이상용" + (i % 10))
               .build();
-              // 데이터베이스에 추가,
+          // 데이터베이스에 추가,
           // save 없으면, 1)추가, 있으면, 2) 수정.
-              Board result = boardRepository.save(board);
-              log.info("추가한 BNO: " + result.getBno());
+          Board result = boardRepository.save(board);
+          log.info("추가한 BNO: " + result.getBno());
         }
-        );
+    );
 
+  } // inset test
+
+  @Test
+  public void testSelect() {
+    Long bno = 100L;
+    Optional<Board> result = boardRepository.findById(bno);
+    Board board = result.orElseThrow();
+    log.info("조회 결과 : " + board);
   }
 
 }
