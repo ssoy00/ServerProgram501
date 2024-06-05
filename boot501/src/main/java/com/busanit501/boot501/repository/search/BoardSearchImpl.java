@@ -63,7 +63,7 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
     if ((types != null && types.length > 0) && keyword != null) {
       // BooleanBuilder , 조건절의 옵션을 추가하기 쉽게하는 도구.
       log.info("조건절 실해여부 확인 1 ");
-      BooleanBuilder booleanBuilder = new BooleanBuilder();
+      BooleanBuilder   booleanBuilder = new BooleanBuilder();
       //String[] types = {"t","w" }
       for (String type : types) {
         switch (type) {
@@ -78,7 +78,10 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
             booleanBuilder.or(board.content.contains(keyword));
         } //switch
       } // end for
+      // BooleanBuilder를 적용하기.
+      query.where(booleanBuilder);
     } // end if
+
 
     // bno >0 보다 큰 조건.
     query.where(board.bno.gt(0L));
