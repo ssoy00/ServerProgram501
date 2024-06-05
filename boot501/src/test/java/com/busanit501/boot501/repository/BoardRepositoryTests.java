@@ -94,6 +94,15 @@ public class BoardRepositoryTests {
 
   }
 
+  // Querydsl 이용해서 , 조회해보기.
+  @Test
+  public void testSearch() {
+
+    Pageable pageable = PageRequest.of(1, 10, Sort.by("bno").descending());
+    // 실행 여부를 확인 해보기.
+    boardRepository.search(pageable);
+  }
+
 }
 
 
