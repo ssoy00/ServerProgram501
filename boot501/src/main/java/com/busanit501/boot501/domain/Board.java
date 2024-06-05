@@ -30,6 +30,10 @@ public class Board extends BaseEntity{
   // 등록시간,
   // 수정시간, 많은 테이블에서 공통적으로 사용하니, 인터페이스로 분리해서 재사용할 예정.
 
+  public void changeTitleAndContent(String title, String content) {
+    this.title = title;
+    this.content = content;
+  }
 
 }
 
