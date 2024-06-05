@@ -7,6 +7,7 @@ public interface BoardService {
   //하나 조회, read
   BoardDTO read(Long bno);
   void update(BoardDTO boardDTO);
+  void delete(Long bno);
 }
 
 

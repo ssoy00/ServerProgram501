@@ -51,6 +51,15 @@ public class BoardServiceTests {
 
   }
 
+
+  @Test
+  public void testDelete() {
+        //디비에서 조회하기.
+    boardService.delete(601L);
+
+
+  }
+
 }
 
 

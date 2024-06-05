@@ -50,6 +50,11 @@ public class BoardServiceImpl implements BoardService {
     // 적용하기.
     boardRepository.save(board);
   }
+
+  @Override
+  public void delete(Long bno) {
+    boardRepository.deleteById(bno);
+  }
 }
 
 
