@@ -1,3 +1,10 @@
+// 변수 선언,  queryDslVersion = '5.0.0'
+buildscript {
+    ext {
+        queryDslVersion = '5.0.0'
+    }
+}
+
 plugins {
     id 'java'
     id 'org.springframework.boot' version '3.3.0'
@@ -43,6 +50,21 @@ dependencies {
     // https://mvnrepository.com/artifact/nz.net.ultraq.thymeleaf/thymeleaf-layout-dialect
     implementation group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '3.1.0'
 
+    // https://mvnrepository.com/artifact/com.querydsl/querydsl-jpa
+    // 방법1
+//    implementation group: 'com.querydsl', name: 'querydsl-jpa', version: '5.0.0'
+
+
+    //Querydsl 도구 설치.
+    // 방법2,
+    implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
+
+    //Querydsl 나머지 관련 도구 설치
+    annotationProcessor(
+            "javax.persistence:javax.persistence-api",
+            "javax.annotation:javax.annotation-api",
+            "com.querydsl:querydsl-apt:${queryDslVersion}:jpa"
+    )
 
 
 }
