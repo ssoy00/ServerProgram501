@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
@@ -80,6 +81,17 @@ public class BoardRepositoryTests {
     //Page 타입이라는 것은, 해당 결과에, 여러 정보들이 있음.
     // 예) 10개씩 가져온 데이터, 2)페이지 정보, 3)갯수, 4)전체 갯수 등.
     Page<Board> result = boardRepository.findAll(pageable);
+
+    // 담겨진 페이징 관련 결과를 출력및 알아보기.
+    log.info("전체 갯수 total  result.getTotalElements() : " + result.getTotalElements());
+    log.info("전체 페이지  result.getTotalPages() : " + result.getTotalPages());
+    log.info("페이지 number  result.getNumber() : " + result.getNumber());
+    log.info("페이지 당 불러올 수  result.getSize() : " + result.getSize());
+    log.info("불러올 데이터 목록  result.getContent() : " );
+    // 불러올 목록 데이터를 받아서 처리해보기.
+    List<Board> list = result.getContent();
+    list.forEach(board -> log.info(board));
+
   }
 
 }
