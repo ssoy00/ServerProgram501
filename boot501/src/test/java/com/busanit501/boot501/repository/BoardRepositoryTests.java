@@ -54,7 +54,7 @@ public class BoardRepositoryTests {
     Board board = result.orElseThrow();
 
     log.info("조회 결과1 전 : " + board);
-    board.changeTitleAndContent("오늘 점심 뭐 먹죠 수정버전","로제 떡볶이, 냉라면, 족발");
+    board.changeTitleAndContent("오늘 점심 뭐 먹죠 수정버전", "로제 떡볶이, 냉라면, 족발");
     // 반영.
     boardRepository.save(board);
     log.info("조회 결과2 후: " + board);
@@ -76,7 +76,7 @@ public class BoardRepositoryTests {
     // 첫번째 파라미터 :페이지수(1페이지 , 0)
     // 두번째 파라미터 :페이지 당 보여줄 갯수(10개)
     // 세번째 파라미터 :정렬 기준, bno , 내림차순.
-    Pageable pageable = PageRequest.of(0,10, Sort.by("bno").descending());
+    Pageable pageable = PageRequest.of(0, 10, Sort.by("bno").descending());
     // 10개씩 조회 해보기.
     //Page 타입이라는 것은, 해당 결과에, 여러 정보들이 있음.
     // 예) 10개씩 가져온 데이터, 2)페이지 정보, 3)갯수, 4)전체 갯수 등.
@@ -87,7 +87,7 @@ public class BoardRepositoryTests {
     log.info("전체 페이지  result.getTotalPages() : " + result.getTotalPages());
     log.info("페이지 number  result.getNumber() : " + result.getNumber());
     log.info("페이지 당 불러올 수  result.getSize() : " + result.getSize());
-    log.info("불러올 데이터 목록  result.getContent() : " );
+    log.info("불러올 데이터 목록  result.getContent() : ");
     // 불러올 목록 데이터를 받아서 처리해보기.
     List<Board> list = result.getContent();
     list.forEach(board -> log.info(board));
@@ -101,6 +101,22 @@ public class BoardRepositoryTests {
     Pageable pageable = PageRequest.of(1, 10, Sort.by("bno").descending());
     // 실행 여부를 확인 해보기.
     boardRepository.search(pageable);
+  }
+
+  // Querydsl 이용해서 , 검색, 페이징 이용해서 조회해보기
+  @Test
+  public void testSearchAll() {
+
+    // 검색 조건 더미 데이터
+    String[] types = {"t", "w", "c"};
+    // 검색 조건 더미 데이터2, 키워드
+    String keyword = "점심";
+
+    Pageable pageable = PageRequest.of(1, 10, Sort.by("bno").descending());
+
+    // 실행 여부를 확인 해보기.
+    // 결과를 반환 타입 Page 받기.
+   Page<Board> result =  boardRepository.searchAll(types,keyword,pageable);
   }
 
 }
