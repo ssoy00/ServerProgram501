@@ -13,7 +13,7 @@ public class BoardServiceTests {
   BoardService boardService;
 
   @Test
-  public  void testInsert() {
+  public void testInsert() {
     // 화면에서 넘어온 더미 데이터 만들기. DTO 타입.
     BoardDTO boardDTO = BoardDTO.builder()
         .title("내일 모하니?")
@@ -27,10 +27,27 @@ public class BoardServiceTests {
   }
 
   @Test
-  public  void testRead() {
+  public void testRead() {
 
     BoardDTO boardDTO = boardService.read(601L);
     log.info("하나 조회 boardDTO : " + boardDTO);
+
+  }
+
+  @Test
+  public void testUpdate() {
+    // 변경시, 변경할 더미 데이터, 임시, 601L
+// 화면에서 넘어온 더미 데이터 만들기. DTO 타입.
+    BoardDTO boardDTO = BoardDTO.builder()
+        .bno(601L)
+        .title("내일 모하니?수정버전")
+        .content("부모님 인사하기 : 수정버전")
+        .writer("이상용 : 수정버전")
+        .build();
+
+    //디비에서 조회하기.
+    boardService.update(boardDTO);
+
 
   }
 
