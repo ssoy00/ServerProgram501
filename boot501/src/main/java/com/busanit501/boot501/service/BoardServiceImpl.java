@@ -9,6 +9,8 @@ import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @Log4j2
 @RequiredArgsConstructor
@@ -25,6 +27,18 @@ public class BoardServiceImpl implements BoardService {
     Board board = modelMapper.map(boardDTO, Board.class);
     Long bno = boardRepository.save(board).getBno();
     return bno;
+  }
+
+  @Override
+  public BoardDTO read(Long bno) {
+    // 1차 영속성 컨텍스트에서 조회한 내용을 가져오기.
+    Optional<Board> result = boardRepository.findById(bno);
+    // 만약 있다면, 엔티티 타입으로 담기.(VO 같은 개념)
+    Board board = result.orElseThrow();
+    // 엔티티 -> DTO 변환.
+    BoardDTO boardDTO = modelMapper.map(board, BoardDTO.class);
+
+    return boardDTO;
   }
 }
 
