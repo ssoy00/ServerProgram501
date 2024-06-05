@@ -125,8 +125,8 @@ public class BoardRepositoryTests {
     log.info("Querydsl 결과 : 페이지 number  result.getNumber() : " + result.getNumber());
     log.info("Querydsl 결과 : 페이지 당 불러올 수  result.getSize() : " + result.getSize());
     log.info("Querydsl 결과 : 불러올 데이터 목록  result.getContent() : ");
-    log.info("Querydsl 결과 : 다음 페이지  존재 여부  result.hasPrevious() : " + result.hasPrevious());
-    log.info("Querydsl 결과 : 이전 페이지  존재 여부  result.hasNext() : " + result.hasNext());
+    log.info("Querydsl 결과 : 이전 페이지  존재 여부  result.hasPrevious() : " + result.hasPrevious());
+    log.info("Querydsl 결과 : 다음 페이지  존재 여부  result.hasNext() : " + result.hasNext());
     // 불러올 목록 데이터를 받아서 처리해보기.
     List<Board> list = result.getContent();
     list.forEach(board -> log.info(board));
