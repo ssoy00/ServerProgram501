@@ -42,6 +42,29 @@ public class BoardRepositoryTests {
     log.info("조회 결과 : " + board);
   }
 
+  @Test
+  public void testUpdate() {
+    Long bno = 100L;
+    Optional<Board> result = boardRepository.findById(bno);
+    Board board = result.orElseThrow();
+
+    log.info("조회 결과1 전 : " + board);
+    board.changeTitleAndContent("오늘 점심 뭐 먹죠 수정버전","로제 떡볶이, 냉라면, 족발");
+    // 반영.
+    boardRepository.save(board);
+    log.info("조회 결과2 후: " + board);
+
+  }
+
+  @Test
+  public void testDelete() {
+    Long bno = 100L;
+    // 반영.
+    boardRepository.deleteById(100L);
+    log.info("조회 결과2 후: 디비상에서 삭제 여부 확인 하기.");
+
+  }
+
 }
 
 
