@@ -46,6 +46,7 @@
 <script layout:fragment="javascript" th:inline="javascript">
  const errors = [[${errors}]]
  console.log("errors : " + errors)
+ let errorMsg =''
  if(errors) {
      for(let i = 0; i < errors.length; i++){
          errorMsg += `${errors[i].field} 는 ${errors[i].code}\n`
