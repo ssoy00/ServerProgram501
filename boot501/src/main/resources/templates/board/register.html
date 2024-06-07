@@ -11,29 +11,22 @@
             <!--      부트 스트랩 5.3 Card 컴포넌트 Header and Footer 의 샘플 가져오기-->
             <div class="card">
                 <div class="card-header">
-                    Featured
+                    글작성
                 </div>
                 <div class="card-body">
-                    <%--         register.jsp 의 화면을 복붙--%>
                     <form method="post" action="/board/register">
-                        <input type="hidden" name="tno" value="1">
                         <div class="mb-3">
                             <label for="title" class="form-label">제목</label>
                             <input type="text" name="title" class="form-control" id="title" placeholder="제목을 입력해주세요.">
                         </div>
                         <div class="mb-3">
-                            <label for="dueDate" class="form-label">일정</label>
-                            <input type="date" name="dueDate" class="form-control" id="dueDate">
+                            <label for="content" class="form-label">내용</label>
+                            <input type="text" name="content" class="form-control" id="content">
                         </div>
 
                         <div class="mb-3">
                             <label for="writer" class="form-label">작성자</label>
                             <input type="text" name="writer" class="form-control" id="writer" placeholder="작성자를 입력해주세요.">
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-check-label" for="finished">Finished</label>
-                            <input type="checkbox" class="form-check-input" id="finished" name="finished">
                         </div>
 
                         <div class="mb-3">
@@ -51,11 +44,14 @@
 
 <!--자바스크립트 추가하는 영역-->
 <script layout:fragment="javascript" th:inline="javascript">
-    const serverValidErrors = {}
-    // <c:forEach items = "${errors}" var="error">
-    //     serverValidErrors['${error.getField()}'] = '${error.defaultMessage}'
-    // </c:forEach>
-    console.log(serverValidErrors)
+ const errors = [[${errors}]]
+ console.log("errors : " + errors)
+ if(errors) {
+     for(let i = 0; i < errors.length; i++){
+         errorMsg += `${errors[i].field} 는 ${errors[i].code}\n`
+     }
+     alert(errorMsg)
+ }
 </script>
 
 </body>
