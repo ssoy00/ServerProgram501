@@ -36,7 +36,12 @@ public class BoardController {
 
     } //list 닫는 부분
 
-    //글쓰기
+    //글쓰기 폼
+    @GetMapping("/register")
+    public void registerForm() {
+    }
+
+    //글쓰기 처리
     @PostMapping("/register")
     public String register(@Valid BoardDTO boardDTO
             , BindingResult bindingResult
