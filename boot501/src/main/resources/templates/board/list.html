@@ -134,42 +134,48 @@
             </div>
         </div>
     </div>
-</div>
 
-<!--부트스트랩 5.3 , 모달창 컴포넌트 가져오기, 평상시에는 화면에 보이지 않고, -->
-<!--모달 관련 객체에서 show, hide 함수등을 이용해서, 보이고, 사라지기 기능을 이용한다.-->
-<!--모달창 시작-->
-<div class="modal" id="exampleModal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">글쓰기 성공</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                작성된 게시글 번호 :   [[${result}]] 번
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Launch demo modal
+    </button>
+    <!--부트스트랩 5.3 , 모달창 컴포넌트 가져오기, 평상시에는 화면에 보이지 않고, -->
+    <!--모달 관련 객체에서 show, hide 함수등을 이용해서, 보이고, 사라지기 기능을 이용한다.-->
+    <!--모달창 시작-->
+    <!-- Button trigger modal -->
+    <!-- Modal -->
+    <div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
             </div>
         </div>
     </div>
+    <!--모달창 끝-->
 </div>
-<!--모달창 끝-->
+
+
+
 
 <!--자바스크립트 추가하는 영역-->
 <script layout:fragment="javascript" th:inline="javascript">
-    //글쓰기 후, 작성된 게시글 번호를 출력하기, 경고창으로
-    // 모달(modal)창으로 변경해보기.
 
-    // 모달을 사용하기 위해서는 , 해당 객체가 필요.
+    //show modal
+    const result = [[${result}]]
 
     const modal = new bootstrap.Modal(document.querySelector(".modal"))
 
-    const result = [[${result}]]
-    if(result) {
-        // alert("작성된 게시글 번호 : " + result +"번")
+    if(result){
         modal.show()
     }
 

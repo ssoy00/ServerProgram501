@@ -25,7 +25,7 @@ public class BoardController {
     private final BoardService boardService;
 
     // ex) /board/list
-    @GetMapping("/list")
+    @GetMapping("/list2")
     public void list(PageRequestDTO pageRequestDTO, Model model) {
         PageResponseDTO<BoardDTO> responseDTO
                 = boardService.list(pageRequestDTO);
@@ -61,7 +61,7 @@ public class BoardController {
 
         // 글쓰기 후, 작성된 게시글 번호 -> 화면 , 임시로 전달.(1회용)
         redirectAttributes.addFlashAttribute("result",bno);
-        return "redirect:/board/list";
+        return "redirect:/board/list2";
 
     }
 
