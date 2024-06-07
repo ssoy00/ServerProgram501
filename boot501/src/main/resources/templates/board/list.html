@@ -47,13 +47,16 @@
                             </li>
                             <!--                                    페이지 : 1 ~ 10 개 출력-->
                             <!--                                    서버에서 받아온 데이터를 적용하기-->
-<!--                            화면에 표시에 페이지 번호 10개 그리기-->
+                            <!--                            화면에 표시에 페이지 번호 10개 그리기-->
                             <th:blcok th:each="i:${#numbers.sequence(responseDTO.start,responseDTO.end)}">
-                                <li class="page-item ${responseDTO.page == i ? active:''}"><a class="page-link"
-                                                                                                th:data-num="${i}">[[${i}]]</a></li>
+<!--                                기존 jstl c 태그 문법 , 타임리프 문법으로 변경하기-->
+                                <li th:class="${responseDTO.page == i}?'page-item active':'page-item'">
+                                    <a class="page-link"
+                                       th:data-num="${i}">[[${i}]]</a>
+                                </li>
                             </th:blcok>
 
-<!--                            다음 화면 이 나오고-->
+                            <!--                            다음 화면 이 나오고-->
 
                             <li class="page-item" th:if="${responseDTO.next}">
                                 <a class="page-link" th:data-num="${responseDTO.end +1}">Next</a>
