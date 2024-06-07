@@ -58,7 +58,7 @@
                         <!--                                    <input type="hidden" name="page" value="${pageRequestDTO.page}">-->
                         <input type="hidden" name="size" value="${pageRequestDTO.size}">
                         <div class="mb-3">
-<!--                            기존의 체크 박스 부분 -> select 태그로 변경하기.-->
+                            <!--                            기존의 체크 박스 부분 -> select 태그로 변경하기.-->
                             <select class="form-select mb-3" name="type">
                                 <option value="">---</option>
                                 <option value="t" th:selected="${pageRequestDTO.type == 't'}">
@@ -81,26 +81,26 @@
                                 </option>
 
                             </select>
-                            <input type="text" name="keyword" class="form-control" placeholder="검색어를 입력해주세요.">
+                            <input type="text" name="keyword" class="form-control" placeholder="검색어를 입력해주세요."
+                                   th:value="${pageRequestDTO.keyword}">
                         </div>
 
 
                         <div class="input-group dueDateDiv mb-3">
-                            <button type="submit" class="btn btn-primary">검색하기</button>
-                            <button type="reset" class="btn btn-warning">초기화하기</button>
+                            <button type="submit" class="btn btn-primary searchBtn">검색하기</button>
+                            <button type="reset" class="btn btn-warning clearBtn">초기화하기</button>
                         </div>
-<!--                                                <c:if test="${pageResponseDTO.total != null}">-->
-                                                    <div th:if="${responseDTO.total != null}"class="input-group dueDateDiv mb-3">
-                                                        <h3>검색 갯수 : [[${responseDTO.total}]]개</h3>
-                                                    </div>
-<!--                                                </c:if>-->
+
+                        <div th:if="${responseDTO.total != null}" class="input-group dueDateDiv mb-3">
+                            <h3>검색 갯수 : [[${responseDTO.total}]]개</h3>
+                        </div>
 
                     </form>
                     <!--                        초기화 버튼 클릭시, 문자열 내용도 초기화되고, 페이지도 1페이지로 이동-->
                 </div>
             </div>
         </div>
-<!--        2번째 검색창-->
+        <!--        2번째 검색창-->
     </div>
     <div layout:fragment="content">
         <p> 블록1 , content 영역</p>
