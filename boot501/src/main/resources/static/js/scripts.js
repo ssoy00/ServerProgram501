@@ -1,9 +1,9 @@
-document.querySelector(".btn-warning").addEventListener("click", function (e) {
-    e.preventDefault()
-    e.stopPropagation()
-    self.location = "/todo/list"
-
-})
+// document.querySelector(".btn-warning").addEventListener("click", function (e) {
+//     e.preventDefault()
+//     e.stopPropagation()
+//     self.location = "/todo/list"
+//
+// })
 
 document.querySelector(".pagination").addEventListener("click", function (e) {
     e.preventDefault()
@@ -19,8 +19,8 @@ document.querySelector(".pagination").addEventListener("click", function (e) {
 
     // 추가, 검색 및 필터 관련 정보를 추가해서, 페이징 이동하기.
     const formObj = document.querySelector("form")
-    formObj.innerHTML += `<input type="hidden" name="page" value="\${num}">`
+    formObj.innerHTML += `<input type="hidden" name="page" value="${num}">`
     formObj.submit()
-    // self.location = `/todo/list?page=\${num}`
+    self.location = `/board/list?page=${num}`
 
 }, false)
