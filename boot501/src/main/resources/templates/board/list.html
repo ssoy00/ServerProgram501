@@ -31,7 +31,9 @@
                             <th scope="row">[[${dto.bno}]]</th>
                             <td>[[${dto.title}]]</a></td>
                             <td>[[${dto.writer}]]</td>
-                            <td>[[${dto.regDate}]]</td>
+<!--                            <td>[[${dto.regDate}]]</td>-->
+<!--                            날짜 출력 포맷팅 작업 : yyyy-MM-dd HH:mm:ss 형식-->
+                            <td>[[${#temporals.format(dto.regDate, 'yyyy-MM-dd HH:mm:ss')}]]</td>
                         </tr>
 
                         </tbody>
@@ -89,5 +91,11 @@
         </div>
     </div>
 </div>
+
+<!--자바스크립트 추가하는 영역-->
+<script layout:fragment="javascript" th:inline="javascript">
+
+</script>
+
 </body>
 </html>
