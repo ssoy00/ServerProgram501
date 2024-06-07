@@ -12,22 +12,6 @@
     <link th:href="@{/css/style.css}" rel="stylesheet">
 </head>
 <body>
-<style>
-    .paging-container {
-        display: flex;
-        justify-content: center; /* 가로 중앙정렬 */
-        align-items: center; /* 세로 중앙정렬 */
-        height: 10vh;
-        /* 부모 요소의 높이를 100%로 설정 *
-         },
-         .paging-content {
-           width: 10vw;
-           height: 100px;
-           background-color: lightblue;
-           text-align: center; /* 텍스트 가로 중앙정렬 */
-        /*line-height: 100px; !* 텍스트 세로 중앙정렬 *!*/
-    }
-</style>
 
 <div class="container-fluid">
     <div class="row">
@@ -54,10 +38,6 @@
                                 <a class="nav-link disabled" aria-disabled="true">Disabled</a>
                             </li>
                         </ul>
-                        <%--            <form class="d-flex" role="search">--%>
-                        <%--              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">--%>
-                        <%--              <button class="btn btn-outline-success" type="submit">Search</button>--%>
-                        <%--            </form>--%>
                     </div>
                 </div>
             </nav>
@@ -65,7 +45,7 @@
     </div>
     <!--  Navbar 종료-->
 
-    <%--  검색 화면 구성 넣기--%>
+<!--      검색 화면 구성 넣기-->
     <div class="row content">
         <div class="col">
             <!--      부트 스트랩 5.3 Card 컴포넌트 Header and Footer 의 샘플 가져오기-->
@@ -73,7 +53,7 @@
                 <div class="card-body">
                     <h5 class="card-title">검색화면 </h5>
                     <form action="/todo/list" method="get">
-                        <%--            <input type="hidden" name="page" value="${pageRequestDTO.page}">--%>
+<!--                                    <input type="hidden" name="page" value="${pageRequestDTO.page}">-->
                         <input type="hidden" name="size" value="${pageRequestDTO.size}">
                         <div class="mb-3">
                             <input type="checkbox" name="finished"}> 완료여부
@@ -105,7 +85,7 @@
 <!--                        </c:if>-->
 
                     </form>
-                    <%--          초기화 버튼 클릭시, 문자열 내용도 초기화되고, 페이지도 1페이지로 이동 --%>
+<!--                        초기화 버튼 클릭시, 문자열 내용도 초기화되고, 페이지도 1페이지로 이동-->
                     <script>
                         document.querySelector(".btn-warning").addEventListener("click", function (e) {
                             e.preventDefault()
