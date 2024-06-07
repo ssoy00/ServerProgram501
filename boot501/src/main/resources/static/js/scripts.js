@@ -1,9 +1,9 @@
-// document.querySelector(".btn-warning").addEventListener("click", function (e) {
-//     e.preventDefault()
-//     e.stopPropagation()
-//     self.location = "/todo/list"
-//
-// })
+document.querySelector(".clearBtn").addEventListener("click", function (e) {
+    e.preventDefault()
+    e.stopPropagation()
+    self.location = "/board/list"
+
+})
 
 document.querySelector(".pagination").addEventListener("click", function (e) {
     e.preventDefault()
