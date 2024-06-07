@@ -2,11 +2,15 @@ package com.busanit501.boot501.service;
 
 import com.busanit501.boot501.domain.Board;
 import com.busanit501.boot501.dto.BoardDTO;
+import com.busanit501.boot501.dto.PageRequestDTO;
+import com.busanit501.boot501.dto.PageResponseDTO;
 import com.busanit501.boot501.repository.BoardRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -57,6 +61,16 @@ public class BoardServiceImpl implements BoardService {
 //    Optional<Board> result = boardRepository.findById(bno);
 //    Board board = result.orElseThrow();
     boardRepository.deleteById(bno);
+  }
+
+  @Override
+  public PageResponseDTO<BoardDTO> list(PageRequestDTO pageRequestDTO) {
+    String[] types = pageRequestDTO.getTypes();
+    String keyword = pageRequestDTO.getKeyword();
+    Pageable pageable = pageRequestDTO.getPageable("bno");
+    // 검색어, 페이징 처리가 된 결과물 10개.
+    Page<Board> result = boardRepository.searchAll(types,keyword,pageable);
+    return null;
   }
 }
 
