@@ -18,11 +18,11 @@
                         <div class="mb-3">
                             <label for="title" class="form-label">제목</label>
                             <input type="text" name="title" class="form-control" id="title" placeholder="제목을 입력해주세요."
-                            th:value="${boardDTO.title}" readonly>
+                            th:value="${boardDTO.title}" >
                         </div>
                         <div class="mb-3">
                             <label for="content" class="form-label">내용</label>
-                            <textarea readonly type="text" placeholder="내용을 입력해주세요." name="content" rows="5" class="form-control col-sm-5" id="content">[[${boardDTO.content}]]</textarea>
+                            <textarea  type="text" placeholder="내용을 입력해주세요." name="content" rows="5" class="form-control col-sm-5" id="content">[[${boardDTO.content}]]</textarea>
                         </div>
 
                         <div class="mb-3">
@@ -44,8 +44,11 @@
                         </div>
 
                         <div class="mb-3" th:with="link = ${pageRequestDTO.getLink()}">
-                            <a th:href="|@{/board/update}?${link}|">
-                            <button type="button" class="btn btn-primary">수정하기</button>
+
+                            <button type="button" class="btn btn-primary updateBtn">수정하기</button>
+
+                            <a th:href="|@{/board/delete(bno=${boardDTO.bno})}&${link}|">
+                                <button type="button" class="btn btn-warning">삭제하기</button>
                             </a>
                             <a th:href="|@{/board/list}?${link}|">
                             <button type="button" class="btn btn-danger">목록가기</button>
