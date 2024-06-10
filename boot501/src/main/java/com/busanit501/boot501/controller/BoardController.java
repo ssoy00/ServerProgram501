@@ -27,6 +27,9 @@ public class BoardController {
     // ex) /board/list
     @GetMapping("/list")
     public void list(PageRequestDTO pageRequestDTO, Model model) {
+
+        log.info("BoardController : /board/list  확인 중, pageRequestDTO : " + pageRequestDTO);
+
         PageResponseDTO<BoardDTO> responseDTO
                 = boardService.list(pageRequestDTO);
         // 서버로부터 응답확인.
