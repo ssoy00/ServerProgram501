@@ -153,7 +153,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">글쓰기 성공</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" th:if="${result}" >
@@ -177,8 +177,10 @@
 <script layout:fragment="javascript" th:inline="javascript">
 
     //show modal
+    // 글 작성 후, 작성된 게시글 번호 bno 를 result 담에서 화면에 전달.
     const result = [[${result}]]
 
+    // 자바스크립트에서 모달 객체를 사용하기 위한 인스턴스 만들기.
     const modal = new bootstrap.Modal(document.querySelector(".modal"))
 
     if(result){
