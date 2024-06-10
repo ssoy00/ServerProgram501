@@ -89,10 +89,12 @@
                             <!--                            <th scope="col">Finished</th>-->
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody th:with="link = ${pageRequestDTO.getLink()}">
                         <tr th:each="dto:${responseDTO.dtoList}">
                             <th scope="row">[[${dto.bno}]]</th>
-                            <td>[[${dto.title}]]</a></td>
+                            <a th:href="|@{/board/read}?bno=${responseDTO.bno}&${link}|">
+                            <td>[[${dto.title}]]</td>
+                            </a>
 <!--                            <td>[[${dto.content}]]</a></td>-->
                             <td>[[${dto.writer}]]</td>
                             <!--                            <td>[[${dto.regDate}]]</td>-->
