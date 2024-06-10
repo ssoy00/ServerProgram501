@@ -45,7 +45,7 @@
 
                         <div class="mb-3" th:with="link = ${pageRequestDTO.getLink()}">
                             <button type="submit" class="btn btn-primary">수정하기</button>
-                            <a th:href="|@{/board/list}?|${link}">
+                            <a th:href="|@{/board/list}?${link}|">
                             <button type="button" class="btn btn-danger">목록가기</button>
                             </a>
                         </div>
