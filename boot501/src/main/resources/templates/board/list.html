@@ -83,7 +83,8 @@
                         <tr>
                             <th scope="col">Bno</th>
                             <th scope="col">Title</th>
-                            <th scope="col">Content</th>
+<!--                            상세보기 시, 내용 보기로 하기.-->
+<!--                            <th scope="col">Content</th>-->
                             <th scope="col">Writer</th>
                             <th scope="col">RegDate</th>
                             <!--                            <th scope="col">Finished</th>-->
@@ -93,7 +94,7 @@
                         <tr th:each="dto:${responseDTO.dtoList}">
                             <th scope="row">[[${dto.bno}]]</th>
                             <td>[[${dto.title}]]</a></td>
-                            <td>[[${dto.content}]]</a></td>
+<!--                            <td>[[${dto.content}]]</a></td>-->
                             <td>[[${dto.writer}]]</td>
                             <!--                            <td>[[${dto.regDate}]]</td>-->
                             <!--                            날짜 출력 포맷팅 작업 : yyyy-MM-dd HH:mm:ss 형식-->
