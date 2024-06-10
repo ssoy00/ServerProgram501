@@ -72,7 +72,7 @@ public class BoardController {
     //하나 조회 = 상세화면, read
     // 준비물, 해당 게시글 번호로 조회한 데이터가 필요함.
     // 화면 -> 서버로 , bno 게시글 번호를 전달하기.
-    @GetMapping("/read")
+    @GetMapping({"/read","/update"})
     public void read(Long bno, PageRequestDTO pageRequestDTO, Model model) {
 
         log.info("BoardController : /board/read  확인 중, pageRequestDTO : " + pageRequestDTO);
