@@ -157,6 +157,8 @@
                         th:if="${resultType == 'register'}">글쓰기 성공</h1>
                     <h1 class="modal-title fs-5"
                         th:if="${resultType == 'update'}">글수정 성공</h1>
+                    <h1 class="modal-title fs-5"
+                        th:if="${resultType == 'delete'}">글삭제 성공</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" th:if="${result}" >
