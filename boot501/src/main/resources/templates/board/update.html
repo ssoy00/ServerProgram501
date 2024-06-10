@@ -50,9 +50,9 @@
 
                             <button type="button" class="btn btn-primary updateBtn">수정하기</button>
 
-                            <a th:href="|@{/board/delete(bno=${boardDTO.bno})}&${link}|">
-                                <button type="button" class="btn btn-warning">삭제하기</button>
-                            </a>
+
+                                <button type="button" class="btn btn-warning deleteBtn">삭제하기</button>
+
                             <a th:href="|@{/board/list}?${link}|">
                             <button type="button" class="btn btn-danger">목록가기</button>
                             </a>
@@ -96,6 +96,17 @@
         e.stopPropagation()
 
         formObj.action = `/board/update`
+        formObj.method = 'post'
+        formObj.submit()
+
+    },false)
+
+    // 글 삭제 로직 이벤트 처리
+    document.querySelector(".deleteBtn").addEventListener("click",function (e) {
+        e.preventDefault()
+        e.stopPropagation()
+
+        formObj.action = `/board/delete`
         formObj.method = 'post'
         formObj.submit()
 
