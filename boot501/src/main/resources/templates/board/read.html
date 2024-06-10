@@ -44,7 +44,7 @@
                         </div>
 
                         <div class="mb-3" th:with="link = ${pageRequestDTO.getLink()}">
-                            <a th:href="|@{/board/update}?${link}|">
+                            <a th:href="|@{/board/update(bno =${boardDTO.bno})}&${link}|">
                             <button type="button" class="btn btn-primary">수정하기</button>
                             </a>
                             <a th:href="|@{/board/list}?${link}|">
