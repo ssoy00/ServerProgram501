@@ -32,6 +32,9 @@ public class PageRequestDTO {
     // 파라미터를 한번에 작성 하기위한 멤버.
     private String link;
 
+    // 페이지와 사이즈 정보만 유지.
+    private String link2;
+
     // 타입 분리작업
     public String[] getTypes() {
         if (type == null || type.isEmpty()) {
@@ -75,6 +78,18 @@ public class PageRequestDTO {
 
         } // if null 닫는 태그
         return link;
+    } // getLink 닫는 태그
+
+    public String getLink2() {
+        if (link2 == null) {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append("page=" + this.page);
+            stringBuilder.append("&size=" + this.size);
+
+            link2 = stringBuilder.toString();
+
+        } // if null 닫는 태그
+        return link2;
     } // getLink 닫는 태그
 
 }

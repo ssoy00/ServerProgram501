@@ -11,12 +11,12 @@
             <!--      부트 스트랩 5.3 Card 컴포넌트 Header and Footer 의 샘플 가져오기-->
             <div class="card">
                 <div class="card-header">
-                    글작성
+                    글수정폼
                 </div>
                 <div class="card-body">
                     <form method="post" th:action="@{board/update}" id="f1">
-<!--                        <input type="text" name="page" th:value="${pageRequestDTO.page}">-->
-<!--                        <input type="text" name="size" th:value="${pageRequestDTO.size}">-->
+                        <input type="hidden" name="page" th:value="${pageRequestDTO.page}">
+                        <input type="hidden" name="size" th:value="${pageRequestDTO.size}">
                            <input type="hidden" name="bno" th:value="${boardDTO.bno}">
                         <div class="mb-3">
                             <label for="title" class="form-label">제목</label>
@@ -89,7 +89,10 @@
  }
  // 수정폼 요소 가져오기
  const formObj = document.querySelector("#f1")
+    // 페이징 조건, 검색 , 필터 조건
     const link = [[${pageRequestDTO.getLink()}]]
+    //페이징 조건 만
+    const link2 = [[${pageRequestDTO.getLink2()}]]
  // 글 수정 로직 이벤트 처리
     document.querySelector(".updateBtn").addEventListener("click",function (e) {
         e.preventDefault()
