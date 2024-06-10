@@ -17,21 +17,35 @@
                     <form method="post" action="/board/update">
                         <div class="mb-3">
                             <label for="title" class="form-label">제목</label>
-                            <input type="text" name="title" class="form-control" id="title" placeholder="제목을 입력해주세요.">
+                            <input type="text" name="title" class="form-control" id="title" placeholder="제목을 입력해주세요."
+                            th:value="${boardDTO.title}" readonly>
                         </div>
                         <div class="mb-3">
                             <label for="content" class="form-label">내용</label>
-                            <textarea type="text" placeholder="내용을 입력해주세요." name="content" rows="5" class="form-control col-sm-5" id="content"></textarea>
+                            <textarea readonly type="text" placeholder="내용을 입력해주세요." name="content" rows="5" class="form-control col-sm-5" id="content">[[${boardDTO.content}]]</textarea>
                         </div>
 
                         <div class="mb-3">
                             <label for="writer" class="form-label">작성자</label>
-                            <input type="text" name="writer" class="form-control" id="writer" placeholder="작성자를 입력해주세요.">
+                            <input type="text" name="writer" class="form-control" id="writer" placeholder="작성자를 입력해주세요."
+                                   th:value="${boardDTO.writer}" readonly>
                         </div>
 
                         <div class="mb-3">
-                            <button type="submit" class="btn btn-primary">작성</button>
-                            <button type="reset" class="btn btn-danger">초기화</button>
+                            <label for="regDate" class="form-label">등록시간</label>
+                            <input type="text" name="regDate" class="form-control" id="regDate"
+                                   th:value="${#temporals.format(boardDTO.regDate, 'yyyy-MM-dd HH:mm:ss')}" readonly>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="modDate" class="form-label">수정시간</label>
+                            <input type="text" name="modDate" class="form-control" id="modDate"
+                                   th:value="${#temporals.format(boardDTO.modDate, 'yyyy-MM-dd HH:mm:ss')}" readonly>
+                        </div>
+
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary">수정하기</button>
+                            <button type="reset" class="btn btn-danger">목록가기</button>
                         </div>
 
                     </form>
