@@ -92,9 +92,13 @@
                         <tbody th:with="link = ${pageRequestDTO.getLink()}">
                         <tr th:each="dto:${responseDTO.dtoList}">
                             <th scope="row">[[${dto.bno}]]</th>
-                            <a th:href="|@{/board/read}?bno=${responseDTO.bno}&${link}|">
-                            <td>[[${dto.title}]]</td>
-                            </a>
+
+                            <td>
+                                <a th:href="|@{/board/read(bno =${dto.bno})}&${link}|">
+                                [[${dto.title}]]
+                                </a>
+                            </td>
+
 <!--                            <td>[[${dto.content}]]</a></td>-->
                             <td>[[${dto.writer}]]</td>
                             <!--                            <td>[[${dto.regDate}]]</td>-->
