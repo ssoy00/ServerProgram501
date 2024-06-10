@@ -84,6 +84,19 @@
      }
      alert(errorMsg)
  }
+ // 수정폼 요소 가져오기
+ const formObj = document.querySelector("#f1")
+ // 글 수정 로직 이벤트 처리
+    document.querySelector(".updateBtn").addEventListener("click",function (e) {
+        e.preventDefault()
+        e.stopPropagation()
+
+        formObj.action = `/board/update?[[${pageRequestDTO.getLink()}]]`
+        formObj.method = 'post'
+        formObj.submit()
+
+    },false)
+
 </script>
 
 </body>
