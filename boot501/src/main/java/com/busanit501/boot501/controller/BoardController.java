@@ -84,7 +84,36 @@ public class BoardController {
         // 서버 -> 화면 데이터 전달.
         model.addAttribute("boardDTO", boardDTO);
 
-    } //list 닫는 부분
+    } //read 닫는 부분
+
+    //글수정 처리
+    @PostMapping("/update")
+    public String update(@Valid BoardDTO boardDTO
+            , BindingResult bindingResult
+            , RedirectAttributes redirectAttributes
+            , Model model
+    ,PageRequestDTO pageRequestDTO) {
+        // 입력중 유효성 체크에 해당 될 때
+        if(bindingResult.hasErrors()) {
+            log.info("update 중 오류 발생.");
+            redirectAttributes.addFlashAttribute(
+                    "errors", bindingResult.getAllErrors());
+            // 서버 -> 화면으로 쿼리 스트링으로전달.
+            // 예시 : ?bno=게시글번호
+            redirectAttributes.addAttribute("bno", boardDTO.getBno());
+            return "redirect:/board/update"+pageRequestDTO.getLink();
+        }
+        log.info("화면에서 입력 받은 내용 update 확인 : " + boardDTO);
+
+        //화면 -> 서버 -> 서비스 -> 레포지토리 -> 디비, 입력후, 게시글 번호 가져오기
+        //화면 <- 서버 <- 서비스 <- 레포지토리 <- 디비
+        boardService.update(boardDTO);
+
+        // 글쓰기 후, 작성된 게시글 번호 -> 화면 , 임시로 전달.(1회용)
+        redirectAttributes.addFlashAttribute("result",boardDTO.getBno());
+        return "redirect:/board/list";
+
+    }
 
 
 } // BoardController 닫는 부분
