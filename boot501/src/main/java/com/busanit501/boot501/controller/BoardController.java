@@ -120,7 +120,7 @@ public class BoardController {
 
     //글삭제 처리
     @PostMapping("/delete")
-    public String delete(Long bno, RedirectAttributes redirectAttributes
+    public String delete(PageRequestDTO pageRequestDTO, Long bno, RedirectAttributes redirectAttributes
             ) {
 
 
@@ -131,7 +131,7 @@ public class BoardController {
         // 글쓰기 후, 작성된 게시글 번호 -> 화면 , 임시로 전달.(1회용)
         redirectAttributes.addFlashAttribute("result",bno);
         redirectAttributes.addFlashAttribute("resultType","delete");
-        return "redirect:/board/list";
+        return "redirect:/board/list?"+pageRequestDTO.getLink2();
 
     }
 
