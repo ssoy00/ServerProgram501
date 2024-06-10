@@ -65,6 +65,7 @@ public class BoardController {
 
         // 글쓰기 후, 작성된 게시글 번호 -> 화면 , 임시로 전달.(1회용)
         redirectAttributes.addFlashAttribute("result",bno);
+        redirectAttributes.addFlashAttribute("resultType","register");
         return "redirect:/board/list";
 
     }
@@ -111,6 +112,24 @@ public class BoardController {
 
         // 글쓰기 후, 작성된 게시글 번호 -> 화면 , 임시로 전달.(1회용)
         redirectAttributes.addFlashAttribute("result",boardDTO.getBno());
+        redirectAttributes.addFlashAttribute("resultType","update");
+        return "redirect:/board/list";
+
+    }
+
+    //글삭제 처리
+    @PostMapping("/delete")
+    public String delete(Long bno, RedirectAttributes redirectAttributes
+            ) {
+
+
+        //화면 -> 서버 -> 서비스 -> 레포지토리 -> 디비, 입력후, 게시글 번호 가져오기
+        //화면 <- 서버 <- 서비스 <- 레포지토리 <- 디비
+        boardService.delete(bno);
+
+        // 글쓰기 후, 작성된 게시글 번호 -> 화면 , 임시로 전달.(1회용)
+        redirectAttributes.addFlashAttribute("result",bno);
+        redirectAttributes.addFlashAttribute("resultType","delete");
         return "redirect:/board/list";
 
     }
