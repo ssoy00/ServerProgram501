@@ -69,4 +69,22 @@ public class BoardController {
 
     }
 
+    //하나 조회 = 상세화면, read
+    // 준비물, 해당 게시글 번호로 조회한 데이터가 필요함.
+    // 화면 -> 서버로 , bno 게시글 번호를 전달하기.
+    @GetMapping("/read")
+    public void read(Long bno, PageRequestDTO pageRequestDTO, Model model) {
+
+        log.info("BoardController : /board/read  확인 중, pageRequestDTO : " + pageRequestDTO);
+
+        // 디비에서, bno 번호, 하나의 게시글 디비 정보 가져오기.
+        BoardDTO boardDTO = boardService.read(bno);
+        // 서버로부터 응답확인.
+        log.info("BoardController 확인 중, boardDTO : " + boardDTO);
+        // 서버 -> 화면 데이터 전달.
+        model.addAttribute("boardDTO", boardDTO);
+
+    } //list 닫는 부분
+
+
 } // BoardController 닫는 부분
