@@ -69,6 +69,8 @@ public class SwaggerConfig {
    public class CustomServletConfig {
    }
 
+5) 확인
+http://localhost:8080/swagger-ui/index.html
 
 // 특정 프레이워크 종속 되지 않아요. 예) 스프링, 앱, 프레임워크 등...
 2) PostMan (
