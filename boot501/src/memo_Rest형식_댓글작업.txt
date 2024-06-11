@@ -1,0 +1,40 @@
+Rest 형식으로 댓글 작업.
+
+- URL 기획, 데이터 포맷 결정.
+- 컨트롤러 JSON 처리
+- 동작 확인
+- 자바스크립트 이용해서 처리, axios, (비동기처리를, 마치 동기화 하듯이
+문법이 쉽게 구현할 예정.)
+
+
+api 명세서 보기.
+1)
+/replies : post, (피카추)
+특정 게시글의 댓글 추가,
+반환 : 만들어진 댓글의 번호, rno
+2)
+/replies/list/:bno : get,
+특정 게시글(bno)의 댓글 목록,
+반환 : PageResponseDTO, JSON 으로 처리 할 예정.
+
+3)
+/replies/:rno : put, 수정, (update)
+댓글 수정.
+반환 : 수정된 댓글의 번호 rno
+
+4)
+/replies/:rno : delete, 삭제, (delete)
+댓글 삭제.
+반환 : 삭제된 댓글의 번호 rno
+
+5)
+/replies/:rno : get, 하나의 댓글 조회
+댓글 하나 조회.
+반환 : 조회된 댓글의 데이터
+댓글 객체를 JSON으로 반환
+
+
+
+
+
+
