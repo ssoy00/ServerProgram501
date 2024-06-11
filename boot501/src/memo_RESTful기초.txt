@@ -41,8 +41,12 @@ Controller 표현.
 1) Swagger UI (RestController 어노테이션을 발견,자동탐지, UI 그려줘요.)
 
 설치 방법,
+1)
 // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-ui
 implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.5.0'
+
+2) 설정 클래스
+
 
 
 
