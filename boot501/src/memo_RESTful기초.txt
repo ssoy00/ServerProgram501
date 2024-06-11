@@ -72,6 +72,10 @@ public class SwaggerConfig {
 5) 확인
 http://localhost:8080/swagger-ui/index.html
 
+
+6) 기존 /board/list, css 파일 못읽는 증상이 있어서
+수정하는 코드.
+
 // 특정 프레이워크 종속 되지 않아요. 예) 스프링, 앱, 프레임워크 등...
 2) PostMan ()
 회원가입 (구글계정) - 로그인 -> 워크스페이스 만들기 -> 컬렉션 폴더 만들기
