@@ -41,15 +41,15 @@ public class LunchServiceTest {
     public void testUpdate() {
         // 변경시, 변경할 더미 데이터, 임시, 601L
 // 화면에서 넘어온 더미 데이터 만들기. DTO 타입.
-        BoardDTO boardDTO = BoardDTO.builder()
-                .bno(601L)
+        LunchDTO lunchDTO = LunchDTO.builder()
+                .mno(2L)
                 .title("내일 모하니?수정버전")
                 .content("부모님 인사하기 : 수정버전")
                 .writer("이상용 : 수정버전")
                 .build();
 
         //디비에서 조회하기.
-        boardService.update(boardDTO);
+        lunchService.update(lunchDTO);
 
 
     }
@@ -64,7 +64,7 @@ public class LunchServiceTest {
 
         // RestController, 데이터만 처리.
         // 화면이 없어서, method delete 형식으로 명령이 오면,
-        boardService.delete(601L);
+        lunchService.delete(2L);
 
 
     }
@@ -79,7 +79,7 @@ public class LunchServiceTest {
                 .size(10)
                 .build();
 
-        PageResponseDTO<BoardDTO> responseDTO = boardService.list(pageRequestDTO);
+        PageResponseDTO<LunchDTO> responseDTO = lunchService.list(pageRequestDTO);
         log.info("list 테스트 responseDTO : " + responseDTO);
 
     }

@@ -26,7 +26,7 @@ public class LunchRepositoryTest {
         IntStream.rangeClosed(1, 100).forEach(i ->
                 {
                     Lunch board = Lunch.builder()
-                            .title("오늘222 점심 뭐 먹지?" + i)
+                            .title("오늘222 저녁 뭐 먹지?" + i)
                             .content("한식" + i)
                             .writer("이상용" + (i % 10))
                             .build();
