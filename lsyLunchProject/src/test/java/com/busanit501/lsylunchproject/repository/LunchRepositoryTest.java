@@ -98,9 +98,9 @@ public class LunchRepositoryTest {
     @Test
     public void testSearch() {
 
-        Pageable pageable = PageRequest.of(1, 10, Sort.by("bno").descending());
+        Pageable pageable = PageRequest.of(1, 10, Sort.by("mno").descending());
         // 실행 여부를 확인 해보기.
-//        lunchRepository.search(pageable);
+        lunchRepository.search(pageable);
     }
 
     // Querydsl 이용해서 , 검색, 페이징 이용해서 조회해보기
@@ -116,19 +116,19 @@ public class LunchRepositoryTest {
 
         // 실행 여부를 확인 해보기.
         // 결과를 반환 타입 Page 받기.
-//        Page<Lunch> result =  lunchRepository.searchAll(types,keyword,pageable);
+        Page<Lunch> result =  lunchRepository.searchAll(types,keyword,pageable);
 
         // 페이징 된 결과물 확인.
         // 담겨진 페이징 관련 결과를 출력및 알아보기.
-//        log.info("Querydsl 결과 : 전체 갯수 total  result.getTotalElements() : " + result.getTotalElements());
-//        log.info("Querydsl 결과 : 전체 페이지  result.getTotalPages() : " + result.getTotalPages());
-//        log.info("Querydsl 결과 : 페이지 number  result.getNumber() : " + result.getNumber());
-//        log.info("Querydsl 결과 : 페이지 당 불러올 수  result.getSize() : " + result.getSize());
-//        log.info("Querydsl 결과 : 불러올 데이터 목록  result.getContent() : ");
-//        log.info("Querydsl 결과 : 이전 페이지  존재 여부  result.hasPrevious() : " + result.hasPrevious());
-//        log.info("Querydsl 결과 : 다음 페이지  존재 여부  result.hasNext() : " + result.hasNext());
+        log.info("Querydsl 결과 : 전체 갯수 total  result.getTotalElements() : " + result.getTotalElements());
+        log.info("Querydsl 결과 : 전체 페이지  result.getTotalPages() : " + result.getTotalPages());
+        log.info("Querydsl 결과 : 페이지 number  result.getNumber() : " + result.getNumber());
+        log.info("Querydsl 결과 : 페이지 당 불러올 수  result.getSize() : " + result.getSize());
+        log.info("Querydsl 결과 : 불러올 데이터 목록  result.getContent() : ");
+        log.info("Querydsl 결과 : 이전 페이지  존재 여부  result.hasPrevious() : " + result.hasPrevious());
+        log.info("Querydsl 결과 : 다음 페이지  존재 여부  result.hasNext() : " + result.hasNext());
         // 불러올 목록 데이터를 받아서 처리해보기.
-//        List<Lunch> list = result.getContent();
-//        list.forEach(board -> log.info(board));
+        List<Lunch> list = result.getContent();
+        list.forEach(board -> log.info(board));
     }
 }
