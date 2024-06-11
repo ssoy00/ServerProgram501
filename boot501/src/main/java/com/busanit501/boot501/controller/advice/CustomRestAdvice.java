@@ -18,6 +18,7 @@ public class CustomRestAdvice {
 
     @ExceptionHandler(BindException.class)
     @ResponseStatus(HttpStatus.EXPECTATION_FAILED)
+    // BindException e = bindingResult;
     public ResponseEntity<Map<String, String>> handleBindException(BindException e) {
         log.error("BindException 확인"+e);
         // 에러 관련 정보 담는 임시 박스
