@@ -46,9 +46,28 @@ Controller 표현.
 implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.5.0'
 
 2) 설정 클래스
+@Configuration
+public class SwaggerConfig {
 
+    @Bean
+    public OpenAPI openAPI() {
+        return new OpenAPI()
+                .info(new Info()
+                        .title("레스트 API 테스트")
+                        .description("Rest 활용해서 댓글도 구현해보기")
+                        .version("1.0.0")
+                );
+    }
 
+}
 
+3) @RestController 클래스에서, 태그를 달아서 식별하기.
+
+4) 설정 클래스 추가 2
+ @Configuration
+   @EnableWebMvc
+   public class CustomServletConfig {
+   }
 
 
 // 특정 프레이워크 종속 되지 않아요. 예) 스프링, 앱, 프레임워크 등...
