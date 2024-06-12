@@ -23,7 +23,7 @@ public class ReplyServiceImpl implements ReplyService {
 
     @Override
     public Long register(ReplyDTO replyDTO) {
-        Reply reply = modelMapper.map(replyDTO,Reply.class);
+        Reply reply = modelMapper.map(replyDTO, Reply.class);
         // replyDTO 들어 있는 게시글 번호로, 해당 엔티티 객체를 가지고 오기.
         Optional<Board> result = boardRepository.findById(replyDTO.getBno());
         Board board = result.orElseThrow();
@@ -36,14 +36,17 @@ public class ReplyServiceImpl implements ReplyService {
     @Override
     public ReplyDTO read(Long rno) {
         Optional<Reply> replyOptional = replyRepository.findById(rno);
-        Reply reply= replyOptional.orElseThrow();
-        ReplyDTO replyDTO = modelMapper.map(reply,ReplyDTO.class);
+        Reply reply = replyOptional.orElseThrow();
+        ReplyDTO replyDTO = modelMapper.map(reply, ReplyDTO.class);
         return replyDTO;
     }
 
     @Override
     public void update(ReplyDTO replyDTO) {
-
+        Optional<Reply> replyOptional = replyRepository.findById(replyDTO.getRno());
+        Reply reply = replyOptional.orElseThrow();
+        reply.chageText(replyDTO.getReplyText());
+        replyRepository.save(reply);
     }
 
     @Override
