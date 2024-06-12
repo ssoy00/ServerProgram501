@@ -2,10 +2,15 @@ package com.busanit501.boot501.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-
+// 댓글이 사용되는 방식이 주로 게시물의 번호를 통해서 사용되는 경우가 많아서,
+// 게시글 당 댓글의 수나, 해당 게시글의 댓글 목록등
+// 쿼리 조건으로 자주 사용되는 컬럼에 인덱스 생성하기.
 @Entity
 @Getter
 @Builder
+@Table(name = "reply", indexes = {
+        @Index(name = "idx_reply_board_bno", columnList = "board_bno")
+})
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(exclude = "board")
