@@ -7,9 +7,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 @Log4j2
-public class ReplyRepository {
+public class ReplyRepositoryTest {
     @Autowired
-    private ReplyRepository replyRepository;
+    private ReplyRepositoryTest replyRepository;
 
     @Test
     public void testInsert() {
