@@ -216,7 +216,7 @@
         const formObj = document.querySelector("form")
         formObj.innerHTML += `<input type="hidden" name="page" value="${num}">`
         formObj.submit()
-        self.location = `/board/list?page=${num}${link}`
+        // self.location = `/board/list?page=${num}?${link}`
 
     }, false)
 </script>

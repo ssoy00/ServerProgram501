@@ -20,6 +20,8 @@ public class BoardRepositoryTests {
 
   @Autowired
   BoardRepository boardRepository;
+    @Autowired
+    private ReplyRepository replyRepository;
 
   @Test
   public void testInsert() {
@@ -34,6 +36,7 @@ public class BoardRepositoryTests {
           // save 없으면, 1)추가, 있으면, 2) 수정.
           Board result = boardRepository.save(board);
           log.info("추가한 BNO: " + result.getBno());
+
         }
     );
 
