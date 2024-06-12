@@ -5,6 +5,7 @@ import com.busanit501.boot501.domain.QBoard;
 import com.busanit501.boot501.domain.QReply;
 import com.busanit501.boot501.dto.BoardListReplyCountDTO;
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.JPQLQuery;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
@@ -116,6 +117,19 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
     query.leftJoin(reply).on(reply.board.eq(board));
 
     query.groupBy(board);
+
+    //Querydsl -> JPQL 를 이용해서 디비에 명령을 전달.
+    // 편의기능, JPQL 이용해서, 해당 데이터의 결과를 자동으로 모델에 맵핑 해주는기능.
+    // Projection 기능. , 자동으로 조회된 데이터 결과를 변환 해주기, DTO로
+
+    JPQLQuery<BoardListReplyCountDTO> dtoQuery = query.select(
+            Projections.bean(BoardListReplyCountDTO.class,
+                    board.bno,
+                    board.title,
+                    board.writer,
+                    board.regDate,
+                    reply.count().as("replyCount"))
+    );
 
     return null;
   }
