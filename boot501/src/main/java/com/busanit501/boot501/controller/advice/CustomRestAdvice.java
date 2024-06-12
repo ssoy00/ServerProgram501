@@ -38,7 +38,7 @@ return ResponseEntity.badRequest().body(errorMap);
     @ExceptionHandler(DataIntegrityViolationException.class)
     @ResponseStatus(HttpStatus.EXPECTATION_FAILED)
     // BindException e = bindingResult;
-    public ResponseEntity<Map<String, String>> handleFKException(BindException e) {
+    public ResponseEntity<Map<String, String>> handleFKException(Exception e) {
         log.error("handleFKException 확인"+e);
         // 에러 관련 정보 담는 임시 박스
         // 전달할 데이터,(에러 정보를 가지고 있는 데이터)
