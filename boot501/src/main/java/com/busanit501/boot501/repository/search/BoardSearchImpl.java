@@ -2,6 +2,8 @@ package com.busanit501.boot501.repository.search;
 
 import com.busanit501.boot501.domain.Board;
 import com.busanit501.boot501.domain.QBoard;
+import com.busanit501.boot501.domain.QReply;
+import com.busanit501.boot501.dto.BoardListReplyCountDTO;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.JPQLQuery;
 import lombok.extern.log4j.Log4j2;
@@ -99,6 +101,23 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
     Page<Board> result = new PageImpl<>(list, pageable,count);
 
     return result;
+  }
+
+  //Left Join(Outer join) , 다른 테이블을 연결하는데.
+  // 널인 데이터도 같이 붙이겠다.
+  @Override
+  public Page<BoardListReplyCountDTO> searchWithReplyCount(String[] types, String keyword, Pageable pageable) {
+    // Querydsl 버전에 조인하는 방법.
+    QBoard board = QBoard.board;
+    QReply reply = QReply.reply;
+
+    //Left Join(Outer join)
+    JPQLQuery<Board> query = from(board);
+    query.leftJoin(reply).on(reply.board.eq(board));
+
+    query.groupBy(board);
+
+    return null;
   }
 }
 
