@@ -2,12 +2,17 @@ package com.busanit501.boot501.service;
 
 import com.busanit501.boot501.domain.Board;
 import com.busanit501.boot501.domain.Reply;
+import com.busanit501.boot501.dto.PageRequestDTO;
+import com.busanit501.boot501.dto.PageResponseDTO;
 import com.busanit501.boot501.dto.ReplyDTO;
 import com.busanit501.boot501.repository.BoardRepository;
 import com.busanit501.boot501.repository.ReplyRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -52,5 +57,16 @@ public class ReplyServiceImpl implements ReplyService {
     @Override
     public void delete(Long rno) {
      replyRepository.deleteById(rno);
+    }
+
+    @Override
+    public PageResponseDTO<ReplyDTO> getListOfBoard
+            (Long bno, PageRequestDTO pageRequestDTO) {
+        //페이징 조건 정의하기.
+//        Pageable pageable = PageRequest.of(pageRequestDTO.getPage()-1 <=0 ? 0 :pageRequestDTO.getPage()-1,pageRequestDTO.getSize(), Sort.by("rno").descending());
+        Pageable pageable = PageRequest.of(pageRequestDTO.getPage()-1 <=0 ? 0 :pageRequestDTO.getPage()-1, pageRequestDTO.getSize(),Sort.by("rno").descending());
+
+
+        return null;
     }
 }
