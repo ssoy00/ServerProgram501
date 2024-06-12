@@ -132,12 +132,15 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
           case "t":
             log.info("조건절 실행여부 확인 2 :  title");
             booleanBuilder.or(board.title.contains(keyword));
+            break;
           case "w":
             log.info("조건절 실행여부 확인 2 :  writer");
             booleanBuilder.or(board.writer.contains(keyword));
+            break;
           case "c":
             log.info("조건절 실행여부 확인 2 :  content");
             booleanBuilder.or(board.content.contains(keyword));
+            break;
         } //switch
       } // end for
       // BooleanBuilder를 적용하기.
