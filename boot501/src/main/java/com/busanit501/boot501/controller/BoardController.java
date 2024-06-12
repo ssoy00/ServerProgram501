@@ -23,7 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequiredArgsConstructor
 public class BoardController {
     private final BoardService boardService;
-//깃 테스트
+//깃 테스트2
     // ex) /board/list
     @GetMapping("/list")
     public void list(PageRequestDTO pageRequestDTO, Model model) {
