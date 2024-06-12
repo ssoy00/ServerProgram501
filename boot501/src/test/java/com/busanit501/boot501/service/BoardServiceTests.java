@@ -1,6 +1,7 @@
 package com.busanit501.boot501.service;
 
 import com.busanit501.boot501.dto.BoardDTO;
+import com.busanit501.boot501.dto.BoardListReplyCountDTO;
 import com.busanit501.boot501.dto.PageRequestDTO;
 import com.busanit501.boot501.dto.PageResponseDTO;
 import lombok.extern.log4j.Log4j2;
@@ -79,6 +80,22 @@ public class BoardServiceTests {
             .build();
 
   PageResponseDTO<BoardDTO> responseDTO = boardService.list(pageRequestDTO);
+    log.info("list 테스트 responseDTO : " + responseDTO);
+
+  }
+
+
+  @Test
+  public void testListWithCount() {
+    // 화면에서 전달할 내용을 담은 PageRequestDTO 더미가 필요.
+    PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+            .type("tcw")
+            .keyword("오늘")
+            .page(1)
+            .size(10)
+            .build();
+
+    PageResponseDTO<BoardListReplyCountDTO> responseDTO = boardService.listWithReplyCount(pageRequestDTO);
     log.info("list 테스트 responseDTO : " + responseDTO);
 
   }

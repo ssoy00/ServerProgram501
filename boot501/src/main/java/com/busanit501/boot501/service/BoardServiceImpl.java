@@ -110,7 +110,7 @@ public class BoardServiceImpl implements BoardService {
             .total((int) result.getTotalElements())
             .build();
 
-    return null;
+    return pageResponseDTO;
   }
 }
 
