@@ -32,4 +32,9 @@ public class Reply extends BaseEntity {
 
     private String replyer;
 
+    // 댓글 내용만 교체 하기.
+    public void chageText(String text) {
+        this.replyText = text;
+    }
+
 }
