@@ -10,12 +10,15 @@ import com.busanit501.boot501.repository.ReplyRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -63,10 +66,20 @@ public class ReplyServiceImpl implements ReplyService {
     public PageResponseDTO<ReplyDTO> getListOfBoard
             (Long bno, PageRequestDTO pageRequestDTO) {
         //페이징 조건 정의하기.
-//        Pageable pageable = PageRequest.of(pageRequestDTO.getPage()-1 <=0 ? 0 :pageRequestDTO.getPage()-1,pageRequestDTO.getSize(), Sort.by("rno").descending());
+//      Pageable pageable = PageRequest.of(pageRequestDTO.getPage()-1 <=0 ? 0 :pageRequestDTO.getPage()-1,pageRequestDTO.getSize(), Sort.by("rno").descending());
         Pageable pageable = PageRequest.of(pageRequestDTO.getPage()-1 <=0 ? 0 :pageRequestDTO.getPage()-1, pageRequestDTO.getSize(),Sort.by("rno").descending());
+        Page<Reply> result = replyRepository.listOfBoard(bno,pageable);
 
+        List<ReplyDTO> dtoList = result.getContent().stream()
+                .map(reply -> modelMapper.map(reply,ReplyDTO.class))
+                .collect(Collectors.toList());
 
-        return null;
+        PageResponseDTO<ReplyDTO> pageResponseDTO = PageResponseDTO.<ReplyDTO>withAll()
+                .pageRequestDTO(pageRequestDTO)
+                .dtoList(dtoList)
+                .total((int) result.getTotalElements())
+                .build();
+
+        return pageResponseDTO;
     }
 }
