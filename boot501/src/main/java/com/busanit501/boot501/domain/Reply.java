@@ -13,7 +13,8 @@ import lombok.*;
 })
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude = "board")
+//@ToString(exclude = "board")
+@ToString
 public class Reply extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
