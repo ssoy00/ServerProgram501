@@ -32,4 +32,22 @@ public class ReplyServiceImpl implements ReplyService {
 
         return rno;
     }
+
+    @Override
+    public ReplyDTO read(Long rno) {
+        Optional<Reply> replyOptional = replyRepository.findById(rno);
+        Reply reply= replyOptional.orElseThrow();
+        ReplyDTO replyDTO = modelMapper.map(reply,ReplyDTO.class);
+        return replyDTO;
+    }
+
+    @Override
+    public void update(ReplyDTO replyDTO) {
+
+    }
+
+    @Override
+    public void delete(Long rno) {
+
+    }
 }
