@@ -22,7 +22,7 @@ public class ReplyRepositoryTest {
     public void testInsert() {
         //실제 디비 각자 데이터에 따라서 다름.
         // 현재 bno = 900
-        Long bno = 900L;
+        Long bno = 901L;
 
         Board board = Board.builder()
                 .bno(bno)
