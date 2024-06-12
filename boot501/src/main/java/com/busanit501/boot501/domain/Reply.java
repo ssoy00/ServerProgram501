@@ -7,6 +7,7 @@ import lombok.*;
 // 쿼리 조건으로 자주 사용되는 컬럼에 인덱스 생성하기.
 @Entity
 @Getter
+@Setter
 @Builder
 @Table(name = "reply", indexes = {
         @Index(name = "idx_reply_board_bno", columnList = "board_bno")

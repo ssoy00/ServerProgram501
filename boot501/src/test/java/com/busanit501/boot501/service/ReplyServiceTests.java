@@ -1,5 +1,6 @@
 package com.busanit501.boot501.service;
 
+import com.busanit501.boot501.domain.Board;
 import com.busanit501.boot501.dto.ReplyDTO;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,9 @@ public class ReplyServiceTests {
 
     @Test
     public void testInsert() {
+
+       /
+
         // 작성할 더미 댓글 필요함.
         ReplyDTO replyDTO = ReplyDTO.builder()
                 .bno(901L)
