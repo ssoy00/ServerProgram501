@@ -76,14 +76,14 @@
     <div class="row content mt-2">
         <div class="col">
             <div class="paging-container">
-            <ul class="pagination replyPaging">
+                <ul class="pagination replyPaging">
 
-            </ul>
+                </ul>
             </div>
         </div>
     </div>
 
-<!--    댓글 작성 모달 창 폼-->
+    <!--    댓글 작성 모달 창 폼-->
     <!-- Modal -->
     <div class="modal registerModal" tabindex="-1">
         <div class="modal-dialog">
@@ -96,17 +96,18 @@
                     <div class="input-group mb-3">
                         <span class="input-group-text">댓글 내용</span>
                         <input type="text" placeholder="내용을 입력해주세요."
-                               class="form-control replyText" ></input>
+                               class="form-control replyText"></input>
                     </div>
                     <div class="input-group mb-3">
                         <span class="input-group-text">작성자</span>
                         <input type="text" placeholder="작성자를 입력해주세요."
-                               class="form-control replyer" ></input>
+                               class="form-control replyer"></input>
                     </div>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary closeRegisterBtn" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary closeRegisterBtn" data-bs-dismiss="modal">Close
+                    </button>
                     <button type="button" class="btn btn-primary registerBtn">댓글 추가하기</button>
                 </div>
             </div>
@@ -124,6 +125,28 @@
 <!--자바스크립트 추가하는 영역-->
 <script layout:fragment="javascript" th:inline="javascript">
 
+    // 페이지 이동 이벤트 처리=====================================================
+    let page = 1
+    let size = 10
+
+    replyPaging.addEventListener("click",function (e){
+        e.preventDefault()
+        e.stopPropagation()
+
+        const target = e.target
+
+        // a 태그만 이벤트 처리 하겠다, 그외에는 넘어가기함.
+        if(!target || target.tagName != 'A'){
+            return
+        }
+        const pageNum = target.getAttribute("data-page")
+        page = pageNum
+        printReplies(page,size)
+
+    },false)
+    // 페이지 이동 이벤트 처리=====================================================
+
+
     // 모달 댓글 폼 표시하기=====================================================
     const registerModal = new bootstrap.Modal(document.querySelector(".registerModal"))
 
@@ -134,11 +157,11 @@
     const closeRegisterBtn = document.querySelector(".closeRegisterBtn")
 
     // 이벤트 처리하기.
-    document.querySelector(".addReplyBtn").addEventListener("click",function (e){
+    document.querySelector(".addReplyBtn").addEventListener("click", function (e) {
         registerModal.show()
-    },false)
+    }, false)
 
-    document.querySelector(".registerBtn").addEventListener("click",function (e){
+    document.querySelector(".registerBtn").addEventListener("click", function (e) {
         // registerModal.hide()
         const replyObj = {
             bno: bno,
@@ -152,15 +175,15 @@
             // 모달 창 닫기
             registerModal.hide()
             // 기존 입력폼의 값 비우기
-            replyText.value=""
-            replyer.value=""
+            replyText.value = ""
+            replyer.value = ""
             // 마지막 댓글 페이지 이동
-            printReplies(1,10,true)
+            printReplies(1, 10, true)
         }).catch(e => {
             alert("댓글 작성 실패")
         })
 
-    },false)
+    }, false)
     // 모달 댓글 폼 표시하기=====================================================
 
     const bno = [[${boardDTO.bno}]]
@@ -189,7 +212,7 @@
 
     // 통신 확인 ==========================================================
     // goLast 부분 추가해서 테스트
-    printReplies(2, 10, true)
+    printReplies(1, 10)
 
     /////댓글 목록 , HTML 그리기/////////////////
     function printList(dtoList) {
