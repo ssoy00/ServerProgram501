@@ -90,7 +90,7 @@ public class ReplyController {
 
 
     @Tag(name = "특정 댓글 수정 put 방식", description = "특정 댓글 수정 put 방식")
-    @PostMapping(value = "/{rno}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/{rno}", consumes = MediaType.APPLICATION_JSON_VALUE)
     //ResponseEntity, 데이터 + http 상태코드 같이 전달 도구.
 //    public ResponseEntity<Map<String,Long>> register(
     public Map<String,Long> update(
