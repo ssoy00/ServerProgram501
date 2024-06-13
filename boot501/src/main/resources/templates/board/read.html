@@ -66,6 +66,7 @@
             <div>
                 <button class="btn btn-info addReplyBtn">댓글 작성</button>
                 <ul class="list-group replyList mt-3">
+
                 </ul>
             </div>
         </div>
@@ -119,11 +120,11 @@
         // 주입할 html 태그를 이 변수에 넣을 예정.
         let str = '';
         // 기본 유효성 체크.
-        if(dtoList && dtoList.length > 0){
-            for(const dto of dtoList){
+        if (dtoList && dtoList.length > 0) {
+            for (const dto of dtoList) {
                 str +=
                     `
-<li class="list-group-item d-flex replyItem">
+<li class="list-group-item d-flex replyItem" style="background-color: red">
 <span class="col-2">${dto.rno}</span>
 <span class="col-6" data-rno="${dto.rno}">${dto.replyText}</span>
 <span class="col-2">${dto.replyer}</span>
@@ -137,7 +138,27 @@
 
     /////댓글 페이징, HTML 그리기/////////////////////////////////////
     function printPages(data) {
+        // 문자열로 HTML 요소를 pageStr 담아서, 주입, 그리기 할 예정.
+        let pageStr = "";
+        // 이전 페이지 여부
+        if (data.prev) {
+            pageStr += `<li class="page-item"<a class="page-link"
+            data-page="${data.start - 1}">Prev</a></li>`
+        }
 
+        // 페이징 번호 그리기
+        for (let i = data.start; i <= data.end; i++) {
+            pageStr += `<li class="page-item ${i == data.page ? "active" : ""}">
+<a class="page-link" data-page="${i}">${i}</a>`
+        }
+
+        // 다음 페이지 여부
+        if (data.next) {
+            pageStr += `<li class="page-item"<a class="page-link"
+            data-page="${data.end + 1}">Next</a></li>`
+        }
+        // 위에서 만든 가상의 HTML 요소를 , 특정 요소에 주입하기.
+        replyPaging.innerHTML = pageStr
     }
 
     // 데이터 출력용
