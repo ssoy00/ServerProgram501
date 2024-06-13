@@ -115,6 +115,33 @@
     </div>
     <!--모달창 끝-->
 
+    <!--    댓글 수정 모달 창 폼-->
+    <!-- Modal -->
+    <div class="modal updateModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header ">
+<!--                    수정 또는 삭제 재사용-->
+                    <h4 class="modal-title replyHeader"></h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">댓글 내용</span>
+                        <input type="text" class="form-control updateText"></input>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary closeRegisterBtn" data-bs-dismiss="modal">Close
+                    </button>
+                    <button type="button" class="btn btn-primary updateBtn">댓글 수정하기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--모달창 끝-->
+
     <!--    axios 사용하기 위한 도구 설치-->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!--    우리가 정의한 /js/reply.js 불러오기-->
@@ -166,6 +193,8 @@
 
     }, false)
     // 모달 댓글 폼 표시하기=====================================================
+
+
 
     const bno = [[${boardDTO.bno}]]
 
