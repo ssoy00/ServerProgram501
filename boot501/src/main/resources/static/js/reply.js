@@ -30,6 +30,21 @@ async function addReply(replyObj){
     return response.data
 }
 
+// 조회
+async function getReply(rno){
+    const response = await axios.get(`/replies/${rno}`)
+    return response.data
+}
+
+// 수정
+async function updateReply(replyObj){
+    const response = await axios.put(`/replies/${replyObj.rno}`,replyObj)
+    return response.data
+}
+
+// 삭제
+
+
 
 
 
