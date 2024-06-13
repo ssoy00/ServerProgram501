@@ -87,7 +87,14 @@
 <script layout:fragment="javascript" th:inline="javascript">
     const bno = [[${boardDTO.bno}]]
 
+    //화면에, 데이터를 넣기 위해서, innerHTML 이용해서, 주입 하기.
+    const replyList = document.querySelector(".replyList")
+    const replyPaging = document.querySelector(".replyPaging")
+
+// 댓글을 출력 해주는 함수에서,  innerHTML 이용해서, 주입 하기
     function printReplies(page,size,goLast){
+        // 주입할 html 태그를 이 변수에 넣을 예정.
+        let str = '';
         getList({bno,page,size,goLast}).then(
             data => {console.log((data))}
         ).catch(e => {
