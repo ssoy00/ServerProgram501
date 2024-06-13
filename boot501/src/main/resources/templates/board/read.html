@@ -125,26 +125,7 @@
 <!--자바스크립트 추가하는 영역-->
 <script layout:fragment="javascript" th:inline="javascript">
 
-    // 페이지 이동 이벤트 처리=====================================================
-    let page = 1
-    let size = 10
 
-    replyPaging.addEventListener("click",function (e){
-        e.preventDefault()
-        e.stopPropagation()
-
-        const target = e.target
-
-        // a 태그만 이벤트 처리 하겠다, 그외에는 넘어가기함.
-        if(!target || target.tagName != 'A'){
-            return
-        }
-        const pageNum = target.getAttribute("data-page")
-        page = pageNum
-        printReplies(page,size)
-
-    },false)
-    // 페이지 이동 이벤트 처리=====================================================
 
 
     // 모달 댓글 폼 표시하기=====================================================
@@ -259,6 +240,28 @@
         // 위에서 만든 가상의 HTML 요소를 , 특정 요소에 주입하기.
         replyPaging.innerHTML = pageStr
     }
+
+    // 페이지 이동 이벤트 처리=====================================================
+    let page = 1
+    let size = 10
+
+    replyPaging.addEventListener("click",function (e){
+        e.preventDefault()
+        e.stopPropagation()
+
+        const target = e.target
+
+        // a 태그만 이벤트 처리 하겠다, 그외에는 넘어가기함.
+        if(!target || target.tagName != 'A'){
+            return
+        }
+        const pageNum = target.getAttribute("data-page")
+        page = pageNum
+        printReplies(page,size)
+
+    },false)
+    // 페이지 이동 이벤트 처리=====================================================
+
 
     // 데이터 출력용
     // console.log(getTest(bno))
