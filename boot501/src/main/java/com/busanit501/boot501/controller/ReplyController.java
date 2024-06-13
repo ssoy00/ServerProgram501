@@ -54,7 +54,7 @@ public class ReplyController {
     } // register 닫는 부분
 
     @Tag(name = "댓글 목록 조회 get 방식", description = "댓글 목록 조회 get 방식")
-    @GetMapping(value = "/list/{bno}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/list/{bno}")
     public PageResponseDTO<ReplyDTO> getList(
             // 경로의 변수를 서버에 재할당.
             // 게시글 번호를 가지고 올 예정.
