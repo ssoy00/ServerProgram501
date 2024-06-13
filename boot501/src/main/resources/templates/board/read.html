@@ -144,7 +144,7 @@
         let pageStr = "";
         // 이전 페이지 여부
         if (data.prev) {
-            pageStr += `<li class="page-item"<a class="page-link"
+            pageStr += `<li class="page-item"><a class="page-link"
             data-page="${data.start - 1}">Prev</a></li>`
         }
 
@@ -156,7 +156,7 @@
 
         // 다음 페이지 여부
         if (data.next) {
-            pageStr += `<li class="page-item"<a class="page-link"
+            pageStr += `<li class="page-item"><a class="page-link"
             data-page="${data.end + 1}">Next</a></li>`
         }
         // 위에서 만든 가상의 HTML 요소를 , 특정 요소에 주입하기.
