@@ -83,6 +83,32 @@
         </div>
     </div>
 
+<!--    댓글 작성 모달 창 폼-->
+    <!-- Modal -->
+    <div class="modal registerModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>댓글 등록 폼</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">댓글 내용</span>
+                        <input type="text" placeholder="내용을 입력해주세요."
+                               class="form-control replyText" ></input>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--모달창 끝-->
+
     <!--    axios 사용하기 위한 도구 설치-->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!--    우리가 정의한 /js/reply.js 불러오기-->
