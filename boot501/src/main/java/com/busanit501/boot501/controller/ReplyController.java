@@ -75,5 +75,18 @@ public class ReplyController {
         return  replyDTO;
     } //getList
 
+    @Tag(name = "특정 댓글 삭제 delete 방식", description = "특정 댓글 삭제 delete 방식")
+    @DeleteMapping(value = "/{rno}")
+    public Map<String,Long> delete(
+            // 경로의 변수를 서버에 재할당.
+            // 게시글 번호를 가지고 올 예정.
+            @PathVariable("rno") Long rno
+    ) {
+        replyService.delete(rno);
+        Map<String,Long> resultMap = new HashMap<>();
+        resultMap.put("rno",rno);
+        return  resultMap;
+    } //getList
+
 
 }
