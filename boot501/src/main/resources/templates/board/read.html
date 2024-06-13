@@ -86,7 +86,19 @@
 <!--자바스크립트 추가하는 영역-->
 <script layout:fragment="javascript" th:inline="javascript">
     const bno = [[${boardDTO.bno}]]
-    console.log(getTest(bno))
+    // 데이터 출력용
+    // console.log(getTest(bno))
+
+//     async ,await 키워드 이용해서 함수를 호출하니, 반환 되는 타입
+// Promise 약속, 번호표
+    // getTest(bno) 데이터를 받아온다면, 그 다음 작업을 then 실행
+    // 예외처리, 데이터를 못가져오는 경우, 인터넷이 갑자기 안되어서.
+    getTest(bno).then(data => {
+        console.log(data)
+    }).catch(e => {
+        console.error(e)
+    })
+
 </script>
 
 </body>
