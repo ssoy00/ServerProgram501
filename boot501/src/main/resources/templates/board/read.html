@@ -367,6 +367,37 @@
 
 
 
+    // 댓글 수정 이벤트 처리===============================================
+    document.querySelector(".updateBtn").addEventListener("click", function (e) {
+        // registerModal.hide()
+        const replyObj = {
+            bno: bno,
+            replyText: updateText.value
+        }
+        // reply.js , updateReply 이용하기.
+        updateReply(replyObj).then(result => {
+            // 댓글 수정 성공 후 처리
+            alert(result.rno + "번 댓글 수정 성공: ")
+            // 모달 창 닫기
+            updateModal.hide()
+            // 기존 입력폼의 값 비우기
+            updateText.value = ""
+            // 마지막 댓글 페이지 이동
+            printReplies(page, size)
+        }).catch(e => {
+            alert("댓글 수정 실패")
+        })
+
+    }, false)
+    // 댓글 수정 이벤트 처리===============================================
+
+    // 댓글 수정 닫기 이벤트 처리===============================================
+    closeUpdateBtn.addEventListener("click",function (e){
+        updateModal.hide()
+    },false)
+    // 댓글 수정 닫기 이벤트 처리===============================================
+
+
 
     // 데이터 출력용
     // console.log(getTest(bno))
