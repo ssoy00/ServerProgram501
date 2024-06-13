@@ -123,6 +123,26 @@
 
 <!--자바스크립트 추가하는 영역-->
 <script layout:fragment="javascript" th:inline="javascript">
+
+    // 모달 댓글 폼 표시하기=====================================================
+    const registerModal = new bootstrap.Modal(document.querySelector(".registerModal"))
+
+    // 필요한 요소 준비물 준비.
+    const registerBtn = document.querySelector(".registerBtn")
+    const replyText = document.querySelector(".replyText")
+    const replyer = document.querySelector(".replyer")
+    const closeRegisterBtn = document.querySelector(".closeRegisterBtn")
+
+    // 이벤트 처리하기.
+    document.querySelector(".addReplyBtn").addEventListener("click",function (e){
+        registerModal.show()
+    },false)
+
+    document.querySelector(".registerBtn").addEventListener("click",function (e){
+        registerModal.hide()
+    })
+    // 모달 댓글 폼 표시하기=====================================================
+
     const bno = [[${boardDTO.bno}]]
 
     //화면에, 데이터를 넣기 위해서, innerHTML 이용해서, 주입 하기.
