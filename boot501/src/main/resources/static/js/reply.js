@@ -13,6 +13,14 @@ async function getTest(bno) {
 // goLast: 마지막에 최신 댓글이 있다면, 마지막 댓글로 가는 여부.
 async function getList({bno,page,size,goLast}){
    const result = await axios.get(`/replies/list/${bno}`,{params : {page,size}})
+
+    // 마지막 댓글 보러가기
+    if(goLast) {
+        const total = result.data.total
+        const lastPage = parseInt(Math.ceil(total/size))
+        return getList({bno:bno, page:lastPage, size:size})
+    }
+
     return result.data
 }
 
