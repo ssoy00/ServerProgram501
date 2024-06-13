@@ -45,7 +45,11 @@ async function updateReply(replyObj){
 }
 
 // 삭제
+async function deleteReply(rno){
 
+    const response = await axios.delete(`/replies/${rno}`)
+    return response.data
+}
 
 
 

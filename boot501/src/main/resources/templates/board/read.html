@@ -399,6 +399,27 @@
     // 댓글 수정 닫기 이벤트 처리===============================================
 
 
+    // 댓글 삭제 이벤트 처리===============================================
+    //document.querySelector(".deleteBtn").addEventListener("click", function (e) {
+    deleteBtn.addEventListener("click", function (e) {
+
+       const rno = replyHeader.innerHTML
+        deleteReply(rno).then(result => {
+            // 댓글 삭제 성공 후 처리
+            alert(result.rno + "번 댓글 삭제 성공: ")
+            // 모달 창 닫기
+            updateModal.hide()
+            // 기존 입력폼의 값 비우기
+            updateText.value = ""
+            // 마지막 댓글 페이지 이동
+            printReplies(page, size)
+        }).catch(e => {
+            alert("댓글 삭제 실패")
+        })
+
+    }, false)
+    // 댓글 삭제 이벤트 처리===============================================
+
 
     // 데이터 출력용
     // console.log(getTest(bno))
