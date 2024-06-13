@@ -26,7 +26,7 @@ async function getList({bno,page,size,goLast}){
 
 //댓글 등록, 모달창으로 작업하기.
 async function addReply(replyObj){
-   const response = await axios.post(`/replies/`)
+   const response = await axios.post(`/replies/`,replyObj)
     return response.data
 }
 
