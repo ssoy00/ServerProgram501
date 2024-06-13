@@ -45,7 +45,11 @@ public class ReplyServiceImpl implements ReplyService {
     public ReplyDTO read(Long rno) {
         Optional<Reply> replyOptional = replyRepository.findById(rno);
         Reply reply = replyOptional.orElseThrow();
+        log.info("확인1 Read reply: " + reply);
         ReplyDTO replyDTO = modelMapper.map(reply, ReplyDTO.class);
+        log.info("확인2 Read replyDTO: " + replyDTO);
+        replyDTO.setBno(reply.getBoard().getBno());
+        log.info("확인3 Read replyDTO: " + replyDTO);
         return replyDTO;
     }
 
@@ -71,7 +75,11 @@ public class ReplyServiceImpl implements ReplyService {
         Page<Reply> result = replyRepository.listOfBoard(bno,pageable);
 
         List<ReplyDTO> dtoList = result.getContent().stream()
-                .map(reply -> modelMapper.map(reply,ReplyDTO.class))
+                .map(reply ->{
+                        ReplyDTO replyDTO = modelMapper.map(reply,ReplyDTO.class);
+                        replyDTO.setBno(reply.getBoard().getBno());
+                        return replyDTO;
+                })
                 .collect(Collectors.toList());
 
         PageResponseDTO<ReplyDTO> pageResponseDTO = PageResponseDTO.<ReplyDTO>withAll()
