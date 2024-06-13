@@ -38,6 +38,8 @@ async function getReply(rno){
 
 // 수정
 async function updateReply(replyObj){
+    console.log("replyObj 확인: " + replyObj.rno)
+    console.log("replyObj 확인2: " + replyObj.replyText)
     const response = await axios.put(`/replies/${replyObj.rno}`,replyObj)
     return response.data
 }

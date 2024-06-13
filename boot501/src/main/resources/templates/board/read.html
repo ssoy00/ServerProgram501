@@ -371,7 +371,8 @@
     document.querySelector(".updateBtn").addEventListener("click", function (e) {
         // registerModal.hide()
         const replyObj = {
-            bno: bno,
+            bno:bno,
+            rno: replyHeader.innerHTML,
             replyText: updateText.value
         }
         // reply.js , updateReply 이용하기.
