@@ -105,7 +105,10 @@
         // let str = '';
         getList({bno, page, size, goLast}).then(
             data => {
+                // 테스트용
                 console.log((data))
+                // 서버에서, 통신 후, 받아온 데이터, 안에 dtoList
+                printList(data.dtoList)
             }
         ).catch(e => {
             console.error(e)
