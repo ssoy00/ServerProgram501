@@ -133,7 +133,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary closeRegisterBtn" data-bs-dismiss="modal">Close
+                    <button type="button" class="btn btn-secondary closeUpdateBtn" data-bs-dismiss="modal">Close
                     </button>
                     <button type="button" class="btn btn-primary updateBtn">수정하기</button>
                     <button type="button" class="btn btn-warning deleteBtn">삭제하기</button>
@@ -194,6 +194,72 @@
 
     }, false)
     // 모달 댓글 폼 표시하기=====================================================
+
+    // 모달 댓글 수정폼 표시하기=====================================================
+    const updateModal = new bootstrap.Modal(document.querySelector(".updateModal"))
+
+    // 필요한 요소 준비물 준비.
+    const replyHeader = document.querySelector(".replyHeader")
+    const updateBtn = document.querySelector(".updateBtn")
+    const deleteBtn = document.querySelector(".deleteBtn")
+    const updateText = document.querySelector(".updateText")
+    const closeUpdateBtn = document.querySelector(".closeUpdateBtn")
+
+    // 이벤트 처리하기.
+    // 댓글 목록에서 하나 댓글 선택시, 이벤트 처리
+    replyList.addEventListener("click", function (e){
+        e.preventDefault()
+        e.stopPropagation()
+
+        const target = e.target
+
+        // 목록요소를 선택시 span만 이벤트 처리 하겠다.
+        if(!target || target.tagName != 'SPAN' ){
+            return
+        }
+        // span 태그에 있는 속성 data-rno 값 가져오기.
+        const rno = target.getAttribute("data-rno")
+
+        // span 태그 중에서, data-rno 요소가 있는 것만 처리하겠다.
+        if(!rno) {
+            return;
+        }
+
+        getReply(rno).then(reply => {
+            console.log("조회한 reply : " + reply)
+            replyHeader.innerHTML = reply.rno
+            updateText.value = reply.replyText
+            updateModal.show()
+        }).catch(e =>
+            alert("댓글 조회 실패")
+        )
+
+    },false)
+
+    document.querySelector(".registerBtn").addEventListener("click", function (e) {
+        // registerModal.hide()
+        const replyObj = {
+            bno: bno,
+            replyText: replyText.value,
+            replyer: replyer.value
+        }
+        // reply.js , addReply 이용하기.
+        addReply(replyObj).then(result => {
+            // 댓글 쓰기 성공 후 처리
+            alert(result.rno + "번 댓글 작성 성공: ")
+            // 모달 창 닫기
+            registerModal.hide()
+            // 기존 입력폼의 값 비우기
+            replyText.value = ""
+            replyer.value = ""
+            // 마지막 댓글 페이지 이동
+            printReplies(1, 10, true)
+        }).catch(e => {
+            alert("댓글 작성 실패")
+        })
+
+    }, false)
+    // 모달 댓글 수정폼 표시하기=====================================================
 
 
 
