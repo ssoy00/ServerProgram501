@@ -101,6 +101,8 @@ public class ReplyController {
             BindingResult bindingResult) throws BindException {
         log.info("ReplyController의 update ,replyDTO 확인: "+replyDTO);
 
+        // 테스트시, id 값 없다고 오류 발생해서, 수동으로 지정.
+        replyDTO.setRno(rno);
         // 에러가 발생한다면, 처리하기.
         if (bindingResult.hasErrors()) {
             throw new BindException(bindingResult);
