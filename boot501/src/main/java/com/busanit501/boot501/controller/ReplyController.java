@@ -62,7 +62,18 @@ public class ReplyController {
     ) {
         PageResponseDTO<ReplyDTO> responseDTO = replyService.getListOfBoard(bno, pageRequestDTO);
         return  responseDTO;
-    }
+    } //getList
+
+    @Tag(name = "특정 댓글 한개 조회 get 방식", description = "특정 댓글 한개 조회 get 방식")
+    @GetMapping(value = "/{rno}")
+    public ReplyDTO getReadOne(
+            // 경로의 변수를 서버에 재할당.
+            // 게시글 번호를 가지고 올 예정.
+            @PathVariable("rno") Long rno
+    ) {
+        ReplyDTO replyDTO= replyService.read(rno);
+        return  replyDTO;
+    } //getList
 
 
 }
