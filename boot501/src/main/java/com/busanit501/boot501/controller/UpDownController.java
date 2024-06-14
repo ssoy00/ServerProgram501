@@ -5,12 +5,15 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.log4j.Log4j2;
+import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -40,6 +43,16 @@ public class UpDownController {
                 try{
                     //실제 파일에 저장.
                     multipartFile.transferTo(savePath);
+
+                    //해당 파일의 종류를 확인하고, 타입 image/* 로 시작한다면
+                    // 썸네일로 변경하기.
+                    if(Files.probeContentType(savePath).startsWith("image")){
+                        // uploadPath 해당 경로에 , 물리 파일 만들기 , 이름 :"s_"+uuid+"_"+originName
+                        File thumbFile = new File(uploadPath, "s_"+uuid+"_"+originName);
+                        // 원본 이미지 -> thumbFile 곳에 축소해서 저장하기.
+                        Thumbnailator.createThumbnail(savePath.toFile(),thumbFile,200,200);
+                    }
+
                 } catch (IOException e) {
                    e.printStackTrace();
                 }
