@@ -18,10 +18,10 @@ public class UpDownController {
     @Tag(name = "파일 업로드 post 방식", description = "파일 업로드 post 방식")
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public List<UploadFileDTO> upload(
-            @Parameter(
-                    description = "Files to be uploaded",
-                    content = @Content(mediaType = MediaType.MULTIPART_FORM_DATA_VALUE)
-            )
+//            @Parameter(
+//                    description = "Files to be uploaded",
+//                    content = @Content(mediaType = MediaType.MULTIPART_FORM_DATA_VALUE)
+//            )
             UploadFileDTO uploadFileDTO){
         log.info("UpDownController에서 uploadFileDTO : "+uploadFileDTO);
         return null;
