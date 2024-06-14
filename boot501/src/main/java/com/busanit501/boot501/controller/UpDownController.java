@@ -20,9 +20,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @RestController
 @Log4j2
@@ -103,6 +101,32 @@ public class UpDownController {
             return ResponseEntity.internalServerError().build();
         }
         return ResponseEntity.ok().headers(headers).body(resource);
+    } // 이미지 하나 조회
+
+    @DeleteMapping(value = "/delete/{fileName}")
+    public Map<String,Boolean> deleteFile(@PathVariable String fileName) throws IOException {
+        // c:\\upload\\springTest\\이미지파일명, 접근 하는 객체
+        Resource resource = new FileSystemResource(
+                uploadPath+File.separator+fileName);
+        String resourceName = resource.getFilename();
+        // 결과 알려줄 임시 맵
+        Map<String,Boolean> resultMap = new HashMap<>();
+        boolean deleteCheck = false;
+        try {
+            // 원본 파일 삭제
+            // contentType , 섬네일 삭제시 이용할 예정.
+            String contentType = Files.probeContentType(resource.getFile().toPath());
+            deleteCheck = resource.getFile().delete();
+            if(contentType.startsWith("image")){
+                File thumbnailFile = new File(uploadPath+File.separator
+                        +"s_"+fileName);
+                thumbnailFile.delete();
+            }
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+        resultMap.put("result",deleteCheck);
+        return resultMap;
     }
 
 
