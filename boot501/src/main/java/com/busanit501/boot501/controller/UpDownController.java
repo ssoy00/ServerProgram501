@@ -8,9 +8,12 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.log4j.Log4j2;
 import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -81,5 +84,28 @@ public class UpDownController {
         } // if 파일(사진)이 있는 경우
         // 파일(사진)이 없을 경우
         return null;
+    } //업로드
+
+    @GetMapping(value = "/view/{fileName}")
+    public ResponseEntity<Resource> getViewFile(@PathVariable String fileName){
+        // 스프링 코어 기능에서,
+        // c:\\upload\\springTest\\이미지파일명, 접근 하는 객체
+        Resource resource = new FileSystemResource(
+                 uploadPath+File.separator+fileName);
+        String resourceName = resource.getFilename();
+        // http 헤더 객체를 이용해서 추가 옵션
+        HttpHeaders headers = new HttpHeaders();
+        try {
+            // 해당 이미지의 타입 : "image/png", "image/jpg"
+            headers.add("Content-Type",
+                    Files.probeContentType(resource.getFile().toPath()));
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
+        return ResponseEntity.ok().headers(headers).body(resource);
     }
+
+
+
+
 }
