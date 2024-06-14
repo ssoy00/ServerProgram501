@@ -170,29 +170,6 @@
         registerModal.show()
     }, false)
 
-    document.querySelector(".registerBtn").addEventListener("click", function (e) {
-        // registerModal.hide()
-        const replyObj = {
-            bno: bno,
-            replyText: replyText.value,
-            replyer: replyer.value
-        }
-        // reply.js , addReply 이용하기.
-        addReply(replyObj).then(result => {
-            // 댓글 쓰기 성공 후 처리
-            alert(result.rno + "번 댓글 작성 성공: ")
-            // 모달 창 닫기
-            registerModal.hide()
-            // 기존 입력폼의 값 비우기
-            replyText.value = ""
-            replyer.value = ""
-            // 마지막 댓글 페이지 이동
-            printReplies(1, 10, true)
-        }).catch(e => {
-            alert("댓글 작성 실패")
-        })
-
-    }, false)
     // 모달 댓글 폼 표시하기=====================================================
 
 

@@ -20,7 +20,7 @@ public class ReplyServiceTests {
 
         // 작성할 더미 댓글 필요함.
         ReplyDTO replyDTO = ReplyDTO.builder()
-                .bno(901L)
+                .bno(902L)
                 .replyText("오늘 점심? 회밀면")
                 .replyer("이상용")
                 .build();
