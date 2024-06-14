@@ -68,7 +68,13 @@ public class UpDownController {
 
                 //각각 이미지 파일명, 임시 목록에 담기.
 
-//                imgList.add()
+                UploadResultDTO uploadResultDTO = UploadResultDTO.builder()
+                        .uuid(uuid)
+                        .fileName(originName)
+                        .imgCheck(imgCheck)
+                        .build();
+
+                imgList.add(uploadResultDTO);
 
             });
         }
