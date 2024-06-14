@@ -15,8 +15,10 @@ import java.util.List;
 @RestController
 @Log4j2
 public class UpDownController {
+    @Value("${com.busanit501.upload.path}")
+    private String uploadPath;
 
-    @Tag(name = "파일 업로드 post 방식", description = "파일 업로드 post 방식")
+//    @Tag(name = "파일 업로드 post 방식", description = "파일 업로드 post 방식")
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public String upload(UploadFileDTO uploadFileDTO){
         log.info("UpDownController에서 uploadFileDTO : "+uploadFileDTO);
