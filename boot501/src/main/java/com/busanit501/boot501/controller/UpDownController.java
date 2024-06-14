@@ -76,8 +76,10 @@ public class UpDownController {
 
                 imgList.add(uploadResultDTO);
 
-            });
-        }
+            }); //foreach
+            return imgList;
+        } // if 파일(사진)이 있는 경우
+        // 파일(사진)이 없을 경우
         return null;
     }
 }
