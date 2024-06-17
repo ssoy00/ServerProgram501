@@ -113,6 +113,21 @@
      }
      alert(errorMsg)
  }
+
+ // 업로드 모달창 띄우기.
+    // 모달 댓글 폼 표시하기=====================================================
+    const uploadModal = new bootstrap.Modal(document.querySelector(".uploadModal"))
+
+    // 필요한 요소 준비물 준비.
+    const uploadBtn = document.querySelector(".uploadBtn")
+
+    // 이벤트 처리하기.
+    uploadBtn.addEventListener("click", function (e) {
+
+        e.preventDefault()
+        e.stopPropagation()
+        uploadModal.show()
+    }, false)
 </script>
 
 </body>
