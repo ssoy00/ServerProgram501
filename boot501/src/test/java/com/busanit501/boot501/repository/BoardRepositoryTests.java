@@ -1,6 +1,7 @@
 package com.busanit501.boot501.repository;
 
 import com.busanit501.boot501.domain.Board;
+import com.busanit501.boot501.domain.BoardImage;
 import com.busanit501.boot501.dto.BoardListReplyCountDTO;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
@@ -207,8 +208,12 @@ public class BoardRepositoryTests {
     log.info("========================================== ");
     log.info("BoardRepositoryTests board.getImageSet() 확인2  : "+board.getImageSet());
     // 1차 오류 발생함.
+    for (BoardImage boardImage : board.getImageSet()) {
+      log.info("BoardRepositoryTests board.getImageSet() 확인32  : " +boardImage);
+    }
 
   }
+
 
 }
 
