@@ -42,7 +42,9 @@ public class BoardServiceImpl implements BoardService {
     // 만약 있다면, 엔티티 타입으로 담기.(VO 같은 개념)
     Board board = result.orElseThrow();
     // 엔티티 -> DTO 변환.
-    BoardDTO boardDTO = modelMapper.map(board, BoardDTO.class);
+    //BoardDTO boardDTO = modelMapper.map(board, BoardDTO.class);
+    // 이미지 추가 버전으로 변경하기.
+    BoardDTO boardDTO = entityToDTO(board);
 
     return boardDTO;
   }

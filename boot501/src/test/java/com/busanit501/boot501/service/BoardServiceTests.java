@@ -1,15 +1,18 @@
 package com.busanit501.boot501.service;
 
+import com.busanit501.boot501.domain.Board;
 import com.busanit501.boot501.dto.BoardDTO;
 import com.busanit501.boot501.dto.BoardListReplyCountDTO;
 import com.busanit501.boot501.dto.PageRequestDTO;
 import com.busanit501.boot501.dto.PageResponseDTO;
+import com.busanit501.boot501.repository.BoardRepository;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.UUID;
 
 @SpringBootTest
@@ -17,6 +20,8 @@ import java.util.UUID;
 public class BoardServiceTests {
   @Autowired
   BoardService boardService;
+  @Autowired
+  BoardRepository boardRepository;
 
   @Test
   public void testInsert() {
@@ -123,6 +128,18 @@ public class BoardServiceTests {
 
     Long bno = boardService.register(boardDTO);
     log.info("boardService, register 확인 bno : " + bno);
+  }
+
+  @Test
+  public void testReadWithImage() {
+
+    //
+    Optional<Board> result = boardRepository.findByIdWithImages(104L);
+    Board board = result.orElseThrow();
+
+    BoardDTO boardDTO = boardService.entityToDTO(board);
+    log.info("testReadWithImage, 하나 조회 boardDTO : " + boardDTO);
+
   }
 
 }
