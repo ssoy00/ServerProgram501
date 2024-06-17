@@ -215,6 +215,23 @@ public class BoardRepositoryTests {
 
   }
 
+  @Test
+  public void testUpdateImages() {
+    Optional<Board> result = boardRepository.findByIdWithImages(1L);
+    Board board = result.orElseThrow();
+
+    // 이미지 수정시, 기존 이미지를 전부 다 삭제 후 새로 추가하기.
+    board.clearImages();
+
+    // 새 첨부 이미지 추가하기.
+    for (int i =0 ; i<2; i++){
+      String uuid = UUID.randomUUID().toString();
+      String fileName = "SampleImageFileName_수정";
+      board.addImage(uuid,fileName+i+".png");
+    }
+    boardRepository.save(board);
+  }
+
 
 }
 
