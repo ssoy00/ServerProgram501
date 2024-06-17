@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -215,6 +216,10 @@ public class BoardRepositoryTests {
 
   }
 
+  // 세션을 추가로 이용 가능함.
+  @Transactional
+  //단위 테스트에서, 수정을 반영하기.
+  @Commit
   @Test
   public void testUpdateImages() {
     Optional<Board> result = boardRepository.findByIdWithImages(1L);
