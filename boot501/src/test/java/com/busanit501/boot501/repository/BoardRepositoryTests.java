@@ -196,7 +196,8 @@ public class BoardRepositoryTests {
   @Transactional
   public void testReadWithImages() {
     //더미 데이터 2개, 게시글 1, 2번
-    Optional<Board> result = boardRepository.findById(1L);
+//    Optional<Board> result = boardRepository.findById(1L);
+    Optional<Board> result = boardRepository.findByIdWithImages(1L);
      Board board = result.orElseThrow();
 
      // 보드 출력해보기. 1차 캐시 테이블에서, 더티 체킹, select
