@@ -141,6 +141,30 @@ public class BoardServiceTests {
 
   }
 
+  @Test
+  public void testUpdateWithImages() {
+    // 변경시, 변경할 더미 데이터, 임시, 601L
+// 화면에서 넘어온 더미 데이터 만들기. DTO 타입.
+    BoardDTO boardDTO = BoardDTO.builder()
+            .bno(104L)
+            .title("내일 모하니?수정버전")
+            .content("부모님 인사하기 : 수정버전")
+            .build();
+
+    // 더미 데이터에 첨부 이미지 파일 추가.
+    boardDTO.setFileNames(
+            Arrays.asList(
+                    UUID.randomUUID()+"_sampleImage.png",
+                    UUID.randomUUID()+"_sampleImage2.png"
+            )
+    );
+
+    //디비에서 조회하기.
+    boardService.update(boardDTO);
+
+
+  }
+
 }
 
 
