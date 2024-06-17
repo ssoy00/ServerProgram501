@@ -2,6 +2,7 @@ package com.busanit501.boot501.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.BatchSize;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -51,6 +52,10 @@ public class Board extends BaseEntity{
           // 데이터베이스에서, 부모 보드 번호 null, 삭제 하기.
             orphanRemoval = true)
   @Builder.Default
+  // N + 1, 부모 테이블을 조회시, 각 자식테이블(첨부이미지 테이블), 각각 하나씩 조회를 함.
+  // 매번 디비 연결하는 자원 소모가 발생을함.
+  // 해결책 . @BatchSize( size = 20), 지정된 갯수만큼 모아서, 한번에 처리함.
+  @BatchSize(size = 20)
   private Set<BoardImage> imageSet = new HashSet<>();
 
   //이미지들 추가
