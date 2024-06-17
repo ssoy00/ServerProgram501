@@ -156,7 +156,9 @@ public class BoardRepositoryTests {
         // 실행 여부를 확인 해보기.
         // 결과를 반환 타입 Page 받기.
         Page<BoardListReplyCountDTO> result =
-                boardRepository.searchWithReplyCount(types, keyword, pageable);
+//                boardRepository.searchWithReplyCount(types, keyword, pageable);
+                // 변경함
+                boardRepository.searchWithAll(types, keyword, pageable);
 
         // 페이징 된 결과물 확인.
         // 담겨진 페이징 관련 결과를 출력및 알아보기.
