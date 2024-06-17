@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -191,6 +192,7 @@ public class BoardRepositoryTests {
 
   // 게시글의 첨부 이미지들 조회시, 성능 확인 테스트
   @Test
+  @Transactional
   public void testReadWithImages() {
     //더미 데이터 2개, 게시글 1, 2번
     Optional<Board> result = boardRepository.findById(1L);
