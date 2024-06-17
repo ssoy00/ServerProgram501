@@ -41,6 +41,7 @@ public class Board extends BaseEntity{
   // 자식 테이블 : BoardImage 에 보면,
 //  @ManyToOne
 //  private Board board; 해당 참조형 변수명을 사용함.
+  // 확인시, drop table board_image_set; 하고 확인하기
   @OneToMany(mappedBy = "board")
   @Builder.Default
   private Set<BoardImage> imageSet = new HashSet<>();
