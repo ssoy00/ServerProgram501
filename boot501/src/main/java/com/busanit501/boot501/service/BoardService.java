@@ -3,6 +3,9 @@ package com.busanit501.boot501.service;
 import com.busanit501.boot501.domain.Board;
 import com.busanit501.boot501.dto.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public interface BoardService {
   Long register(BoardDTO boardDTO);
   //하나 조회, read
@@ -40,6 +43,29 @@ public interface BoardService {
     } // if 닫기
     return board;
   } // dtoToEntity 닫기.
+
+  // entityToDTO
+  // 화면(DTO) ->  컨트롤러 ->서비스(각 변환작업을함.) - Entity 타입으로 - DB
+  default BoardDTO entityToDTO(Board board) {
+    BoardDTO boardDTO = BoardDTO.builder()
+            .bno(board.getBno())
+            .title(board.getTitle())
+            .content(board.getContent())
+            .writer(board.getWriter())
+            .regDate(board.getRegDate())
+            .modDate(board.getModDate())
+            .build();
+
+    // 첨부된 이미지 파일들.
+    List<String> fileNames = board.getImageSet().stream().sorted().map(
+            boardImage -> boardImage.getUuid()+"_"+boardImage.getFileName()
+    ).collect(Collectors.toList());
+
+    boardDTO.setFileNames(fileNames);
+    return boardDTO;
+  }
+
+
 }
 
 
