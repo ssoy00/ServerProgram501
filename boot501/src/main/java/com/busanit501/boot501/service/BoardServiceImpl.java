@@ -157,7 +157,20 @@ public class BoardServiceImpl implements BoardService {
     // 2) Querydsl 에서 projections
     // 3) Querydsl 에서 Tuple 타입을 만들기.
     // 파이썬 , 컬렉션과 비슷, 모음집, 복수개.
-    return null;
+    String[] types = pageRequestDTO.getTypes();
+    String keyword = pageRequestDTO.getKeyword();
+    Pageable pageable = pageRequestDTO.getPageable("bno");
+
+    Page<BoardListAllDTO> result = boardRepository.searchWithAll(types,keyword,pageable);
+
+    PageResponseDTO<BoardListAllDTO> pageResponseDTO =
+            PageResponseDTO.<BoardListAllDTO>withAll()
+                    .pageRequestDTO(pageRequestDTO)
+                    .dtoList(result.getContent())
+                    .total((int) result.getTotalElements())
+                    .build();
+
+    return pageResponseDTO;
   }
 }
 

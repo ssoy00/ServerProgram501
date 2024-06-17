@@ -167,7 +167,7 @@ public class BoardServiceTests {
 
   @Test
   public void deleteAll() {
-    boardService.deleteAll(104L);
+    boardService.deleteAll(103L);
 
   }
 
