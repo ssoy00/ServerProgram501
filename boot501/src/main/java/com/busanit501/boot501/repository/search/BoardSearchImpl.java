@@ -195,6 +195,36 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
     JPQLQuery<Board> query = from(board);
     query.leftJoin(reply).on(reply.board.eq(board));
 
+    // 검색 조건, 위에서 , 위의 조건을 재사용.
+    if ((types != null && types.length > 0) && keyword != null) {
+      // BooleanBuilder , 조건절의 옵션을 추가하기 쉽게하는 도구.
+      log.info("조건절 실행여부 확인 1 ");
+      BooleanBuilder   booleanBuilder = new BooleanBuilder();
+      //String[] types = {"t","w" }
+      for (String type : types) {
+        switch (type) {
+          case "t":
+            log.info("조건절 실행여부 확인 2 :  title");
+            booleanBuilder.or(board.title.contains(keyword));
+            break;
+          case "w":
+            log.info("조건절 실행여부 확인 2 :  writer");
+            booleanBuilder.or(board.writer.contains(keyword));
+            break;
+          case "c":
+            log.info("조건절 실행여부 확인 2 :  content");
+            booleanBuilder.or(board.content.contains(keyword));
+            break;
+        } //switch
+      } // end for
+      // BooleanBuilder를 적용하기.
+      query.where(booleanBuilder);
+    } // end if
+
+
+    // bno >0 보다 큰 조건.
+    query.where(board.bno.gt(0L));
+
     // 그룹은 board 로 지정해서.
     query.groupBy(board);
 
