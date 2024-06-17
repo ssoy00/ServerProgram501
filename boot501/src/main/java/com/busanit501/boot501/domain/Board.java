@@ -42,9 +42,36 @@ public class Board extends BaseEntity{
 //  @ManyToOne
 //  private Board board; 해당 참조형 변수명을 사용함.
   // 확인시, drop table board_image_set; 하고 확인하기
-  @OneToMany(mappedBy = "board")
+  @OneToMany(mappedBy = "board",
+            // 부모 테이블의 1차 캐시 테이블에 작업시, 하위 테이블에도 다 적용함.
+            cascade = {CascadeType.ALL},
+          // 데이터베이스 조금 늦게 반영하겠다.
+          // 기본값은 FetchType.EAGER 즉시로딩인데 변경함
+            fetch = FetchType.LAZY)
   @Builder.Default
   private Set<BoardImage> imageSet = new HashSet<>();
+
+  //이미지들 추가
+  public void addImage(String uuid, String fileName) {
+    BoardImage boardImage = BoardImage.builder()
+            .uuid(uuid)
+            .fileName(fileName)
+            .board(this)
+            .ord(imageSet.size())
+            .build();
+
+    imageSet.add(boardImage);
+  }
+
+  // 이미지들 삭제
+  public void clearImages(){
+    // 보드 엔티티 , 멤버에 보드 이미지들을 가지고 있는 set 목록
+    // 목록 요소가 보드이미지, 각 보드 이미지에는 부모 테이블 보드의 참조형 변수 0x100
+    // 삭제시, 보드이미지의 멤버인 board 객체를 0x100 -> null 변경.
+    // 부모 테이블이 참조형 변수가 없어져서, 고아 객체가 됨. 자동 수거 함. , 삭제 기능.
+    imageSet.forEach(boardImage -> boardImage.changeBoard(null));
+    this.imageSet.clear();
+  }
 
   public void changeTitleAndContent(String title, String content) {
     this.title = title;
