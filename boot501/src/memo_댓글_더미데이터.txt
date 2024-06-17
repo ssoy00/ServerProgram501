@@ -1,5 +1,13 @@
+show tables;
+drop table board_image_set;
+select * from board;
+select * from board_image;
+#데이터에 board 값이 null 삭제하기.
+delete from board_image where board_bno is null;
+
 select * from board order by bno desc;
 select * from reply order by rno desc;
+select count(*) from reply where reply.board_bno=901;
 # 더미 댓글 추가
 insert into reply (moddate,regdate,reply_text,replyer,board_bno)
 select moddate,regdate,reply_text,replyer,board_bno from reply;
