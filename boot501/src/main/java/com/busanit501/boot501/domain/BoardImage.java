@@ -23,6 +23,7 @@ public class BoardImage implements Comparable<BoardImage> {
     // 이미지들이 자식 테이블, 이미지들 예를 3개.
     // 게시글 삭제를 하면, 자식 테이블은 참조하는 Board 객체가 없음.
     // 오류가 남. 널포인트 예외, 삭제시, 이미지들의 부모 참조형을 변경하기. null
+    // 각 이미지들은 부모 게시글이 누구인지 알수 있다.
     @ManyToOne
     private Board board;
 

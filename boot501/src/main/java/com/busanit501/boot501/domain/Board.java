@@ -3,6 +3,9 @@ package com.busanit501.boot501.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Builder
 @Getter
 @AllArgsConstructor
@@ -29,6 +32,13 @@ public class Board extends BaseEntity{
   private String writer;
   // 등록시간,
   // 수정시간, 많은 테이블에서 공통적으로 사용하니, 인터페이스로 분리해서 재사용할 예정.
+
+  // 게시글 1, 이미지들 N , 연관관계 추가.
+  // 게시글 입장에서, 멤버에, 이미지들 목록 요소를 가지고 있어요.
+  // 예) 1번 게시글에 이미지들 3장 업로드가되었다.
+  @OneToMany
+  @Builder.Default
+  private Set<BoardImage> imageSet = new HashSet<>();
 
   public void changeTitleAndContent(String title, String content) {
     this.title = title;
