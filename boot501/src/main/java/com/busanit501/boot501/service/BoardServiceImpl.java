@@ -1,10 +1,7 @@
 package com.busanit501.boot501.service;
 
 import com.busanit501.boot501.domain.Board;
-import com.busanit501.boot501.dto.BoardDTO;
-import com.busanit501.boot501.dto.BoardListReplyCountDTO;
-import com.busanit501.boot501.dto.PageRequestDTO;
-import com.busanit501.boot501.dto.PageResponseDTO;
+import com.busanit501.boot501.dto.*;
 import com.busanit501.boot501.repository.BoardRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -111,6 +108,16 @@ public class BoardServiceImpl implements BoardService {
             .build();
 
     return pageResponseDTO;
+  }
+
+  @Override
+  public PageResponseDTO<BoardListAllDTO> listWithAll(PageRequestDTO pageRequestDTO) {
+    // entity -> dto , 변환하는 방법
+    // 1) 모델 맵퍼 맵 함수 이용.
+    // 2) Querydsl 에서 projections
+    // 3) Querydsl 에서 Tuple 타입을 만들기.
+    // 파이썬 , 컬렉션과 비슷, 모음집, 복수개.
+    return null;
   }
 }
 

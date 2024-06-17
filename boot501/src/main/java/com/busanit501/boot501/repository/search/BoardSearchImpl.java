@@ -3,8 +3,10 @@ package com.busanit501.boot501.repository.search;
 import com.busanit501.boot501.domain.Board;
 import com.busanit501.boot501.domain.QBoard;
 import com.busanit501.boot501.domain.QReply;
+import com.busanit501.boot501.dto.BoardListAllDTO;
 import com.busanit501.boot501.dto.BoardListReplyCountDTO;
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.JPQLQuery;
 import lombok.extern.log4j.Log4j2;
@@ -14,6 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 // Querydsl 사용하기 위한 조건
 // 인터페이스 이름 + Impl
@@ -181,7 +184,7 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
   }
 
   @Override
-  public Page<BoardListReplyCountDTO> searchWithAll(String[] types, String keyword, Pageable pageable) {
+  public Page<BoardListAllDTO> searchWithAll(String[] types, String keyword, Pageable pageable) {
     // Querydsl 버전에 조인하는 방법.
     QBoard board = QBoard.board;
     QReply reply = QReply.reply;
@@ -191,17 +194,40 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
     JPQLQuery<Board> query = from(board);
     query.leftJoin(reply).on(reply.board.eq(board));
 
+    // 그룹은 board 로 지정해서.
+    query.groupBy(board);
+
+    // 페이징 조건 적용
     getQuerydsl().applyPagination(pageable,query);
 
-    List<Board> boardList = query.fetch();
+    // 엔티티 -> dto 모델 변환하는 방법, Tuple 타입으로 컬렉션으로 반환해서 이용하기.
+    JPQLQuery<Tuple> tupleListQuery = query.select(board,reply.countDistinct());
 
-    boardList.forEach(board1 -> {
-      log.info("searchWithAll board1.getBno() :  확인1 "+board1.getBno());
-      log.info("searchWithAll board1.getImageSet() :  확인2 "+board1.getImageSet());
-      log.info("================================ ");
-    });
+    List<Tuple> tupleList = tupleListQuery.fetch();
 
-    return null;
+    // 병렬 처리해서, 변환하기.
+    List<BoardListAllDTO> dtoList = tupleList.stream().map(tuple -> {
+      Board board1 = tuple.get(board);
+      long replyCount = tuple.get(1,Long.class);
+
+      BoardListAllDTO boardListAllDTO = BoardListAllDTO.builder()
+              .bno(board1.getBno())
+              .title(board1.getTitle())
+              .writer(board1.getWriter())
+              .regDate(board1.getRegDate())
+              .replyCount(replyCount)
+              .build();
+
+      return boardListAllDTO;
+
+    }).collect(Collectors.toList());
+
+
+    // entity -> dto 변환 했고,
+     long totalCount = query.fetchCount();
+
+
+    return new PageImpl<>(dtoList,pageable,totalCount);
   }
 }
 
