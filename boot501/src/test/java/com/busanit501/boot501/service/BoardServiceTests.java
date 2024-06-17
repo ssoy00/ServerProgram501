@@ -1,10 +1,7 @@
 package com.busanit501.boot501.service;
 
 import com.busanit501.boot501.domain.Board;
-import com.busanit501.boot501.dto.BoardDTO;
-import com.busanit501.boot501.dto.BoardListReplyCountDTO;
-import com.busanit501.boot501.dto.PageRequestDTO;
-import com.busanit501.boot501.dto.PageResponseDTO;
+import com.busanit501.boot501.dto.*;
 import com.busanit501.boot501.repository.BoardRepository;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
@@ -12,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -168,6 +166,34 @@ public class BoardServiceTests {
   @Test
   public void deleteAll() {
     boardService.deleteAll(103L);
+
+  }
+
+  @Test
+  public void testListAll() {
+    // 화면에서 전달할 내용을 담은 PageRequestDTO 더미가 필요.
+    PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+            .type("tcw")
+            .keyword("샘플")
+            .page(1)
+            .size(10)
+            .build();
+
+    PageResponseDTO<BoardListAllDTO> responseDTO =
+            boardService.listWithAll(pageRequestDTO);
+
+    // 이미지들 만 뽑아 보기..
+    List<BoardListAllDTO> dtoList = responseDTO.getDtoList();
+    dtoList.forEach(boardListAllDTO -> {
+      log.info("제목 : " + boardListAllDTO.getTitle());
+      if(boardListAllDTO.getBoardImages() !=null ) {
+        for (BoardImageDTO boardImageDTO : boardListAllDTO.getBoardImages()) {
+          log.info("이미지들 목록중에서 하나씩 꺼내서 파일명 조회 : " + boardImageDTO);
+        }
+      }
+    });
+
+    log.info("testListAll 테스트 responseDTO : " + responseDTO);
 
   }
 
