@@ -1,5 +1,10 @@
 show tables;
 drop table board_image_set;
+#N+1 테스트 위한 준비 작업
+drop table board_image;
+drop table reply;
+drop table board;
+
 select * from board;
 select * from board_image;
 #데이터에 board 값이 null 삭제하기.

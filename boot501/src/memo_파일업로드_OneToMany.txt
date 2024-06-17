@@ -97,6 +97,14 @@ mappedBy
 @EntityGraph
 
 
+N+1 문제 발생,
+1 : board 관련 select 조회,
+N : 하나의 board 에대한, 각각 boardImage 들 또 select 함.
+
+: 모아서 처리 해줄게. IN 연산자를 이용해서, 한번에 지정한 갯수만큼씩만
+조회를 할게, 매번 귀찮게 안할게.
+
+
 
 
 
