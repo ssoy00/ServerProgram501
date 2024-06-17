@@ -3,6 +3,7 @@ package com.busanit501.boot501.repository.search;
 import com.busanit501.boot501.domain.Board;
 import com.busanit501.boot501.domain.QBoard;
 import com.busanit501.boot501.domain.QReply;
+import com.busanit501.boot501.dto.BoardImageDTO;
 import com.busanit501.boot501.dto.BoardListAllDTO;
 import com.busanit501.boot501.dto.BoardListReplyCountDTO;
 import com.querydsl.core.BooleanBuilder;
@@ -210,6 +211,7 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
       Board board1 = tuple.get(board);
       long replyCount = tuple.get(1,Long.class);
 
+      // 1번, 게시글
       BoardListAllDTO boardListAllDTO = BoardListAllDTO.builder()
               .bno(board1.getBno())
               .title(board1.getTitle())
@@ -217,6 +219,17 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
               .regDate(board1.getRegDate())
               .replyCount(replyCount)
               .build();
+
+      // 2번,  첨부 이미지 추가하는 작업.
+      // entity -> dto
+     List<BoardImageDTO> imageDTOS = board1.getImageSet().stream().sorted().map(
+              boardImage -> BoardImageDTO.builder()
+                      .uuid(boardImage.getUuid())
+                      .fileName(boardImage.getFileName())
+                      .ord(boardImage.getOrd())
+                      .build()
+      ).collect(Collectors.toList());
+      boardListAllDTO.setBoardImages(imageDTOS);
 
       return boardListAllDTO;
 
