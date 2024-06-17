@@ -322,6 +322,29 @@ public class BoardRepositoryTests {
 
     }
 
+    @Transactional
+    @Test
+    public void testSearchWithAll3() {
+        Pageable pageable = PageRequest.of(0,10,
+                Sort.by("bno").descending());
+
+        //더미 타입, 키워드 조건 재사용.
+        // 검색 조건 더미 데이터
+        String[] types = {"t", "w", "c"};
+        // 검색 조건 더미 데이터2, 키워드
+        String keyword = "샘플";
+        //
+        Page<BoardListAllDTO> result = boardRepository.searchWithAll(types,keyword,pageable);
+        // 전체 갯수
+        log.info("testSearchWithAll3, result.getTotalElements() 확인1 : " + result.getTotalElements());
+        // 각 목록의 요소 확인.
+        result.getContent().forEach(boardListAllDTO -> {
+            log.info("testSearchWithAll3, boardListAllDTO, 각 요소 확인2 : " + boardListAllDTO);
+        });
+
+
+    }
+
 
 
 }
