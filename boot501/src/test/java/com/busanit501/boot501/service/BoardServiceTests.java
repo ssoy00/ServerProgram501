@@ -133,12 +133,13 @@ public class BoardServiceTests {
   @Test
   public void testReadWithImage() {
 
-    //
-    Optional<Board> result = boardRepository.findByIdWithImages(104L);
-    Board board = result.orElseThrow();
 
-    BoardDTO boardDTO = boardService.entityToDTO(board);
+
+    BoardDTO boardDTO = boardService.read(104L);
     log.info("testReadWithImage, 하나 조회 boardDTO : " + boardDTO);
+    for(String fileImage : boardDTO.getFileNames()){
+      log.info("각 이미지 파일명만 조회 : " + fileImage);
+    }
 
   }
 

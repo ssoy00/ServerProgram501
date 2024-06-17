@@ -38,7 +38,9 @@ public class BoardServiceImpl implements BoardService {
   @Override
   public BoardDTO read(Long bno) {
     // 1차 영속성 컨텍스트에서 조회한 내용을 가져오기.
-    Optional<Board> result = boardRepository.findById(bno);
+//    Optional<Board> result = boardRepository.findById(bno);
+    // 이미지 첨부 버전으로 수정하기.
+    Optional<Board> result = boardRepository.findByIdWithImages(bno);
     // 만약 있다면, 엔티티 타입으로 담기.(VO 같은 개념)
     Board board = result.orElseThrow();
     // 엔티티 -> DTO 변환.
