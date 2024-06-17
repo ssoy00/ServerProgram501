@@ -156,9 +156,9 @@ public class BoardRepositoryTests {
         // 실행 여부를 확인 해보기.
         // 결과를 반환 타입 Page 받기.
         Page<BoardListReplyCountDTO> result =
-//                boardRepository.searchWithReplyCount(types, keyword, pageable);
+
                 // 변경함
-                boardRepository.searchWithAll(types, keyword, pageable);
+//                boardRepository.searchWithAll(null, null, pageable);
 
         // 페이징 된 결과물 확인.
         // 담겨진 페이징 관련 결과를 출력및 알아보기.
@@ -293,6 +293,15 @@ public class BoardRepositoryTests {
     }
 
 
+    }
+
+    // N+1 문제 확인용 단위테스트 메서드추가
+    @Transactional
+    @Test
+    public void testSearchWithAll() {
+        Pageable pageable = PageRequest.of(0,10,
+                Sort.by("bno").descending());
+        boardRepository.searchWithAll(null,null,pageable);
     }
 
 
