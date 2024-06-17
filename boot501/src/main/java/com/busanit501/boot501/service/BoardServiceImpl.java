@@ -28,7 +28,9 @@ public class BoardServiceImpl implements BoardService {
   @Override
   public Long register(BoardDTO boardDTO) {
     // 화면에서 작성한 게시글 내용이 DTO 있고, -> VO 대신 entity 클래스 이용중.
-    Board board = modelMapper.map(boardDTO, Board.class);
+//    Board board = modelMapper.map(boardDTO, Board.class);
+    // 첨부 이미지들이 추가 후, 메서드 변경
+    Board board = dtoToEntity(boardDTO);
     Long bno = boardRepository.save(board).getBno();
     return bno;
   }
