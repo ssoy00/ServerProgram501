@@ -9,4 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 public interface ReplyRepository extends JpaRepository<Reply, Long> {
     @Query("select r from Reply r where r.board.bno = :bno")
     Page<Reply> listOfBoard(Long bno, Pageable pageable);
+
+    //삭제 기능.
+    void deleteByBoard_Bno (Long bno);
 }
