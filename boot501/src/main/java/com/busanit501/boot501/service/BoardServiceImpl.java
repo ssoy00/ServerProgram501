@@ -57,6 +57,19 @@ public class BoardServiceImpl implements BoardService {
     Board board = result.orElseThrow();
     // 만약 변경한다면, 제목과 내용만 변경하기. ,엔티티 클래스에서 메서드로 만듦.
     board.changeTitleAndContent(boardDTO.getTitle(),boardDTO.getContent());
+
+    // 첨부 이미지 파일 추가, 포인트 : 기존 이미지 삭제 후, 새로운 이미지 추가.
+    // 기존 이미지 파일 삭제
+    board.clearImages();
+
+    // 새로운 이미지 추가하기.
+    if(boardDTO.getFileNames() != null) {
+      for(String fileName : boardDTO.getFileNames()){
+        String[] arr = fileName.split("_");
+        board.addImage(arr[0],arr[1]);
+      }
+    }
+
     // 적용하기.
     boardRepository.save(board);
   }

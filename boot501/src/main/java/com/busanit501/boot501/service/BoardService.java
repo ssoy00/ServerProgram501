@@ -63,6 +63,7 @@ public interface BoardService {
     ).collect(Collectors.toList());
 
     boardDTO.setFileNames(fileNames);
+
     return boardDTO;
   }
 

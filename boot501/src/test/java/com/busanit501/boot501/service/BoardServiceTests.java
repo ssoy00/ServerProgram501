@@ -133,8 +133,6 @@ public class BoardServiceTests {
   @Test
   public void testReadWithImage() {
 
-
-
     BoardDTO boardDTO = boardService.read(104L);
     log.info("testReadWithImage, 하나 조회 boardDTO : " + boardDTO);
     for(String fileImage : boardDTO.getFileNames()){
