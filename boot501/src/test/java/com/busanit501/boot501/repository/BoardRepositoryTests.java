@@ -168,6 +168,7 @@ public class BoardRepositoryTests {
     list.forEach(board -> log.info(board));
   }
 
+  // 보드 게시글의 첨부 이미지들 추가 테스트
   @Test
   public void testInsertWithImages() {
     // 더미 데이터 만들기.
@@ -185,6 +186,25 @@ public class BoardRepositoryTests {
       board.addImage(uuid, fileName+i+".png");
     }
   boardRepository.save(board);
+
+  }
+
+  // 게시글의 첨부 이미지들 조회시, 성능 확인 테스트
+  @Test
+  public void testReadWithImages() {
+    //더미 데이터 2개, 게시글 1, 2번
+    Optional<Board> result = boardRepository.findById(1L);
+     Board board = result.orElseThrow();
+
+     // 보드 출력해보기. 1차 캐시 테이블에서, 더티 체킹, select
+    // 단위 테스트 할 때, board 조회 할 때 세션이 하나 필요하고
+    // 단위 테스트 할 때, boardImage 이미지 조회 할 때 세션이 하나 더 필요하고
+    // 단위 테스트 이용시에는 디비 접근 세션을 하나만 이용해서, 오류가 발생함.
+
+    log.info("BoardRepositoryTests board 확인  : "+board);
+    log.info("========================================== ");
+    log.info("BoardRepositoryTests board.getImageSet() 확인2  : "+board.getImageSet());
+    // 1차 오류 발생함.
 
   }
 
