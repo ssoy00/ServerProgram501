@@ -9,6 +9,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Arrays;
+import java.util.UUID;
+
 @SpringBootTest
 @Log4j2
 public class BoardServiceTests {
@@ -98,6 +101,28 @@ public class BoardServiceTests {
     PageResponseDTO<BoardListReplyCountDTO> responseDTO = boardService.listWithReplyCount(pageRequestDTO);
     log.info("list 테스트 responseDTO : " + responseDTO);
 
+  }
+
+  @Test
+  public void testRegisterWithImages() {
+    BoardDTO boardDTO = BoardDTO.builder()
+            .title("샘플 제목입니다.")
+            .content("샘플 내용입니다.")
+            .writer("이상용")
+            .build();
+
+    // 더미 이미지들
+    boardDTO.setFileNames(
+            Arrays.asList(
+                  //파일명,
+                    UUID.randomUUID()+"_testImage.png",
+                    UUID.randomUUID()+"_testImage2.png",
+                    UUID.randomUUID()+"_testImage3.png"
+            )
+    ); // 더미 이미지 파일명 추가
+
+    Long bno = boardService.register(boardDTO);
+    log.info("boardService, register 확인 bno : " + bno);
   }
 
 }
