@@ -47,7 +47,9 @@ public class Board extends BaseEntity{
             cascade = {CascadeType.ALL},
           // 데이터베이스 조금 늦게 반영하겠다.
           // 기본값은 FetchType.EAGER 즉시로딩인데 변경함
-            fetch = FetchType.LAZY)
+            fetch = FetchType.LAZY,
+          // 데이터베이스에서, 부모 보드 번호 null, 삭제 하기.
+            orphanRemoval = true)
   @Builder.Default
   private Set<BoardImage> imageSet = new HashSet<>();
 
