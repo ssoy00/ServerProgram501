@@ -1,8 +1,10 @@
 package com.busanit501.boot501.service;
 
 import com.busanit501.boot501.domain.Board;
+import com.busanit501.boot501.domain.Reply;
 import com.busanit501.boot501.dto.*;
 import com.busanit501.boot501.repository.BoardRepository;
+import com.busanit501.boot501.repository.ReplyRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -23,6 +25,7 @@ import java.util.stream.Collectors;
 public class BoardServiceImpl implements BoardService {
   // 의존성 주입
   private final BoardRepository boardRepository;
+  private final ReplyRepository replyRepository;
   private final ModelMapper modelMapper;
 
   @Override
@@ -79,6 +82,23 @@ public class BoardServiceImpl implements BoardService {
     // 레스트 방식일 때는 , 유효성 체크해서 없다는 메세지 전달해줘야 함.
 //    Optional<Board> result = boardRepository.findById(bno);
 //    Board board = result.orElseThrow();
+    boardRepository.deleteById(bno);
+  }
+
+  @Override
+  public void deleteAll(Long bno) {
+    // 레스트 방식일 때는 , 유효성 체크해서 없다는 메세지 전달해줘야 함.
+//    Optional<Board> result = boardRepository.findById(bno);
+//    Board board = result.orElseThrow();
+
+    // 게시글에 대한 댓글을 삭제하고,
+    Optional<Reply> result = replyRepository.findById(bno);
+//    Reply reply = result.orElseThrow();
+    if(result.isEmpty()){
+      replyRepository.deleteByBoard_Bno(bno);
+    }
+
+    //게시글 삭제와 첨부 이미지 삭제(썸네일 이미지 삭제도 포함) 포함
     boardRepository.deleteById(bno);
   }
 

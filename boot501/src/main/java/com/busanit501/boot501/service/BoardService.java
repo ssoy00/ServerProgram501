@@ -13,6 +13,7 @@ public interface BoardService {
 
   void update(BoardDTO boardDTO);
   void delete(Long bno);
+  void deleteAll(Long bno);
 
   // 화면에서, 사용자가, 현재 페이지 12, 사이지 : 10개 씩 보고
   // 검색어가 존재하고, 타입도 있고,
@@ -66,6 +67,7 @@ public interface BoardService {
 
     return boardDTO;
   }
+
 
 
 }

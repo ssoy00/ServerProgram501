@@ -165,6 +165,12 @@ public class BoardServiceTests {
 
   }
 
+  @Test
+  public void deleteAll() {
+    boardService.deleteAll(104L);
+
+  }
+
 }
 
 
