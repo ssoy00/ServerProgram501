@@ -157,8 +157,7 @@ public class BoardRepositoryTests {
         // 결과를 반환 타입 Page 받기.
         Page<BoardListReplyCountDTO> result =
 
-                // 변경함
-//                boardRepository.searchWithAll(null, null, pageable);
+                boardRepository.searchWithReplyCount(types, keyword, pageable);
 
         // 페이징 된 결과물 확인.
         // 담겨진 페이징 관련 결과를 출력및 알아보기.
