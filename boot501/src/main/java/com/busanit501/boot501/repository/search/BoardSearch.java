@@ -15,6 +15,11 @@ public interface BoardSearch {
           String[] types, String keyword ,Pageable pageable
   );
 
+  // 댓글, 첨부 이미지들도 같이 조회
+  Page<BoardListReplyCountDTO> searchWithAll(
+          String[] types, String keyword ,Pageable pageable
+  );
+
 }
 
 

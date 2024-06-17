@@ -251,6 +251,8 @@ public class BoardRepositoryTests {
   }
 
   // 더미 데이터 추가, 댓글도 추가, 이미지들도 추가하기.
+    @Transactional
+    @Commit
     @Test
     public void testInsertAll() {
         for(int i = 1; i <=100 ; i++){
