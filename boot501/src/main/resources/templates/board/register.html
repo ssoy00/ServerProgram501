@@ -70,7 +70,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="input-group mb-3">
-                        <span class="input-group-text">첨부 파일</span>
+<!--                        <span class="input-group-text">첨부 파일</span>-->
                         <input type="file" name="files"
                                class="form-control" multiple></input>
                     </div>
@@ -128,6 +128,28 @@
         e.stopPropagation()
         uploadModal.show()
     }, false)
+
+    // 서버에 이미지들 보내기, axios 이용해서 비동기 통신으로 데이터만 전달중
+    document.querySelector(".updateBtn").addEventListener("click",function (e){
+        // 여기에 이미지 파일들을 담을 예정.
+        const formObj = new FormData();
+        // 파일 선택에서 선택된 이미지들.
+        const fileInput= document.querySelector("input[name='files']");
+        console.log("파일 이미지 확인 : " + fileInput.files)
+
+        const files = fileInput.files;
+
+        for(let i = 0; i < files.length; i++) {
+            formObj.append("files", files[i]);
+        }
+        uploadToServer(formObj).then(result => {
+            console.log(result)
+            uploadModal.hide()
+        }).catch(e => {
+            uploadModal.hide()
+        })
+    },false)
+
 </script>
 
 </body>
