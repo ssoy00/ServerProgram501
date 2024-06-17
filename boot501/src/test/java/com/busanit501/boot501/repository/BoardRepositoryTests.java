@@ -13,6 +13,7 @@ import org.springframework.data.domain.Sort;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.IntStream;
 
 @SpringBootTest
@@ -165,6 +166,26 @@ public class BoardRepositoryTests {
     // 불러올 목록 데이터를 받아서 처리해보기.
     List<BoardListReplyCountDTO> list = result.getContent();
     list.forEach(board -> log.info(board));
+  }
+
+  @Test
+  public void testInsertWithImages() {
+    // 더미 데이터 만들기.
+    // 부모 더미 데이터 board , 0x100
+    Board board = Board.builder()
+            .title("오늘 점심 뭐 먹죠? 생각중. 한식쟁이 밥이 생각남")
+            .content("국밥, 된장찌개, 비빔밥")
+            .writer("이상용")
+            .build();
+
+    //더미 데이터, 임의 사진을 추가 해보기.
+    for (int i = 0; i < 3; i++){
+      String uuid = UUID.randomUUID().toString();
+      String fileName = "SampleImageFileName";
+      board.addImage(uuid, fileName+i+".png");
+    }
+  boardRepository.save(board);
+
   }
 
 }
