@@ -36,7 +36,12 @@ public class Board extends BaseEntity{
   // 게시글 1, 이미지들 N , 연관관계 추가.
   // 게시글 입장에서, 멤버에, 이미지들 목록 요소를 가지고 있어요.
   // 예) 1번 게시글에 이미지들 3장 업로드가되었다.
-  @OneToMany
+  // 기본 , 양방향이면, 중간 테이블을 만들어줌. 기본값.
+  // mappedBy 설정을 하면, 중간 테이블을 생성 안하고 작업 가능.
+  // 자식 테이블 : BoardImage 에 보면,
+//  @ManyToOne
+//  private Board board; 해당 참조형 변수명을 사용함.
+  @OneToMany(mappedBy = "board")
   @Builder.Default
   private Set<BoardImage> imageSet = new HashSet<>();
 
