@@ -59,8 +59,8 @@
                 </div>
                 <!--                첨부 이미지 표시하기, 원본 이미지 -->
                 <div class="col">
-                    <div class="card" th:if="${dto.fileNames != null && dto.fileNames.size()>0}">
-                        <img class="card-img-top" th:each="fileName: ${dto.fileNames}"
+                    <div class="card" th:if="${boardDTO.fileNames != null && boardDTO.fileNames.size()>0}">
+                        <img class="card-img-top" th:each="fileName: ${boardDTO.fileNames}"
                              th:src="|/view/${fileName}|">
 
                     </div>
