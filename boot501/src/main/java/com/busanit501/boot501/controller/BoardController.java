@@ -125,7 +125,7 @@ public class BoardController {
 
         //화면 -> 서버 -> 서비스 -> 레포지토리 -> 디비, 입력후, 게시글 번호 가져오기
         //화면 <- 서버 <- 서비스 <- 레포지토리 <- 디비
-        boardService.delete(bno);
+        boardService.deleteAll(bno);
 
         // 글쓰기 후, 작성된 게시글 번호 -> 화면 , 임시로 전달.(1회용)
         redirectAttributes.addFlashAttribute("result",bno);
