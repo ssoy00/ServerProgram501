@@ -74,7 +74,8 @@
                     <div class="card col-4" th:with = "arr = ${fileName.split('_')}">
                         <div class="card-header d-flex justify-content-center">
                             [[${arr[1]}]]
-                            <button class="btn-sm btn-danger" onclick="javascript:removeFile([[${arr[0]}]],[[${arr[1}]],this)">X</button>
+                            <button class="btn-sm btn-danger" th:onclick="removeFile([[${arr[0]}]],[[${arr[1]}]],this)">X</button>
+
                         </div>
                         <div class="card-body">
                             <img th:src="|/view/s_${fileName}|" th:data-src="${fileName}">
@@ -186,9 +187,7 @@
         // obj.closest , 현재 요소에서 가장 가까운 부모 요소를 찾기.
         const targetDiv = obj.closest(".card")
 
-        removeFileToServer(uuid,fileName).then(data =>{
-            targetDiv.remove()
-        })
+        targetDiv.remove()
     }
 
 </script>
