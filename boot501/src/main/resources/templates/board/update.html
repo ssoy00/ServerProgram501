@@ -281,9 +281,28 @@
 
     },false)
 
+
+
+
+
+ // 게시글 삭제 이벤트 처리
+    document.querySelector(".deleteBtn").addEventListener("click", function (e){
+        e.preventDefault()
+        e.stopPropagation()
+
+        // 화면에 있는 파일들을 form 태그에 추가 하기.
+        // 눈에 보이는 사진.
+        appendFileData()
+        // 화면에 안보이게 처리한 파일들도 태그에 추가하기.
+        // 임시로, 화면에서 만 안보이는 사진.
+        appendNotShownData()
+
+
+    })
+
     // 새로운 이미지 파일 첨부
     function appendFileData() {
-     const target = document.querySelector(".uploadHidden")
+        const target = document.querySelector(".uploadHidden")
         const uploadFiles = uploadResult.querySelectorAll("img")
 
         let str = ''
@@ -298,12 +317,29 @@
         target.innerHTML = str;
     }
 
- // 최종 삭제할 첨부 파일명의 목록 이용해서 삭제하기
- function callRemoveFiles() {
-     removeFileList.forEach(({uuid,fileName}) => {
-         removeFileToServer(uuid,fileName)
-     })
- }
+    // 최종 삭제할 첨부 파일명의 목록 이용해서 삭제하기
+    function callRemoveFiles() {
+        removeFileList.forEach(({uuid,fileName}) => {
+            removeFileToServer(uuid,fileName)
+        })
+    }
+
+ // 화면에 보이지 않는 , 삭제할 예정인 파일들도 삭제하기.
+    function  appendNotShownData() {
+        if(removeFileList.length == 0) {
+            return
+        }
+       const target = document.querySelector(".uploadHidden")
+        let str = ''
+
+        for (let i = 0 ; i < removeFileList.length ; i++) {
+            //removeFileList의 구성, uuid, fileName 구성이되어 있고,
+            const {uuid, fileName} = removeFileList[i];
+            str += `<input type='hidden' name='fileNames' value="${uuid}_${fileName}">`
+        }
+        target.innerHTML += str
+
+    }
 
 </script>
 
