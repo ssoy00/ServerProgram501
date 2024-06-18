@@ -186,6 +186,24 @@ const uploadResult = document.querySelector(".uploadResult")
         })
     }
 
+ // 등록하기,
+    document.querySelector(".submitBtn").addEventListener("click",function (e){
+        e.preventDefault()
+        e.stopPropagation()
+
+        const target = document.querySelector(".uploadHidden")
+        const uploadFiles = uploadResult.querySelector("img")
+        // InnerHTML 으로 사용할 변수,
+        let str = ''
+        for(let i = 0; i < uploadFiles.length; i++) {
+            const uploadFile = uploadFiles[i]
+            const imgLink = uploadFile.getAttribute("src")
+
+            str += `<input type='hidden' name='fileNames' value='${imgLink}'`
+        }
+        target.innerHTML = str;
+    },false)
+
 </script>
 
 </body>
