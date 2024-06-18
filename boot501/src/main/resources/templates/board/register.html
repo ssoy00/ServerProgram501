@@ -199,9 +199,12 @@ const uploadResult = document.querySelector(".uploadResult")
             const uploadFile = uploadFiles[i]
             const imgLink = uploadFile.getAttribute("src")
 
-            str += `<input type='hidden' name='fileNames' value='${imgLink}'`
+            str += `<input type='hidden' name='fileNames' value='${imgLink}'>`
         }
         target.innerHTML = str;
+        //전송 하는 기능
+        document.querySelector("form").submit();
+
     },false)
 
 </script>
