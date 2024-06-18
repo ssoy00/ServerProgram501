@@ -166,15 +166,16 @@
     },false)
 
     // 글 삭제 로직 이벤트 처리
-    document.querySelector(".deleteBtn").addEventListener("click",function (e) {
-        e.preventDefault()
-        e.stopPropagation()
-
-        formObj.action = `/board/delete`
-        formObj.method = 'post'
-        formObj.submit()
-
-    },false)
+    // 첨부 이미지 추가 하기 전
+    // document.querySelector(".deleteBtn").addEventListener("click",function (e) {
+    //     e.preventDefault()
+    //     e.stopPropagation()
+    //
+    //     formObj.action = `/board/delete`
+    //     formObj.method = 'post'
+    //     formObj.submit()
+    //
+    // },false)
 
 
     //최종으로 삭제될 파일 목록
@@ -286,6 +287,7 @@
 
 
  // 게시글 삭제 이벤트 처리
+    // 첨부 이미지 같이 삭제
     document.querySelector(".deleteBtn").addEventListener("click", function (e){
         e.preventDefault()
         e.stopPropagation()
