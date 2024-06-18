@@ -141,7 +141,7 @@ public class BoardController {
         // 데이터베이스에서 , 댓글, 첨부된 이미지들도 다 삭제
         boardService.deleteAll(bno);
 
-        // 미디어서버, C:\upload\springTest , 파일들도 다 같이 삭제.
+        // 미디어서버,  , 파일들도 다 같이 삭제.
         List<String> fileNames = boardDTO.getFileNames();
         if(fileNames != null && fileNames.size()>0) {
             removeFiles(fileNames);
