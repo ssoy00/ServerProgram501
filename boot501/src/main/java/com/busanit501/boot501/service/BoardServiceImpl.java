@@ -92,10 +92,13 @@ public class BoardServiceImpl implements BoardService {
 //    Board board = result.orElseThrow();
 
     // 게시글에 대한 댓글을 삭제하고,
-    Optional<Reply> result = replyRepository.findById(bno);
+//    Optional<Reply> result = replyRepository.findById(bno);
+    List<Reply> result = replyRepository.findByBoardBno(bno);
 //    Reply reply = result.orElseThrow();
 //    boolean checkReply = reply.getRno() > 0 ? true : false;
-    boolean checkReply = !result.isEmpty() ? false : true;
+    log.info("result.isEmpty() 값  확인:" + result.isEmpty());
+    boolean checkReply = result.isEmpty() ? false : true;
+    log.info("result.isEmpty() 값  확인2 checkReply:" + checkReply);
     if(checkReply){
       replyRepository.deleteByBoard_Bno(bno);
     }
