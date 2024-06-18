@@ -33,6 +33,13 @@
                             <input type="text" name="writer" class="form-control" id="writer" placeholder="작성자를 입력해주세요."
                                    th:value="${boardDTO.writer}" readonly>
                         </div>
+<!--                        파일 첨부 화면 넣기-->
+                        <div class="mb-3 input-group">
+                            <span class="input-group-text">첨부파일  </span>
+                            <div class="uploadHidden">
+                                <button type="button" class="btn btn-primary uploadFileBtn">파일추가</button>
+                            </div>
+                        </div>
 
                         <div class="mb-3">
                             <label for="regDate" class="form-label">등록시간</label>
