@@ -299,8 +299,12 @@
         // 임시로, 화면에서 만 안보이는 사진.
         appendNotShownData()
 
+            formObj.action = `/board/delete`
+            formObj.method = 'post'
+            formObj.submit()
 
-    })
+
+    },false)
 
     // 새로운 이미지 파일 첨부
     function appendFileData() {
