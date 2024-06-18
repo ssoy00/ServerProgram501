@@ -53,9 +53,19 @@
                             </a>
                         </div>
 
-                    </form>
 
+                    </form>
+                    <!--            card-body 닫는 부분-->
                 </div>
+                <!--                첨부 이미지 표시하기, 원본 이미지 -->
+                <div class="col">
+                    <div class="card" th:if="${dto.fileNames != null && dto.fileNames.size()>0}">
+                        <img class="card-img-top" th:each="fileName: ${dto.fileNames}"
+                             th:src="|/view/${fileName}|">
+
+                    </div>
+                </div>
+                <!--                첨부 이미지 표시하기, 원본 이미지 -->
             </div>
         </div>
         <!--        div row-->
@@ -121,7 +131,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header ">
-<!--                    수정 또는 삭제 재사용-->
+                    <!--                    수정 또는 삭제 재사용-->
                     <h4 class="modal-title replyHeader"></h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -154,8 +164,6 @@
 <script layout:fragment="javascript" th:inline="javascript">
 
 
-
-
     // 모달 댓글 폼 표시하기=====================================================
     const registerModal = new bootstrap.Modal(document.querySelector(".registerModal"))
 
@@ -171,9 +179,6 @@
     }, false)
 
     // 모달 댓글 폼 표시하기=====================================================
-
-
-
 
 
     const bno = [[${boardDTO.bno}]]
@@ -224,6 +229,7 @@
         } // if
         replyList.innerHTML = str
     }
+
     /////댓글 목록 , HTML 그리기/////////////////
 
     /////댓글 페이징, HTML 그리기/////////////////////////////////////
@@ -250,27 +256,28 @@
         // 위에서 만든 가상의 HTML 요소를 , 특정 요소에 주입하기.
         replyPaging.innerHTML = pageStr
     }
+
     /////댓글 페이징, HTML 그리기/////////////////////////////////////
 
     // 페이지 이동 이벤트 처리=====================================================
     let page = 1
     let size = 10
 
-    replyPaging.addEventListener("click",function (e){
+    replyPaging.addEventListener("click", function (e) {
         e.preventDefault()
         e.stopPropagation()
 
         const target = e.target
 
         // a 태그만 이벤트 처리 하겠다, 그외에는 넘어가기함.
-        if(!target || target.tagName != 'A'){
+        if (!target || target.tagName != 'A') {
             return
         }
         const pageNum = target.getAttribute("data-page")
         page = pageNum
-        printReplies(page,size)
+        printReplies(page, size)
 
-    },false)
+    }, false)
     // 페이지 이동 이벤트 처리=====================================================
 
     // 모달 댓글 수정폼 표시하기=====================================================
@@ -285,21 +292,21 @@
 
     // 이벤트 처리하기.
     // 댓글 목록에서 하나 댓글 선택시, 이벤트 처리
-    replyList.addEventListener("click", function (e){
+    replyList.addEventListener("click", function (e) {
         e.preventDefault()
         e.stopPropagation()
 
         const target = e.target
 
         // 목록요소를 선택시 span만 이벤트 처리 하겠다.
-        if(!target || target.tagName != 'SPAN' ){
+        if (!target || target.tagName != 'SPAN') {
             return
         }
         // span 태그에 있는 속성 data-rno 값 가져오기.
         const rno = target.getAttribute("data-rno")
 
         // span 태그 중에서, data-rno 요소가 있는 것만 처리하겠다.
-        if(!rno) {
+        if (!rno) {
             return;
         }
 
@@ -312,7 +319,7 @@
             alert("댓글 조회 실패")
         )
 
-    },false)
+    }, false)
     // 댓글 목록에서 하나 댓글 선택시, 이벤트 처리
     // 모달 댓글 수정폼 표시하기=====================================================
 
@@ -343,12 +350,11 @@
     // 댓글 작성 이벤트 처리===============================================
 
 
-
     // 댓글 수정 이벤트 처리===============================================
     document.querySelector(".updateBtn").addEventListener("click", function (e) {
         // registerModal.hide()
         const replyObj = {
-            bno:bno,
+            bno: bno,
             rno: replyHeader.innerHTML,
             replyText: updateText.value
         }
@@ -370,9 +376,9 @@
     // 댓글 수정 이벤트 처리===============================================
 
     // 댓글 수정 닫기 이벤트 처리===============================================
-    closeUpdateBtn.addEventListener("click",function (e){
+    closeUpdateBtn.addEventListener("click", function (e) {
         updateModal.hide()
-    },false)
+    }, false)
     // 댓글 수정 닫기 이벤트 처리===============================================
 
 
@@ -380,7 +386,7 @@
     //document.querySelector(".deleteBtn").addEventListener("click", function (e) {
     deleteBtn.addEventListener("click", function (e) {
 
-       const rno = replyHeader.innerHTML
+        const rno = replyHeader.innerHTML
         deleteReply(rno).then(result => {
             // 댓글 삭제 성공 후 처리
             alert(result.rno + "번 댓글 삭제 성공: ")
