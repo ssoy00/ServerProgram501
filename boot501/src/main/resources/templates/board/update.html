@@ -77,7 +77,7 @@
                             <button class="btn-sm btn-danger" onclick="javascript:removeFile([[${arr[0]}]],[[${arr[1}]],this)">X</button>
                         </div>
                         <div class="card-body">
-                            <img src="/view/${link}" data-src="${fileName}">
+                            <img th:src="|/view/s_${fileName}|" th:data-src="${fileName}">
                         </div>
                     </div>
                 </th:block>
