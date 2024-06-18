@@ -30,7 +30,7 @@
                         </div>
                         <div class="mb-3 input-group">
                             <span class="input-group-text">첨부파일  </span>
-                            <div class=" uploadHidden">
+                            <div class="uploadHidden">
                                 <button type="button" class="btn btn-primary uploadFileBtn">파일추가</button>
                             </div>
                         </div>
@@ -192,12 +192,13 @@ const uploadResult = document.querySelector(".uploadResult")
         e.stopPropagation()
 
         const target = document.querySelector(".uploadHidden")
-        const uploadFiles = uploadResult.querySelector("img")
+        const uploadFiles = uploadResult.querySelectorAll("img")
         // InnerHTML 으로 사용할 변수,
         let str = ''
         for(let i = 0; i < uploadFiles.length; i++) {
             const uploadFile = uploadFiles[i]
-            const imgLink = uploadFile.getAttribute("src")
+            // imgLink = uuid_fileName 형식으로 전달하기.
+            const imgLink = uploadFile.getAttribute("data-src")
 
             str += `<input type='hidden' name='fileNames' value='${imgLink}'>`
         }

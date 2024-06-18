@@ -2,9 +2,12 @@ package com.busanit501.boot501.service;
 
 import com.busanit501.boot501.domain.Board;
 import com.busanit501.boot501.dto.*;
+import lombok.extern.log4j.Log4j2;
+
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 
 public interface BoardService {
   Long register(BoardDTO boardDTO);
@@ -28,6 +31,7 @@ public interface BoardService {
   // 하지만, jdk 버전 업이 되면서, 디폴트 메서드(일반메서드), private 메서드등을
   // 가질수 있다.
   default Board dtoToEntity(BoardDTO boardDTO){
+
     Board board = Board.builder()
             .bno(boardDTO.getBno())
             .title(boardDTO.getTitle())
