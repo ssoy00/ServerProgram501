@@ -100,6 +100,11 @@
                                 <span class="badge progress-bar-success" style="background-color: #fe010a">
                                     [[${dto.replyCount}]]
                                 </span>
+<!--                                첨부 이미지 출력하기-->
+                                <div th:if="${dto.boardImages != null && dto.boardImages.size()>0}">
+                                    <img style="width: 100px" th:each="boardImage : ${dto.boardImages}"
+                                     th:src="|/view/s_${boardImage.uuid}_${boardImage.fileName}|">
+                                </div>
                             </td>
 <!--이부분 주석 인식 못해서 삭제함-->
 
