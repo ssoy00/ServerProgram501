@@ -260,6 +260,51 @@
         uploadResult.innerHTML += str
     }
 
+ //실제 수정 이벤트 처리.
+    // 등록하기, updateBtn
+    document.querySelector(".updateBtn").addEventListener("click",function (e){
+        e.preventDefault()
+        e.stopPropagation()
+
+        formObj.action = `/board/update?${link}`
+
+        // 첨부 파일 : 히든으로 추가.
+        // 새로운 이미지 추가.
+        appendFileData()
+
+        // 최종 삭제 대상 파일들을 삭제
+        // 수정 중에서, 만약 변경이되는 사진,
+        callRemoveFiles()
+
+        formObj.method = 'post'
+        formObj.submit()
+
+    },false)
+
+    // 새로운 이미지 파일 첨부
+    function appendFileData() {
+     const target = document.querySelector(".uploadHidden")
+        const uploadFiles = uploadResult.querySelectorAll("img")
+
+        let str = ''
+
+        for (let i = 0; i < uploadFiles.length ; i++){
+            const uploadFile = uploadFiles[i]
+            // imgLink = uuid_fileName 형식으로 전달하기.
+            const imgLink = uploadFile.getAttribute("data-src")
+
+            str += `<input type='hidden' name='fileNames' value='${imgLink}'>`
+        }
+        target.innerHTML = str;
+    }
+
+ // 최종 삭제할 첨부 파일명의 목록 이용해서 삭제하기
+ function callRemoveFiles() {
+     removeFileList.forEach(({uuid,fileName}) => {
+         removeFileToServer(uuid,fileName)
+     })
+ }
+
 </script>
 
 </body>
