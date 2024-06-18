@@ -73,7 +73,7 @@
                 <th:block th:each="fileName:${boardDTO.fileNames}" >
                     <div class="card col-4" th:with = "arr = ${fileName.split('_')}">
                         <div class="card-header d-flex justify-content-center">
-                            [[${arr[1}]]
+                            [[${arr[1]}]]
                             <button class="btn-sm btn-danger" onclick="javascript:removeFile([[${arr[0]}]],[[${arr[1}]],this)">X</button>
                         </div>
                         <div class="card-body">
