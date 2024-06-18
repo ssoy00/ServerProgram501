@@ -164,6 +164,33 @@
 
     },false)
 
+
+    //최종으로 삭제될 파일 목록
+    const removeFileList = []
+    //X 표시를 클릭시 이미지 삭제 하는 함수
+    function removeFile(uuid,fileName,obj) {
+     //삭제시 confirm 한번 물어보기.
+        // 삭제 안한다고 하면, 해당 삭제하는 함수(removeFile)를 나가기.
+        if(!confirm("파일 삭제할까요?")){
+            return
+        }
+
+        console.log("uuid : " + uuid)
+        console.log("fileName : " + fileName)
+        console.log("obj : " + obj)
+        console.log("removeFileList : " + removeFileList)
+
+        //최종으로 삭제할 목록
+        removeFileList.push({uuid,fileName})
+
+        // obj.closest , 현재 요소에서 가장 가까운 부모 요소를 찾기.
+        const targetDiv = obj.closest(".card")
+
+        removeFileToServer(uuid,fileName).then(data =>{
+            targetDiv.remove()
+        })
+    }
+
 </script>
 
 </body>
