@@ -1,9 +1,6 @@
 package com.busanit501.boot501.controller;
 
-import com.busanit501.boot501.dto.BoardDTO;
-import com.busanit501.boot501.dto.BoardListReplyCountDTO;
-import com.busanit501.boot501.dto.PageRequestDTO;
-import com.busanit501.boot501.dto.PageResponseDTO;
+import com.busanit501.boot501.dto.*;
 import com.busanit501.boot501.service.BoardService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -31,8 +28,9 @@ public class BoardController {
 
         log.info("BoardController : /board/list  확인 중, pageRequestDTO : " + pageRequestDTO);
 
-        PageResponseDTO<BoardListReplyCountDTO> responseDTO
-                = boardService.listWithReplyCount(pageRequestDTO);
+        // dto 변경하기, 메서드도 변경하기. 댓글 갯수 포함, 첨부 이미지들 모두 포함.
+        PageResponseDTO<BoardListAllDTO> responseDTO
+                = boardService.listWithAll(pageRequestDTO);
         // 서버로부터 응답확인.
         log.info("BoardController 확인 중, responseDTO : " + responseDTO);
         // 서버 -> 화면 데이터 전달.
