@@ -162,7 +162,11 @@ public class CustomSecurityConfig {
 
     }
 
+시큐리티 시스템에서 정한 로그 아웃.
+http://localhost:8080/member/login?logout
+
 3. 자동 로그인을 위한 테이블
+스프링에서 제공하는 테이블명 : persistent_logins , 동일해야함.
 create table persistent_logins(
     username varchar(64) not null,
     series varchar(64) primary key,

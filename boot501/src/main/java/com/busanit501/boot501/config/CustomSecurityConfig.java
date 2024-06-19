@@ -50,13 +50,15 @@ public class CustomSecurityConfig {
         // 기본은 csrf 설정이 on, 작업시에는 끄고 작업하기.
         http.csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable());
 
+        // 특정 페이지에 접근 권한 설정.
         http.authorizeRequests()
+                // 정적 자원 모두 허용.
                 .requestMatchers("/css/**", "/js/**","/image/**").permitAll()
-                // 리스트는 기본으로 다 들어갈수 있게.
+                // 리스트는 기본으로 다 들어갈수 있게., 모두 허용
                 .requestMatchers("/", "/board/list", "/login", "/joinUser","/joinForm","/findAll","/images/**").permitAll()
-                // 로그인 후 확인 하기.
-                .requestMatchers("/board/register").hasRole("USER")
-                //
+                // 로그인 후 확인 하기. 권한 예제) hasRole("USER"),hasRole("ADMIN")
+                .requestMatchers("/board/register").authenticated()
+                // 권한  관리자만, 예제로 , 수정폼은 권한이 관리자여야 함.
                 .requestMatchers("/admin","/images","/board/update").hasRole("ADMIN")
                 .anyRequest().authenticated();
 
