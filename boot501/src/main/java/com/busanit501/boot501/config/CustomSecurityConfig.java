@@ -25,7 +25,7 @@ import javax.sql.DataSource;
 @Configuration
 @RequiredArgsConstructor
 // 어노테이션을 이용해서, 특정 권한 있는 페이지 접근시, 구분가능.
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 //@EnableMethodSecurity
 @EnableWebSecurity
 public class CustomSecurityConfig {
