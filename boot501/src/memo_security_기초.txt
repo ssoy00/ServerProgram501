@@ -63,6 +63,18 @@ spring.devtools.restart.enabled=false
 1) application.properties
 2) 설정 클래스를 이용하는 방법.
 
+우리는 설정 클래스를 이용해서 설정 및 확인 할 예정.
+
+로깅을 trace 설정을 했고, 조금 더 구체적으로 확인 하기 위해서.
+
+style.css, .js , 정적 자원, 시큐리티 설정을 할 필요가 없다.
+
+그래서, 제외 하기.
+
+
+
+
+
 
 
 
