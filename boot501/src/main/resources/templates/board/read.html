@@ -147,11 +147,13 @@
                     </div>
 
                 </div>
-                <div class="modal-footer">
+                <div class="modal-footer" th:with="user=${#authentication.principal}">
                     <button type="button" class="btn btn-secondary closeUpdateBtn" data-bs-dismiss="modal">Close
                     </button>
+                    <div th:if="${user != null && user.username==boardDTO.writer}" >
                     <button type="button" class="btn btn-primary updateBtn">수정하기</button>
                     <button type="button" class="btn btn-warning deleteBtn">삭제하기</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -302,6 +304,12 @@
     const updateText = document.querySelector(".updateText")
     const closeUpdateBtn = document.querySelector(".closeUpdateBtn")
 
+    // 댓글 작성자와 로그인 유저의 일치 여부를 확인
+    // 댓글 작성자를 불러와야 함. 서버에서.
+    let hasAuth = false
+    // 현재 로그인한 유저 , 변수에 담기.
+    const currentUser = [[${#authentication.principal.username}]]
+
     // 이벤트 처리하기.
     // 댓글 목록에서 하나 댓글 선택시, 이벤트 처리
     replyList.addEventListener("click", function (e) {
@@ -327,6 +335,12 @@
             replyHeader.innerHTML = reply.rno
             updateText.value = reply.replyText
             updateModal.show()
+
+            //currentUser : 로그인한 유저,
+            // reply.replyer : 댓글 작성자,
+            // 같을 경우에 hasAuth = true
+            hasAuth = currentUser === reply.replyer
+
         }).catch(e =>
             alert("댓글 조회 실패")
         )
@@ -364,6 +378,14 @@
 
     // 댓글 수정 이벤트 처리===============================================
     document.querySelector(".updateBtn").addEventListener("click", function (e) {
+        // 유효성 체크,
+        // 로그인 한 유저와, 댓글 작성자가 일치 할 때만 수정 가능해요.
+        if(!hasAuth) {
+            alert("댓글 작성자만 수정 가능해요")
+            updateModal.hide()
+            return
+        }
+
         // registerModal.hide()
         const replyObj = {
             bno: bno,
@@ -397,6 +419,12 @@
     // 댓글 삭제 이벤트 처리===============================================
     //document.querySelector(".deleteBtn").addEventListener("click", function (e) {
     deleteBtn.addEventListener("click", function (e) {
+
+        if(!hasAuth) {
+            alert("댓글 작성자만 삭제 가능해요")
+            updateModal.hide()
+            return
+        }
 
         const rno = replyHeader.innerHTML
         deleteReply(rno).then(result => {
