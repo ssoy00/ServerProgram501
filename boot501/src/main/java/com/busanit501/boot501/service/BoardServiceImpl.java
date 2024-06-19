@@ -92,6 +92,9 @@ public class BoardServiceImpl implements BoardService {
 //    Board board = result.orElseThrow();
 
     // 게시글에 대한 댓글을 삭제하고,
+    // Reply 테이블에는 bno 필드가 없고, board_bno 있음.
+    // 그래서, 매번 실행 할 때 마다, null 잡혀서, 우리가 원하는 로직 처리가 안됨
+    //
 //    Optional<Reply> result = replyRepository.findById(bno);
     List<Reply> result = replyRepository.findByBoardBno(bno);
 //    Reply reply = result.orElseThrow();
