@@ -57,9 +57,9 @@ public class CustomSecurityConfig {
                 // 리스트는 기본으로 다 들어갈수 있게., 모두 허용
                 .requestMatchers("/", "/board/list", "/login", "/joinUser","/joinForm","/findAll","/images/**").permitAll()
                 // 로그인 후 확인 하기. 권한 예제) hasRole("USER"),hasRole("ADMIN")
-                .requestMatchers("/board/register").authenticated()
+                .requestMatchers("/board/register","/board/read","/board/update" ).authenticated()
                 // 권한  관리자만, 예제로 , 수정폼은 권한이 관리자여야 함.
-                .requestMatchers("/admin","/images","/board/update").hasRole("ADMIN")
+                .requestMatchers("/admin","/images").hasRole("ADMIN")
                 .anyRequest().authenticated();
 
         // 자동로그인 설정.1
