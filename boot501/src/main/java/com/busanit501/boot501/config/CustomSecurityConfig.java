@@ -16,6 +16,7 @@ public class CustomSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         log.info("시큐리티 동작 확인 ====CustomSecurityConfig======================");
         // 로그인 없이 자동 로그인 확인
+        // 빈 설정.
         return http.build();
     }
 
