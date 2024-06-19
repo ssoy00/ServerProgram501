@@ -7,18 +7,21 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.configuration.EnableGlobalAuthentication;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Log4j2
 @Configuration
 @RequiredArgsConstructor
 // 어노테이션을 이용해서, 특정 권한 있는 페이지 접근시, 구분가능.
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
+//@EnableMethodSecurity
 @EnableWebSecurity
 public class CustomSecurityConfig {
 
@@ -35,9 +38,16 @@ public class CustomSecurityConfig {
         // 빈 설정.
         // 인증 관련된 설정.
         http.formLogin(
-                form -> {
-            form.loginPage("/member/login");
-        });
+                formLogin -> formLogin.loginPage("/member/login").permitAll()
+        );
+        ;
+
+        http.authorizeRequests()
+                .requestMatchers("/css/**", "/js/**","/image/**").permitAll()
+                .requestMatchers("/", "/main", "/login", "/joinUser","/joinForm","/findAll","/images/**").permitAll()
+                .requestMatchers("/admin","/images").hasRole("ADMIN")
+                .anyRequest().authenticated()
+        ;
 
         return http.build();
     }
