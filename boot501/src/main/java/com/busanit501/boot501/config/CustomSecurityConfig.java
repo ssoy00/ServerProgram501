@@ -19,6 +19,11 @@ public class CustomSecurityConfig {
         log.info("시큐리티 동작 확인 ====CustomSecurityConfig======================");
         // 로그인 없이 자동 로그인 확인
         // 빈 설정.
+        // 인증 관련된 설정.
+        http.formLogin(
+                form -> {
+            form.loginPage("/member/login");
+        });
         return http.build();
     }
 

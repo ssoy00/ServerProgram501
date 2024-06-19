@@ -71,7 +71,19 @@ style.css, .js , 정적 자원, 시큐리티 설정을 할 필요가 없다.
 
 그래서, 제외 하기.
 
+ //정적 자원 시큐리티 필터 항목에 제외하기.
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        log.info("시큐리티 동작 확인 ====webSecurityCustomizer======================");
+        return (web) ->
+                web.ignoring()
+                        .requestMatchers(PathRequest.toStaticResources().atCommonLocations());
+    }
 
+
+기존 방식과 , 시큐리티의 차이점.
+아이디, 패스워드 의 일치 여부에 따라서, 인증만.
+시큐리티에서는 username 으로 해당 정보를 조회를 해서, 인증, 인가 확인을 함.
 
 
 
