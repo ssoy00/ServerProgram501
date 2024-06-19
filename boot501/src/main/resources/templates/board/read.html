@@ -150,10 +150,10 @@
                 <div class="modal-footer" th:with="user=${#authentication.principal}">
                     <button type="button" class="btn btn-secondary closeUpdateBtn" data-bs-dismiss="modal">Close
                     </button>
-                    <div th:if="${user != null && user.username==boardDTO.writer}" >
+
                     <button type="button" class="btn btn-primary updateBtn">수정하기</button>
                     <button type="button" class="btn btn-warning deleteBtn">삭제하기</button>
-                    </div>
+
                 </div>
             </div>
         </div>

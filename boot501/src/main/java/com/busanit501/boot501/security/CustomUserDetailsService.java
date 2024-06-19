@@ -31,7 +31,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         // 사용자 가 만든 User 가 아니다. 우리는 Member 사용할 예정.
 
         UserDetails userDetails = User.builder()
-                .username("lsy")
+                .username("lsy2")
                 .password(passwordEncoder.encode("123456"))
                 // 더미 데이터, 더미 권한.
                 .authorities("ROLE_USER")
