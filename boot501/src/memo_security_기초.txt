@@ -175,4 +175,18 @@ create table persistent_logins(
 );
 
 
+화면에서, 인증이 된 유저일 경우, 조건에 맞게, 특정의 화면이 보이게 할려면,
+도구가 필요해요, 타임리프에서
+thymeleaf-extras-springsecurity6  도구가 필요해요
+
+// https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity6
+implementation group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity6', version: '3.1.0.RELEASE'
+
+.
+예) 로그인 유저일 경우, 로그 아웃 버튼을 보이게 하거나,
+관라지 일 경우 ,관리자 페이지 링크가 보이게 하거나, 등.
+
+
+
+
 

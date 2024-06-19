@@ -62,16 +62,33 @@ public class CustomSecurityConfig {
                 .requestMatchers("/admin","/images","/board/update").hasRole("ADMIN")
                 .anyRequest().authenticated();
 
-        // 자동로그인 설정.
+        // 자동로그인 설정.1
         http.rememberMe(
-                httpSecurityRememberMeConfigurer -> httpSecurityRememberMeConfigurer.key("12345678")
+                httpSecurityRememberMeConfigurer ->
+                        httpSecurityRememberMeConfigurer
+                                // 토큰 생성시 사용할 암호
+                                .key("12345678")
+                                // 스프링 시큐리티에서 정의해둔 Repository
                         .tokenRepository(persistentTokenRepository())
+                                // UserDetail를 반환하는 사용자가 정의한 클래스
                         .userDetailsService(customUserDetailsService)
+                                // 토큰의 만료 시간.
                         .tokenValiditySeconds(60*60*24*30)
         );
 
         return http.build();
     }
+
+    // 자동로그인 설정 2
+    // 시스템에서 정의해둔 기본 약속.
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository() {
+        // 시큐리에서 정의 해둔 구현체
+        JdbcTokenRepositoryImpl repo = new JdbcTokenRepositoryImpl();
+        repo.setDataSource(dataSource);
+        return repo;
+    }
+
 
     //정적 자원 시큐리티 필터 항목에 제외하기.
     @Bean
@@ -82,12 +99,5 @@ public class CustomSecurityConfig {
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations());
     }
 
-    // 자동로그인 설정
-    @Bean
-    public PersistentTokenRepository persistentTokenRepository() {
-        JdbcTokenRepositoryImpl repo = new JdbcTokenRepositoryImpl();
-        repo.setDataSource(dataSource);
-        return repo;
-    }
 
 }
