@@ -1,5 +1,6 @@
 package com.busanit501.boot501.config;
 
+import com.busanit501.boot501.security.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -14,7 +15,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import javax.sql.DataSource;
 
 @Log4j2
 @Configuration
@@ -24,6 +29,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 //@EnableMethodSecurity
 @EnableWebSecurity
 public class CustomSecurityConfig {
+    private final DataSource dataSource;
+    private final CustomUserDetailsService customUserDetailsService;
 
     // 평문 패스워드를 해시 함수 이용해서 인코딩 해주는 도구 주입.
     @Bean
@@ -40,14 +47,26 @@ public class CustomSecurityConfig {
         http.formLogin(
                 formLogin -> formLogin.loginPage("/member/login").permitAll()
         );
-        ;
+        // 기본은 csrf 설정이 on, 작업시에는 끄고 작업하기.
+        http.csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable());
 
         http.authorizeRequests()
                 .requestMatchers("/css/**", "/js/**","/image/**").permitAll()
-                .requestMatchers("/", "/main", "/login", "/joinUser","/joinForm","/findAll","/images/**").permitAll()
-                .requestMatchers("/admin","/images").hasRole("ADMIN")
-                .anyRequest().authenticated()
-        ;
+                // 리스트는 기본으로 다 들어갈수 있게.
+                .requestMatchers("/", "/board/list", "/login", "/joinUser","/joinForm","/findAll","/images/**").permitAll()
+                // 로그인 후 확인 하기.
+                .requestMatchers("/board/register").hasRole("USER")
+                //
+                .requestMatchers("/admin","/images","/board/update").hasRole("ADMIN")
+                .anyRequest().authenticated();
+
+        // 자동로그인 설정.
+        http.rememberMe(
+                httpSecurityRememberMeConfigurer -> httpSecurityRememberMeConfigurer.key("12345678")
+                        .tokenRepository(persistentTokenRepository())
+                        .userDetailsService(customUserDetailsService)
+                        .tokenValiditySeconds(60*60*24*30)
+        );
 
         return http.build();
     }
@@ -59,6 +78,14 @@ public class CustomSecurityConfig {
         return (web) ->
                 web.ignoring()
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations());
+    }
+
+    // 자동로그인 설정
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository() {
+        JdbcTokenRepositoryImpl repo = new JdbcTokenRepositoryImpl();
+        repo.setDataSource(dataSource);
+        return repo;
     }
 
 }

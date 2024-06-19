@@ -59,7 +59,7 @@ public class BoardController {
 
     //글쓰기 처리
     // 로그인한 유저이고, 일반 유저, 글쓰기가 가능하게끔 설정.
-    @PreAuthorize("hasRole('USER')")
+//    @PreAuthorize("hasRole('USER')")
     @PostMapping("/register")
     public String register(@Valid BoardDTO boardDTO
             , BindingResult bindingResult

@@ -128,6 +128,47 @@ pw : 1111 -> 해시 함수를 이용한 매번 다른 문자열로 암호화함.
 - hasRole(표현식) : 특정한 권한이 있는 사용자 허용.
 - hasAnyRole(표현식) : 여러 권한 중 하나만 존재해도 허용.
 
+버전 변경으로 문법 변경하기.
+여기 샘플 코드 활용하기.
+공식 문서 : https://spring.io/guides/gs/securing-web
+
+1
+@EnableWebSecurity
+public class CustomSecurityConfig {
+
+}
+
+2
+ @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+ http.formLogin(
+                formLogin -> formLogin.loginPage("/member/login").permitAll()
+        );
+        // 기본은 csrf 설정이 on, 작업시에는 끄고 작업하기.
+        http.csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable());
+
+        http.authorizeRequests()
+                .requestMatchers("/css/**", "/js/**","/image/**").permitAll()
+                // 리스트는 기본으로 다 들어갈수 있게.
+                .requestMatchers("/", "/board/list", "/login", "/joinUser","/joinForm","/findAll","/images/**").permitAll()
+                // 로그인 후 확인 하기.
+                .requestMatchers("/board/register").hasRole("USER")
+                //
+                .requestMatchers("/admin","/images","/board/update").hasRole("ADMIN")
+                .anyRequest().authenticated()
+        ;
+
+        return http.build();
+
+    }
+
+3. 자동 로그인을 위한 테이블
+create table persistent_logins(
+    username varchar(64) not null,
+    series varchar(64) primary key,
+    token varchar(64) not null,
+    last_used timestamp not null
+);
 
 
 

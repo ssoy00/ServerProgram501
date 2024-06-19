@@ -34,6 +34,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                 .username("lsy")
                 .password(passwordEncoder.encode("123456"))
                 .authorities("ROLE_USER")
+//                .authorities("ROLE_ADMIN")
                 .build();
 
         return userDetails;
