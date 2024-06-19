@@ -85,7 +85,24 @@ style.css, .js , 정적 자원, 시큐리티 설정을 할 필요가 없다.
 아이디, 패스워드 의 일치 여부에 따라서, 인증만.
 시큐리티에서는 username 으로 해당 정보를 조회를 해서, 인증, 인가 확인을 함.
 
+샘플
+public class CustomUserDetailsService implements UserDetailsService {
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        log.info("시큐리티 loadUserByUsername 확인 : "+ username);
+        return null;
+    }
+
+UserDetails 의 대표적인 추상메서드
+- getAuthorities , 로그인한 유저의 인증 정보를 가지고 있다.
+
+시큐리티에서는 유저의 패스워드의 평문을 싫어합니다.
+해싱을 한 , 인코딩이된 값을 좋아라함. 그래서, 이게 기본값.
+우리는 해시 함수 클래스를 선정을해서, 빈으로 시스템에 등록을 의무적으로 해야함.
+PasswordEncoder 중에서,
+BCryptPasswordEncoder 라는 클래스를 이용할 예정.
+pw : 1111 -> 해시 함수를 이용한 매번 다른 문자열로 암호화함.
 
 
 
