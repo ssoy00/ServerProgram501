@@ -340,6 +340,13 @@
             // reply.replyer : 댓글 작성자,
             // 같을 경우에 hasAuth = true
             hasAuth = currentUser === reply.replyer
+            if(hasAuth){
+                document.querySelector(".updateBtn").style.display = 'inline'
+                document.querySelector(".deleteBtn").style.display = 'inline'
+            } else {
+                document.querySelector(".updateBtn").style.display = 'none'
+                document.querySelector(".deleteBtn").style.display = 'none'
+            }
 
         }).catch(e =>
             alert("댓글 조회 실패")
