@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -57,6 +58,8 @@ public class BoardController {
     }
 
     //글쓰기 처리
+    // 로그인한 유저이고, 일반 유저, 글쓰기가 가능하게끔 설정.
+    @PreAuthorize("hasRole('USER')")
     @PostMapping("/register")
     public String register(@Valid BoardDTO boardDTO
             , BindingResult bindingResult
