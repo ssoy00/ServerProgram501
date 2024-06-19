@@ -186,7 +186,9 @@ thymeleaf-extras-springsecurity6  도구가 필요해요
 예) 로그인 유저일 경우, 로그 아웃 버튼을 보이게 하거나,
 관라지 일 경우 ,관리자 페이지 링크가 보이게 하거나, 등.
 
-
+register.html 에서,
+유저 권한별 화면 표시하는 도구 사용하기 위해서 설정 태그 추가.
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6"
 
 
 
