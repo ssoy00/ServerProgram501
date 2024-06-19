@@ -40,6 +40,24 @@ id : user
 pw : 콘솔에서 매번 변경이 된 패스워드 제공해줌.
 로그인 폼 제공, 로그 아웃 제공, 로그인 로직 처리 해줌.
 
+샘플 : 매번 변경
+Using generated security password: 668de4cb-edd3-4567-b116-1144b65d933b
+
+확인시,
+매번, 인텔리제이에서 작업 후, 크롬등으로 이동시,
+매번 자동 리로드 , 패스워드 가 계속 생성이 되어서 ,
+확인 못함.
+해결책.
+application.properties
+# devtools 끄기
+spring.devtools.restart.enabled=false
+
+서버 다시 켜고 확인 하면됨.
+
+그러면, 시큐리티 통해서 , 리스트, 다른 작업이 가능함.
+
+강제로 로그아웃
+
 
 
 
