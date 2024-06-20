@@ -44,7 +44,7 @@
                     </label>
                 </div>
                 <div class="my-4">
-                    <button type="submit" class="btn btn-primary w-100 submitBtn">Join</button>
+                    <button type="button" class="btn btn-primary w-100 joinBtn">Join</button>
                 </div>
                 <div class="my-4">
                     <button type="submit" class="btn btn-primary w-100 submitBtn">LOGIN</button>
@@ -52,10 +52,18 @@
             </form>
 
             <a href="/oauth2/authorization/kakao">
-                <img th:src="@{/images/login/kakao_login_medium_narrow.png}" alt="카카오 로그인 화면" class="w-100" style="height: 50px">
+                <img th:src="@{/images/login/kakao_login_medium_narrow.png}" alt="카카오 로그인 화면">
             </a>
         </div><!--end card body-->
     </div><!--end card-->
 </div>
+<script>
+    document.querySelector(".joinBtn").addEventListener("click", function (e) {
+        e.preventDefault()
+        e.stopPropagation()
+        self.location = "/member/join"
+
+    })
+</script>
 </body>
 </html>
