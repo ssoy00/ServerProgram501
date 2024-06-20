@@ -15,7 +15,6 @@ import java.util.Collection;
 @Getter
 @Setter
 @ToString
-@Builder
 //@AllArgsConstructor
 // @AllArgsConstructor 대신에 권한도, 시큐리티에서 가져와서, 사용자정의해야하서.
 public class MemberSecurityDTO extends User {
