@@ -37,7 +37,8 @@ public class BoardController {
     private String uploadPath;
 
     private final BoardService boardService;
-//깃 테스트2
+
+    //깃 테스트2
 //깃 테스트3
     // ex) /board/list
     @GetMapping("/list")
@@ -60,7 +61,9 @@ public class BoardController {
 
     //글쓰기 폼
     @GetMapping("/register")
-    public void registerForm() {
+    public void registerForm(@AuthenticationPrincipal UserDetails user, Model model) {
+        // 로그인 여부에 따라, 로그 아웃 표시하기.
+        model.addAttribute("user", user);
     }
 
     //글쓰기 처리
@@ -72,7 +75,7 @@ public class BoardController {
             , RedirectAttributes redirectAttributes
             , Model model) {
         // 입력중 유효성 체크에 해당 될 때
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             log.info("register 중 오류 발생.");
             redirectAttributes.addFlashAttribute(
                     "errors", bindingResult.getAllErrors());
@@ -85,8 +88,8 @@ public class BoardController {
         Long bno = boardService.register(boardDTO);
 
         // 글쓰기 후, 작성된 게시글 번호 -> 화면 , 임시로 전달.(1회용)
-        redirectAttributes.addFlashAttribute("result",bno);
-        redirectAttributes.addFlashAttribute("resultType","register");
+        redirectAttributes.addFlashAttribute("result", bno);
+        redirectAttributes.addFlashAttribute("resultType", "register");
         return "redirect:/board/list";
 
     }
@@ -95,8 +98,8 @@ public class BoardController {
     // 준비물, 해당 게시글 번호로 조회한 데이터가 필요함.
     // 화면 -> 서버로 , bno 게시글 번호를 전달하기.
 //    @PreAuthorize("principal.username == #boardDTO2.writer")
-    @GetMapping({"/read","/update"})
-    public void read(Long bno,BoardDTO boardDTO2,  PageRequestDTO pageRequestDTO, Model model) {
+    @GetMapping({"/read", "/update"})
+    public void read(@AuthenticationPrincipal UserDetails user, Long bno, BoardDTO boardDTO2, PageRequestDTO pageRequestDTO, Model model) {
 
 //        log.info("BoardController : boardDTO2 확인 중, boardDTO2 : " + boardDTO2.getWriter());
         log.info("BoardController : /board/read  확인 중, pageRequestDTO : " + pageRequestDTO);
@@ -107,6 +110,7 @@ public class BoardController {
         log.info("BoardController 확인 중, boardDTO : " + boardDTO);
         // 서버 -> 화면 데이터 전달.
         model.addAttribute("boardDTO", boardDTO);
+        model.addAttribute("user", user);
 
     } //read 닫는 부분
 
@@ -116,17 +120,18 @@ public class BoardController {
     public String update(@Valid BoardDTO boardDTO
             , BindingResult bindingResult
             , RedirectAttributes redirectAttributes
+            , @AuthenticationPrincipal UserDetails user
             , Model model
-    ,PageRequestDTO pageRequestDTO) {
+            , PageRequestDTO pageRequestDTO) {
         // 입력중 유효성 체크에 해당 될 때
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             log.info("update 중 오류 발생.");
             redirectAttributes.addFlashAttribute(
                     "errors", bindingResult.getAllErrors());
             // 서버 -> 화면으로 쿼리 스트링으로전달.
             // 예시 : ?bno=게시글번호
             redirectAttributes.addAttribute("bno", boardDTO.getBno());
-            return "redirect:/board/update"+pageRequestDTO.getLink();
+            return "redirect:/board/update" + pageRequestDTO.getLink();
         }
         log.info("화면에서 입력 받은 내용 update 확인 : " + boardDTO);
 
@@ -135,10 +140,11 @@ public class BoardController {
         boardService.update(boardDTO);
 
         // 글쓰기 후, 작성된 게시글 번호 -> 화면 , 임시로 전달.(1회용)
-        redirectAttributes.addFlashAttribute("result",boardDTO.getBno());
-        redirectAttributes.addFlashAttribute("resultType","update");
+        redirectAttributes.addFlashAttribute("result", boardDTO.getBno());
+        redirectAttributes.addFlashAttribute("resultType", "update");
+        model.addAttribute("user", user);
 
-        return "redirect:/board/list?"+pageRequestDTO.getLink2();
+        return "redirect:/board/list?" + pageRequestDTO.getLink2();
 
     }
 
@@ -148,7 +154,7 @@ public class BoardController {
     @PreAuthorize("principal.username == #boardDTO.writer")
     @PostMapping("/delete")
     public String delete(BoardDTO boardDTO, PageRequestDTO pageRequestDTO, Long bno, RedirectAttributes redirectAttributes
-            ) {
+    ) {
 
 
         //화면 -> 서버 -> 서비스 -> 레포지토리 -> 디비, 입력후, 게시글 번호 가져오기
@@ -158,21 +164,21 @@ public class BoardController {
         log.info("delete : boardDTO 확인 : " + boardDTO);
         // 미디어서버,  , 파일들도 다 같이 삭제.
         List<String> fileNames = boardDTO.getFileNames();
-        if(fileNames != null && fileNames.size()>0) {
+        if (fileNames != null && fileNames.size() > 0) {
             removeFiles(fileNames);
         }
 
         // 글쓰기 후, 작성된 게시글 번호 -> 화면 , 임시로 전달.(1회용)
-        redirectAttributes.addFlashAttribute("result",bno);
-        redirectAttributes.addFlashAttribute("resultType","delete");
-        return "redirect:/board/list?"+pageRequestDTO.getLink2();
+        redirectAttributes.addFlashAttribute("result", bno);
+        redirectAttributes.addFlashAttribute("resultType", "delete");
+        return "redirect:/board/list?" + pageRequestDTO.getLink2();
 
     }
 
     public void removeFiles(List<String> files) {
         for (String fileName : files) {
             Resource resource = new FileSystemResource(
-                    uploadPath+ File.separator+fileName);
+                    uploadPath + File.separator + fileName);
             String resourceName = resource.getFilename();
             // 결과 알려줄 임시 맵
 //            Map<String,Boolean> resultMap = new HashMap<>();
@@ -182,9 +188,9 @@ public class BoardController {
                 // contentType , 섬네일 삭제시 이용할 예정.
                 String contentType = Files.probeContentType(resource.getFile().toPath());
                 deleteCheck = resource.getFile().delete();
-                if(contentType.startsWith("image")){
-                    File thumbnailFile = new File(uploadPath+File.separator
-                            +"s_"+fileName);
+                if (contentType.startsWith("image")) {
+                    File thumbnailFile = new File(uploadPath + File.separator
+                            + "s_" + fileName);
                     thumbnailFile.delete();
                 }
             } catch (Exception e) {
