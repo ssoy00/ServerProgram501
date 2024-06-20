@@ -6,14 +6,16 @@ package com.busanit501.boot501.security.dto;
 // 자기들이 정해둔 룰. UserDetails 를 반환하는 클래스를 요구를 해요.
 // 시큐리티에서 정의해둔 특정 클래스를 상속을 받으면 됨.
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
 import java.util.Collection;
 
-@Data
+@Getter
+@Setter
+@ToString
+@Builder
 //@AllArgsConstructor
 // @AllArgsConstructor 대신에 권한도, 시큐리티에서 가져와서, 사용자정의해야하서.
 public class MemberSecurityDTO extends User {
