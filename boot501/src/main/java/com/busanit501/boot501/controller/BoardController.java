@@ -49,6 +49,7 @@ public class BoardController {
                 = boardService.listWithAll(pageRequestDTO);
         // 서버로부터 응답확인.
         log.info("BoardController 확인 중, responseDTO : " + responseDTO);
+        log.info("BoardController 확인 중, user : " + user);
         // 서버 -> 화면 데이터 전달.
         model.addAttribute("responseDTO", responseDTO);
         // 로그인 여부에 따라, 로그 아웃 표시하기.
