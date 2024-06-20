@@ -1,9 +1,11 @@
 package com.busanit501.boot501.controller;
 
+import com.busanit501.boot501.dto.MemberJoinDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -39,6 +41,14 @@ public class MemberController {
     }
 
     // 회원 가입 로직 처리
-    
+    @PostMapping("/join")
+    public String joinPost(MemberJoinDTO memberJoinDTO) {
+        log.info("joinPost====================");
+        log.info("memberJoinDTO = " + memberJoinDTO);
+        // 회원 가입 로직 처리 없음.
+
+
+        return "redirect:/board/list";
+    }
 
 }
