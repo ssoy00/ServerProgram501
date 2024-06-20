@@ -6,6 +6,7 @@ import com.busanit501.boot501.repository.MemberRepository;
 import com.busanit501.boot501.security.dto.MemberSecurityDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,13 +21,14 @@ import java.util.stream.Collectors;
 
 @Log4j2
 @Service
-//@RequiredArgsConstructor
+
 public class CustomUserDetailsService implements UserDetailsService {
 
     // 스프링 시큐리티 설정 클래스에 빈으로 등록한 인스턴스 주입하기.
     private PasswordEncoder passwordEncoder;
 
     // MemberRepository 넣기.
+    @Autowired
     private MemberRepository memberRepository;
 
     //생성자로 주입하기.
