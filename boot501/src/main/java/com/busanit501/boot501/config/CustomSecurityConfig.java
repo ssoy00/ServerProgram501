@@ -53,8 +53,7 @@ public class CustomSecurityConfig {
 
         // 로그 아웃 설정.
         http.logout(
-                logout -> logout.logoutUrl("/member/logout").logoutSuccessUrl("/member/login?logout")
-
+                logout -> logout.logoutUrl("/member/login?logout").logoutSuccessUrl("/member/login?logout")
         );
 
         //로그인 후, 성공시 리다이렉트 될 페이지 지정, 간단한 버전.
