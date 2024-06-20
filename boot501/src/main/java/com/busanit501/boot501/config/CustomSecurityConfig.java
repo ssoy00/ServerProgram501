@@ -60,6 +60,7 @@ public class CustomSecurityConfig {
                 .requestMatchers("/board/register","/board/read","/board/update" ).authenticated()
                 // 권한  관리자만, 예제로 , 수정폼은 권한이 관리자여야 함.
                 .requestMatchers("/admin","/images").hasRole("ADMIN")
+                // 위의 접근 제어 목록 외의 , 다른 어떤 요청이라도 반드시 인증이 되어야 접근이 된다.
                 .anyRequest().authenticated();
 
         // 자동로그인 설정.1

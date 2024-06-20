@@ -56,10 +56,10 @@
 
                         <div class="mb-3" th:with="link = ${pageRequestDTO.getLink()}">
                             <div th:with="user=${#authentication.principal}">
-                                <div th:if="${user != null && user.username==boardDTO.writer}">
+<!--                                <div th:if="${user != null && user.username==boardDTO.writer}">-->
                                     <button type="button" class="btn btn-primary updateBtn">수정하기</button>
                                     <button type="button" class="btn btn-warning deleteBtn">삭제하기</button>
-                                </div>
+<!--                                </div>-->
                                 <a th:href="|@{/board/list}?${link}|">
                                     <button type="button" class="btn btn-danger">목록가기</button>
                                 </a>
