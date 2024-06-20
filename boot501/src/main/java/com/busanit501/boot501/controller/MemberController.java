@@ -53,7 +53,7 @@ public class MemberController {
         try {
             memberService.join(memberJoinDTO);
         } catch (MemberService.MidExistException e) {
-            redirectAttributes.addFlashAttribute("error", "아이디 중복입니다")
+            redirectAttributes.addFlashAttribute("error", "아이디 중복입니다");
             return "redirect:/member/join";
         }
         // 회원 가입 성공시
