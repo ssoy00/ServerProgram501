@@ -62,13 +62,13 @@ public class CustomSecurityConfig {
         // 특정 페이지에 접근 권한 설정.
         http.authorizeRequests()
                 // 정적 자원 모두 허용.
-                .requestMatchers("/css/**", "/js/**","/image/**").permitAll()
+                .requestMatchers("/css/**", "/js/**","/images/**").permitAll()
                 // 리스트는 기본으로 다 들어갈수 있게., 모두 허용
                 .requestMatchers("/", "/board/list","/member/join", "/login", "/joinUser","/joinForm","/findAll","/images/**").permitAll()
                 // 로그인 후 확인 하기. 권한 예제) hasRole("USER"),hasRole("ADMIN")
                 .requestMatchers("/board/register","/board/read","/board/update" ).authenticated()
                 // 권한  관리자만, 예제로 , 수정폼은 권한이 관리자여야 함.
-                .requestMatchers("/admin","/images").hasRole("ADMIN")
+                .requestMatchers("/admin").hasRole("ADMIN")
                 // 위의 접근 제어 목록 외의 , 다른 어떤 요청이라도 반드시 인증이 되어야 접근이 된다.
                 .anyRequest().authenticated();
 
