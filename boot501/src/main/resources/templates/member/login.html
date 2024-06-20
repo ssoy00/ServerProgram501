@@ -24,7 +24,7 @@
                 <h1>Logout........</h1>
             </th:block>
 
-            <th:block th:if="${param.error.equals('ACCESS_DENIED') }">
+            <th:block th:if="${param.error != null }">
                 <h1>접근 권한이 없습니다. 다시 로그인해주세요</h1>
             </th:block>
 
