@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Conditional;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -38,7 +40,7 @@ public class BoardController {
 //깃 테스트2
     // ex) /board/list
     @GetMapping("/list")
-    public void list(PageRequestDTO pageRequestDTO, Model model) {
+    public void list(@AuthenticationPrincipal UserDetails user, PageRequestDTO pageRequestDTO, Model model) {
 
         log.info("BoardController : /board/list  확인 중, pageRequestDTO : " + pageRequestDTO);
 
@@ -49,6 +51,8 @@ public class BoardController {
         log.info("BoardController 확인 중, responseDTO : " + responseDTO);
         // 서버 -> 화면 데이터 전달.
         model.addAttribute("responseDTO", responseDTO);
+        // 로그인 여부에 따라, 로그 아웃 표시하기.
+        model.addAttribute("user", user);
 
     } //list 닫는 부분
 
