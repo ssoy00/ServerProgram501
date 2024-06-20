@@ -38,6 +38,7 @@ public class BoardController {
 
     private final BoardService boardService;
 //깃 테스트2
+//깃 테스트3
     // ex) /board/list
     @GetMapping("/list")
     public void list(@AuthenticationPrincipal UserDetails user, PageRequestDTO pageRequestDTO, Model model) {
