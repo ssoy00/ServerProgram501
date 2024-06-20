@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.Optional;
 import java.util.stream.IntStream;
 
 @SpringBootTest
@@ -38,6 +39,19 @@ public class MemberRepositoryTests {
             // 엔티티 클래스를 저장, 실제 디비 반영이되는 비지니스 모델.
             memberRepository.save(member);
 
+        });
+    } // 닫기
+
+    @Test
+    public void testRead() {
+        Optional<Member> result = memberRepository.getWithRoles("이상용100");
+        Member member = result.orElseThrow();
+
+        log.info("MemberRepositoryTests testRead, member:  "+member);
+        log.info("MemberRepositoryTests testRead, member.getRoleSet():  "+member.getRoleSet());
+
+        member.getRoleSet().forEach(memberRole -> {
+            log.info("MemberRepositoryTests testRead, memberRole:  "+memberRole);
         });
     }
 
