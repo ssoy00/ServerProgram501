@@ -1,6 +1,7 @@
 package com.busanit501.boot501.config;
 
 import com.busanit501.boot501.security.CustomUserDetailsService;
+import com.busanit501.boot501.security.handler.Custom403Handler;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -15,6 +16,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -63,6 +65,13 @@ public class CustomSecurityConfig {
                 // 위의 접근 제어 목록 외의 , 다른 어떤 요청이라도 반드시 인증이 되어야 접근이 된다.
                 .anyRequest().authenticated();
 
+        //403 핸들러 적용하기.
+        http.exceptionHandling(
+                accessDeny -> {
+                    accessDeny.accessDeniedHandler(accessDeniedHandler());
+        }
+        );
+
         // 자동로그인 설정.1
         http.rememberMe(
                 httpSecurityRememberMeConfigurer ->
@@ -76,6 +85,8 @@ public class CustomSecurityConfig {
                                 // 토큰의 만료 시간.
                         .tokenValiditySeconds(60*60*24*30)
         );
+
+
 
         return http.build();
     }
@@ -98,6 +109,12 @@ public class CustomSecurityConfig {
         return (web) ->
                 web.ignoring()
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations());
+    }
+
+    //사용자 정의한 403 예외 처리
+    @Bean
+    public AccessDeniedHandler accessDeniedHandler() {
+        return new Custom403Handler();
     }
 
 
