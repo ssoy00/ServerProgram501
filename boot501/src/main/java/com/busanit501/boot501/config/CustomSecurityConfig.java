@@ -46,9 +46,16 @@ public class CustomSecurityConfig {
         // 로그인 없이 자동 로그인 확인
         // 빈 설정.
         // 인증 관련된 설정.
+
         http.formLogin(
                 formLogin -> formLogin.loginPage("/member/login").permitAll()
         );
+
+        //로그인 후, 성공시 리다이렉트 될 페이지 지정, 간단한 버전.
+        http.formLogin(formLogin ->
+                        formLogin.defaultSuccessUrl("/board/list",true)
+                );
+
         // 기본은 csrf 설정이 on, 작업시에는 끄고 작업하기.
         http.csrf(httpSecurityCsrfConfigurer -> httpSecurityCsrfConfigurer.disable());
 
@@ -85,6 +92,8 @@ public class CustomSecurityConfig {
                                 // 토큰의 만료 시간.
                         .tokenValiditySeconds(60*60*24*30)
         );
+
+
 
 
 

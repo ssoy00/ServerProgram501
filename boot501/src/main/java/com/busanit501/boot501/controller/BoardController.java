@@ -137,6 +137,8 @@ public class BoardController {
     }
 
     //글삭제 처리
+    // principal.username: 로그인한 유저
+    // #boardDTO.writer : 작성자
     @PreAuthorize("principal.username == #boardDTO.writer")
     @PostMapping("/delete")
     public String delete(BoardDTO boardDTO, PageRequestDTO pageRequestDTO, Long bno, RedirectAttributes redirectAttributes
