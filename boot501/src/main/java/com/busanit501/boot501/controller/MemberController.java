@@ -31,6 +31,14 @@ public class MemberController {
     // 로그인 폼은 있지만, 로그인을 처리하는 로직처리가 없어요?
     // 누가 처리? 스프링의 시큐리티가 알아서 처리함.
     // 자동로그인, remember-me 이름으로 서버에 와요.
+
+    //회원가입 폼
+    @GetMapping("/join")
+    public void joinGet() {
+        log.info("joinGet====================");
+    }
+
+    // 회원 가입 로직 처리
     
 
 }

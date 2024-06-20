@@ -38,7 +38,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     // username : 로그인한 유저이름.
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        log.info("시큐리티 loadUserByUsername 확인 : "+ username);
+        log.info("CustomUserDetailsService loadUserByUsername 확인 : "+ username);
 
         //User, 스프링 시큐리티에서 제공하는 기본 클래스,
         // 사용자 가 만든 User 가 아니다. 우리는 Member 사용할 예정.
