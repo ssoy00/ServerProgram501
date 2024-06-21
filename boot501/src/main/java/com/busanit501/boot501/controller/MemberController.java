@@ -62,7 +62,10 @@ public class MemberController {
        }
         log.info("memberJoinDTO 이미지가 있는 경우 : " + resultProfileImage);
 
-        memberJoinDTO.addProfileImage(resultProfileImage);
+//        memberJoinDTO.addProfileImage(resultProfileImage);
+        String[] arr = resultProfileImage.split("_");
+        memberJoinDTO.setUuid(arr[1]);
+        memberJoinDTO.setFileName(arr[2]);
         log.info("memberJoinDTO = 3 프로필 이미지 있는 경우  " + memberJoinDTO);
         // 회원 가입 로직 처리 없음.
         try {

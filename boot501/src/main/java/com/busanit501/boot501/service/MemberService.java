@@ -18,16 +18,18 @@ public interface MemberService {
                 .mid(memberJoinDTO.getMid())
                 .mpw(memberJoinDTO.getMpw())
                 .email(memberJoinDTO.getEmail())
+                .uuid(memberJoinDTO.getUuid())
+                .fileName(memberJoinDTO.getFileName())
                 .build();
 
         // 첨부 이미지들이 추가
-        if(memberJoinDTO.getFileNames() != null) {
-            memberJoinDTO.getFileNames().forEach(fileName ->
-            {
-                String[] arr = fileName.split("_");
-                member.changeUuidFileName(arr[0],arr[1]);
-            }); // forEach 닫기
-        } // if 닫기
+//        if(memberJoinDTO.getFileNames() != null) {
+//            memberJoinDTO.getFileNames().forEach(fileName ->
+//            {
+//                String[] arr = fileName.split("_");
+//                member.changeUuidFileName(arr[0],arr[1]);
+//            }); // forEach 닫기
+//        } // if 닫기
         return member;
     } // dtoToEntity 닫기.
 

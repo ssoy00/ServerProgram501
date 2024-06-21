@@ -45,6 +45,7 @@ public class MemberServiceImpl implements MemberService {
 
         // 중복이 아니니 회원 가입 처리하기.
 //         Member member = modelMapper.map(memberJoinDTO, Member.class);
+        log.info("memberJoinDTO = 4 MemberServiceImpl 프로필 이미지 있는 경우  " + memberJoinDTO);
         Member member = dtoToEntity(memberJoinDTO);
         //패스워드는 현재 평문 -> 암호로 변경.
         member.changePassword(passwordEncoder.encode(member.getMpw()));
