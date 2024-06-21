@@ -14,7 +14,7 @@ async function uploadToServer (formObj) {
 }
 
 async function uploadProfileToServer (formObj) {
-    console.log("formObj" + formObj)
+    console.log("formObj 확인" + formObj)
 
     const response = await axios({
         method: 'post',
