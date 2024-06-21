@@ -67,3 +67,9 @@ application.properties 에서 카카오 로그인 API 관련 설정 코드
         http.oauth2Login(
                 oauthLogin -> oauthLogin.loginPage("/member/login")
         );
+
+2 login.html
+카카오 링크 주소 고정, 이미지 공식 개발자 센터에서 다운 받기.
+<a href="/oauth2/authorization/kakao">
+    <img th:src="@{/images/login/kakao_login_medium_narrow.png}" alt="카카오 로그인 화면">
+</a>
