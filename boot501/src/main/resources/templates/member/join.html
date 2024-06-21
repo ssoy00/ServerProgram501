@@ -132,10 +132,10 @@
         const fileInput= document.querySelector("input[name='file']");
         console.log("파일 이미지 확인 : " + fileInput.file)
 
-        const profilFile = fileInput.file;
+        const profileFile = fileInput.file;
 
 
-            formObj.append("file", profilFile);
+            formObj.append("file", profileFile);
 
         uploadProfileToServer(formObj).then(result => {
             // 미디어 서버에 이미지 업로드가 다 된 상태(성공) 후
