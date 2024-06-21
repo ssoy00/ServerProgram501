@@ -129,15 +129,15 @@
         // 여기에 이미지 파일들을 담을 예정.
         const formObj = new FormData();
         // 파일 선택에서 선택된 이미지들.
-        const fileInput= document.querySelector("input[name='files']");
-        console.log("파일 이미지 확인 : " + fileInput.files)
+        const fileInput= document.querySelector("input[name='file']");
+        console.log("파일 이미지 확인 : " + fileInput.file)
 
-        const files = fileInput.files;
+        const profilFile = fileInput.file;
 
-        for(let i = 0; i < files.length; i++) {
-            formObj.append("files", files[i]);
-        }
-        uploadToServer(formObj).then(result => {
+
+            formObj.append("file", profilFile);
+
+        uploadProfileToServer(formObj).then(result => {
             // 미디어 서버에 이미지 업로드가 다 된 상태(성공) 후
             // 이미지를 출력 해보자.
             for ( const uploadResult of result){
