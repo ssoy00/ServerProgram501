@@ -19,8 +19,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -108,7 +106,7 @@ public class MemberServiceImpl implements MemberService {
 
 
 
-            return UploadResultDTO;
+            return uploadResultDTO;
         } // if 파일(사진)이 있는 경우
         // 파일(사진)이 없을 경우
         return null;
