@@ -56,7 +56,7 @@ public class MemberController {
 
         // 프로필 이미지가 있을 경우, 이미지를 먼저 업로드 함.
         String resultProfileImage = "";
-       if(profileImage != null) {
+       if(profileImage != null && !profileImage.isEmpty()) {
            UploadResultDTO uploadResultDTO = memberService.uploadProfileImage(profileImage);
             resultProfileImage = uploadResultDTO.getLink();
            log.info("memberJoinDTO 이미지가 있는 경우 : " + resultProfileImage);
