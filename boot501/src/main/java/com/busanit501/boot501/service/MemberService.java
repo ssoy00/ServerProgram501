@@ -2,6 +2,8 @@ package com.busanit501.boot501.service;
 
 import com.busanit501.boot501.domain.Member;
 import com.busanit501.boot501.dto.MemberJoinDTO;
+import com.busanit501.boot501.dto.upload.UploadResultDTO;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface MemberService {
     // 중복 아이디 예외처리
@@ -44,6 +46,9 @@ public interface MemberService {
 
         return memberJoinDTO;
     }
+
+    //프로필 이미지 업로드
+    public UploadResultDTO uploadProfileImage(MultipartFile fileImageName);
 
 
 }
