@@ -5,7 +5,10 @@ import com.busanit501.boot501.dto.upload.UploadResultDTO;
 import com.busanit501.boot501.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,8 +46,10 @@ public class MemberController {
 
     //회원수정 폼
     @GetMapping("/update")
-    public void updateGet() {
+    public void updateGet(@AuthenticationPrincipal UserDetails user, Model model) {
         log.info("joinGet====================");
+        // 로그인 여부에 따라, 로그 아웃 표시하기.
+        model.addAttribute("user", user);
     }
 
     // 회원 수정 로직 처리
