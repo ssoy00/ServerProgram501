@@ -47,7 +47,8 @@ public class MemberController {
     //회원수정 폼
     @GetMapping("/update")
     public void updateGet(@AuthenticationPrincipal UserDetails user, Model model) {
-        log.info("joinGet====================");
+        log.info("updateGet====================");
+        log.info("updateGet : " + user);
         // 로그인 여부에 따라, 로그 아웃 표시하기.
         model.addAttribute("user", user);
     }
