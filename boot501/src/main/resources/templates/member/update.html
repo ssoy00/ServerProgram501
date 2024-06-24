@@ -18,18 +18,15 @@
                 </div>
                 <div class="card-body">
                     <form id="registrationForm" action="/member/update" method="post">
-                        <div th:if="${user.social.toString().equals('true')} ">
-                        <h1>소셜 로그인 경우, 임시로 패스워드만 변경함</h1>
-                        </div>
                         <div>소셜 로그인 여부 : [[${user.social}]]</div>
                         <div class="input-group mb-3" th:if="${user.social.toString().equals('false')} ">
                             <span class="input-group-text">MID</span>
-                            <input type="text" id="mid" name="mid" class="form-control" th:value="${user.mid}" readonly>
+                            <input type="text"  name="mid" class="form-control" th:value="${user.mid}" readonly>
                         </div>
 
-                        <div class="input-group mb-3">
+                        <div class="input-group mb-3" th:if="${user.social.toString().equals('false')} ">
                             <span class="input-group-text">MPW</span>
-                            <input type="password" id="mpw" name="mpw" class="form-control">
+                            <input type="password"  name="mpw" class="form-control">
                         </div>
 
                         <div class="input-group mb-3" th:if="${user.social.toString().equals('false')} ">
@@ -62,8 +59,34 @@
                                 <button type="submit" class="btn btn-primary" onclick="submitForm()">회원수정하기</button>
                                 <button type="reset" class="btn btn-secondary">초기화</button>
                             </div>
+
+                        </div>
+                    </form>
+
+                    <form id="registrationForm2" action="/member/updateSocial" method="post" th:if="${user.social.toString().equals('true')} ">
+                        <div th:if="${user.social.toString().equals('true')} ">
+                            <h1>소셜 로그인 경우, 임시로 패스워드만 변경함</h1>
+                        </div>
+                        <div>소셜 로그인 여부 : [[${user.social}]]</div>
+                        <div class="input-group mb-3" th:if="${user.social.toString().equals('true')} ">
+                            <span class="input-group-text">MID</span>
+                            <input type="text" id="mid" name="mid" class="form-control" th:value="${user.mid}" readonly>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">MPW</span>
+                            <input type="password" id="mpw" name="mpw" class="form-control">
+                        </div>
+
+                        <div class="input-group mb-3" th:if="${user.social.toString().equals('false')} ">
+                            <span class="input-group-text">EMAIL</span>
+                            <input type="email" name="email" class="form-control" th:value="${user.email}">
+                        </div>
+
+
+                        <div class="my-4">
                             <div class="float-end" th:if="${user.social.toString().equals('true')} " >
-                                <button type="submit" class="btn btn-primary" onclick="submitForm2()">소셜 회원수정하기</button>
+                                <button type="submit" class="btn btn-primary" id="updatePasswordBtn">소셜 회원수정하기</button>
                                 <button type="reset" class="btn btn-secondary">초기화</button>
                             </div>
                         </div>
@@ -238,23 +261,22 @@
     }
 
     //수정하기, 3번째 버전, 소셜 로그인 경우
-    function submitForm2() {
-        const mid = document.getElementById('mid').value;
-        const mpw = document.getElementById('mpw').value;
-        console.log("mid :" + mid + ", mpw : " + mpw)
-
-        axios.post('/member/updateSocial', {mid:mid,mpw: mpw})
-            .then(response => {
-                alert('회원수정이 완료되었습니다!');
-                console.log(response.data);
-            })
-            .catch(error => {
-                alert('회원수정 중 오류가 발생했습니다.');
-                console.error(error);
-            });
-    }
-
-
-
+    // document.getElementById('updatePasswordBtn').addEventListener('click', function (event) {
+    //     event.preventDefault()
+    //     event.stopPropagation()
+    //     const mid = document.getElementById('mid').value;
+    //     const mpw = document.getElementById('mpw').value;
+    //     console.log("mid :" + mid + ", mpw : " + mpw)
+    //
+    //     axios.post('/member/updateSocial', {mid:mid,mpw: mpw})
+    //         .then(response => {
+    //             alert('회원수정이 완료되었습니다!');
+    //             console.log(response.data);
+    //         })
+    //         .catch(error => {
+    //             alert('회원수정 중 오류가 발생했습니다.');
+    //             console.error(error);
+    //         });
+    // })
 
 </script>
