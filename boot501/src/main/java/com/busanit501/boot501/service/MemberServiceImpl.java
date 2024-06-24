@@ -70,19 +70,49 @@ public class MemberServiceImpl implements MemberService {
     public void update(MemberJoinDTO memberJoinDTO) throws MidExistException {
 
         log.info("memberJoinDTO = 4 MemberServiceImpl 프로필 이미지 있는 경우  " + memberJoinDTO);
-        Member member = dtoToEntity(memberJoinDTO);
-        //패스워드는 현재 평문 -> 암호로 변경.
-        member.changePassword(passwordEncoder.encode(member.getMpw()));
-        // 역할 추가. 기본 USER
-        member.addRole(MemberRole.USER);
+        Member member = null;
+        if(memberJoinDTO.getUuid() == null) {
+            // 기존 이미지 재사용.
+            log.info("memberJoinDTO = 4-2 MemberServiceImpl 기존 이미지 재사용  " + memberJoinDTO);
+            Optional<Member> result = memberRepository.findById(memberJoinDTO.getMid());
+            Member oldMember = result.orElseThrow();
+            memberJoinDTO.setUuid(oldMember.getUuid());
+            memberJoinDTO.setFileName(oldMember.getFileName());
+            log.info("memberJoinDTO = 5 MemberServiceImpl 기존 이미지 재사용  " + memberJoinDTO);
+            member = dtoToEntity(memberJoinDTO);
+            log.info("memberJoinDTO = 6 MemberServiceImpl 기존 이미지 재사용 member " + member);
+            //패스워드는 현재 평문 -> 암호로 변경.
+            member.changePassword(passwordEncoder.encode(member.getMpw()));
+            // 역할 추가. 기본 USER
+            member.addRole(MemberRole.USER);
 
 
-        // 데이터 가 잘 알맞게 변경이 됐는지 여부,
-        log.info("updateMember: " + member);
-        log.info("updateMember: " + member.getRoleSet());
+            // 데이터 가 잘 알맞게 변경이 됐는지 여부,
+            log.info("updateMember: " + member);
+            log.info("updateMember: " + member.getRoleSet());
 
-        // 디비에 적용하기. -> 수정하기.
-        memberRepository.save(member);
+            // 디비에 적용하기. -> 수정하기.
+            memberRepository.save(member);
+        }
+         else {
+            //새로운 이미지가 들어오는 경우
+            member = dtoToEntity(memberJoinDTO);
+            log.info("memberJoinDTO = 8 MemberServiceImpl 새로운 이미지가 들어오는 경우 member " + member);
+            //패스워드는 현재 평문 -> 암호로 변경.
+            member.changePassword(passwordEncoder.encode(member.getMpw()));
+            // 역할 추가. 기본 USER
+            member.addRole(MemberRole.USER);
+
+
+            // 데이터 가 잘 알맞게 변경이 됐는지 여부,
+            log.info("updateMember: " + member);
+            log.info("updateMember: " + member.getRoleSet());
+
+            // 디비에 적용하기. -> 수정하기.
+            memberRepository.save(member);
+        }
+
+
     }
 
     @Override

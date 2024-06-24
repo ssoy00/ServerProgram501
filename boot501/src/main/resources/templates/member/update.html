@@ -56,7 +56,7 @@
 
                         <div class="my-4">
                             <div class="float-end" th:if="${user.social.toString().equals('false')} " >
-                                <button type="submit" class="btn btn-primary" onclick="submitForm()">회원수정하기</button>
+                                <button type="button" class="btn btn-primary" onclick="submitForm()">회원수정하기</button>
                                 <button type="reset" class="btn btn-secondary">초기화</button>
                             </div>
 
@@ -152,12 +152,12 @@
     const uploadFileBtn = document.querySelector(".uploadFileBtn")
 
     // 이벤트 처리하기.
-    uploadFileBtn.addEventListener("click", function (e) {
-
-        e.preventDefault()
-        e.stopPropagation()
-        uploadModal.show()
-    }, false)
+    // uploadFileBtn.addEventListener("click", function (e) {
+    //
+    //     e.preventDefault()
+    //     e.stopPropagation()
+    //     uploadModal.show()
+    // }, false)
 
     // 서버에 이미지들 보내기, axios 이용해서 비동기 통신으로 데이터만 전달중
     document.querySelector(".uploadBtn").addEventListener("click",function (e){
@@ -217,26 +217,26 @@
     }
 
     // 등록하기,
-    document.querySelector(".submitBtn").addEventListener("click",function (e){
-        e.preventDefault()
-        e.stopPropagation()
-
-        const target = document.querySelector(".uploadHidden")
-        const uploadFiles = uploadResult.querySelectorAll("img")
-        // InnerHTML 으로 사용할 변수,
-        let str = ''
-        for(let i = 0; i < uploadFiles.length; i++) {
-            const uploadFile = uploadFiles[i]
-            // imgLink = uuid_fileName 형식으로 전달하기.
-            const imgLink = uploadFile.getAttribute("data-src")
-
-            str += `<input type='hidden' name='fileNames' value='${imgLink}'>`
-        }
-        target.innerHTML = str;
-        //전송 하는 기능
-        document.querySelector("form").submit();
-
-    },false)
+    // document.querySelector(".submitBtn").addEventListener("click",function (e){
+    //     e.preventDefault()
+    //     e.stopPropagation()
+    //
+    //     const target = document.querySelector(".uploadHidden")
+    //     const uploadFiles = uploadResult.querySelectorAll("img")
+    //     // InnerHTML 으로 사용할 변수,
+    //     let str = ''
+    //     for(let i = 0; i < uploadFiles.length; i++) {
+    //         const uploadFile = uploadFiles[i]
+    //         // imgLink = uuid_fileName 형식으로 전달하기.
+    //         const imgLink = uploadFile.getAttribute("data-src")
+    //
+    //         str += `<input type='hidden' name='fileNames' value='${imgLink}'>`
+    //     }
+    //     target.innerHTML = str;
+    //     //전송 하는 기능
+    //     document.querySelector("form").submit();
+    //
+    // },false)
 
     //등록하기, 2번째 버전
     function submitForm() {
@@ -253,6 +253,7 @@
             .then(response => {
                 alert('회원수정이 완료되었습니다!');
                 console.log(response.data);
+                self.location = "/member/logout"
             })
             .catch(error => {
                 alert('회원수정 중 오류가 발생했습니다.');
@@ -261,22 +262,23 @@
     }
 
     //수정하기, 3번째 버전, 소셜 로그인 경우
-    // document.getElementById('updatePasswordBtn').addEventListener('click', function (event) {
-    //     event.preventDefault()
-    //     event.stopPropagation()
-    //     const mid = document.getElementById('mid').value;
-    //     const mpw = document.getElementById('mpw').value;
-    //     console.log("mid :" + mid + ", mpw : " + mpw)
-    //
-    //     axios.post('/member/updateSocial', {mid:mid,mpw: mpw})
-    //         .then(response => {
-    //             alert('회원수정이 완료되었습니다!');
-    //             console.log(response.data);
-    //         })
-    //         .catch(error => {
-    //             alert('회원수정 중 오류가 발생했습니다.');
-    //             console.error(error);
-    //         });
-    // })
+    document.getElementById('updatePasswordBtn').addEventListener('click', function (event) {
+        event.preventDefault()
+        event.stopPropagation()
+        const mid = document.getElementById('mid').value;
+        const mpw = document.getElementById('mpw').value;
+        console.log("mid :" + mid + ", mpw : " + mpw)
+
+        axios.post('/member/updateSocial', {mid:mid,mpw: mpw})
+            .then(response => {
+                alert('회원수정이 완료되었습니다!');
+                console.log(response.data);
+                self.location = "/member/logout"
+            })
+            .catch(error => {
+                alert('회원수정 중 오류가 발생했습니다.');
+                console.error(error);
+            });
+    })
 
 </script>

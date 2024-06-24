@@ -11,6 +11,7 @@ public interface MemberService {
     static class MidExistException extends Exception {
 
     }
+
     void join(MemberJoinDTO memberJoinDTO) throws MidExistException;
 
     //회원 수정 재사용. join
@@ -19,7 +20,7 @@ public interface MemberService {
     //소셜 로그인시 수정하는 서비스
     void updateSocial(String mid, String mpw) throws MidExistException;
 
-    default Member dtoToEntity(MemberJoinDTO memberJoinDTO){
+    default Member dtoToEntity(MemberJoinDTO memberJoinDTO) {
 
         Member member = Member.builder()
                 .mid(memberJoinDTO.getMid())
@@ -29,15 +30,9 @@ public interface MemberService {
                 .fileName(memberJoinDTO.getFileName())
                 .build();
 
-        // 첨부 이미지들이 추가
-//        if(memberJoinDTO.getFileNames() != null) {
-//            memberJoinDTO.getFileNames().forEach(fileName ->
-//            {
-//                String[] arr = fileName.split("_");
-//                member.changeUuidFileName(arr[0],arr[1]);
-//            }); // forEach 닫기
-//        } // if 닫기
+
         return member;
+
     } // dtoToEntity 닫기.
 
     // entityToDTO
@@ -50,7 +45,6 @@ public interface MemberService {
                 .uuid(member.getUuid())
                 .fileName(member.getFileName())
                 .build();
-
 
 
         return memberJoinDTO;
