@@ -89,8 +89,8 @@ public class MemberController {
             return "redirect:/member/update";
         }
         // 회원 수정 성공시
-        redirectAttributes.addFlashAttribute("result","회원가입 성공");
-        return "redirect:/member/update";
+        redirectAttributes.addFlashAttribute("result","회원수정 성공");
+        return "redirect:/member/logout";
     }
 
 

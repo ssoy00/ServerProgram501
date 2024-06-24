@@ -5,6 +5,7 @@ import com.busanit501.boot501.dto.MemberJoinDTO;
 import com.busanit501.boot501.dto.upload.UploadResultDTO;
 import org.springframework.web.multipart.MultipartFile;
 
+
 public interface MemberService {
     // 중복 아이디 예외처리
     static class MidExistException extends Exception {
