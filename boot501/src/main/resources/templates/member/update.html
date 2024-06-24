@@ -63,11 +63,13 @@
                                 <button type="reset" class="btn btn-secondary">초기화</button>
                             </div>
                             <div class="float-end" th:if="${user.social.toString().equals('true')} " >
-                                <button type="submit" class="btn btn-primary" onclick="submitForm()">소셜 회원수정하기</button>
+                                <button type="submit" class="btn btn-primary" onclick="submitForm2()">소셜 회원수정하기</button>
                                 <button type="reset" class="btn btn-secondary">초기화</button>
                             </div>
                         </div>
                     </form>
+
+
                 </div><!--end card body-->
 
             </div><!--end card-->
@@ -236,7 +238,7 @@
     }
 
     //수정하기, 3번째 버전, 소셜 로그인 경우
-    function submitForm() {
+    function submitForm2() {
         const form = document.getElementById('registrationForm');
         const formData = new FormData(form);
 

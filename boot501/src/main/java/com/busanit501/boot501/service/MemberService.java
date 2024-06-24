@@ -15,6 +15,9 @@ public interface MemberService {
     //회원 수정 재사용. join
     void update(MemberJoinDTO memberJoinDTO) throws MidExistException;
 
+    //소셜 로그인시 수정하는 서비스
+    void updateSocial(String mid, String mpw) throws MidExistException;
+
     default Member dtoToEntity(MemberJoinDTO memberJoinDTO){
 
         Member member = Member.builder()

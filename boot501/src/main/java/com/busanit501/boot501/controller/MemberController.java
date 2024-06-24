@@ -94,6 +94,27 @@ public class MemberController {
     }
 
 
+    @PostMapping("/updateSocial")
+    public String updateSocial(String mid, String mpw, RedirectAttributes redirectAttributes) {
+        log.info("updateSocial====================");
+        //현재 패스워드만 들어가 있음. 보이지 않게 mid, email 정보도 넘어옴.
+
+//        log.info("memberJoinDTO = 2 profileImage " + profileImage.getOriginalFilename());
+
+        // 회원 수정 로직 처리 없음.
+        try {
+            //memberService.join(memberJoinDTO);
+            memberService.updateSocial(mid,mpw);
+        } catch (MemberService.MidExistException e) {
+            redirectAttributes.addFlashAttribute("error", "아이디 중복입니다");
+            return "redirect:/member/update";
+        }
+        // 회원 수정 성공시
+        redirectAttributes.addFlashAttribute("result","회원가입 성공");
+        return "redirect:/member/update";
+    }
+
+
     //회원가입 폼
     @GetMapping("/join")
     public void joinGet() {
