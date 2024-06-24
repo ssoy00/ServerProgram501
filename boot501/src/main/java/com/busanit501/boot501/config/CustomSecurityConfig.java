@@ -102,7 +102,9 @@ public class CustomSecurityConfig {
 
         //카카오 로그인 API 설정
         http.oauth2Login(
+                // 로그인 후 처리 , 적용하기.
                 oauthLogin -> oauthLogin.loginPage("/member/login")
+                        .successHandler(authenticationSuccessHandler())
         );
 
 
