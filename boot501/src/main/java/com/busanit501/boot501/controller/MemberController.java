@@ -5,16 +5,16 @@ import com.busanit501.boot501.dto.upload.UploadResultDTO;
 import com.busanit501.boot501.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.Map;
 
 @Controller
 @RequestMapping("/member")
@@ -95,9 +95,11 @@ public class MemberController {
 
 
     @PostMapping("/updateSocial")
-    public String updateSocial(String mid, String mpw, RedirectAttributes redirectAttributes) {
+    public ResponseEntity<String> updateSocial(@RequestBody Map<String,String> payload , RedirectAttributes redirectAttributes) {
         log.info("updateSocial====================");
         //현재 패스워드만 들어가 있음. 보이지 않게 mid, email 정보도 넘어옴.
+        String mid = payload.get("mid");
+        String mpw = payload.get("mpw");
 
 //        log.info("memberJoinDTO = 2 profileImage " + profileImage.getOriginalFilename());
 
@@ -107,11 +109,11 @@ public class MemberController {
             memberService.updateSocial(mid,mpw);
         } catch (MemberService.MidExistException e) {
             redirectAttributes.addFlashAttribute("error", "아이디 중복입니다");
-            return "redirect:/member/update";
+            return ResponseEntity.badRequest().body("회원 수정 실패");
         }
         // 회원 수정 성공시
         redirectAttributes.addFlashAttribute("result","회원가입 성공");
-        return "redirect:/member/update";
+        return ResponseEntity.ok("회원 수정 완료 : " + mid);
     }
 
 
