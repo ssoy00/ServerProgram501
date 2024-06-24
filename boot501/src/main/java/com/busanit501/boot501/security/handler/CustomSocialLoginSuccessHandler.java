@@ -35,6 +35,8 @@ public class CustomSocialLoginSuccessHandler implements AuthenticationSuccessHan
 
         // 소셜 로그인은 무조건 패스워드를 1111 , 설정
         // 변경이 필요함.
+        // 처음에 소셜 로그인으로 최초 로그인시, 사용하는 패스워드 1111 를 사용시
+        // 마이페이지 수정페이지로 이동.
         if( memberSecurityDTO.isSocial()
                 && memberSecurityDTO.getMpw().equals("1111") || passwordEncoder.matches("1111", memberSecurityDTO.getMpw())){
             log.info("패스워드를 변경해주세요.");
@@ -47,6 +49,7 @@ public class CustomSocialLoginSuccessHandler implements AuthenticationSuccessHan
             response.sendRedirect("/member/update");
             return;
         } else {
+            // 기본 패스워드 1111를 사용안하고, 변경했다면, 목록 리스트 이동.
             response.sendRedirect("/board/list");
         }
     }

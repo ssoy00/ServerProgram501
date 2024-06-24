@@ -74,8 +74,9 @@ public class MemberRepositoryTests {
         // 이메일로 유저 불러오기.
         Optional<Member> result = memberRepository.findByEmail("lsy3709@kakao.com");
         Member member = result.orElseThrow();
+        // password1 = 패스워드 1111 이 인코딩 된 값
         String password1 = member.getMpw();
-        boolean isPasswordMatch = passwordEncoder.matches("123456", password1);
+        boolean isPasswordMatch = passwordEncoder.matches("1111", password1);
         log.info("MemberRepositoryTests testPasswordEqual, isPasswordMatch:  "+isPasswordMatch);
 
 

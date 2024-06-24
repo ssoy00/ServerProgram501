@@ -45,6 +45,8 @@ public class MemberController {
 
 
     //회원수정 폼
+    // 1) 소셜로 로그인 했을 경우
+    // 2) 직접 로그인 했을 경우.
     @GetMapping("/update")
     public void updateGet(@AuthenticationPrincipal UserDetails user, Model model) {
         log.info("updateGet====================");
