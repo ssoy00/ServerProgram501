@@ -5,6 +5,7 @@ import com.busanit501.boot501.dto.upload.UploadResultDTO;
 import com.busanit501.boot501.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -21,7 +22,25 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Log4j2
 @RequiredArgsConstructor
 public class MemberController {
+    @Value("${spring.security.oauth2.client.registration.kakao.client-id}")
+    private String restAPIKEY;
+
     private final MemberService memberService;
+
+
+    //카카오 소셜 로그 아웃
+    // restAPIKEY -> application.properties 에 등록된  REST API key
+    // logout_redirect_uri : 로그 아웃 후 이동할 페이지. 카카오 개발자 사이트에서,
+    // 카카오 로그인 -> 고급 -> 로그아웃 리다이렉트 등록하기.
+    // 공식 문서 : https://developers.kakao.com/docs/latest/ko/kakaologin/common#logout-with-kakao-account
+    // 로그 아웃시, 2번째 클릭 확인 , 완전 계정 로그 아웃
+    // 로그 아웃시, 1번째 클릭 확인 , 이 서비스 로그 아웃, 다시 카카오 로그인시 로그인이 됨
+    @GetMapping("/kakaoLogout")
+    public String kakaoLogout(String error, String logout,
+                         RedirectAttributes redirectAttributes) {
+      return "redirect:https://kauth.kakao.com/oauth/logout?client_id="+restAPIKEY+"&logout_redirect_uri=http://localhost:8080/member/login";
+
+    }
 
     @GetMapping("/login")
     public void loginGet(String error, String logout,
