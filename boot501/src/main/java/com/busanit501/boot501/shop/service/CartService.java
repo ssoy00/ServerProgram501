@@ -39,7 +39,7 @@ public class CartService {
                 .orElseThrow(EntityNotFoundException::new);
         ShopMember shopMember = memberRepository.findByEmail(email);
 
-        Cart cart = cartRepository.findByMemberId(shopMember.getId());
+        Cart cart = cartRepository.findByShopMemberId(shopMember.getId());
         if(cart == null){
             cart = Cart.createCart(shopMember);
             cartRepository.save(cart);
@@ -63,7 +63,7 @@ public class CartService {
         List<CartDetailDto> cartDetailDtoList = new ArrayList<>();
 
         ShopMember shopMember = memberRepository.findByEmail(email);
-        Cart cart = cartRepository.findByMemberId(shopMember.getId());
+        Cart cart = cartRepository.findByShopMemberId(shopMember.getId());
         if(cart == null){
             return cartDetailDtoList;
         }

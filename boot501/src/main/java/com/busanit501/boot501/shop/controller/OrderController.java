@@ -64,7 +64,7 @@ public class OrderController {
         model.addAttribute("page", pageable.getPageNumber());
         model.addAttribute("maxPage", 5);
 
-        return "order/orderHist";
+        return "shop/order/orderHist";
     }
 
     @PostMapping("/order/{orderId}/cancel")
