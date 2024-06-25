@@ -1,9 +1,9 @@
 package com.busanit501.boot501.shop.controller;
 
 
+import com.busanit501.boot501.service.MemberService;
 import com.busanit501.boot501.shop.dto.MemberFormDto;
 import com.busanit501.boot501.shop.entity.ShopMember;
-import com.busanit501.boot501.shop.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -37,7 +37,7 @@ public class ShopMemberController {
 
         try {
             ShopMember shopMember = ShopMember.createMember(memberFormDto, passwordEncoder);
-            memberService.saveMember(shopMember);
+//            memberService.saveMember(shopMember);
         } catch (IllegalStateException e){
             model.addAttribute("errorMessage", e.getMessage());
             return "shop/member/memberForm";

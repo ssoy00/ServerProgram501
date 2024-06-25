@@ -1,6 +1,5 @@
 package com.busanit501.boot501.config;
 
-import com.busanit501.boot501.shop.config.CustomAuthenticationEntryPoint;
 import com.busanit501.boot501.security.CustomUserDetailsService;
 import com.busanit501.boot501.security.handler.Custom403Handler;
 import com.busanit501.boot501.security.handler.CustomSocialLoginSuccessHandler;
@@ -70,7 +69,7 @@ public class CustomSecurityConfig {
                 // 정적 자원 모두 허용.
                 .requestMatchers("/css/**", "/js/**","/images/**").permitAll()
                 // 리스트는 기본으로 다 들어갈수 있게., 모두 허용
-                .requestMatchers("/", "/board/list","/member/join", "/login", "/joinUser","/joinForm","/findAll","/images/**","/members/**", "/item/**").permitAll()
+                .requestMatchers("/", "/board/list","/member/join", "/login","/member/login", "/joinUser","/joinForm","/findAll","/images/**","/members/**", "/item/**").permitAll()
                 // 로그인 후 확인 하기. 권한 예제) hasRole("USER"),hasRole("ADMIN")
                 .requestMatchers("/board/register","/board/read","/board/update" ).authenticated()
                 // 권한  관리자만, 예제로 , 수정폼은 권한이 관리자여야 함.
@@ -88,11 +87,11 @@ public class CustomSecurityConfig {
         );
 
         //401 핸들러 적용하기.
-        http.exceptionHandling(
-                handle -> {
-                        handle.authenticationEntryPoint(new CustomAuthenticationEntryPoint());
-                }
-                        );
+//        http.exceptionHandling(
+//                handle -> {
+//                        handle.authenticationEntryPoint(new CustomAuthenticationEntryPoint());
+//                }
+//                        );
 
 
         // 자동로그인 설정.1
