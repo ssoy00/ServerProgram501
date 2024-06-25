@@ -17,7 +17,7 @@
                     회원수정
                 </div>
                 <div class="card-body">
-                    <form id="registrationForm" action="/shopMember/update" method="post">
+                    <form id="registrationForm" action="/member/update" method="post">
                         <div class="input-group mb-3" th:if="${user.social.toString().equals('false')} ">
                             <span class="input-group-text">MID</span>
                             <input type="text"  name="mid" class="form-control" th:value="${user.mid}" readonly>
@@ -57,7 +57,7 @@
                         </div>
                     </form>
 
-                    <form id="registrationForm2" action="/shopMember/updateSocial" method="post" th:if="${user.social.toString().equals('true')} ">
+                    <form id="registrationForm2" action="/member/updateSocial" method="post" th:if="${user.social.toString().equals('true')} ">
                         <div th:if="${user.social.toString().equals('true')} ">
                             <h1>소셜 로그인 경우, 임시로 패스워드만 변경함</h1>
                         </div>
@@ -130,7 +130,7 @@ if(!profileImageCheck) {
         const form = document.getElementById('registrationForm');
         const formData = new FormData(form);
 
-        axios.post('/shopMember/update', formData, {
+        axios.post('/member/update', formData, {
             //폼 방식에서, 이미지와 일반 문자열을 서버에 전달시
             // 전달 방식을 multipart/form-data 꼭~~~ 주의사항.
             headers: {
@@ -140,7 +140,7 @@ if(!profileImageCheck) {
             .then(response => {
                 alert('회원수정이 완료되었습니다!');
                 console.log(response.data);
-                self.location = "/shopMember/logout"
+                self.location = "/member/logout"
             })
             .catch(error => {
                 alert('회원수정 중 오류가 발생했습니다.');
@@ -153,7 +153,7 @@ if(!profileImageCheck) {
         const form = document.getElementById('registrationForm2');
         const formData = new FormData(form);
 
-        axios.post('/shopMember/updateSocial', formData, {
+        axios.post('/member/updateSocial', formData, {
             //폼 방식에서, 이미지와 일반 문자열을 서버에 전달시
             // 전달 방식을 multipart/form-data 꼭~~~ 주의사항.
             headers: {
@@ -163,7 +163,7 @@ if(!profileImageCheck) {
             .then(response => {
                 alert('회원수정이 완료되었습니다!');
                 console.log(response.data);
-                self.location = "/shopMember/logout"
+                self.location = "/member/logout"
             })
             .catch(error => {
                 alert('회원수정 중 오류가 발생했습니다.');
