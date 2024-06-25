@@ -99,12 +99,23 @@
                 }
 
             } catch (error) {
+                if (error.response && error.response.status === 429) {
+                    const retryAfter = error.response.headers['retry-after'];
+                    const retryAfterSeconds = parseInt(retryAfter, 10);
+                    const retryTime = new Date(Date.now() + retryAfterSeconds * 1000);
+
+                    // document.getElementById('message').innerText = `Too many requests. Please try again after ${retryAfterSeconds} seconds, at ${retryTime.toLocaleTimeString()}.`;
+                    alert(`요청이 너무 많습니다. ${retryAfterSeconds} 초 후,  약 ${retryTime.toLocaleTimeString()} 이후로 접속해주세요 `)
+                } else {
+                    // document.getElementById('message').innerText = 'Error: ' + error.message;
+                }
                 // Handle any errors
                 console.error('중복 아이디 검사 실패 :', error);
-
+                alert('중복 아이디 검사 실패 ');
             }
         } else {
             console.error('아이디를 입력해주세요.');
+            alert('아이디를 입력해주세요.');
 
         }
     }

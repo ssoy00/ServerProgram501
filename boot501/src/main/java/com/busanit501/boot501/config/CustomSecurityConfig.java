@@ -8,7 +8,6 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -18,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
@@ -34,6 +34,8 @@ import javax.sql.DataSource;
 public class CustomSecurityConfig {
     private final DataSource dataSource;
     private final CustomUserDetailsService customUserDetailsService;
+    //ip 에서 분당 요청 횟수 제한
+    private final RateLimitingFilter rateLimitingFilter;
 
     // 평문 패스워드를 해시 함수 이용해서 인코딩 해주는 도구 주입.
     @Bean
@@ -117,6 +119,8 @@ public class CustomSecurityConfig {
                         .successHandler(authenticationSuccessHandler())
         );
 
+        // 동일 아이피에서 분당 요청 횟수 10회 제한 , 필터 설정.
+        http.addFilterBefore(rateLimitingFilter, UsernamePasswordAuthenticationFilter.class);
 
 
 
