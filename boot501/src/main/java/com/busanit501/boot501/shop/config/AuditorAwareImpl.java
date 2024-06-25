@@ -1,4 +1,4 @@
-package com.busanit501.boot501.config;
+package com.busanit501.boot501.shop.config;
 
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.security.core.Authentication;
