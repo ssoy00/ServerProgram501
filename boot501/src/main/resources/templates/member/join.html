@@ -20,7 +20,8 @@
                     <form id="registrationForm" action="/member/join" method="post">
                         <div class="input-group mb-3">
                             <span class="input-group-text">MID</span>
-                            <input type="text" name="mid" class="form-control">
+                            <input type="text" name="mid" class="form-control" id="inputMid">
+                            <span class="input-group-text"><button class="btn btn-primary checkIdBtn" onclick="lookupId()">중복검사</button></span>
                         </div>
 
                         <div class="input-group mb-3">
@@ -76,6 +77,37 @@
 
 <script layout:fragment="javascript" th:inline="javascript">
 
+    //inputMid 중복검사,
+    async function lookupId() {
+        // Get the value from the input field
+        const inputMid = document.getElementById('inputMid').value;
+        console.log("inputMid : " + inputMid )
+
+        if (inputMid) {
+            try {
+                // Use Axios to make a GET request
+                const response = await axios.get(`/member/checkID/${inputMid}`);
+
+                // Handle the response from the server
+                console.log('Response data:', response.data);
+                if (response.data.result) {
+                    // console.log("중복아이디입니다. 변경해주세요!")
+                    alert("중복아이디입니다. 변경해주세요!")
+                } else {
+                    // console.log("사용 가능한 아이디입니다.")
+                    alert("사용 가능한 아이디입니다.")
+                }
+
+            } catch (error) {
+                // Handle any errors
+                console.error('중복 아이디 검사 실패 :', error);
+
+            }
+        } else {
+            console.error('아이디를 입력해주세요.');
+
+        }
+    }
 
     // 회원가입시 이미지 미리보기 이벤트 동작
     document.getElementById('profileImage').addEventListener('change', function(event) {

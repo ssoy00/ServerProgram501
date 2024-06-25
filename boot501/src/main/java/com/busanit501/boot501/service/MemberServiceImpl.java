@@ -36,6 +36,16 @@ public class MemberServiceImpl implements MemberService {
 
 
     @Override
+    public boolean checkMid(String mid) {
+        boolean existMember = memberRepository.existsById(mid);
+        if (existMember) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
     public void join(MemberJoinDTO memberJoinDTO) throws MidExistException {
         //기존 아이디와 중복되는지 여부 확인
         String mid = memberJoinDTO.getMid();

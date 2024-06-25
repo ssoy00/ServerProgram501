@@ -12,6 +12,10 @@ public interface MemberService {
 
     }
 
+    //중복 아이디 검사
+
+    boolean checkMid(String mid);
+
     void join(MemberJoinDTO memberJoinDTO) throws MidExistException;
 
     //회원 수정 재사용. join
