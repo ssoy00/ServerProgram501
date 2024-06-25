@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -26,8 +27,9 @@ import javax.sql.DataSource;
 @Configuration
 @RequiredArgsConstructor
 // 어노테이션을 이용해서, 특정 권한 있는 페이지 접근시, 구분가능.
-@EnableGlobalMethodSecurity(prePostEnabled = true)
-//@EnableMethodSecurity
+//@EnableGlobalMethodSecurity(prePostEnabled = true)
+// 위 어노테이션 지원중단, 아래 어노테이션 으로 교체, 기본으로 prePostEnabled = true ,
+@EnableMethodSecurity()
 @EnableWebSecurity
 public class CustomSecurityConfig {
     private final DataSource dataSource;
