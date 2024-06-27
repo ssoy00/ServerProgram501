@@ -106,6 +106,7 @@ public class MemberServiceImpl implements MemberService {
             memberRepository.save(member);
         }
          else {
+            log.info("memberJoinDTO = 7 MemberServiceImpl 새로운 이미지가 들어오는 경우 memberJoinDTO " + memberJoinDTO);
             //새로운 이미지가 들어오는 경우
             member = dtoToEntity(memberJoinDTO);
             log.info("memberJoinDTO = 8 MemberServiceImpl 새로운 이미지가 들어오는 경우 member " + member);
