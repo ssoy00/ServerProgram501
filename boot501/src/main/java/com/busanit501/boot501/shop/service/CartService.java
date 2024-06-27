@@ -43,7 +43,7 @@ public class CartService {
         Optional<Member> result = memberRepository.findByEmail(email);
         Member member = result.orElseThrow();
         // 합치기 수정
-        Cart cart = cartRepository.findByMemberId(member.getId());
+        Cart cart = cartRepository.findByMemberMid(member.getMid());
         if (cart == null) {
             cart = Cart.createCart(member);
             cartRepository.save(cart);
@@ -70,7 +70,7 @@ public class CartService {
         //ShopMember shopMember = memberRepository.findByEmail(email);
         Optional<Member> result = memberRepository.findByEmail(email);
         Member member = result.orElseThrow();
-        Cart cart = cartRepository.findByMemberId(member.getId());
+        Cart cart = cartRepository.findByMemberMid(member.getMid());
         if (cart == null) {
             return cartDetailDtoList;
         }

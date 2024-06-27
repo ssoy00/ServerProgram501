@@ -17,7 +17,8 @@ public class Member extends  BaseEntity {
 //    @Id
 //    private String mid;
     // 변경 후,
-    @Column(unique = true)
+        @Id
+    @Column(name="member_id")
     private String mid;
 
     private String mpw;
@@ -27,10 +28,10 @@ public class Member extends  BaseEntity {
     private boolean social;
 
     // shop 멤버 합치기 추가 멤버.
-    @Id
-    @Column(name="member_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+//    @Id
+//    @Column(name="member_id")
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    private Long id;
 
     private String memberName;
     private String address;
