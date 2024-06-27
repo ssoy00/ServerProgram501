@@ -111,10 +111,10 @@ public class OrderService {
         order.cancelOrder();
     }
 
-    public Long orders(List<OrderDto> orderDtoList, String email){
+    public Long orders(List<OrderDto> orderDtoList, String mid){
 // 합치기 수정
 //        ShopMember shopMember = memberRepository.findByEmail(email);
-        Optional<Member> result = memberRepository.findByEmail(email);
+        Optional<Member> result = memberRepository.findByMid(mid);
         Member Member = result.orElseThrow();
 
         List<OrderItem> orderItemList = new ArrayList<>();

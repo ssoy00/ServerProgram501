@@ -89,11 +89,11 @@ public class CartService {
     }
 
     @Transactional(readOnly = true)
-    public boolean validateCartItem(Long cartItemId, String email) {
+    public boolean validateCartItem(Long cartItemId, String mid) {
         // 합치기 수정
 
 //        ShopMember curShopMember = memberRepository.findByEmail(email);
-        Optional<Member> result = memberRepository.findByEmail(email);
+        Optional<Member> result = memberRepository.findByMid(mid);
         Member curMember = result.orElseThrow();
         CartItem cartItem = cartItemRepository.findById(cartItemId)
                 .orElseThrow(EntityNotFoundException::new);
@@ -119,7 +119,7 @@ public class CartService {
         cartItemRepository.delete(cartItem);
     }
 
-    public Long orderCartItem(List<CartOrderDto> cartOrderDtoList, String email) {
+    public Long orderCartItem(List<CartOrderDto> cartOrderDtoList, String mid) {
         List<OrderDto> orderDtoList = new ArrayList<>();
 
         for (CartOrderDto cartOrderDto : cartOrderDtoList) {
@@ -133,7 +133,7 @@ public class CartService {
             orderDtoList.add(orderDto);
         }
 
-        Long orderId = orderService.orders(orderDtoList, email);
+        Long orderId = orderService.orders(orderDtoList, mid);
         for (CartOrderDto cartOrderDto : cartOrderDtoList) {
             CartItem cartItem = cartItemRepository
                     .findById(cartOrderDto.getCartItemId())
