@@ -1,9 +1,6 @@
 package com.busanit501.boot501.domain;
 
-import jakarta.persistence.ElementCollection;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.HashSet;
@@ -16,7 +13,11 @@ import java.util.Set;
 @NoArgsConstructor
 @ToString(exclude = "roleSet")
 public class Member extends  BaseEntity {
-    @Id
+    // shop 합치기 전
+//    @Id
+//    private String mid;
+    // 변경 후,
+    @Column(unique = true)
     private String mid;
 
     private String mpw;
@@ -24,6 +25,16 @@ public class Member extends  BaseEntity {
     private boolean del;
 
     private boolean social;
+
+    // shop 멤버 합치기 추가 멤버.
+    @Id
+    @Column(name="member_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    private String name;
+    private String address;
+    // shop 멤버 합치기 추가 멤버.
 
     //이미지 파일명 필요해서,
     // 프로필 이미지 조회시 사용.
