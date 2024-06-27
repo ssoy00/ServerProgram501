@@ -21,7 +21,8 @@
                         <div class="input-group mb-3">
                             <span class="input-group-text">MID</span>
                             <input type="text" name="mid" class="form-control" id="inputMid">
-                            <span class="input-group-text"><button class="btn btn-primary checkIdBtn" onclick="lookupId()">중복검사</button></span>
+<!--                            <span class="input-group-text"><button class="btn btn-primary checkIdBtn" onclick="lookupId()">중복검사</button></span>-->
+                            <span class="input-group-text"><button class="btn btn-primary checkIdBtn">중복검사</button></span>
                         </div>
 
                         <div class="input-group mb-3">
@@ -76,6 +77,11 @@
 </div>
 
 <script layout:fragment="javascript" th:inline="javascript">
+    document.querySelector(".checkIdBtn").addEventListener("click", function (e) {
+        e.preventDefault()
+        e.stopPropagation()
+        lookupId()
+    },false)
 
     //inputMid 중복검사,
     async function lookupId() {
