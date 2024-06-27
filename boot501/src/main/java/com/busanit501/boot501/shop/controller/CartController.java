@@ -6,6 +6,7 @@ import com.busanit501.boot501.shop.dto.CartOrderDto;
 import com.busanit501.boot501.shop.service.CartService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,7 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
+@Log4j2
 public class CartController {
 
     private final CartService cartService;
@@ -36,12 +38,15 @@ public class CartController {
 
             return new ResponseEntity<String>(sb.toString(), HttpStatus.BAD_REQUEST);
         }
-
-        String email = principal.getName();
+        log.info("CartController 1 cartItemDto : " + cartItemDto);
+        String mid = principal.getName();
         Long cartItemId;
+        log.info("CartController 2 mid = email : " + mid);
 
         try {
-            cartItemId = cartService.addCart(cartItemDto, email);
+            log.info("CartController 3 addCart 전 : ");
+            cartItemId = cartService.addCart(cartItemDto, mid);
+            log.info("CartController 4 addCart 후 : ");
         } catch(Exception e){
             return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
