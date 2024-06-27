@@ -32,7 +32,7 @@ public class Member extends  BaseEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String name;
+    private String memberName;
     private String address;
     // shop 멤버 합치기 추가 멤버.
 
