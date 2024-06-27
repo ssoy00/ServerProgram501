@@ -56,9 +56,13 @@ public class CartController {
 
     @GetMapping(value = "/cart")
     public String orderHist(Principal principal, Model model){
+        log.info("CartController 1 orderHist ");
         List<CartDetailDto> cartDetailList = cartService.getCartList(principal.getName());
+        log.info("CartController 2 orderHist ");
+        log.info("CartController 2-2 principal.getName() :  " + principal.getName());
+        log.info("CartController 3 cartDetailList.isEmpty :  " + cartDetailList.isEmpty());
         model.addAttribute("cartItems", cartDetailList);
-        return "cart/cartList";
+        return "shop/cart/cartList";
     }
 
     @PatchMapping(value = "/cartItem/{cartItemId}")

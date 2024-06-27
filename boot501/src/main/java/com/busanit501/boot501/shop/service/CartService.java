@@ -71,13 +71,13 @@ public class CartService {
     }
 
     @Transactional(readOnly = true)
-    public List<CartDetailDto> getCartList(String email) {
+    public List<CartDetailDto> getCartList(String mid) {
 
         List<CartDetailDto> cartDetailDtoList = new ArrayList<>();
 
         // 합치기 수정
         //ShopMember shopMember = memberRepository.findByEmail(email);
-        Optional<Member> result = memberRepository.findByEmail(email);
+        Optional<Member> result = memberRepository.findByMid(mid);
         Member member = result.orElseThrow();
         Cart cart = cartRepository.findByMemberMid(member.getMid());
         if (cart == null) {
