@@ -125,10 +125,8 @@
 
         <th:block th:unless="${order.orderItemDtoList != null}">
             <div class="card d-flex">
-                <div th:each="orderItem : ${order.orderItemDtoList}" class="d-flex mb-3">
-                    <div class="repImgDiv">
-                        <img th:src="@{/images2/noProduct_chatgpt.png}" class = "rounded repImg" alt="해당 상품이 존재 하지않습니다.">
-                    </div>
+                <div class="repImgDiv">
+                        <img th:src="@{/images2/noProduct_chatgpt.png}"  alt="해당 상품이 존재 하지않습니다.">
                 </div>
             </div>
         </th:block>
