@@ -1,16 +1,13 @@
 package com.busanit501.boot501.service;
 
-import com.busanit501.boot501.shop.entity.ItemImg;
 import com.busanit501.boot501.shop.repository.ItemImgRepository;
 import com.busanit501.boot501.shop.service.FileService;
 import com.busanit501.boot501.shop.service.ItemImgService;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.thymeleaf.util.StringUtils;
 
 @SpringBootTest
 @Log4j2
@@ -28,15 +25,17 @@ public class ItemImgServiceTests {
 
     @Test
     public void testDelete() throws Exception {
-        Long id = 4L;
-        ItemImg savedItemImg = itemImgRepository.findById(id)
-                .orElseThrow(EntityNotFoundException::new);
-        //기존 이미지 파일 삭제
-        if(!StringUtils.isEmpty(savedItemImg.getImgName())) {
-            fileService.deleteFile(itemImgLocation+"/"+
-                    savedItemImg.getImgName());
-        }
-        itemImgRepository.deleteById(id);
+        Long id = 3L;
+//        ItemImg savedItemImg = itemImgRepository.findById(id)
+//                .orElseThrow(EntityNotFoundException::new);
+//        //기존 이미지 파일 삭제
+//        if(!StringUtils.isEmpty(savedItemImg.getImgName())) {
+//            fileService.deleteFile(itemImgLocation+"/"+
+//                    savedItemImg.getImgName());
+//        }
+//        itemImgRepository.deleteById(id);
+
+       itemImgService.deleteItemImg(id);
 
     }
 

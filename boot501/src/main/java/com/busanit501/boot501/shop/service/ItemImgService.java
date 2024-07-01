@@ -60,6 +60,13 @@ public class ItemImgService {
 
     public void deleteItemImg(Long itemImgId) throws Exception{
    //상품 등록시 , 반드시 이미지 등록
+        ItemImg savedItemImg = itemImgRepository.findById(itemImgId)
+                .orElseThrow(EntityNotFoundException::new);
+        //기존 이미지 파일 삭제
+        if(!StringUtils.isEmpty(savedItemImg.getImgName())) {
+            fileService.deleteFile(itemImgLocation+"/"+
+                    savedItemImg.getImgName());
+        }
         itemImgRepository.deleteById(itemImgId);
     }
 
