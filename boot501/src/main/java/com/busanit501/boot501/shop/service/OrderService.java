@@ -87,10 +87,10 @@ public class OrderService {
     }
 
     @Transactional(readOnly = true)
-    public boolean validateOrder(Long orderId, String email){
+    public boolean validateOrder(Long orderId, String mid){
         // 합치기 수정
 //        ShopMember curShopMember = memberRepository.findByEmail(email);
-        Optional<Member> result = memberRepository.findByEmail(email);
+        Optional<Member> result = memberRepository.findByMid(mid);
         Member curMember = result.orElseThrow();
 
         Order order = orderRepository.findById(orderId)
