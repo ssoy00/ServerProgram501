@@ -58,4 +58,9 @@ public class ItemImgService {
         }
     }
 
+    public void deleteItemImg(Long itemImgId) throws Exception{
+   //상품 등록시 , 반드시 이미지 등록
+        itemImgRepository.deleteById(itemImgId);
+    }
+
 }
