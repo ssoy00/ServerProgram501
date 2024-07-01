@@ -14,7 +14,7 @@ public class ItemServiceTests {
 
     @Test
     public void itemDeleteTest() throws Exception {
-        Long id = 102L;
+        Long id = 103L;
         itemService.deleteItem(id);
 
     }
