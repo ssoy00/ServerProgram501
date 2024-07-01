@@ -11,8 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.thymeleaf.util.StringUtils;
 
-import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -60,22 +58,23 @@ public class ItemImgService {
         }
     }
 
-    public void deleteItemImg(Long itemImgId) throws Exception{
+    public void deleteItemImg(Long itemId) throws Exception{
         //상품 등록시 , 반드시 이미지 등록
 //        ItemImg savedItemImg = itemImgRepository.findById(itemImgId)
 //                .orElseThrow(EntityNotFoundException::new);
-        Optional<ItemImg> result = itemImgRepository.findById(itemImgId);
-        if(result.isPresent()){
-            ItemImg savedItemImg = result.get();
+//        Optional<ItemImg> result = itemImgRepository.findById(itemImgId);
+//        if(result.isPresent()){
+//            ItemImg savedItemImg = result.get();
+//
+//            //기존 이미지 파일 삭제
+//            if(!StringUtils.isEmpty(savedItemImg.getImgName())) {
+//                fileService.deleteFile(itemImgLocation+"/"+
+//                        savedItemImg.getImgName());
+//            }
+//            itemImgRepository.deleteById(itemImgId);
+//        }
 
-            //기존 이미지 파일 삭제
-            if(!StringUtils.isEmpty(savedItemImg.getImgName())) {
-                fileService.deleteFile(itemImgLocation+"/"+
-                        savedItemImg.getImgName());
-            }
-        }
 
-        itemImgRepository.deleteById(itemImgId);
     }
 
 }
